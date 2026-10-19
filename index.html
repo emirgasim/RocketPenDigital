@@ -73,13 +73,34 @@ header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
 @keyframes languageSpin{from{transform:rotate(0)}to{transform:rotate(180deg)}}
 @keyframes languagePop{0%{opacity:.35;transform:translateY(3px)}100%{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.lang:before{transition:none}.lang.is-changing .lang-globe,.lang.is-changing .lang-code{animation:none}}
+
+.language-picker{position:relative;z-index:50}
+.language-picker .lang{position:relative;z-index:2}
+.language-picker .lang-chevron{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.language-picker.is-open .lang-chevron{transform:rotate(225deg) translate(-2px,-1px)}
+.language-menu{position:absolute;top:calc(100% + 12px);right:0;width:190px;padding:7px;background:rgba(12,15,21,.96);border:1px solid rgba(255,255,255,.16);border-radius:8px;box-shadow:0 18px 55px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(22px);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-9px) scale(.97);transform-origin:top right;transition:opacity .22s ease,transform .28s cubic-bezier(.2,.8,.2,1),visibility .22s}
+.language-picker.is-open .language-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.language-option{display:grid;grid-template-columns:34px 1fr 14px;gap:9px;align-items:center;width:100%;padding:12px 10px;color:#f7f7f5;background:transparent;border:0;border-radius:4px;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
+.language-option:hover,.language-option:focus-visible{background:rgba(255,235,0,.09);outline:none;color:#fff;transform:translateX(2px)}
+.language-option-code{font:700 11px var(--display);letter-spacing:1px;color:var(--yellow)}
+.language-option-name{font-size:12px;color:#d7dae0}
+.language-check{font-size:13px;color:var(--yellow);opacity:0;transform:scale(.6);transition:opacity .2s ease,transform .2s ease}
+.language-option[aria-checked="true"]{background:rgba(255,235,0,.055)}
+.language-option[aria-checked="true"] .language-check{opacity:1;transform:scale(1)}
+.language-option[aria-checked="true"] .language-option-name{color:#fff}
+.language-picker.is-open .language-option{animation:languageOptionIn .3s both}
+.language-picker.is-open .language-option:nth-child(2){animation-delay:.045s}
+.language-picker.is-open .language-option:nth-child(3){animation-delay:.09s}
+@keyframes languageOptionIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){.language-menu{width:175px;right:0}.language-option{padding:13px 10px}}
+@media(prefers-reduced-motion:reduce){.language-menu,.language-option,.language-check,.language-picker .lang-chevron{transition:none;animation:none!important}}
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 <div class="wrap">
 <header class="nav">
 <a href="#home" class="logo" aria-label="RocketPen Digital Studio"><svg class="rocket-emblem" viewBox="0 0 100 130" aria-hidden="true" focusable="false"><path d="M50 2 66 31 50 37 34 31Z" fill="#101d2b"/><path d="M34 31 Q50 20 66 31 L83 82 17 82Z" fill="#f20d21"/><path d="M18 64 Q1 68 2 91 Q15 81 23 83Z" fill="#101d2b"/><path d="M82 64 Q99 68 98 91 Q85 81 77 83Z" fill="#101d2b"/><path d="M20 81 Q9 94 23 108 L32 94 50 124 68 94 77 108 Q91 94 80 81Z" fill="#101d2b"/><path d="M39 82 Q32 98 50 107 Q68 98 61 82Z" fill="#ffeb00"/><path d="M45 91 Q41 99 50 104 Q59 99 55 91Z" fill="#fff"/><circle cx="50" cy="53" r="11" fill="#fff"/><circle cx="50" cy="53" r="5" fill="#101d2b"/><path d="M39 37 Q30 47 39 61 M61 37 Q70 47 61 61" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span class="logo-type"><span class="rocket">Rocket</span><span class="pen">Pen</span><small>DIGITAL STUDIO</small></span></a>
-<div class="nav-right"><nav class="nav-links"><a href="#story" data-i="navStory">Our vision</a><a href="#services" data-i="navServices">Services</a><a href="#process" data-i="navProcess">Our process</a><a href="#contact" data-i="navContact">Contact</a></nav><button class="lang" id="lang" aria-label="Change language"><span class="lang-globe" aria-hidden="true">◎</span><span class="lang-code">EN</span><span class="lang-label" data-i="languageLabel">LANGUAGE</span><span class="lang-chevron" aria-hidden="true"></span></button></div>
+<div class="nav-right"><nav class="nav-links"><a href="#story" data-i="navStory">Our vision</a><a href="#services" data-i="navServices">Services</a><a href="#process" data-i="navProcess">Our process</a><a href="#contact" data-i="navContact">Contact</a></nav><div class="language-picker" id="languagePicker"><button class="lang" id="lang" type="button" aria-label="Choose language" aria-expanded="false" aria-controls="languageMenu"><span class="lang-globe" aria-hidden="true">◎</span><span class="lang-code">EN</span><span class="lang-label" data-i="languageLabel">LANGUAGE</span><span class="lang-chevron" aria-hidden="true"></span></button><div class="language-menu" id="languageMenu" role="menu" aria-label="Choose language"><button type="button" class="language-option" role="menuitem" data-lang="en"><span class="language-option-code">EN</span><span class="language-option-name">English</span><span class="language-check">✓</span></button><button type="button" class="language-option" role="menuitem" data-lang="tr"><span class="language-option-code">TR</span><span class="language-option-name">Türkçe</span><span class="language-check">✓</span></button><button type="button" class="language-option" role="menuitem" data-lang="ar"><span class="language-option-code">AR</span><span class="language-option-name">العربية</span><span class="language-check">✓</span></button></div></div></div>
 </header>
 <main>
 <section class="hero" id="home">
@@ -129,8 +150,15 @@ ar:{navStory:"رؤيتنا",navServices:"خدماتنا",navProcess:"آلية ا
 };
 let current='en';const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
-langButton.addEventListener('click',()=>{const order=['en','tr','ar'];setLang(order[(order.indexOf(current)+1)%order.length]);langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650)});
-try{const saved=localStorage.getItem('rp-lang');if(saved&&translations[saved])current=saved}catch(e){}setLang(current);
+const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
+function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false')}
+function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;option.setAttribute('aria-checked',String(active));option.tabIndex=active?0:-1})}
+langButton.addEventListener('click',()=>{const opening=!languagePicker.classList.contains('is-open');languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',String(opening));langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650);if(opening)syncLanguageOptions()});
+languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',()=>{setLang(option.dataset.lang);syncLanguageOptions();closeLanguageMenu();langButton.focus()}));
+document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeLanguageMenu();if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
+
+try{const saved=localStorage.getItem('rp-lang');if(saved&&translations[saved])current=saved}catch(e){}setLang(current);syncLanguageOptions();
 document.getElementById('year').textContent=new Date().getFullYear();
 const nav=document.querySelector('.nav'),progress=document.getElementById('scrollProgress');
 const updateScroll=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';nav.classList.toggle('is-scrolled',scrollY>40)};
