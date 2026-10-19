@@ -43,12 +43,17 @@ html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none;filter:none}}
 
 /* Official RocketPen rocket-eye emblem integration */
-.logo{display:inline-flex;align-items:center;gap:10px;letter-spacing:-1.7px}
-.rocket-emblem{display:block;width:34px;height:45px;flex:0 0 auto;filter:drop-shadow(0 3px 10px rgba(242,13,33,.16));transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .45s ease}
-.logo:hover .rocket-emblem{transform:translateY(-3px) rotate(-4deg);filter:drop-shadow(0 5px 14px rgba(255,235,0,.22))}
-.logo-type{display:flex;flex-direction:column;line-height:.95}
-.logo small{letter-spacing:4px;margin-top:5px}
-@media(max-width:760px){.rocket-emblem{width:29px;height:39px}.logo{gap:8px}.logo small{letter-spacing:3px;font-size:8px}}
+/* Compact, horizontal header lockup; keep wordmark on one line */
+header.nav .logo,footer .logo{display:inline-flex;align-items:center;justify-content:flex-start;gap:10px;white-space:nowrap;font-size:clamp(20px,2.2vw,30px);line-height:1;letter-spacing:-1.4px}
+header.nav .rocket-emblem,footer .rocket-emblem{display:block;width:36px;height:46px;max-width:36px;flex:0 0 36px;overflow:visible;filter:drop-shadow(0 2px 5px rgba(242,13,33,.12));transition:transform .35s ease}
+header.nav .logo:hover .rocket-emblem,footer .logo:hover .rocket-emblem{transform:translateY(-2px) rotate(-3deg)}
+header.nav .logo-type,footer .logo-type{display:grid;grid-template-columns:max-content max-content;grid-template-rows:auto auto;align-items:baseline;column-gap:0;row-gap:3px;line-height:.95;flex:0 0 auto}
+header.nav .logo-type .rocket,footer .logo-type .rocket{display:inline;color:var(--red)}
+header.nav .logo-type .pen,footer .logo-type .pen{display:inline;color:var(--yellow)}
+header.nav .logo-type small,footer .logo-type small{grid-column:1 / span 2;display:block;color:#fff;font:500 8px var(--font);letter-spacing:3px;margin-top:4px;line-height:1.2}
+header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
+@media(max-width:760px){header.nav .logo,footer .logo{font-size:21px;gap:8px}header.nav .rocket-emblem,footer .rocket-emblem{width:31px;height:40px;max-width:31px;flex-basis:31px}header.nav .logo-type small,footer .logo-type small{font-size:7px;letter-spacing:2.4px}header.nav{min-height:72px;padding-top:12px;padding-bottom:12px}.nav-right{gap:10px}.nav-links{display:none}}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
