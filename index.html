@@ -94,6 +94,12 @@ header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
 @keyframes languageOptionIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){.language-menu{width:175px;right:0}.language-option{padding:13px 10px}}
 @media(prefers-reduced-motion:reduce){.language-menu,.language-option,.language-check,.language-picker .lang-chevron{transition:none;animation:none!important}}
+
+/* Robust dropdown visibility and stacking fix */
+header.nav{overflow:visible!important;z-index:500}
+.nav-right,.language-picker{position:relative;z-index:501;overflow:visible}
+.language-menu{z-index:1000;display:block!important;max-height:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px) scale(.98);transition:max-height .35s ease,opacity .22s ease,transform .28s ease,visibility .22s}
+.language-picker.is-open .language-menu{max-height:240px;overflow:visible;opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
@@ -151,9 +157,9 @@ ar:{navStory:"رؤيتنا",navServices:"خدماتنا",navProcess:"آلية ا
 let current='en';const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
 const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
-function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false')}
+function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;option.setAttribute('aria-checked',String(active));option.tabIndex=active?0:-1})}
-langButton.addEventListener('click',()=>{const opening=!languagePicker.classList.contains('is-open');languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',String(opening));langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650);if(opening)syncLanguageOptions()});
+langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650);if(opening){syncLanguageOptions();languageMenu.style.visibility='visible';languageMenu.style.pointerEvents='auto'}else{languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}});
 languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',()=>{setLang(option.dataset.lang);syncLanguageOptions();closeLanguageMenu();langButton.focus()}));
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeLanguageMenu();if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
