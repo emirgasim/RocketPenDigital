@@ -62,17 +62,13 @@ header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
 @media(max-width:760px){header.nav .logo,footer .logo{font-size:21px;gap:8px}header.nav .rocket-emblem,footer .rocket-emblem{width:31px;height:40px;max-width:31px;flex-basis:31px}header.nav .logo-type small,footer .logo-type small{font-size:7px;letter-spacing:2.4px}header.nav{min-height:72px;padding-top:12px;padding-bottom:12px}.nav-right{gap:10px}.nav-links{display:none}}
 
 
-/* Language control click feedback */
-.lang{position:relative;overflow:hidden;isolation:isolate}
-.lang:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,235,0,.18) 48%,transparent 76%);transform:translateX(-130%);transition:transform .55s ease;z-index:-1}
-.lang.is-changing:before{transform:translateX(130%)}
-.lang.is-changing{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,235,0,.09),0 0 24px rgba(255,235,0,.12)}
-.lang.is-changing .lang-chevron{transform:rotate(225deg) translate(-2px,-1px)}
-.lang.is-changing .lang-globe{animation:languageSpin .55s ease}
-.lang.is-changing .lang-code{animation:languagePop .35s ease}
-@keyframes languageSpin{from{transform:rotate(0)}to{transform:rotate(180deg)}}
-@keyframes languagePop{0%{opacity:.35;transform:translateY(3px)}100%{opacity:1;transform:translateY(0)}}
-@media(prefers-reduced-motion:reduce){.lang:before{transition:none}.lang.is-changing .lang-globe,.lang.is-changing .lang-code{animation:none}}
+/* Restrained language control: stable icon, no jump or spin on click */
+.lang{position:relative;overflow:visible;isolation:auto}
+.lang:before{content:none}
+.lang .lang-globe,.lang .lang-code{animation:none!important;transform:none!important}
+.lang.is-changing{border-color:rgba(255,235,0,.55);box-shadow:none}
+.lang.is-changing .lang-chevron{transform:none}
+
 
 .language-picker{position:relative;z-index:50}
 .language-picker .lang{position:relative;z-index:2}
@@ -159,7 +155,7 @@ function setLang(lang){current=lang;const t=translations[lang];document.document
 const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
 function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;option.setAttribute('aria-checked',String(active));option.tabIndex=active?0:-1})}
-langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650);if(opening){syncLanguageOptions();languageMenu.style.visibility='visible';languageMenu.style.pointerEvents='auto'}else{languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}});
+langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();languageMenu.style.visibility='visible';languageMenu.style.pointerEvents='auto'}else{languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}});
 languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',()=>{setLang(option.dataset.lang);syncLanguageOptions();closeLanguageMenu();langButton.focus()}));
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeLanguageMenu();if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
