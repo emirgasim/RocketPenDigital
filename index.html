@@ -174,3 +174,41 @@ const video=document.querySelector('.hero-video');video.addEventListener('error'
 </script>
 </body>
 </html>
+
+/* Mobile header and first-screen layout correction */
+@media(max-width:760px){
+  header.nav{
+    position:absolute!important;top:0;left:0;right:0;
+    min-height:0!important;height:94px!important;
+    padding:14px 20px!important;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;overflow:visible!important;
+  }
+  header.nav .logo{
+    gap:7px!important;font-size:clamp(17px,4.8vw,22px)!important;
+    letter-spacing:-1px!important;line-height:1!important;
+    min-width:0;flex:0 1 auto;
+  }
+  header.nav .rocket-emblem{
+    width:28px!important;height:36px!important;max-width:28px!important;
+    flex:0 0 28px!important;filter:none!important;
+  }
+  header.nav .logo-type{column-gap:0!important;row-gap:2px!important}
+  header.nav .logo-type small{
+    font-size:6px!important;letter-spacing:2px!important;margin-top:2px!important;
+  }
+  header.nav .nav-right{gap:0!important;flex:0 0 auto}
+  header.nav .lang{padding:9px 10px!important;gap:7px!important}
+  header.nav .lang-label{display:none!important}
+  .hero{
+    min-height:100svh!important;
+    padding:120px 22px 105px!important;
+    align-items:center!important;
+  }
+  .hero-inner{margin-top:35px!important}
+  .hero-inner .eyebrow{font-size:8px;letter-spacing:2px}
+  .hero-inner h1{font-size:clamp(54px,14vw,88px)!important;line-height:.9!important;margin:22px 0!important}
+  .hero-sub{font-size:14px!important;line-height:1.65!important;max-width:340px!important}
+  .hero-actions{gap:15px!important}
+  .hero-bottom{bottom:20px!important}
+}
