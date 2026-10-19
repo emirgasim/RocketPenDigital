@@ -61,6 +61,18 @@ header.nav .logo-type small,footer .logo-type small{grid-column:1 / span 2;displ
 header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
 @media(max-width:760px){header.nav .logo,footer .logo{font-size:21px;gap:8px}header.nav .rocket-emblem,footer .rocket-emblem{width:31px;height:40px;max-width:31px;flex-basis:31px}header.nav .logo-type small,footer .logo-type small{font-size:7px;letter-spacing:2.4px}header.nav{min-height:72px;padding-top:12px;padding-bottom:12px}.nav-right{gap:10px}.nav-links{display:none}}
 
+
+/* Language control click feedback */
+.lang{position:relative;overflow:hidden;isolation:isolate}
+.lang:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,235,0,.18) 48%,transparent 76%);transform:translateX(-130%);transition:transform .55s ease;z-index:-1}
+.lang.is-changing:before{transform:translateX(130%)}
+.lang.is-changing{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(255,235,0,.09),0 0 24px rgba(255,235,0,.12)}
+.lang.is-changing .lang-chevron{transform:rotate(225deg) translate(-2px,-1px)}
+.lang.is-changing .lang-globe{animation:languageSpin .55s ease}
+.lang.is-changing .lang-code{animation:languagePop .35s ease}
+@keyframes languageSpin{from{transform:rotate(0)}to{transform:rotate(180deg)}}
+@keyframes languagePop{0%{opacity:.35;transform:translateY(3px)}100%{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.lang:before{transition:none}.lang.is-changing .lang-globe,.lang.is-changing .lang-code{animation:none}}
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
@@ -117,7 +129,7 @@ ar:{navStory:"رؤيتنا",navServices:"خدماتنا",navProcess:"آلية ا
 };
 let current='en';const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
-langButton.addEventListener('click',()=>{const order=['en','tr','ar'];setLang(order[(order.indexOf(current)+1)%order.length])});
+langButton.addEventListener('click',()=>{const order=['en','tr','ar'];setLang(order[(order.indexOf(current)+1)%order.length]);langButton.classList.remove('is-changing');void langButton.offsetWidth;langButton.classList.add('is-changing');window.setTimeout(()=>langButton.classList.remove('is-changing'),650)});
 try{const saved=localStorage.getItem('rp-lang');if(saved&&translations[saved])current=saved}catch(e){}setLang(current);
 document.getElementById('year').textContent=new Date().getFullYear();
 const nav=document.querySelector('.nav'),progress=document.getElementById('scrollProgress');
