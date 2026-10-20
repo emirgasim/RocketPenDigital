@@ -43,8 +43,8 @@ async function visible(page, selector) {
       assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
       assert.equal(await page.locator('html').getAttribute('dir') || 'ltr', route.dir);
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' hero heading should be visible');
-      await page.locator('.logo-image').evaluate(img => img.decode());
-      assert.ok(await page.locator('.logo-image').evaluate(img => img.naturalWidth > 0), 'brand logo must decode');
+      await page.locator('.nav .logo-image').evaluate(img => img.decode());
+      assert.ok(await page.locator('.nav .logo-image').evaluate(img => img.naturalWidth > 0), 'brand logo must decode');
       assert.equal(await page.locator('#primaryNavigation a').count(), 5, 'primary navigation should contain five links');
 
       await page.locator('#lang').click();
