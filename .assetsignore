@@ -1,0 +1,13 @@
+# Keep repository metadata and build-tool internals out of public static assets.
+.git
+.git/**
+**/.git
+**/.git/**
+.wrangler
+.wrangler/**
+**/.wrangler
+**/.wrangler/**
+.github
+.github/**
+**/.github
+**/.github/**
