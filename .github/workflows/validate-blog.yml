@@ -28,6 +28,39 @@ jobs:
           node-version: "20"
       - name: Check publisher syntax
         run: node --check .github/scripts/publish-digital-blog.mjs
+      - name: Check inline JavaScript for all language pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          pages = {
+              "index.html": ("en", {"en": "index.html", "tr": "languages/tr.html", "ar": "languages/ar.html"}),
+              "languages/tr.html": ("tr", {"en": "../index.html", "tr": "tr.html", "ar": "ar.html"}),
+              "languages/ar.html": ("ar", {"en": "../index.html", "tr": "tr.html", "ar": "ar.html"}),
+          }
+          for filename, (locale, routes) in pages.items():
+              text = Path(filename).read_text(encoding="utf-8")
+              match = re.search(r"<script>([\\s\\S]*?)</script>", text)
+              if not match:
+                  raise SystemExit(f"{filename}: inline application script missing")
+              Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
+              expected = f"const pageLang='{locale}'"
+              if expected not in text:
+                  raise SystemExit(f"{filename}: wrong page language constant")
+              for code, href in routes.items():
+                  if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
+                      raise SystemExit(f"{filename}: {code} link must target {href}")
+              if "blogCta:" not in text or "↗",eyebrow:" not in text:
+                  raise SystemExit(f"{filename}: malformed blog CTA translation object")
+          print("Language routes and inline scripts extracted.")
+          PY
+          node --check /tmp/rocketpen-en.js
+          node --check /tmp/rocketpen-tr.js
+          node --check /tmp/rocketpen-ar.js
+      - name: Check published article JSON
+        run: |
+          node -e "for (const f of ['blog/data/en/high-converting-website-guide.json','blog/data/tr/donusum-odakli-web-sitesi-rehberi.json','blog/data/ar/website-guide-uae-qatar.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('Article JSON valid')"
       - name: Verify the localized blog structure
         shell: bash
         run: |
