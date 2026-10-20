@@ -740,3 +740,37 @@ html body header.nav.is-scrolled {
 @media (min-width: 761px) {
   html body .hero-bottom-copy { display:none !important; }
 }
+
+/* Make the main greeting more prominent on mobile while preserving a safe
+   two-line wrap for the long Turkish headline and the Arabic RTL layout. */
+@media (max-width: 760px) {
+  html body .hero-inner h1 {
+    font-size: clamp(2.55rem, 10.2vw, 3.75rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.04em !important;
+    max-width: 100% !important;
+  }
+
+  html body .hero-inner h1 span {
+    max-width: 100% !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+
+  html[lang="tr"] body .hero-inner h1 {
+    font-size: clamp(2.45rem, 9.5vw, 3.5rem) !important;
+    letter-spacing: -.045em !important;
+  }
+
+  html[lang="ar"] body .hero-inner h1 {
+    font-size: clamp(2.65rem, 10.4vw, 3.9rem) !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  html[lang="tr"] body .hero-inner h1 {
+    font-size: clamp(2.3rem, 9vw, 2.65rem) !important;
+  }
+}
