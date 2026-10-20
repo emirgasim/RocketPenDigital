@@ -74,4 +74,7 @@ jobs:
           else
             git commit -m "Publish daily multilingual Digital Blog articles"
             git push
+            printf '%s\\n' '' '## Publication status' '' 'The generated article pages and blog indexes were committed and pushed successfully. The links listed above are ready to open on the live site.' '' '[Open the live Digital Blog](https://rocketpendigital.qasimm2012.workers.dev/blog/en/index.html) · [Türkçe](https://rocketpendigital.qasimm2012.workers.dev/blog/tr/index.html) · [العربية](https://rocketpendigital.qasimm2012.workers.dev/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\\n' '' '## Publication status' '' 'No generated content changes were detected, so no new article commit was pushed. Review the generation logs before treating today as a publication day.' >> "$GITHUB_STEP_SUMMARY"
           fi
