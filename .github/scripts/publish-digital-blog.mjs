@@ -234,7 +234,7 @@ async function main(){
   while(count<counts[lang]&&offset<pool.length*variants.length){
    const pos=(DAY*counts[lang]+offset)%pool.length;
    const variant=variants[Math.floor((DAY*counts[lang]+offset)/pool.length)%variants.length];
-   const item=pool[pos];const topicId=item[0]+'-'+variant.replace(/[^a-z]+/gi,'-').toLowerCase();
+   const item=pool[pos];const topicId=item[0]+'-'+variant.replace(/[^a-z]+/gi,'-').toLowerCase()+'-'+TODAY;
    if(!byLang[lang].some(a=>a.topicId===topicId)&&!tasks.some(t=>t.lang===lang&&t.topicId===topicId)){
     let market=lang==='en'?['United States','United Kingdom','International English-speaking markets','US and UK'][count]:lang==='tr'?'Türkiye':['United Arab Emirates','Qatar','UAE and Qatar'][count];
     tasks.push({lang,topic:item[1]+'. Editorial angle: '+variant+'.',topicId,category:item[2],market});count++;
