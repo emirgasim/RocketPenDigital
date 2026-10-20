@@ -265,6 +265,7 @@ async function main(){
   if(count!==counts[lang])throw new Error('Not enough unused topics to schedule '+lang);
  }
  console.log('Preparing 30 localized articles: 10 English, 10 Turkish and 10 Arabic, dated '+TODAY);
+ const newlyGenerated=[];
  for(let i=0;i<tasks.length;i++){
   const t=tasks[i];console.log('Generating '+(i+1)+'/'+tasks.length+' ('+t.lang+'): '+t.topic);
   const a=await requestArticle(t,titles,slugs);
@@ -275,12 +276,20 @@ async function main(){
   await fs.mkdir(dataDir,{recursive:true});await fs.mkdir(pageDir,{recursive:true});
   await fs.writeFile(path.join(dataDir,a.slug+'.json'),JSON.stringify(a,null,2)+'\n');
   await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a));
-  byLang[t.lang].push(a);all.push(a);titles.push(a.title);slugs.push(a.slug);
+  byLang[t.lang].push(a);all.push(a);titles.push(a.title);slugs.push(a.slug);newlyGenerated.push(a);
  }
  for(const a of all){const pageDir=path.join(ROOT,'blog',a.lang,'articles');await fs.mkdir(pageDir,{recursive:true});await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a));}
  for(const lang of LANGS)await renderIndex(lang,byLang[lang]);
  await updateSeoBlocks();
  await writeSitemap(all);
- console.log('Finished publishing 30 localized articles (10 per language). Add SITE_URL as a repository variable for absolute canonicals and sitemap.xml.');
+ const reportBase=SITE_URL||'https://rocketpendigital.qasimm2012.workers.dev';
+ const summaryPath=process.env.GITHUB_STEP_SUMMARY;
+ if(summaryPath){
+  const summary=['## Daily Digital Blog report — '+TODAY,'','Generated and quality-checked **'+newlyGenerated.length+' articles**: **'+newlyGenerated.filter(a=>a.lang==='en').length+' English**, **'+newlyGenerated.filter(a=>a.lang==='tr').length+' Turkish**, **'+newlyGenerated.filter(a=>a.lang==='ar').length+' Arabic**.','', '### English'];
+  for(const lang of LANGS){if(lang!=='en')summary.push('### '+(lang==='tr'?'Türkçe':'العربية'));for(const a of newlyGenerated.filter(x=>x.lang===lang))summary.push('- ['+a.title+']('+reportBase+'/blog/'+a.lang+'/articles/'+a.slug+'.html)');summary.push('');}
+  summary.push('> Publication links are confirmed after the following GitHub commit-and-push step succeeds.');
+  await fs.appendFile(summaryPath,summary.join('\\n')+'\\n');
+ }
+ console.log('Generated 30 localized articles (10 per language). The workflow will commit and push them next. Add SITE_URL as a repository variable for absolute canonical URLs and sitemap.xml.');
 }
 main().catch(err=>{console.error(err);process.exit(1)});
