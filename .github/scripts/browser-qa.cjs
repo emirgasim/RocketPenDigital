@@ -8,6 +8,24 @@ const routes = [
   { path: '/languages/ar.html', lang: 'ar', dir: 'rtl', nextLang: 'en', nextPath: '/index.html' },
 ];
 
+
+async function assertResponsiveText(page, width, routePath) {
+  const metrics = await page.evaluate(() => {
+    const headings = [...document.querySelectorAll('h1, h2, h3, .h1, .section-title')];
+    const tightHeadings = headings.filter(el => {
+      const rect = el.getBoundingClientRect();
+      if (!rect.width || !rect.height) return false;
+      const style = getComputedStyle(el);
+      const fontSize = parseFloat(style.fontSize);
+      const lineHeight = parseFloat(style.lineHeight);
+      return Number.isFinite(fontSize) && Number.isFinite(lineHeight) && lineHeight < fontSize * 1.02;
+    }).map(el => ({ text: (el.innerText || '').trim().slice(0, 70), fontSize: getComputedStyle(el).fontSize, lineHeight: getComputedStyle(el).lineHeight }));
+    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings };
+  });
+  assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+  assert.equal(metrics.tightHeadings.length, 0, routePath + ' headings must have non-overlapping line-height at ' + width + 'px: ' + JSON.stringify(metrics.tightHeadings));
+}
+
 async function visible(page, selector) {
   return page.locator(selector).evaluate(el => {
     const style = getComputedStyle(el);
@@ -24,6 +42,9 @@ async function visible(page, selector) {
     const videoHead = await fetch(BASE + '/asset/video/banner-vid1.MP4', { method: 'HEAD' });
     assert.equal(videoHead.status, 200, 'hero video asset must be served');
     assert.ok(Number(videoHead.headers.get('content-length')) > 0, 'hero video must be non-empty');
+    const responsiveCssHead = await fetch(BASE + '/asset/css/responsive-overrides.css', { method: 'HEAD' });
+    assert.equal(responsiveCssHead.status, 200, 'shared responsive stylesheet must be served');
+    assert.match(responsiveCssHead.headers.get('content-type') || '', /text\/css|application\/octet-stream/);
     const faviconHead = await fetch(BASE + '/asset/logo/favicon.svg', { method: 'HEAD' });
     assert.equal(faviconHead.status, 200, 'favicon SVG must be served');
     assert.match(faviconHead.headers.get('content-type') || '', /image\/svg\+xml|application\/octet-stream/);
@@ -56,10 +77,16 @@ async function visible(page, selector) {
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'false');
       assert.equal(await page.evaluate(() => document.activeElement.id), 'lang', 'Escape should restore focus to language control');
 
+      for (const width of [1024, 768]) {
+        await page.setViewportSize({ width, height: 844 });
+        await assertResponsiveText(page, width, route.path);
+      }
+
       for (const width of [390, 320]) {
         await page.setViewportSize({ width, height: 844 });
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
+        await assertResponsiveText(page, width, route.path);
         assert.ok(await visible(page, '#mobileNavToggle'), width + 'px mobile menu button should be visible');
         assert.equal(await visible(page, '#primaryNavigation'), false, 'mobile navigation should start closed');
         await page.locator('#mobileNavToggle').click();
