@@ -49,6 +49,7 @@ async function visible(page, selector) {
 
       await page.locator('#lang').click();
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'true');
+      await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
       assert.ok(await visible(page, '#languageMenu'), 'language menu should open');
       assert.equal(await page.locator('#languageMenu [data-lang]').count(), 3, 'all languages must be selectable');
       await page.keyboard.press('Escape');
@@ -75,6 +76,7 @@ async function visible(page, selector) {
         assert.equal(await page.evaluate(() => document.activeElement.id), 'mobileNavToggle', 'Escape should restore focus to mobile menu control');
 
         await page.locator('#lang').click();
+        await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
         const menuRect = await page.locator('#languageMenu').evaluate(el => {
           const r = el.getBoundingClientRect();
           return { left: r.left, right: r.right, width: r.width };
