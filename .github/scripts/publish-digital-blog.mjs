@@ -208,10 +208,10 @@ async function updateSeoBlocks(){
  ];
  for(const page of pageSet){
   const file=path.join(ROOT,page.file);let html=await fs.readFile(file,'utf8');
-  const links='<link rel="canonical" href="'+esc(base+page.path)+'">\\n'+page.group.map(item=>'<link rel="alternate" hreflang="'+item[0]+'" href="'+esc(base+item[1])+'">').join('\\n')+'\\n<link rel="alternate" hreflang="x-default" href="'+esc(base+(page.file.startsWith('blog/')?'/blog/en/index.html':'/'))+'">';
-  const re=/<!-- SEO_ALTERNATES_START -->[\\s\\S]*?<!-- SEO_ALTERNATES_END -->/;
+  const links='<link rel="canonical" href="'+esc(base+page.path)+'">\n'+page.group.map(item=>'<link rel="alternate" hreflang="'+item[0]+'" href="'+esc(base+item[1])+'">').join('\n')+'\n<link rel="alternate" hreflang="x-default" href="'+esc(base+(page.file.startsWith('blog/')?'/blog/en/index.html':'/'))+'">';
+  const re=/<!-- SEO_ALTERNATES_START -->[\s\S]*?<!-- SEO_ALTERNATES_END -->/;
   if(!re.test(html))throw new Error('Missing SEO alternate markers in '+page.file);
-  html=html.replace(re,'<!-- SEO_ALTERNATES_START -->\\n'+links+'\\n<!-- SEO_ALTERNATES_END -->');
+  html=html.replace(re,'<!-- SEO_ALTERNATES_START -->\n'+links+'\n<!-- SEO_ALTERNATES_END -->');
   await fs.writeFile(file,html);
  }
 }
