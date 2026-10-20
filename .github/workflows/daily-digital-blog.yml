@@ -52,7 +52,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Research, quality-check and publish ten articles
+      - name: Research, quality-check and publish 30 articles (10 per language)
         if: steps.readiness.outputs.ready == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
