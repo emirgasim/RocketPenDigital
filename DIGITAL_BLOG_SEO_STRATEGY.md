@@ -4,11 +4,11 @@
 
 The site uses separate crawlable URLs for each language rather than swapping copy on one URL.
 
-- **English — US, UK and broader English-speaking markets:** 4 articles per day. Topics use market-specific examples rather than treating all English markets as identical.
-- **Turkish — Türkiye:** 3 articles per day, written in natural Turkish and aimed at local business intent.
-- **Arabic — UAE and Qatar:** 3 articles per day in Modern Standard Arabic. The article brief alternates UAE, Qatar and shared Gulf business contexts instead of copying the same page between markets.
+- **English — US, UK and broader English-speaking markets:** 10 articles per day. Topics use market-specific examples rather than treating all English markets as identical.
+- **Turkish — Türkiye:** 10 articles per day, written in natural Turkish and aimed at local business intent.
+- **Arabic — UAE and Qatar:** 10 articles per day in Modern Standard Arabic. The article brief alternates UAE, Qatar and shared Gulf business contexts instead of copying the same page between markets.
 
-Daily total: **10 original article pages**, not ten thin translations of the same article.
+Daily total: **30 original article pages (10 per language)**, not thin translations of the same article.
 
 ## Content pillars
 
@@ -63,7 +63,7 @@ A missing API key causes the schedule to skip publishing. Without `SITE_URL`, ar
 
 ## Important quality note
 
-Ten posts per day is an aggressive publishing cadence. Google warns that generating many pages mainly to manipulate rankings, especially without original value, can qualify as scaled content abuse. This pipeline therefore requires research sources and substantial content rather than publishing short keyword pages. The automatic checks reduce obvious failures but cannot guarantee factual accuracy or search performance; review the first several daily batches closely and adjust the cadence if quality slips.
+Thirty posts per day (ten per language) is an especially aggressive publishing cadence. Google warns that generating many pages mainly to manipulate rankings, especially without original value, can qualify as scaled content abuse. This pipeline therefore requires research sources and substantial content rather than publishing short keyword pages. The automatic checks reduce obvious failures but cannot guarantee factual accuracy or search performance; review the first several daily batches closely and adjust the cadence if quality slips.
 
 References:
 - Google Search spam policies: https://developers.google.com/search/docs/essentials/spam-policies
