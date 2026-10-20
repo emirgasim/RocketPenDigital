@@ -316,6 +316,88 @@ html.js-ready .reveal.visible{opacity:1;transform:none;filter:none}
 }
 
 @media(prefers-reduced-motion:reduce){.hero-video{display:none!important}}
+
+/* Responsive hero: prevent translated headings and calls to action from colliding on narrow screens */
+@media (max-width: 760px) {
+  .hero {
+    min-height: max(100svh, 760px);
+    height: auto;
+    align-items: center;
+    padding: 132px clamp(20px, 5.5vw, 32px) 126px;
+  }
+  .hero-inner { min-width: 0; width: 100%; }
+  .eyebrow {
+    max-width: 100%;
+    width: fit-content;
+    font-size: clamp(9px, 2.5vw, 10px);
+    line-height: 1.6;
+    letter-spacing: clamp(1px, .45vw, 2px);
+    flex-wrap: wrap;
+  }
+  h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: clamp(42px, 13.5vw, 88px);
+    line-height: .94;
+    letter-spacing: -.075em;
+    margin: 22px 0 24px;
+  }
+  h1 .line2 { max-width: 100%; }
+  .hero-sub {
+    max-width: 38ch;
+    font-size: clamp(15px, 4vw, 18px);
+    line-height: 1.65;
+    margin-bottom: 26px;
+    overflow-wrap: break-word;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    justify-items: start;
+    gap: 16px;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: fit-content;
+    max-width: 100%;
+    min-height: 48px;
+    padding: 14px clamp(14px, 4vw, 20px);
+    white-space: normal;
+    text-align: center;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .hero-actions .text-link {
+    max-width: 100%;
+    min-height: 44px;
+    line-height: 1.5;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+  .hero-bottom {
+    bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+  }
+  .hero-bottom > span:first-child { max-width: 100%; overflow-wrap: anywhere; }
+  .scroll-indicator { gap: 7px; }
+  .scroll-indicator i { height: 24px; }
+}
+@media (max-width: 380px) {
+  .hero { padding-top: 120px; padding-bottom: 132px; min-height: max(100svh, 790px); }
+  h1 { font-size: clamp(39px, 12.8vw, 50px); letter-spacing: -.065em; }
+  .hero-sub { font-size: 15px; }
+  .hero-bottom { font-size: 7px; }
+}
+@media (max-height: 700px) and (max-width: 760px) {
+  .hero { min-height: 760px; padding-top: 118px; padding-bottom: 115px; }
+}
+
 </style>
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 </head>
