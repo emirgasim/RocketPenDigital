@@ -26,9 +26,11 @@ jobs:
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Add OPENAI_API_KEY under Settings > Secrets and variables > Actions to activate daily publishing."
+            echo "::notice::Publishing was skipped: add OPENAI_API_KEY under Settings > Secrets and variables > Actions."
+            printf '%s\n' '## Digital Blog publishing skipped' '' 'No articles were generated because the OPENAI_API_KEY repository secret is missing.' 'Add the key under Settings → Secrets and variables → Actions, then run this workflow manually to test it.' >> "$GITHUB_STEP_SUMMARY"
           else
             echo "ready=true" >> "$GITHUB_OUTPUT"
+            printf '%s\n' '## Digital Blog publishing configuration' '' 'The API key is present. The workflow will research, validate and publish the scheduled batch.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Checkout repository
