@@ -440,3 +440,17 @@ html[lang="ar"] .article h3 {
     padding-top: clamp(108px, 16svh, 138px) !important;
   }
 }
+
+/* Keep the locale dropdown anchored to the viewport on narrow screens,
+   even when the header's logo and menu controls need to wrap. */
+@media (max-width: 760px) {
+  html body .language-menu {
+    position: fixed !important;
+    top: 76px !important;
+    left: auto !important;
+    right: 10px !important;
+    width: min(175px, calc(100vw - 20px)) !important;
+    max-width: calc(100vw - 20px) !important;
+    transform-origin: top right !important;
+  }
+}
