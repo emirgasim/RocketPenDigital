@@ -193,17 +193,61 @@ function renderArticle(a){
  '<div class="cta"><h2>'+locale.contact+'</h2><p>'+locale.cta+'</p><a href="'+home+'#contact">'+locale.contact+'</a></div></article></main>'+
  '<footer class="end"><span>© '+a.publishedAt.slice(0,4)+' RocketPen Digital Studio</span><a href="'+locale.blog+'">← '+locale.blogLabel+'</a><a href="'+home+'">'+locale.homeLabel+'</a></footer></body></html>';
 }
+const PAGE_SIZE=24;
 function articleCard(a,lang,index){
  const label=CAT[lang][a.category]||a.category;
- const link='articles/'+esc(a.slug)+'.html';
- return '<article class="article-card" data-category="'+esc(a.category)+'"><div class="article-no">'+String(index+1).padStart(2,'0')+' / '+esc(label.toUpperCase())+'</div><div><h3>'+esc(a.title)+'</h3><p>'+esc(a.excerpt||a.description)+'</p></div><a class="read" href="'+link+'">'+(lang==='ar'?'اقرأ الدليل':lang==='tr'?'Rehberi oku':'Read the guide')+'</a></article>';
+ const link='/blog/'+lang+'/articles/'+esc(a.slug)+'.html';
+ return '<article class="article-card" data-category="'+esc(a.category)+'"><div class="article-no">'+String(index+1).padStart(2,'0')+' / '+esc(label.toUpperCase())+'</div><div><h3><a href="'+link+'">'+esc(a.title)+'</a></h3><p>'+esc(a.excerpt||a.description)+'</p></div><a class="read" href="'+link+'">'+(lang==='ar'?'اقرأ الدليل':lang==='tr'?'Rehberi oku':'Read the guide')+'</a></article>';
+}
+function paginationMarkup(lang,page,total){
+ if(total<=1)return '';
+ const labels={en:{prev:'Previous',next:'Next'},tr:{prev:'Önceki',next:'Sonraki'},ar:{prev:'السابق',next:'التالي'}};
+ const L=labels[lang],url=n=>n===1?'/blog/'+lang+'/index.html':'/blog/'+lang+'/page/'+n+'.html';
+ let out='<nav class="pagination" aria-label="Pagination">';
+ if(page>1)out+='<a href="'+url(page-1)+'" rel="prev">'+L.prev+'</a>';
+ const lo=Math.max(1,page-2),hi=Math.min(total,page+2);
+ if(lo>1)out+='<a href="'+url(1)+'">1</a><span aria-hidden="true">…</span>';
+ for(let n=lo;n<=hi;n++)out+=n===page?'<span class="current" aria-current="page">'+n+'</span>':'<a href="'+url(n)+'">'+n+'</a>';
+ if(hi<total)out+='<span aria-hidden="true">…</span><a href="'+url(total)+'">'+total+'</a>';
+ if(page<total)out+='<a href="'+url(page+1)+'" rel="next">'+L.next+'</a>';
+ return out+'</nav>';
 }
 async function renderIndex(lang,articles){
  const file=path.join(ROOT,'blog',lang,'index.html');let html=await fs.readFile(file,'utf8');
  const start='<!-- POSTS_START -->',end='<!-- POSTS_END -->',si=html.indexOf(start),ei=html.indexOf(end);
  if(si<0||ei<si)throw new Error('Missing article markers in blog/'+lang+'/index.html');
- const cards=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map((a,i)=>articleCard(a,lang,i)).join('\n');
- html=html.slice(0,si+start.length)+'\n'+cards+'\n'+html.slice(ei);await fs.writeFile(file,html);
+ const sorted=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||''));
+ const total=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
+ const pagerStart='<!-- PAGINATION_START -->',pagerEnd='<!-- PAGINATION_END -->';
+ const cards=sorted.slice(0,PAGE_SIZE).map((a,i)=>articleCard(a,lang,i)).join('\\n');
+ html=html.slice(0,si+start.length)+'\\n'+cards+'\\n'+html.slice(ei);
+ if(!html.includes(pagerStart))html=html.replace(end,end+'\\n'+pagerStart+'\\n'+pagerEnd);
+ const ps=html.indexOf(pagerStart),pe=html.indexOf(pagerEnd);
+ html=html.slice(0,ps+pagerStart.length)+'\\n'+paginationMarkup(lang,1,total)+'\\n'+html.slice(pe);
+ await fs.writeFile(file,html);
+ const archiveDir=path.join(ROOT,'blog',lang,'page');
+ await fs.mkdir(archiveDir,{recursive:true});
+ for(let page=2;page<=total;page++){
+  let archive=html;
+  const asi=archive.indexOf(start),aei=archive.indexOf(end);
+  const pageCards=sorted.slice((page-1)*PAGE_SIZE,page*PAGE_SIZE).map((a,i)=>articleCard(a,lang,(page-1)*PAGE_SIZE+i)).join('\\n');
+  archive=archive.slice(0,asi+start.length)+'\\n'+pageCards+'\\n'+archive.slice(aei);
+  const aps=archive.indexOf(pagerStart),ape=archive.indexOf(pagerEnd);
+  archive=archive.slice(0,aps+pagerStart.length)+'\\n'+paginationMarkup(lang,page,total)+'\\n'+archive.slice(ape);
+  archive=archive.replace(/<title>([^<]*)<\\/title>/i,(_,title)=>'<title>'+({en:'Articles — Page ',tr:'Makaleler — Sayfa ',ar:'المقالات — الصفحة '}[lang])+page+' | RocketPen Digital Studio</title>');
+  archive=archive.replace(/<meta name="description" content="[^"]*">/i,'<meta name="description" content="'+esc(({en:'Browse practical RocketPen Digital Studio articles. Archive page ',tr:'RocketPen Digital Studio makalelerini ve uygulamalı rehberlerini keşfedin. Arşiv sayfası ',ar:'تصفح مقالات وأدلة RocketPen Digital Studio. صفحة الأرشيف '}[lang])+page)+'">');
+  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/asset\\/logo\\/logo-header\\.png"/g,'href="/asset/logo/logo-header.png"');
+  archive=archive.replace(/src="\\.\\.\\/\\.\\.\\/asset\\/logo\\/logo-header\\.png"/g,'src="/asset/logo/logo-header.png"');
+  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/index\\.html/g,'href="/index.html');
+  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/languages\\/(tr|ar)\\.html/g,'href="/languages/$1.html');
+  archive=archive.replace(/<link rel="canonical" href="[^"]*">/i,'');
+  if(SITE_URL)archive=archive.replace('</head>','<link rel="canonical" href="'+SITE_URL+'/blog/'+lang+'/page/'+page+'.html">\\n</head>');
+  await fs.writeFile(path.join(archiveDir,page+'.html'),archive);
+ }
+ for(const name of await fs.readdir(archiveDir)){
+  const n=Number(name.replace('.html',''));
+  if(name.endsWith('.html')&&Number.isInteger(n)&&n>=2&&n>total)await fs.rm(path.join(archiveDir,name));
+ }
 }
 async function updateSeoBlocks(){
  if(!SITE_URL){console.warn('SITE_URL is not configured; canonical tags and hreflang annotations are skipped. Set the repository variable SITE_URL to the canonical site origin.');return}
@@ -235,6 +279,7 @@ async function writeSitemap(all){
  await fs.writeFile(path.join(ROOT,'robots.txt'),robotsLines.join('\n')+'\n');
  if(!SITE_URL){console.warn('SITE_URL missing: robots.txt was written, but canonical URLs, hreflang and sitemap.xml are skipped. Configure the repository variable SITE_URL to enable them.');return}
  const entries=[['/',''],['/languages/tr.html',''],['/languages/ar.html',''],['/blog/en/index.html',''],['/blog/tr/index.html',''],['/blog/ar/index.html','']];
+ for(const lang of LANGS){const dir=path.join(ROOT,'blog',lang,'page');try{for(const name of await fs.readdir(dir)){if(/^\\d+\\.html$/.test(name))entries.push(['/blog/'+lang+'/page/'+name,'']);}}catch{}}
  for(const a of all)entries.push(['/blog/'+a.lang+'/articles/'+a.slug+'.html',a.updatedAt||a.publishedAt]);
  const body=entries.map(e=>'<url><loc>'+esc(SITE_URL+e[0])+'</loc>'+(e[1]?'<lastmod>'+e[1]+'</lastmod>':'')+'</url>').join('\n');
  await fs.writeFile(path.join(ROOT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'\n</urlset>\n');
