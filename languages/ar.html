@@ -286,6 +286,13 @@ header.nav .logo:before,footer .logo:before{
 .arabic .blog-header{direction:rtl}.arabic .blog-card{text-align:right}.arabic .blog-card-arrow{align-self:flex-start}
 @media(max-width:760px){.blog-header{grid-template-columns:1fr;gap:22px;margin-bottom:30px}.blog-header .section-title{font-size:clamp(38px,10.7vw,66px)}.blog-header>p{font-size:13px;line-height:1.7}.blog-grid{grid-template-columns:1fr;gap:10px}.blog-card{min-height:0;padding:21px 18px}.blog-card-tag{margin-bottom:18px}.blog-card h3{font-size:27px}.blog-card p{font-size:13px;margin-bottom:17px}.blog-card-arrow{margin-top:2px}.blog-footer .btn{width:100%;text-align:center}}
 
+
+/* Progressive enhancement: content stays visible if scripts fail or motion is reduced */
+html:not(.js-ready) .reveal{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+html.js-ready .reveal:not(.visible){opacity:0;transform:translateY(22px);filter:none;transition:opacity .65s ease,transform .65s ease}
+html.js-ready .reveal.visible{opacity:1;transform:none;filter:none}
+@media(prefers-reduced-motion:reduce){html.js-ready .reveal:not(.visible){opacity:1!important;transform:none!important;filter:none!important;transition:none!important}}
+
 </style>
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 </head>
@@ -372,6 +379,7 @@ const sectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
 document.querySelectorAll('main section[id]').forEach(s=>sectionObserver.observe(s));
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
 const video=document.querySelector('.hero-video');video.addEventListener('error',()=>{console.warn('Hero video failed to load:',video.currentSrc)});document.addEventListener('visibilitychange',()=>{if(document.hidden)video.pause();else video.play().catch(()=>{})});
+document.documentElement.classList.add('js-ready');
 </script>
 </body>
 </html>
