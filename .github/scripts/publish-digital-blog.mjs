@@ -136,12 +136,12 @@ function validSlug(s){return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)&&s.length<=90}
 async function requestArticle(t,existingTitles,existingSlugs){
  const locale=L[t.lang];
  const instructions='You are the senior editor for RocketPen Digital Studio. Use the built-in web_search tool before writing. Create distinctive, people-first editorial content that demonstrates real analysis, practical steps, examples, decision criteria, balanced trade-offs and clear next actions. Avoid mass-produced boilerplate, repeated introductions, keyword stuffing, empty marketing language, unverified statistics, fabricated case studies or testimonials, legal claims without reliable sources, and promises of rankings or sales. Google may treat large volumes of unoriginal low-value pages as scaled content abuse, so every article must have a genuinely useful angle. Write natural '+locale.name+'. Market: '+t.market+'. Write approximately 900-1,300 words: an introduction, at least 6 substantive sections, 2-3 developed paragraphs per section, practical bullets where useful and 4-5 specific FAQs. Include 3-5 HTTPS sources actually consulted through web search. Return only the JSON schema requested. Slugs must be ASCII kebab-case.';
- const prompt='Create one publish-ready long-form article for RocketPen Digital Studio.\\nLanguage: '+locale.name+' ('+t.lang+')\\nTarget market: '+t.market+'\\nTopic seed: '+t.topic+'\\nEditorial topic ID: '+t.topicId+'\\nCategory: '+t.category+'\\nAllowed categories: '+CATS.join(', ')+'\\nExisting titles to avoid: \\n'+existingTitles.slice(-100).map(x=>'- '+x).join('\\n')+'\\nExisting slugs to avoid: '+existingSlugs.slice(-100).join(', ')+'\\nThe article must be original for this locale, not a shallow translation of another page. Explain the reader problem, give a clear framework and checklist, note trade-offs, use specific hypothetical examples only when labelled hypothetical, and cite sources with exact URLs. Do not fabricate market statistics.';
+ const prompt='Create one publish-ready long-form article for RocketPen Digital Studio.\nLanguage: '+locale.name+' ('+t.lang+')\nTarget market: '+t.market+'\nTopic seed: '+t.topic+'\nEditorial topic ID: '+t.topicId+'\nCategory: '+t.category+'\nAllowed categories: '+CATS.join(', ')+'\nExisting titles to avoid: \n'+existingTitles.slice(-100).map(x=>'- '+x).join('\n')+'\nExisting slugs to avoid: '+existingSlugs.slice(-100).join(', ')+'\nThe article must be original for this locale, not a shallow translation of another page. Explain the reader problem, give a clear framework and checklist, note trade-offs, use specific hypothetical examples only when labelled hypothetical, and cite sources with exact URLs. Do not fabricate market statistics.';
  for(let attempt=0;attempt<2;attempt++){
-  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'auto',instructions:instructions,input:prompt+(attempt?'\\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
+  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'auto',instructions:instructions,input:prompt+(attempt?'\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
   if(!response.ok){throw new Error('OpenAI API error '+response.status+': '+(await response.text()).slice(0,600))}
   const result=await response.json();
-  const output=(result.output||[]).filter(x=>x.type==='message').flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('\\n');
+  const output=(result.output||[]).filter(x=>x.type==='message').flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('\n');
   let a;try{a=JSON.parse(output)}catch{t.validationError='invalid JSON output';continue}
   const errors=[];
   if(!validSlug(a.slug)||existingSlugs.includes(a.slug))errors.push('slug invalid or already used');
@@ -166,11 +166,11 @@ function renderArticle(a){
  const count=words(a),minutes=Math.max(4,Math.ceil(count/(rtl?190:220)));
  const jsonLd={'@context':'https://schema.org','@type':'BlogPosting',headline:a.title,description:a.description,datePublished:a.publishedAt,dateModified:a.updatedAt||a.publishedAt,author:{'@type':'Organization',name:'RocketPen Digital Studio Editorial Team'},publisher:{'@type':'Organization',name:'RocketPen Digital Studio'},inLanguage:a.lang,keywords:a.category};
  if(SITE_URL)jsonLd.mainEntityOfPage=SITE_URL+urlPath;
- const sections=a.sections.map(s=>'<section><h2>'+esc(s.heading)+'</h2>'+(s.paragraphs||[]).map(p=>'<p>'+esc(p)+'</p>').join('')+((s.bullets||[]).length?'<ul>'+s.bullets.map(b=>'<li>'+esc(b)+'</li>').join('')+'</ul>':'')+'</section>').join('\\n');
+ const sections=a.sections.map(s=>'<section><h2>'+esc(s.heading)+'</h2>'+(s.paragraphs||[]).map(p=>'<p>'+esc(p)+'</p>').join('')+((s.bullets||[]).length?'<ul>'+s.bullets.map(b=>'<li>'+esc(b)+'</li>').join('')+'</ul>':'')+'</section>').join('\n');
  const faq='<section class="faq"><h2>'+locale.faq+'</h2>'+a.faq.map(x=>'<div><h3>'+esc(x.q)+'</h3><p>'+esc(x.a)+'</p></div>').join('')+'</section>';
  const sources='<section class="sources"><h2>'+locale.sources+'</h2><ul>'+a.sources.map(s=>'<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.title)+'</a></li>').join('')+'</ul></section>';
  const home='../../..'+locale.home;
- return '<!doctype html>\\n<html lang="'+a.lang+'"'+(rtl?' dir="rtl"':'')+'><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+ return '<!doctype html>\n<html lang="'+a.lang+'"'+(rtl?' dir="rtl"':'')+'><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
  '<title>'+esc(a.title)+' | RocketPen Digital Studio</title><meta name="description" content="'+esc(a.description)+'"><meta name="robots" content="index,follow">'+canonical+
  '<meta property="og:type" content="article"><meta property="og:title" content="'+esc(a.title)+'"><meta property="og:description" content="'+esc(a.description)+'"><meta property="article:published_time" content="'+a.publishedAt+'">'+
  '<script type="application/ld+json">'+JSON.stringify(jsonLd).replace(/</g,'\\u003c')+'</script>'+
@@ -190,16 +190,16 @@ async function renderIndex(lang,articles){
  const file=path.join(ROOT,'blog',lang,'index.html');let html=await fs.readFile(file,'utf8');
  const start='<!-- POSTS_START -->',end='<!-- POSTS_END -->',si=html.indexOf(start),ei=html.indexOf(end);
  if(si<0||ei<si)throw new Error('Missing article markers in blog/'+lang+'/index.html');
- const cards=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map((a,i)=>articleCard(a,lang,i)).join('\\n');
- html=html.slice(0,si+start.length)+'\\n'+cards+'\\n'+html.slice(ei);await fs.writeFile(file,html);
+ const cards=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map((a,i)=>articleCard(a,lang,i)).join('\n');
+ html=html.slice(0,si+start.length)+'\n'+cards+'\n'+html.slice(ei);await fs.writeFile(file,html);
 }
 async function writeSitemap(all){
  if(!SITE_URL){console.warn('SITE_URL missing: canonical URLs and sitemap.xml are skipped; define the repository variable SITE_URL to enable them.');return}
  const entries=[['/',''],['/languages/tr.html',''],['/languages/ar.html',''],['/blog/en/index.html',''],['/blog/tr/index.html',''],['/blog/ar/index.html','']];
  for(const a of all)entries.push(['/blog/'+a.lang+'/articles/'+a.slug+'.html',a.updatedAt||a.publishedAt]);
- const body=entries.map(e=>'<url><loc>'+esc(SITE_URL+e[0])+'</loc>'+(e[1]?'<lastmod>'+e[1]+'</lastmod>':'')+'</url>').join('\\n');
- await fs.writeFile(path.join(ROOT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'+body+'\\n</urlset>\\n');
- await fs.writeFile(path.join(ROOT,'robots.txt'),'User-agent: *\\nAllow: /\\nSitemap: '+SITE_URL+'/sitemap.xml\\n');
+ const body=entries.map(e=>'<url><loc>'+esc(SITE_URL+e[0])+'</loc>'+(e[1]?'<lastmod>'+e[1]+'</lastmod>':'')+'</url>').join('\n');
+ await fs.writeFile(path.join(ROOT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'\n</urlset>\n');
+ await fs.writeFile(path.join(ROOT,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+SITE_URL+'/sitemap.xml\n');
 }
 async function main(){
  if(!API_KEY)throw new Error('OPENAI_API_KEY is missing. Add it as a repository Actions secret before automatic publishing can run.');
@@ -230,7 +230,7 @@ async function main(){
   if(!validSlug(a.slug))throw new Error('Invalid slug: '+a.slug);
   const dataDir=path.join(ROOT,'blog','data',t.lang),pageDir=path.join(ROOT,'blog',t.lang,'articles');
   await fs.mkdir(dataDir,{recursive:true});await fs.mkdir(pageDir,{recursive:true});
-  await fs.writeFile(path.join(dataDir,a.slug+'.json'),JSON.stringify(a,null,2)+'\\n');
+  await fs.writeFile(path.join(dataDir,a.slug+'.json'),JSON.stringify(a,null,2)+'\n');
   await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a));
   byLang[t.lang].push(a);all.push(a);titles.push(a.title);slugs.push(a.slug);
  }
