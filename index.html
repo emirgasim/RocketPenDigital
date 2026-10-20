@@ -131,6 +131,28 @@ header.nav{overflow:visible!important;z-index:500}
   .hero-bottom{bottom:20px!important}
 }
 
+
+/* Hero composition: keep the rocket mascot visible and place copy in a clear zone */
+.hero-video{object-position:center 34%}
+.hero:before{background:linear-gradient(90deg,rgba(3,5,10,.64) 0%,rgba(3,5,10,.28) 58%,rgba(3,5,10,.08) 100%);pointer-events:none}
+.hero-inner{max-width:1180px}
+.hero-inner .eyebrow{width:max-content;max-width:100%;padding:8px 12px;background:rgba(5,7,12,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:2px}
+.hero-inner h1,.hero-sub{ text-shadow:0 2px 18px rgba(0,0,0,.42)}
+.hero-inner h1{max-width:1000px}
+@media(max-width:760px){
+  .hero-video{object-position:center 30%!important;filter:brightness(.88) saturate(1)!important}
+  .hero:before{background:linear-gradient(90deg,rgba(3,5,10,.55) 0%,rgba(3,5,10,.22) 72%,rgba(3,5,10,.08) 100%)!important}
+  .hero{align-items:flex-start!important;padding-top:clamp(185px,27svh,250px)!important;padding-bottom:100px!important}
+  .hero-inner{margin-top:0!important;position:relative;z-index:2}
+  .hero-inner .eyebrow{font-size:8px;letter-spacing:1.5px;padding:7px 9px;margin-bottom:18px}
+  .hero-inner h1{font-size:clamp(48px,12.5vw,78px)!important;line-height:.92!important;letter-spacing:-.075em!important;margin:16px 0 22px!important}
+  .hero-sub{font-size:14px!important;line-height:1.6!important;max-width:330px!important;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+  .hero-actions{align-items:flex-start!important;flex-direction:column!important;gap:14px!important}
+  .hero-actions .btn{max-width:100%;font-size:11px;padding:14px 16px}
+  .hero-actions .text-link{font-size:16px}
+  .hero-bottom{z-index:3}
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
