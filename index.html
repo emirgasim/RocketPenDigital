@@ -213,6 +213,44 @@ footer .logo-image{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.98)) drop-shad
   .hero-actions .text-link{font-size:clamp(11px,3.4vw,14px)!important;white-space:normal!important;max-width:38vw!important;line-height:1.2!important}
 }
 
+
+/* Final mobile hero layout: keep heading above the image focal point and CTAs clearly below */
+@media(max-width:760px){
+  .hero{
+    display:flex!important;
+    align-items:flex-start!important;
+    min-height:100svh!important;
+    padding:clamp(130px,16svh,155px) 22px 120px!important;
+  }
+  .hero-inner{
+    width:100%!important;
+    margin:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+  }
+  .hero-inner .eyebrow{margin:0 0 9px!important;max-width:100%!important}
+  .hero-inner h1{
+    font-size:clamp(44px,11.5vw,70px)!important;
+    line-height:.9!important;
+    margin:8px 0 12px!important;
+    letter-spacing:-.075em!important;
+  }
+  .hero-sub{margin:0 0 16px!important;max-width:310px!important}
+  .hero-actions{
+    width:100%!important;
+    display:flex!important;
+    flex-direction:row!important;
+    justify-content:space-between!important;
+    align-items:center!important;
+    gap:10px!important;
+    margin-top:12px!important;
+    transform:none!important;
+  }
+  .hero-actions .btn{flex:0 1 auto!important;max-width:58%!important;padding:13px 12px!important;font-size:10px!important}
+  .hero-actions .text-link{flex:0 1 auto!important;max-width:38%!important;text-align:right!important;white-space:normal!important;font-size:13px!important;line-height:1.2!important}
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
