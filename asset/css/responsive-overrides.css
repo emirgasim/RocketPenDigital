@@ -441,6 +441,93 @@ html[lang="ar"] .article h3 {
   }
 }
 
+/* Premium mobile navigation: no hamburger. Keep the main links visible
+   in a quiet, horizontally scrollable row beneath the brand. */
+@media (max-width: 760px) {
+  html body header.nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    row-gap: 14px !important;
+    min-height: 0 !important;
+    padding: 14px var(--pad, 20px) 13px !important;
+  }
+
+  html body header.nav > .logo,
+  html body header.nav > .logo-image,
+  html body header.nav > a.logo {
+    max-width: calc(100% - 112px) !important;
+  }
+
+  html body header.nav .nav-right {
+    display: contents !important;
+  }
+
+  html body header.nav .mobile-nav-toggle {
+    display: none !important;
+  }
+
+  html.js-ready html body header.nav .nav-links,
+  html body header.nav .nav-links,
+  html body header.nav.mobile-open .nav-links {
+    order: 3 !important;
+    position: static !important;
+    display: flex !important;
+    flex: 1 0 100% !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: clamp(16px, 4vw, 24px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 0 2px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html body header.nav .nav-links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  html body header.nav .nav-links a {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    padding: 5px 0 8px !important;
+    border: 0 !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    white-space: nowrap !important;
+  }
+
+  html body header.nav .language-picker {
+    position: absolute !important;
+    top: 14px !important;
+    right: var(--pad, 20px) !important;
+    z-index: 70 !important;
+  }
+
+  html[dir="rtl"] body header.nav .language-picker,
+  body.arabic header.nav .language-picker {
+    right: auto !important;
+    left: var(--pad, 20px) !important;
+  }
+
+  html body header.nav .nav-links a:last-child {
+    padding-inline-end: 4px !important;
+  }
+}
+
 /* Keep the locale dropdown anchored to the viewport on narrow screens,
    even when the header's logo and menu controls need to wrap. */
 @media (max-width: 760px) {
