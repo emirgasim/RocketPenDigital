@@ -87,20 +87,16 @@ async function visible(page, selector) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
         await assertResponsiveText(page, width, route.path);
-        assert.ok(await visible(page, '#mobileNavToggle'), width + 'px mobile menu button should be visible');
-        assert.equal(await visible(page, '#primaryNavigation'), false, 'mobile navigation should start closed');
-        await page.locator('#mobileNavToggle').click();
-        assert.equal(await page.locator('#mobileNavToggle').getAttribute('aria-expanded'), 'true');
-        assert.ok(await visible(page, '#primaryNavigation'), 'mobile navigation should open');
+        assert.equal(await visible(page, '#mobileNavToggle'), false, width + 'px mobile view must not show a hamburger button');
+        assert.ok(await visible(page, '#primaryNavigation'), width + 'px primary navigation should remain visible without a hamburger');
         const navRect = await page.locator('#primaryNavigation').evaluate(el => {
           const r = el.getBoundingClientRect();
-          return { left: r.left, right: r.right, width: r.width };
+          return { left: r.left, right: r.right, width: r.width, display: getComputedStyle(el).display, flexDirection: getComputedStyle(el).flexDirection, overflowX: getComputedStyle(el).overflowX };
         });
-        assert.ok(navRect.left >= -1 && navRect.right <= width + 1, width + 'px mobile navigation should stay within viewport: ' + JSON.stringify(navRect));
+        assert.ok(navRect.left >= -1 && navRect.right <= width + 1, width + 'px horizontal navigation should stay within viewport: ' + JSON.stringify(navRect));
         assert.equal(await page.locator('#primaryNavigation a').count(), 5);
-        await page.keyboard.press('Escape');
-        assert.equal(await page.locator('#mobileNavToggle').getAttribute('aria-expanded'), 'false');
-        assert.equal(await page.evaluate(() => document.activeElement.id), 'mobileNavToggle', 'Escape should restore focus to mobile menu control');
+        assert.equal(navRect.flexDirection, 'row', width + 'px navigation should use a horizontal row');
+        assert.equal(navRect.overflowX, 'auto', width + 'px navigation should scroll horizontally rather than wrap or overflow the page');
 
         await page.locator('#lang').click();
         await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
@@ -204,7 +200,7 @@ async function visible(page, selector) {
     await reduceContext.close();
 
     if (failures.length) throw new Error(failures.join('\n'));
-    console.log('Browser QA passed: locale routes, language menu, Escape/focus, mobile nav and viewport bounds (390px/320px), logo/favicon/video asset responses, no-JS content visibility, Arabic RTL, and reduced-motion video behavior.');
+    console.log('Browser QA passed: locale routes, language menu, Escape/focus, hamburger-free horizontal mobile navigation and viewport bounds (390px/320px), logo/favicon/video asset responses, no-JS content visibility, Arabic RTL, and reduced-motion video behavior.');
   } finally {
     await browser.close();
   }
