@@ -125,6 +125,61 @@ async function visible(page, selector) {
       await context.close();
     }
 
+
+    // The blog uses a different hero markup (.inner, not .hero-inner). Keep
+    // the homepage's full-height mobile hero rules from creating a blank gap.
+    const blogRoutes = [
+      { path: '/blog/en/index.html', lang: 'en' },
+      { path: '/blog/tr/index.html', lang: 'tr' },
+      { path: '/blog/ar/index.html', lang: 'ar' },
+    ];
+    for (const route of blogRoutes) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const page = await context.newPage();
+      page.on('pageerror', error => failures.push(route.path + ' pageerror: ' + error.message));
+      page.on('response', response => {
+        if (response.url().startsWith(BASE) && response.status() >= 400)
+          failures.push(route.path + ' HTTP ' + response.status() + ': ' + response.url());
+      });
+      const response = await page.goto(BASE + route.path, { waitUntil: 'domcontentloaded' });
+      assert.equal(response.status(), 200, route.path + ' should load');
+      assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
+      assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' blog heading should be present');
+      assert.equal(await page.locator('link[href="/asset/css/responsive-overrides.css"]').count(), 1, 'blog must load shared responsive overrides');
+
+      for (const width of [390, 320]) {
+        await page.setViewportSize({ width, height: 844 });
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        const metrics = await page.evaluate(() => {
+          const hero = document.querySelector('main > .hero');
+          const header = document.querySelector('header.top');
+          const tag = document.querySelector('main > .hero .tag');
+          const nav = document.querySelector('header.top nav.nav');
+          const headerItems = [...document.querySelectorAll('header.top nav.nav > a, header.top nav.nav summary')];
+          const rect = el => {
+            const r = el.getBoundingClientRect();
+            return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
+          };
+          return {
+            viewport: document.documentElement.clientWidth,
+            scrollWidth: document.documentElement.scrollWidth,
+            hero: rect(hero),
+            header: rect(header),
+            tag: rect(tag),
+            nav: rect(nav),
+            itemBounds: headerItems.map(rect),
+          };
+        });
+        assert.ok(metrics.scrollWidth <= width + 1, route.path + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+        assert.ok(metrics.tag.top - metrics.hero.top <= 100, route.path + ' hero eyebrow must not have a large blank top gap at ' + width + 'px: ' + JSON.stringify(metrics));
+        assert.ok(metrics.nav.left >= -1 && metrics.nav.right <= width + 1, route.path + ' mobile nav must stay within viewport at ' + width + 'px: ' + JSON.stringify(metrics.nav));
+        for (const item of metrics.itemBounds) {
+          assert.ok(item.left >= -1 && item.right <= width + 1, route.path + ' nav items must stay within viewport at ' + width + 'px: ' + JSON.stringify(item));
+        }
+      }
+      await context.close();
+    }
+
     const noJsContext = await browser.newContext({
       javaScriptEnabled: false,
       reducedMotion: 'reduce',
