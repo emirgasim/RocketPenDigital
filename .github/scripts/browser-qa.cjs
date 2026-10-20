@@ -66,7 +66,9 @@ async function visible(page, selector) {
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' hero heading should be visible');
       await page.locator('.nav .logo-image').evaluate(img => img.decode());
       assert.ok(await page.locator('.nav .logo-image').evaluate(img => img.naturalWidth > 0), 'brand logo must decode');
-      assert.equal(await page.locator('#primaryNavigation a').count(), 5, 'primary navigation should contain five links');
+      assert.equal(await page.locator('#primaryNavigation').count(), 0, 'top navigation menu must be removed');
+      assert.equal(await page.locator('.nav-links').count(), 0, 'top navigation links must be removed');
+      assert.equal(await page.locator('#mobileNavToggle').count(), 0, 'hamburger markup must not be included');
 
       await page.locator('#lang').click();
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'true');
@@ -87,16 +89,21 @@ async function visible(page, selector) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
         await assertResponsiveText(page, width, route.path);
+        assert.equal(await page.locator('#primaryNavigation').count(), 0, width + 'px mobile view must not include a navigation menu');
         assert.equal(await page.locator('#mobileNavToggle').count(), 0, width + 'px mobile view must not include hamburger markup');
-        assert.ok(await visible(page, '#primaryNavigation'), width + 'px primary navigation should remain visible without a hamburger');
-        const navRect = await page.locator('#primaryNavigation').evaluate(el => {
-          const r = el.getBoundingClientRect();
-          return { left: r.left, right: r.right, width: r.width, display: getComputedStyle(el).display, flexDirection: getComputedStyle(el).flexDirection, overflowX: getComputedStyle(el).overflowX };
+        assert.equal(await page.locator('.hero-bottom').count(), 0, 'scroll hint and hero footer should be removed');
+        assert.ok(await visible(page, '.hero-bottom-copy'), width + 'px lower hero copy should be visible');
+        const heroCopyMetrics = await page.evaluate(() => {
+          const hero = document.querySelector('.hero').getBoundingClientRect();
+          const title = document.querySelector('.hero-inner h1').getBoundingClientRect();
+          const copy = document.querySelector('.hero-bottom-copy').getBoundingClientRect();
+          const paragraph = document.querySelector('.hero-bottom-copy .hero-sub').getBoundingClientRect();
+          const actions = document.querySelector('.hero-bottom-copy .hero-actions').getBoundingClientRect();
+          return { heroBottom: hero.bottom, titleBottom: title.bottom, copyTop: copy.top, copyBottom: copy.bottom, paragraphTop: paragraph.top, actionsTop: actions.top, scrollWidth: document.documentElement.scrollWidth };
         });
-        assert.ok(navRect.left >= -1 && navRect.right <= width + 1, width + 'px horizontal navigation should stay within viewport: ' + JSON.stringify(navRect));
-        assert.equal(await page.locator('#primaryNavigation a').count(), 5);
-        assert.equal(navRect.flexDirection, 'row', width + 'px navigation should use a horizontal row');
-        assert.equal(navRect.overflowX, 'auto', width + 'px navigation should scroll horizontally rather than wrap or overflow the page');
+        assert.ok(heroCopyMetrics.copyTop > heroCopyMetrics.titleBottom + 50, width + 'px hero paragraph/actions should sit clearly below the heading: ' + JSON.stringify(heroCopyMetrics));
+        assert.ok(heroCopyMetrics.heroBottom - heroCopyMetrics.copyBottom < 180, width + 'px hero copy should sit near the removed scroll hint area: ' + JSON.stringify(heroCopyMetrics));
+        assert.ok(heroCopyMetrics.actionsTop >= heroCopyMetrics.paragraphTop, width + 'px CTA buttons must follow the intro paragraph');
 
         await page.locator('#lang').click();
         await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
@@ -196,7 +203,9 @@ async function visible(page, selector) {
     assert.ok(await noJsPage.locator('body').evaluate(el => el.classList.contains('arabic')), 'Arabic styles must be present before JS');
     assert.ok((await noJsPage.locator('h1').innerText()).includes('مرحباً'), 'Arabic headline must be present without JS');
     assert.equal(await noJsPage.locator('.reveal').first().evaluate(el => getComputedStyle(el).opacity), '1', 'reveal content must remain visible without JS');
-    assert.ok(await visible(noJsPage, '#primaryNavigation'), 'mobile navigation links must remain available without JS');
+    assert.equal(await noJsPage.locator('#primaryNavigation').count(), 0, 'top navigation menu must remain absent without JS');
+    assert.ok(await visible(noJsPage, '.hero-bottom-copy'), 'lower hero copy should remain visible without JS');
+    assert.equal(await noJsPage.locator('.hero-bottom').count(), 0, 'old scroll prompt should remain absent without JS');
     await noJsContext.close();
 
     const reduceContext = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
