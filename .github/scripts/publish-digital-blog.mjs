@@ -122,7 +122,7 @@ const schema = {type:'object',additionalProperties:false,properties:{
  sections:{type:'array',items:{type:'object',additionalProperties:false,properties:{heading:{type:'string'},paragraphs:{type:'array',items:{type:'string'}},bullets:{type:'array',items:{type:'string'}}},required:['heading','paragraphs','bullets']}},
  faq:{type:'array',items:{type:'object',additionalProperties:false,properties:{q:{type:'string'},a:{type:'string'}},required:['q','a']}},
  sources:{type:'array',items:{type:'object',additionalProperties:false,properties:{title:{type:'string'},url:{type:'string'}},required:['title','url']}}
-},required:['slug','title','description','excerpt','category','intro','sections','faq','sources']};
+},required:['slug','title','description','excerpt','category','intro','primaryKeyword','searchIntent','answerSummary','conversionBridge','conversionLabel','sections','faq','sources']};
 const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 async function loadArticles(lang){
  const dir=path.join(ROOT,'blog','data',lang);let files=[];

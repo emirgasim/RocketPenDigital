@@ -204,6 +204,15 @@ jobs:
               raise SystemExit("SITE_URL must be validated before any article generation/API requests")
           if "const seenSourceUrls = new Set();" not in publisher:
               raise SystemExit("Source URLs must be unique")
+          required = publisher.split("},required:['slug'", 1)[1].split("]};", 1)[0]
+          for field in ("primaryKeyword", "searchIntent", "answerSummary", "conversionBridge", "conversionLabel"):
+              if "'" + field + "'" not in required:
+                  raise SystemExit(f"Article output schema must require {field}")
+          if "TARGET_PER_LANGUAGE=100,BATCH_PER_LANGUAGE=10" not in publisher:
+              raise SystemExit("Publisher must cap each language at 100 and batch up to 10")
+          if "const relatedArticles=availableArticles" not in publisher:
+              raise SystemExit("Generated articles must include relevant internal links")
+          print("Search intent, answer-first summaries, conversion bridges, internal links and target cap verified.")
           if "u.protocol!=='https:'||!u.hostname||u.username||u.password" not in publisher:
               raise SystemExit("Each source must be a valid credential-free HTTPS URL")
           print("Publisher validates its origin before generation and rejects malformed or duplicate source URLs.")
