@@ -69,19 +69,19 @@ jobs:
               expected_button_code = {"en": "EN", "tr": "TR", "ar": "AR"}[locale]
               if 'id="mobileNavToggle"' in text or 'class="mobile-nav-toggle"' in text:
                   raise SystemExit(f"{filename}: hamburger navigation must not be included")
-              if 'id="primaryNavigation"' not in text:
-                  raise SystemExit(f"{filename}: primary navigation is missing")
-              if "html.js-ready .nav-links{display:none}" in text or "html.js-ready .nav.mobile-open .nav-links{display:flex}" in text:
-                  raise SystemExit(f"{filename}: navigation must remain visible without a hamburger toggle")
-              if "mobileNavToggle" in text or "closeMobileNav" in text:
+              if 'id="primaryNavigation"' in text or '<nav class="nav-links"' in text:
+                  raise SystemExit(f"{filename}: top navigation links must be removed from the homepage")
+              if "mobileNavToggle" in text or "closeMobileNav" in text or "mobile-nav-toggle" in text:
                   raise SystemExit(f"{filename}: unused hamburger navigation script remains")
+              if '<div class="hero-bottom-copy">' not in text or '<div class="hero-bottom">' in text:
+                  raise SystemExit(f"{filename}: mobile hero copy must replace the old scroll prompt")
               if f'class="lang-code">{expected_button_code}</span>' not in text:
                   raise SystemExit(f"{filename}: static language button code is wrong")
               expected_picker_label = {"en": "Choose language", "tr": "Dil seçimi", "ar": "اختيار اللغة"}[locale]
               if text.count(f'aria-label="{expected_picker_label}"') < 2:
                   raise SystemExit(f"{filename}: language controls need localized accessible labels")
-              if text.count('<a href="#blog" data-i="navBlog">') != 1:
-                  raise SystemExit(f"{filename}: duplicate Digital Blog navigation link")
+              if text.count('<a href="#blog" data-i="navBlog">') != 0:
+                  raise SystemExit(f"{filename}: a top navigation link should not remain")
               if "if(event.key==='Escape'&&languagePicker.classList.contains('is-open'))" not in text:
                   raise SystemExit(f"{filename}: Escape must close the menu and restore focus")
               if "const video=document.querySelector('.hero-video');\nif(video){" not in text:
