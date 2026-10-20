@@ -133,93 +133,98 @@ header.nav{overflow:visible!important;z-index:500}
 
 
 
-/* Clean hero system: one overlay, one transition, one mobile layout */
-.hero-video{display:block!important;z-index:0;object-fit:cover;object-position:center 40%;filter:brightness(.82) saturate(.92)}
-.hero:before{z-index:1;background:rgba(0,0,0,.24);pointer-events:none}
-.hero-inner{position:relative;z-index:2}
-.hero-bottom{z-index:3}
-.hero:after{
-  content:""!important;display:block!important;position:absolute;z-index:1;
-  left:0;right:0;bottom:-1px;top:auto;width:auto;height:clamp(100px,16vw,200px);
-  border:0!important;border-radius:0!important;box-shadow:none!important;
-  pointer-events:none;
-  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 32%,rgba(255,255,255,.68) 72%,#fff 100%);
-}
-.manifesto{background:#fff;color:#101116;position:relative}
-/* A soft backlight only behind the rocket icon; no oval outline and no wordmark shadow */
-header.nav .logo,footer .logo{position:relative;isolation:isolate;filter:none!important}
-header.nav .logo:before,footer .logo:before{
-  content:"";position:absolute;z-index:-1;left:-7px;top:0;height:100%;
-  width:25%;pointer-events:none;border:0;border-radius:0;
-  background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.25) 0%,rgba(255,255,255,.12) 42%,rgba(255,255,255,0) 74%);
-  filter:blur(5px);box-shadow:none;
-}
-.logo-image{position:relative;z-index:1;filter:none!important}
+
+/* Final mobile hero composition: keep the central astronaut/rocket area clear */
 @media(max-width:760px){
   .hero{
-    display:block!important;position:relative!important;height:100svh!important;
-    min-height:680px!important;max-height:none!important;
-    padding:0 22px 110px!important;align-items:initial!important;
+    display:block!important;position:relative!important;
+    min-height:100svh!important;height:100svh!important;
+    padding:0 20px!important;overflow:hidden!important;
   }
-  .hero-video{object-position:center 42%!important;filter:brightness(.86) saturate(.96)!important}
+  .hero-video{
+    display:block!important;position:absolute!important;inset:0!important;
+    width:100%!important;height:100%!important;object-fit:cover!important;
+    object-position:center 43%!important;filter:brightness(.86) saturate(.96)!important;
+  }
   .hero:before{
-    background:linear-gradient(90deg,rgba(3,5,10,.38) 0%,rgba(3,5,10,.14) 70%,rgba(3,5,10,.05) 100%)!important;
+    content:""!important;display:block!important;position:absolute!important;inset:0!important;z-index:1!important;
+    background:linear-gradient(180deg,rgba(3,5,10,.2) 0%,rgba(3,5,10,.03) 36%,rgba(3,5,10,.08) 68%,rgba(3,5,10,.18) 100%)!important;
+    pointer-events:none!important;
   }
   .hero-inner{
-    position:absolute!important;inset:0 22px 0!important;
-    width:auto!important;max-width:none!important;margin:0!important;
-    display:block!important;
+    position:absolute!important;inset:0 20px!important;
+    display:block!important;width:auto!important;max-width:none!important;margin:0!important;z-index:2!important;
   }
   .hero-inner .eyebrow{
-    position:absolute!important;top:clamp(145px,22svh,185px)!important;left:0!important;right:auto!important;
-    display:flex!important;width:max-content!important;max-width:100%!important;
-    margin:0!important;padding:6px 8px!important;gap:9px!important;
-    font-size:7px!important;line-height:1.25!important;letter-spacing:1.1px!important;
-    background:rgba(5,7,12,.78)!important;border:1px solid rgba(255,255,255,.14)!important;
-    backdrop-filter:blur(8px);
+    position:absolute!important;top:clamp(108px,16svh,132px)!important;left:0!important;right:auto!important;
+    display:flex!important;align-items:center!important;gap:8px!important;
+    width:max-content!important;max-width:100%!important;padding:6px 8px!important;margin:0!important;
+    font-size:7px!important;line-height:1.25!important;letter-spacing:1px!important;
+    color:#f4f5f7!important;background:rgba(5,7,12,.76)!important;
+    border:1px solid rgba(255,255,255,.15)!important;border-radius:3px!important;
+    backdrop-filter:blur(8px)!important;
   }
-  .hero-inner .eyebrow:before{width:22px!important;flex:0 0 22px!important}
+  .hero-inner .eyebrow:before{content:""!important;display:block!important;width:22px!important;min-width:22px!important;height:2px!important;background:var(--yellow)!important}
   .hero-inner h1{
-    position:absolute!important;top:clamp(190px,29svh,225px)!important;left:0!important;right:0!important;
-    max-width:100%!important;margin:0!important;
-    font-size:clamp(43px,11.5vw,66px)!important;line-height:.9!important;
-    letter-spacing:-.075em!important;text-shadow:0 2px 18px rgba(0,0,0,.4);
+    position:absolute!important;top:clamp(151px,22.5svh,184px)!important;left:0!important;right:0!important;
+    width:100%!important;max-width:100%!important;margin:0!important;padding:0!important;
+    font-size:clamp(43px,11.3vw,62px)!important;line-height:.91!important;
+    letter-spacing:-.075em!important;text-shadow:0 2px 14px rgba(0,0,0,.42)!important;
   }
-  .hero-inner h1 span{display:block!important;max-width:100%!important}
+  .hero-inner h1 span{display:block!important;width:100%!important;max-width:100%!important}
   .hero-sub{
-    position:absolute!important;top:clamp(315px,44svh,350px)!important;left:0!important;right:0!important;
-    width:auto!important;max-width:100%!important;margin:0!important;
-    font-size:13px!important;line-height:1.48!important;color:#f0f1f4!important;
-    text-shadow:0 2px 14px rgba(0,0,0,.8);
+    position:absolute!important;top:clamp(455px,68svh,510px)!important;left:0!important;right:0!important;
+    max-width:340px!important;width:100%!important;margin:0!important;
+    font-size:12.5px!important;line-height:1.45!important;color:#f2f3f5!important;
+    text-shadow:0 2px 12px rgba(0,0,0,.82)!important;
   }
   .hero-actions{
-    position:absolute!important;top:clamp(415px,57svh,450px)!important;left:0!important;right:0!important;
+    position:absolute!important;top:clamp(527px,79svh,585px)!important;left:0!important;right:0!important;
     width:100%!important;margin:0!important;padding:0!important;
-    display:grid!important;grid-template-columns:minmax(0,1fr) max-content!important;
-    align-items:center!important;justify-content:space-between!important;gap:10px!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;justify-content:space-between!important;gap:9px!important;
     transform:none!important;
   }
   .hero-actions .btn{
-    justify-self:start!important;min-width:0!important;width:max-content!important;
-    max-width:100%!important;white-space:nowrap!important;
-    padding:14px 10px!important;font-size:10px!important;line-height:1.2!important;
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    justify-self:start!important;width:auto!important;min-width:0!important;max-width:100%!important;
+    padding:13px 10px!important;font-size:clamp(9px,2.55vw,10px)!important;line-height:1.25!important;
+    white-space:normal!important;text-align:center!important;
   }
   .hero-actions .text-link{
-    justify-self:end!important;min-width:0!important;max-width:100%!important;
-    font-size:12px!important;line-height:1.2!important;text-align:right!important;
-    white-space:nowrap!important;gap:5px!important;
+    display:inline-flex!important;justify-self:end!important;min-width:0!important;width:auto!important;max-width:100%!important;
+    padding:8px 0!important;font-size:clamp(11px,3.2vw,13px)!important;line-height:1.2!important;
+    text-align:right!important;white-space:normal!important;text-shadow:0 2px 12px rgba(0,0,0,.7)!important;
   }
-  .hero-actions .text-link span{font-size:12px!important}
-  .hero-bottom{left:22px!important;right:22px!important;bottom:18px!important;font-size:8px!important;letter-spacing:1.1px!important}
-  .hero-bottom .scroll-indicator{gap:7px!important}
-  .hero-bottom .scroll-indicator i{height:28px!important}
+  .hero-actions .text-link span{font-size:inherit!important}
+  .hero-bottom{
+    position:absolute!important;z-index:4!important;left:20px!important;right:20px!important;bottom:18px!important;
+    display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;
+    color:#252933!important;font-size:7px!important;line-height:1.2!important;
+    letter-spacing:.9px!important;text-shadow:0 1px 0 rgba(255,255,255,.25)!important;
+  }
+  .hero-bottom>span{min-width:0!important}
+  .hero-bottom .scroll-indicator{display:flex!important;align-items:center!important;gap:6px!important}
+  .hero-bottom .scroll-indicator i{display:block!important;height:25px!important;width:1px!important;background:var(--yellow)!important;flex:0 0 1px!important}
+  .hero-bottom .hide-mobile{display:none!important}
   .hero:after{
-    height:130px!important;
-    background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.2) 35%,rgba(255,255,255,.76) 76%,#fff 100%)!important;
+    content:""!important;display:block!important;position:absolute!important;z-index:3!important;left:0!important;right:0!important;bottom:-1px!important;top:auto!important;
+    width:auto!important;height:108px!important;border:0!important;border-radius:0!important;box-shadow:none!important;pointer-events:none!important;
+    background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.16) 35%,rgba(255,255,255,.74) 77%,#fff 100%)!important;
   }
-  header.nav .logo:before,footer .logo:before{left:-5px!important;width:25%!important}
+  /* Readable bottom labels sit over the fade, not underneath it */
+  .hero-bottom{z-index:5!important;color:#292d35!important}
 }
-@media(prefers-reduced-motion:reduce){.hero-video{display:block!important}}
+/* A soft white backlight behind only the left rocket emblem: never an oval border */
+header.nav .logo,footer .logo{position:relative!important;isolation:isolate!important;filter:none!important}
+header.nav .logo:before,footer .logo:before{
+  content:""!important;position:absolute!important;z-index:0!important;left:-8px!important;top:-5%!important;
+  width:27%!important;height:110%!important;pointer-events:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.48) 0%,rgba(255,255,255,.29) 35%,rgba(255,255,255,.1) 58%,rgba(255,255,255,0) 77%)!important;
+  filter:blur(5px)!important;
+}
+.logo-image{position:relative!important;z-index:1!important;filter:none!important}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
