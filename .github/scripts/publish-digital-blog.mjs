@@ -193,6 +193,28 @@ async function renderIndex(lang,articles){
  const cards=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map((a,i)=>articleCard(a,lang,i)).join('\n');
  html=html.slice(0,si+start.length)+'\n'+cards+'\n'+html.slice(ei);await fs.writeFile(file,html);
 }
+async function updateSeoBlocks(){
+ if(!SITE_URL){console.warn('SITE_URL is not configured; canonical tags and hreflang annotations are skipped. Set the repository variable SITE_URL to the canonical site origin.');return}
+ let base;
+ try{base=new URL(SITE_URL).origin}catch{throw new Error('SITE_URL must be a full origin such as https://www.example.com')}
+ const locales=[['en','/'],['tr','/languages/tr.html'],['ar','/languages/ar.html']];
+ const pageSet=[
+  {file:'index.html',path:'/',group:locales},
+  {file:'languages/tr.html',path:'/languages/tr.html',group:locales},
+  {file:'languages/ar.html',path:'/languages/ar.html',group:locales},
+  {file:'blog/en/index.html',path:'/blog/en/index.html',group:[['en','/blog/en/index.html'],['tr','/blog/tr/index.html'],['ar','/blog/ar/index.html']]},
+  {file:'blog/tr/index.html',path:'/blog/tr/index.html',group:[['en','/blog/en/index.html'],['tr','/blog/tr/index.html'],['ar','/blog/ar/index.html']]},
+  {file:'blog/ar/index.html',path:'/blog/ar/index.html',group:[['en','/blog/en/index.html'],['tr','/blog/tr/index.html'],['ar','/blog/ar/index.html']]}
+ ];
+ for(const page of pageSet){
+  const file=path.join(ROOT,page.file);let html=await fs.readFile(file,'utf8');
+  const links='<link rel="canonical" href="'+esc(base+page.path)+'">\\n'+page.group.map(item=>'<link rel="alternate" hreflang="'+item[0]+'" href="'+esc(base+item[1])+'">').join('\\n')+'\\n<link rel="alternate" hreflang="x-default" href="'+esc(base+(page.file.startsWith('blog/')?'/blog/en/index.html':'/'))+'">';
+  const re=/<!-- SEO_ALTERNATES_START -->[\\s\\S]*?<!-- SEO_ALTERNATES_END -->/;
+  if(!re.test(html))throw new Error('Missing SEO alternate markers in '+page.file);
+  html=html.replace(re,'<!-- SEO_ALTERNATES_START -->\\n'+links+'\\n<!-- SEO_ALTERNATES_END -->');
+  await fs.writeFile(file,html);
+ }
+}
 async function writeSitemap(all){
  if(!SITE_URL){console.warn('SITE_URL missing: canonical URLs and sitemap.xml are skipped; define the repository variable SITE_URL to enable them.');return}
  const entries=[['/',''],['/languages/tr.html',''],['/languages/ar.html',''],['/blog/en/index.html',''],['/blog/tr/index.html',''],['/blog/ar/index.html','']];
@@ -234,7 +256,9 @@ async function main(){
   await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a));
   byLang[t.lang].push(a);all.push(a);titles.push(a.title);slugs.push(a.slug);
  }
+ for(const a of all){const pageDir=path.join(ROOT,'blog',a.lang,'articles');await fs.mkdir(pageDir,{recursive:true});await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a));}
  for(const lang of LANGS)await renderIndex(lang,byLang[lang]);
+ await updateSeoBlocks();
  await writeSitemap(all);
  console.log('Finished publishing 10 localized articles. Add SITE_URL as a repository variable for absolute canonicals and sitemap.xml.');
 }
