@@ -201,6 +201,18 @@ footer .logo-image{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.98)) drop-shad
 .logo-image{filter:none!important}
 .logo{filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 7px rgba(255,255,255,.42))}
 
+
+/* Refined mobile hero spacing: larger headline, CTAs lower, supporting copy slightly higher */
+@media(max-width:760px){
+  .hero{padding-top:clamp(135px,18svh,165px)!important;padding-bottom:100px!important}
+  .hero-inner .eyebrow{margin-bottom:10px!important}
+  .hero-inner h1{font-size:clamp(50px,13.2vw,84px)!important;line-height:.88!important;margin:10px 0 13px!important;letter-spacing:-.078em!important}
+  .hero-sub{margin:0 0 24px!important}
+  .hero-actions{margin-top:0!important;transform:translateY(14px)!important;grid-template-columns:minmax(0,1fr) auto!important;column-gap:8px!important}
+  .hero-actions .btn{align-self:center!important;padding:14px 12px!important;font-size:clamp(9px,2.7vw,11px)!important}
+  .hero-actions .text-link{font-size:clamp(11px,3.4vw,14px)!important;white-space:normal!important;max-width:38vw!important;line-height:1.2!important}
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
