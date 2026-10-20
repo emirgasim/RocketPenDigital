@@ -211,7 +211,7 @@ html[lang="ar"] .article h3 {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  .hero {
+  .hero:has(.hero-inner) {
     height: auto;
     min-height: max(100svh, 620px);
   }
@@ -295,7 +295,7 @@ html[lang="ar"] .article h3 {
 /* Mobile hero content must flow naturally: fixed absolute top offsets collide
    when text reflows, the viewport narrows, or browser zoom is increased. */
 @media (max-width: 760px) {
-  html body .hero {
+  html body .hero:has(.hero-inner) {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -435,7 +435,7 @@ html[lang="ar"] .article h3 {
 }
 
 @media (max-width: 420px) {
-  html body .hero {
+  html body .hero:has(.hero-inner) {
     min-height: max(100svh, 680px) !important;
     padding-top: clamp(108px, 16svh, 138px) !important;
   }
