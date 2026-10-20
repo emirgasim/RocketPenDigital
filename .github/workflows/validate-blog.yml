@@ -49,7 +49,7 @@ jobs:
               if expected not in text:
                   raise SystemExit(f"{filename}: wrong page language constant")
               expected_hero = {"en": "HELLO", "tr": "MERHABA", "ar": "مرحباً"}[locale]
-              hero = re.search(r'<[^>]+data-i="heroLine1"[^>]*>([\\s\\S]*?)</[^>]+>', text)
+              hero = re.search(r'<[^>]+data-i="heroLine1"[^>]*>(.*?)</[^>]+>', text, re.S)
               if not hero or hero.group(1).strip() != expected_hero:
                   raise SystemExit(f"{filename}: first headline is not statically rendered in {locale}")
               if "html:not(.js-ready) .reveal" not in text or "document.documentElement.classList.add('js-ready')" not in text:
