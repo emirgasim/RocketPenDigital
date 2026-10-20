@@ -182,6 +182,7 @@ function renderArticle(a){
  const sources='<section class="sources"><h2>'+locale.sources+'</h2><ul>'+a.sources.map(s=>'<li><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.title)+'</a></li>').join('')+'</ul></section>';
  const home='../../..'+locale.home;
  return '<!doctype html>\n<html lang="'+a.lang+'"'+(rtl?' dir="rtl"':'')+'><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+ '<link rel="icon" type="image/svg+xml" href="/asset/logo/favicon.svg">'+
  '<title>'+esc(a.title)+' | RocketPen Digital Studio</title><meta name="description" content="'+esc(a.description)+'"><meta name="robots" content="index,follow">'+canonical+
  '<meta property="og:type" content="article"><meta property="og:title" content="'+esc(a.title)+'"><meta property="og:description" content="'+esc(a.description)+'"><meta property="article:published_time" content="'+a.publishedAt+'">'+
  '<script type="application/ld+json">'+JSON.stringify(jsonLd).replace(/</g,'\\u003c')+'</script>'+
