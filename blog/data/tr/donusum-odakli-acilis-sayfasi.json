@@ -1,0 +1,129 @@
+{
+  "lang": "tr",
+  "slug": "donusum-odakli-acilis-sayfasi",
+  "topicId": "acilis-sayfasi-rehberi-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "web-seo",
+  "title": "Dönüşüm Odaklı Açılış Sayfası Nasıl Planlanır?",
+  "description": "Tek bir müşteri kararına odaklanan sayfa için teklif, kanıt, form, mobil deneyim ve ölçümleme adımları.",
+  "excerpt": "Ziyaretçiyi onlarca seçenekle yormak yerine karar vermesi için gereken bilgiyi doğru sırada sunun.",
+  "intro": "Açılış sayfasının görevi her hizmeti aynı anda anlatmak değil, belirli ziyaretçinin belirli bir sonraki adımı değerlendirmesini kolaylaştırmaktır. Adım teklif istemek, görüşme planlamak veya bir rehber indirmek olabilir. Tasarım kadar teklifin netliği ve formdan sonra ne olacağının açıklanması da önemlidir.",
+  "sections": [
+    {
+      "heading": "Ziyaretçinin kararını tanımlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, sayfanın tek bir müşteri görevini desteklemesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından hedef kitleyi, geldiği kaynağı ve istediğiniz adımı yazın. Değişikliği tamamlamadan önce her ziyaretçiye aynı anda birçok karar sunmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: başlık, sayfa ve çağrıların aynı amaca hizmet ettiğini kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "hedef kitleyi, geldiği kaynağı ve istediğiniz adımı yazın",
+        "her ziyaretçiye aynı anda birçok karar sunmak",
+        "başlık, sayfa ve çağrıların aynı amaca hizmet ettiğini kontrol edin"
+      ]
+    },
+    {
+      "heading": "Teklifin kapsamını açıkça anlatın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, müşterinin ne alacağını ve hangi koşullarda olduğunu anlaması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından hizmeti, teslimatları ve sonraki adımı açıklayın. Değişikliği tamamlamadan önce kapsam belirsizken genel büyüme vaadi kullanmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: talep sonrası uygunluk ve müşteri sorularını gözden geçirin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "hizmeti, teslimatları ve sonraki adımı açıklayın",
+        "kapsam belirsizken genel büyüme vaadi kullanmak",
+        "talep sonrası uygunluk ve müşteri sorularını gözden geçirin"
+      ]
+    },
+    {
+      "heading": "İddiaya uygun kanıt ekleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, ziyaretçinin teklife güvenmek için doğrulayabileceği bilgi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından ilgili örnek, süreç veya izinli müşteri geri bildirimi kullanın. Değişikliği tamamlamadan önce kanıtsız sonuç vaadi veya sahte referans yayımlamak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: hangi kanıtın hangi soruyu yanıtladığını kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "ilgili örnek, süreç veya izinli müşteri geri bildirimi kullanın",
+        "kanıtsız sonuç vaadi veya sahte referans yayımlamak",
+        "hangi kanıtın hangi soruyu yanıtladığını kontrol edin"
+      ]
+    },
+    {
+      "heading": "Formu kolay ve saygılı tasarlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, gereksiz alanlar olmadan sonraki adımın tamamlanması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından yalnızca gerekli bilgileri isteyin ve gönderim sonrasını belirtin. Değişikliği tamamlamadan önce hata mesajının yalnızca renk ile gösterilmesi riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: mobilde başarısız ve başarılı gönderimi test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "yalnızca gerekli bilgileri isteyin ve gönderim sonrasını belirtin",
+        "hata mesajının yalnızca renk ile gösterilmesi",
+        "mobilde başarısız ve başarılı gönderimi test edin"
+      ]
+    },
+    {
+      "heading": "Mobil kullanım ve erişilebilirliği inceleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, farklı cihazlarda teklif ve formun kullanılabilir olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından yakınlaştırma, kontrast, klavye ve dokunma alanlarını test edin. Değişikliği tamamlamadan önce açılır pencerenin temel içeriği kapatması riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: gerçek cihazda görevi baştan sona tamamlayın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "yakınlaştırma, kontrast, klavye ve dokunma alanlarını test edin",
+        "açılır pencerenin temel içeriği kapatması",
+        "gerçek cihazda görevi baştan sona tamamlayın"
+      ]
+    },
+    {
+      "heading": "Dönüşüm ölçümünü doğrulayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, tıklama ile tamamlanmış talebin farklı olaylar olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından gerçek form başarısını ölçen olay tanımlayın. Değişikliği tamamlamadan önce başarısız formu dönüşüm saymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: olay verisini gerçek taleplerle karşılaştırın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "gerçek form başarısını ölçen olay tanımlayın",
+        "başarısız formu dönüşüm saymak",
+        "olay verisini gerçek taleplerle karşılaştırın"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Açılış sayfasında tek buton mu olmalı?",
+      "a": "Zorunlu değil. Aynı birincil çağrı tekrarlanabilir; önemli olan farklı kararlar isteyen çok sayıda rakip çağrıdan kaçınmaktır."
+    },
+    {
+      "q": "Form kaç alan içermeli?",
+      "a": "Sonraki adım için gereken en az sayıda alanı kullanın. Hizmet ve uygunluk ihtiyacı sayıyı belirler."
+    },
+    {
+      "q": "Müşteri yorumları dönüşümü garanti artırır mı?",
+      "a": "Hayır. Gerçek ve ilgili geri bildirim güvene yardımcı olabilir ama sonuç bağlama göre değişir."
+    },
+    {
+      "q": "İlk hangi bölüm test edilmeli?",
+      "a": "Teknik hataları ve belirsiz teklifi düzeltin; ardından başlık, kanıt, form ve ölçümü test edin."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Analytics — Etkinlikler ve önemli etkinlikler",
+      "url": "https://support.google.com/analytics/answer/13965727?hl=tr"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "web.dev — Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

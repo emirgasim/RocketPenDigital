@@ -1,0 +1,129 @@
+{
+  "lang": "tr",
+  "slug": "teknik-seo-kontrol-listesi",
+  "topicId": "teknik-seo-kontrol-listesi-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "web-seo",
+  "title": "Küçük İşletmeler İçin Teknik SEO Kontrol Listesi",
+  "description": "Tarama, indekslenme, meta etiketleri, dahili bağlantılar, performans ve yayın kontrolünü kapsayan teknik SEO rehberi.",
+  "excerpt": "Daha fazla içerik üretmeden önce arama motorlarının önemli sayfaları bulup anlayabildiğini ve ziyaretçilerin sorunsuz ilerlediğini doğrulayın.",
+  "intro": "Teknik SEO, arama motorlarının önemli sayfaları keşfetmesine, anlamasına ve erişmesine yardımcı olur. Tek başına zayıf bir hizmeti cazip hale getirmez veya sıralama garantisi vermez; ancak yanlış yapılandırma iyi içeriği görünmez kılabilir ya da ziyaretçiyi hatalı sayfaya gönderebilir. Bu rehber temel kontrolleri önceliklendirir.",
+  "sections": [
+    {
+      "heading": "İndekslenecek URL'leri belirleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, önemli sayfaların arama sonuçlarında bulunması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından ana sayfa, hizmetler, blog ve iletişim URL'lerini örnekleyin. Değişikliği tamamlamadan önce test veya önizleme sayfalarını yanlışlıkla açığa çıkarmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: başarılı HTTP yanıtı ve indeksleme durumunu kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "ana sayfa, hizmetler, blog ve iletişim URL'lerini örnekleyin",
+        "test veya önizleme sayfalarını yanlışlıkla açığa çıkarmak",
+        "başarılı HTTP yanıtı ve indeksleme durumunu kontrol edin"
+      ]
+    },
+    {
+      "heading": "Başlıkları ve açıklamaları özgün yazın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, arama yapan kişinin doğru sayfayı anlayabilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından her önemli sayfaya özel başlık ve kısa açıklama hazırlayın. Değişikliği tamamlamadan önce tek başlığı tüm sayfalarda tekrar etmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: arama sonucu tıklamasını ve sayfa konusunu birlikte değerlendirin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "her önemli sayfaya özel başlık ve kısa açıklama hazırlayın",
+        "tek başlığı tüm sayfalarda tekrar etmek",
+        "arama sonucu tıklamasını ve sayfa konusunu birlikte değerlendirin"
+      ]
+    },
+    {
+      "heading": "İç bağlantıları düzenleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, önemli sayfaların ilgili içeriklerden bulunabilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından makalelerden ilgili hizmete, hizmetten rehbere bağlantı verin. Değişikliği tamamlamadan önce bağlamı belirsiz bağlantı metinleri kullanmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: kırık linkleri ve bağlantısız önemli sayfaları tarayın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "makalelerden ilgili hizmete, hizmetten rehbere bağlantı verin",
+        "bağlamı belirsiz bağlantı metinleri kullanmak",
+        "kırık linkleri ve bağlantısız önemli sayfaları tarayın"
+      ]
+    },
+    {
+      "heading": "Site haritası ve robots ayarlarını kontrol edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, esas URL'lerin keşfedilebilir ve tutarlı olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından site haritasında erişilebilir, tercih edilen URL'leri tutun. Değişikliği tamamlamadan önce yanlış robots kuralıyla gerekli kaynakları engellemek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: site haritasını canlı yanıtlarla karşılaştırın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "site haritasında erişilebilir, tercih edilen URL'leri tutun",
+        "yanlış robots kuralıyla gerekli kaynakları engellemek",
+        "site haritasını canlı yanıtlarla karşılaştırın"
+      ]
+    },
+    {
+      "heading": "Mobil performansı ve erişilebilirliği test edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, sayfanın farklı cihazlarda anlaşılır kalması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından görselleri optimize edin ve temel görevleri telefonda tamamlayın. Değişikliği tamamlamadan önce yerleşim kayması veya kullanılamayan form alanları riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: yükleme, etkileşim, kontrast ve form davranışını inceleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "görselleri optimize edin ve temel görevleri telefonda tamamlayın",
+        "yerleşim kayması veya kullanılamayan form alanları",
+        "yükleme, etkileşim, kontrast ve form davranışını inceleyin"
+      ]
+    },
+    {
+      "heading": "SEO'yu yayın kontrolüne ekleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, her yayın değişikliğinin taranabilir sayfaları etkileyebilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından URL, yönlendirme, dil bağlantısı ve site haritası kontrolü yapın. Değişikliği tamamlamadan önce yalnızca araç puanına bakıp gerçek sayfayı açmamak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: yayın öncesi ve sonrası aynı kritik URL'leri test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "URL, yönlendirme, dil bağlantısı ve site haritası kontrolü yapın",
+        "yalnızca araç puanına bakıp gerçek sayfayı açmamak",
+        "yayın öncesi ve sonrası aynı kritik URL'leri test edin"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Site haritası indekslenmeyi garanti eder mi?",
+      "a": "Hayır. Keşfe yardımcı olur ancak arama motorları hangi URL'leri indeksleyeceğine karar verir. Sayfalar erişilebilir, yararlı ve tutarlı olmalıdır."
+    },
+    {
+      "q": "Teknik SEO puanı yüzde yüz olmalı mı?",
+      "a": "Tek bir araç puanı görünürlük garantisi vermez. Tarama, erişim veya temel kullanıcı görevlerini engelleyen sorunları önceliklendirin."
+    },
+    {
+      "q": "robots.txt ile bilinen URL'yi kaldırabilir miyim?",
+      "a": "Bu dosya genel URL kaldırma aracı değildir. İndeksleme, canonical veya erişim denetimi ihtiyacına uygun yöntem seçilmelidir."
+    },
+    {
+      "q": "Teknik SEO ne zaman kontrol edilmeli?",
+      "a": "Site açılışında, URL veya şablon değişiminden sonra, alan adı/hosting taşınırken ve içerik arttıkça periyodik olarak kontrol edin."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — SEO Başlangıç Rehberi",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "web.dev — Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

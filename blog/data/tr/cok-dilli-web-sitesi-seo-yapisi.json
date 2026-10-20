@@ -1,0 +1,129 @@
+{
+  "lang": "tr",
+  "slug": "cok-dilli-web-sitesi-seo-yapisi",
+  "topicId": "cok-dilli-seo-uygulama-rehberi-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "web-seo",
+  "title": "Çok Dilli Web Sitesi SEO’su: URL, hreflang ve İçerik Kalitesi",
+  "description": "Türkçe, İngilizce ve Arapça sayfaları URL, dil etiketi, yönlendirme ve içerik düzeniyle doğru yönetme rehberi.",
+  "excerpt": "Dil seçeneğinin arayüzde görünmesi yetmez; her dil sürümü erişilebilir, tutarlı ve kullanıcıya özgü olmalıdır.",
+  "intro": "Çok dilli site, aynı metni başka dile çevirmekten fazlasını gerektirir. Her dil sürümü ayrı URL'de keşfedilebilmeli, ziyaretçiler doğru içeriğe geçebilmeli ve sayfa hedef kitlenin dilinde doğal okunmalıdır. Türkçe, İngilizce ve Arapça birlikte kullanıldığında yön, yazı tipi, metin uzunluğu ve hizmet terminolojisi de düşünülmelidir.",
+  "sections": [
+    {
+      "heading": "Her dil için kalıcı URL kullanın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, arama motorlarının her dil sürümünü ayrı keşfedebilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından /blog/tr/, /blog/en/ ve /blog/ar/ gibi düzeni kararlı biçimde kullanın. Değişikliği tamamlamadan önce tek URL'de dili gizlice değiştirmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: her dil URL'sinin doğrudan açıldığını kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "/blog/tr/, /blog/en/ ve /blog/ar/ gibi düzeni kararlı biçimde kullanın",
+        "tek URL'de dili gizlice değiştirmek",
+        "her dil URL'sinin doğrudan açıldığını kontrol edin"
+      ]
+    },
+    {
+      "heading": "hreflang ve canonical işlevlerini ayırın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, eşdeğer dil sürümlerinin birbirini tanımlaması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından yalnızca gerçek karşılık sayfalara alternatif dil etiketi ekleyin. Değişikliği tamamlamadan önce konu benzerliğini çeviri eşdeğerliği sanmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: karşılıklı hreflang ve canonical çıktısını örnek sayfada inceleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "yalnızca gerçek karşılık sayfalara alternatif dil etiketi ekleyin",
+        "konu benzerliğini çeviri eşdeğerliği sanmak",
+        "karşılıklı hreflang ve canonical çıktısını örnek sayfada inceleyin"
+      ]
+    },
+    {
+      "heading": "İçeriği pazara göre yerelleştirin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, çevirinin hedef müşterinin sorusuna doğal yanıt vermesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından terimleri, örnekleri ve çağrıları dil ve pazar bazında düzenleyin. Değişikliği tamamlamadan önce kelime kelime çeviriyle doğal olmayan metin yayımlamak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: her dilde başlık ve açıklamanın anlaşılmasını inceleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "terimleri, örnekleri ve çağrıları dil ve pazar bazında düzenleyin",
+        "kelime kelime çeviriyle doğal olmayan metin yayımlamak",
+        "her dilde başlık ve açıklamanın anlaşılmasını inceleyin"
+      ]
+    },
+    {
+      "heading": "Dil seçimini ziyaretçiye bırakın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, kullanıcının doğru sürüme kolay geçebilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından aynı yazının karşılığı varsa o sayfaya bağlantı verin. Değişikliği tamamlamadan önce tarayıcı diline göre geri alınamayan otomatik yönlendirme riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: mobil, klavye ve doğrudan link hedeflerini test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "aynı yazının karşılığı varsa o sayfaya bağlantı verin",
+        "tarayıcı diline göre geri alınamayan otomatik yönlendirme",
+        "mobil, klavye ve doğrudan link hedeflerini test edin"
+      ]
+    },
+    {
+      "heading": "Her dil sürümünü ayrı kontrol edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, bir dildeki teknik doğruluğun diğerini garanti etmemesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından HTTP yanıtı, başlık, robots, bağlantı ve RTL davranışını ayrı inceleyin. Değişikliği tamamlamadan önce sadece İngilizce sayfayı test edip diğerlerini varsaymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: Search Console'da dil başına örnek URL kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "HTTP yanıtı, başlık, robots, bağlantı ve RTL davranışını ayrı inceleyin",
+        "sadece İngilizce sayfayı test edip diğerlerini varsaymak",
+        "Search Console'da dil başına örnek URL kontrol edin"
+      ]
+    },
+    {
+      "heading": "Yayın akışına dil kontrolü ekleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, yeni içeriklerin yanlış dil veya pazarda yayımlanmaması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından slug, dil, kategori, kaynak, alternatif sayfa ve mobil testi doğrulayın. Değişikliği tamamlamadan önce birbiriyle eşdeğer olmayan makaleleri yanlış bağlamak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: kalite kontrolü otomatik ve manuel kontrollerle destekleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "slug, dil, kategori, kaynak, alternatif sayfa ve mobil testi doğrulayın",
+        "birbiriyle eşdeğer olmayan makaleleri yanlış bağlamak",
+        "kalite kontrolü otomatik ve manuel kontrollerle destekleyin"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Her dil için ayrı alan adı gerekiyor mu?",
+      "a": "Hayır. Dil klasörleri, alt alan adları veya başka uygun URL yapıları kullanılabilir. Önemli olan tutarlı, kalıcı ve taranabilir olmalarıdır."
+    },
+    {
+      "q": "hreflang bütün sayfalarda kullanılmalı mı?",
+      "a": "Gerçek dil veya bölge karşılığı olan sayfalar arasında kullanılmalıdır. Sadece aynı konuda olmaları iki makaleyi eşdeğer yapmaz."
+    },
+    {
+      "q": "Arapça sayfada metni sağa hizalamak yeterli mi?",
+      "a": "Hayır. Sağdan sola yön, gezinme sırası, form alanları, simgeler ve metin uzunluğu da kontrol edilmelidir."
+    },
+    {
+      "q": "Otomatik çeviri tek başına yeterli mi?",
+      "a": "Hayır. Her sürüm doğal dil, yerel arama niyeti, doğruluk ve kullanıcıya gerçek değer açısından incelenmelidir."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — Yerelleştirilmiş sürümler ve hreflang",
+      "url": "https://developers.google.com/search/docs/specialty/international/localized-versions"
+    },
+    {
+      "title": "Google Search Central — SEO Başlangıç Rehberi",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

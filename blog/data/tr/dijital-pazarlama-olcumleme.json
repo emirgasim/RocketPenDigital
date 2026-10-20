@@ -1,0 +1,125 @@
+{
+  "lang": "tr",
+  "slug": "dijital-pazarlama-olcumleme",
+  "topicId": "dijital-pazarlama-olcumleme-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "digital-growth",
+  "title": "Küçük Ekipler İçin Dijital Pazarlama Ölçümleme Rehberi",
+  "description": "Etkinlik tanımı, nitelikli talep, güvenilir raporlama ve kontrollü testlerle pazarlama verisini iş kararlarına bağlayın.",
+  "excerpt": "Yalnızca kolay ölçülen sayıları değil, işletmenin neyi iyileştireceğine karar vermesine yardım eden sonuçları takip edin.",
+  "intro": "Pazarlama panoları çok sayıda rakam içerebilir ancak az sayıda karara yol açabilir. Ölçümleme çerçevesi önce iş sorusunu, sonra bu soruyla ilişkili eylemi ve tutarlı raporlama yöntemini belirler. Küçük ekipler için az sayıda güvenilir gösterge, kimsenin sahiplenmediği büyük bir panodan daha kullanışlıdır.",
+  "sections": [
+    {
+      "heading": "İş kararını baştan tanımlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, raporun belirli bir kararı desteklemesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından hangi sayfanın, kampanyanın veya formun iyileştirilmesi gerektiğini belirleyin. Değişikliği tamamlamadan önce bir aracı rapor üretebildiği için veri toplamak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: ana başarı göstergelerini tanı metriklerinden ayırın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "hangi sayfanın, kampanyanın veya formun iyileştirilmesi gerektiğini belirleyin",
+        "bir aracı rapor üretebildiği için veri toplamak",
+        "ana başarı göstergelerini tanı metriklerinden ayırın"
+      ]
+    },
+    {
+      "heading": "Etkinlikleri kesin kurallarla tanımlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, etkinliğin ne zaman tamamlanmış sayılacağının açık olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından form gönderimini sadece buton tıklamasından ayırın. Değişikliği tamamlamadan önce başarısız işlemi tamamlanmış dönüşüm saymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: başarılı ve başarısız senaryolarda olayları test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "form gönderimini sadece buton tıklamasından ayırın",
+        "başarısız işlemi tamamlanmış dönüşüm saymak",
+        "başarılı ve başarısız senaryolarda olayları test edin"
+      ]
+    },
+    {
+      "heading": "Hacim ile kaliteyi ayırın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, çok sayıda tıklamanın uygun talep anlamına gelmemesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından uygun talebi hizmet, konum, kapsam ve zamanlama ile tanımlayın. Değişikliği tamamlamadan önce tüm kanalları sadece son tıklamaya göre değerlendirmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: talep sayısını sonraki aşama sonuçlarıyla karşılaştırın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "uygun talebi hizmet, konum, kapsam ve zamanlama ile tanımlayın",
+        "tüm kanalları sadece son tıklamaya göre değerlendirmek",
+        "talep sayısını sonraki aşama sonuçlarıyla karşılaştırın"
+      ]
+    },
+    {
+      "heading": "Güvenilir bir rapor kurun",
+      "paragraphs": [
+        "Bu aşamadaki amaç, raporun tarih, kaynak, tanım ve sınırlamalarının bilinmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından az sayıda karar odaklı göstergeyi aynı şekilde raporlayın. Değişikliği tamamlamadan önce form veya çerez değişikliğinin ölçümü etkilediğini fark etmemek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: yayın kaydı ve operasyon verileriyle karşılaştırma kullanın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "az sayıda karar odaklı göstergeyi aynı şekilde raporlayın",
+        "form veya çerez değişikliğinin ölçümü etkilediğini fark etmemek",
+        "yayın kaydı ve operasyon verileriyle karşılaştırma kullanın"
+      ]
+    },
+    {
+      "heading": "Soruya yanıt veren testler yapın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, değişiklik öncesinde test edilebilir hipotez oluşturmak. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından bir önemli değişkeni değiştirin ve koruyucu ölçüleri belirleyin. Değişikliği tamamlamadan önce az sayıda ziyaretten kesin sonuç çıkarmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: veri miktarını ve sonuçtaki belirsizliği raporlayın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "bir önemli değişkeni değiştirin ve koruyucu ölçüleri belirleyin",
+        "az sayıda ziyaretten kesin sonuç çıkarmak",
+        "veri miktarını ve sonuçtaki belirsizliği raporlayın"
+      ]
+    },
+    {
+      "heading": "Ölçümlemeyi düzenli rutine dönüştürün",
+      "paragraphs": [
+        "Bu aşamadaki amaç, sonuçların belirli bir sorumlu ve takip kararı üretmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından düzenli inceleme yapıp sıradaki denemeyi kaydedin. Değişikliği tamamlamadan önce kullanılmayan olayları ve tanımsız metrikleri çoğaltmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: karar, sorumlu ve takip tarihini belgelendirin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "düzenli inceleme yapıp sıradaki denemeyi kaydedin",
+        "kullanılmayan olayları ve tanımsız metrikleri çoğaltmak",
+        "karar, sorumlu ve takip tarihini belgelendirin"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Küçük işletme kaç KPI izlemeli?",
+      "a": "Kararla doğrudan ilişkili az sayıda göstergeyle başlayın; değişimleri açıklamak gerektiğinde tanı metrikleri ekleyin."
+    },
+    {
+      "q": "Son tıklama raporu yeterli mi?",
+      "a": "Tek bir görünüm sağlar ama tüm müşteri yolculuğunu açıklamayabilir. Atıf modelini sınırlamalarıyla değerlendirin."
+    },
+    {
+      "q": "Her buton tıklaması dönüşüm müdür?",
+      "a": "Hayır. Dönüşüm, işletme açısından anlamlı ve tamamlanmış bir eylemi temsil etmelidir."
+    },
+    {
+      "q": "Analitik ve CRM neden farklı sayılar gösterir?",
+      "a": "Farklı aşamalar, zaman aralıkları, tekrarlar veya kaynak tanımları kullanılıyor olabilir. Önce tanımları karşılaştırın."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Analytics — Etkinlikler ve önemli etkinlikler",
+      "url": "https://support.google.com/analytics/answer/13965727?hl=tr"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "web.dev — Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

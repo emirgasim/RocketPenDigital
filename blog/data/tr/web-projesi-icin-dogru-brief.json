@@ -1,0 +1,125 @@
+{
+  "lang": "tr",
+  "slug": "web-projesi-icin-dogru-brief",
+  "topicId": "web-brief-rehberi-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "industry-guides",
+  "title": "Web Sitesi Projesi İçin Doğru Brief Nasıl Hazırlanır?",
+  "description": "Hedef, kapsam, içerik, teknik gereksinimler, paydaşlar ve başarı ölçülerini netleştiren web sitesi briefi rehberi.",
+  "excerpt": "Tasarım başlamadan önce kararları, sınırları ve başarı tanımını netleştirerek gereksiz revizyonları azaltın.",
+  "intro": "Web sitesi projelerinde sorunların bir kısmı tasarımdan değil, başta netleştirilmeyen beklentilerden çıkar. Belirsiz hedefler, eksik içerik, sonradan ortaya çıkan entegrasyonlar ve karar sahibinin bilinmemesi süreyi etkileyebilir. İyi bir brief bütün cevapları önceden bilmek değil; hangi kararların verilmesi ve hangi varsayımların doğrulanması gerektiğini görünür kılmaktır.",
+  "sections": [
+    {
+      "heading": "İş hedefini ve ziyaretçi görevini yazın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, web sitesinin iş için hangi görevi yerine getireceğinin bilinmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından talep toplama, rezervasyon veya yeni pazara giriş gibi önceliği belirleyin. Değişikliği tamamlamadan önce “daha modern site” gibi ölçülemeyen tek hedefe dayanmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: ziyaretçinin temel görevini hedefle eşleştirin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "talep toplama, rezervasyon veya yeni pazara giriş gibi önceliği belirleyin",
+        "“daha modern site” gibi ölçülemeyen tek hedefe dayanmak",
+        "ziyaretçinin temel görevini hedefle eşleştirin"
+      ]
+    },
+    {
+      "heading": "Kapsamı ve kapsam dışını belirtin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, sayfa, dil, form, entegrasyon ve teslimat sınırlarının açıklığı. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından dahil olan sayfaları ve özellikleri ayrı listeleyin. Değişikliği tamamlamadan önce sonradan ortaya çıkan işlerin süre ve maliyetini yok saymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: değişiklik talebi için karar süreci belirleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "dahil olan sayfaları ve özellikleri ayrı listeleyin",
+        "sonradan ortaya çıkan işlerin süre ve maliyetini yok saymak",
+        "değişiklik talebi için karar süreci belirleyin"
+      ]
+    },
+    {
+      "heading": "İçerik ve varlık durumunu inceleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, metin, görsel, logo, video ve izinlerin hazır olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından eksik içeriğin sahibini ve teslim tarihini belirleyin. Değişikliği tamamlamadan önce gerçek içerik olmadan yerleşimi nihai kabul etmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: gerçek uzunluktaki metinlerle tasarımı yeniden test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "eksik içeriğin sahibini ve teslim tarihini belirleyin",
+        "gerçek içerik olmadan yerleşimi nihai kabul etmek",
+        "gerçek uzunluktaki metinlerle tasarımı yeniden test edin"
+      ]
+    },
+    {
+      "heading": "Teknik gereksinimleri ve erişimleri tanımlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, alan adı, hosting, e-posta, analitik ve formların yayına etkisi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından her hesabın sahibi ve entegrasyon sorumlusunu yazın. Değişikliği tamamlamadan önce yayından önce erişilemeyen hesabın ortaya çıkması riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: alan adı ve mevcut veri taşıma planını belgeleyin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "her hesabın sahibi ve entegrasyon sorumlusunu yazın",
+        "yayından önce erişilemeyen hesabın ortaya çıkması",
+        "alan adı ve mevcut veri taşıma planını belgeleyin"
+      ]
+    },
+    {
+      "heading": "Başarı ve kabul ölçütlerini belirleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, tamamlanmış işin nasıl test edileceğinin açık olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından mobil görevler, form, dil ve URL kontrollerini tanımlayın. Değişikliği tamamlamadan önce görsel beğeniyi tek başarı ölçüsü saymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: kontrol edilebilir teknik sonuçlarla ticari hedefleri ayırın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "mobil görevler, form, dil ve URL kontrollerini tanımlayın",
+        "görsel beğeniyi tek başarı ölçüsü saymak",
+        "kontrol edilebilir teknik sonuçlarla ticari hedefleri ayırın"
+      ]
+    },
+    {
+      "heading": "Karar ve geri bildirim sürecini planlayın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, onayların gecikmeden ve çelişkisiz ilerlemesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından tek karar sorumlusu ve geri bildirim tarihleri belirleyin. Değişikliği tamamlamadan önce çok sayıda çelişkili onayın süreci kilitlemesi riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: yayın sonrası destek ve bakım sorumluluklarını yazın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "tek karar sorumlusu ve geri bildirim tarihleri belirleyin",
+        "çok sayıda çelişkili onayın süreci kilitlemesi",
+        "yayın sonrası destek ve bakım sorumluluklarını yazın"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Brief çok uzun olmak zorunda mı?",
+      "a": "Hayır. Küçük proje için kısa belge yeterli olabilir. Önemli olan hedef, kapsam, sorumlular ve kabul ölçütlerinin açık olmasıdır."
+    },
+    {
+      "q": "Bütçe aralığını paylaşmalı mıyım?",
+      "a": "Bütçe aralığı gerçekçi kapsam seçmeye, öncelikleri belirlemeye ve uygun olmayan seçenekleri erken elemekte yardımcı olabilir."
+    },
+    {
+      "q": "İçerik hazır değilse başlanabilir mi?",
+      "a": "Keşif ve bazı tasarım çalışmaları başlayabilir; ancak gerçek metin ve görsellerin ne zaman geleceği planlanmalı, geçici yerleşim tekrar test edilmelidir."
+    },
+    {
+      "q": "Brief başarı garantisi verir mi?",
+      "a": "Hayır. Beklentileri ve belirsizliği azaltır; sonuç uygulama, içerik, iş birliği ve kullanıcı davranışına da bağlıdır."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Office for National Statistics — Kullanıcı ihtiyaçlarına göre içerik yazımı",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Google Search Central — SEO Başlangıç Rehberi",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

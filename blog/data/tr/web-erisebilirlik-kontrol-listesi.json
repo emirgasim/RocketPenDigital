@@ -1,0 +1,125 @@
+{
+  "lang": "tr",
+  "slug": "web-erisebilirlik-kontrol-listesi",
+  "topicId": "web-erisebilirlik-rehberi-2026-10-21",
+  "market": "Türkiye'deki hizmet işletmeleri ve B2B şirketler",
+  "category": "web-seo",
+  "title": "İşletme Web Siteleri İçin Erişilebilirlik Kontrol Listesi",
+  "description": "Okunabilir yapı, klavye kullanımı, kontrast, formlar ve görseller için WCAG odaklı pratik web erişilebilirliği rehberi.",
+  "excerpt": "Sadece görsel incelemeyle fark edilmeyen kullanıcı engellerini görev odaklı testlerle keşfedin.",
+  "intro": "Erişilebilirlik, farklı görme, işitme, hareket veya bilişsel ihtiyaçları olan kişilerin aynı web sitesini kullanabilmesine yardımcı olur. Bu rehber W3C yönergelerinden yararlanan pratik bir kontrol sunar; kısa liste kapsamlı erişilebilirlik değerlendirmesinin yerini tutmaz.",
+  "sections": [
+    {
+      "heading": "İçerik yapısını ve okuma sırasını kontrol edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, başlık ve bağlantıların görsel bağlam dışındayken de anlamlı olması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından anlamlı HTML öğeleri ve açıklayıcı link metni kullanın. Değişikliği tamamlamadan önce tekrar eden “buraya tıklayın” bağlantılarıyla bağlamı kaybetmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: dar ekran ve yardımcı teknolojiyle örnek sayfaları kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "anlamlı HTML öğeleri ve açıklayıcı link metni kullanın",
+        "tekrar eden “buraya tıklayın” bağlantılarıyla bağlamı kaybetmek",
+        "dar ekran ve yardımcı teknolojiyle örnek sayfaları kontrol edin"
+      ]
+    },
+    {
+      "heading": "Kontrast ve metin okunabilirliğini test edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, metnin ve arayüz kontrolünün farklı koşullarda okunabilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından kontrastı, satır aralığını ve büyütme davranışını test edin. Değişikliği tamamlamadan önce durumu yalnızca renk ile anlatmak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: telefon ve büyük yazı ayarında görünümü doğrulayın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "kontrastı, satır aralığını ve büyütme davranışını test edin",
+        "durumu yalnızca renk ile anlatmak",
+        "telefon ve büyük yazı ayarında görünümü doğrulayın"
+      ]
+    },
+    {
+      "heading": "Klavye ile gezinmeyi deneyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, ana görevlerin fare olmadan tamamlanabilmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından odak işaretini görünür ve sıralamayı mantıklı tutun. Değişikliği tamamlamadan önce açılır pencereden çıkamamak veya odağı kaybetmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: form ve menüyü sadece klavyeyle tamamlayın. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "odak işaretini görünür ve sıralamayı mantıklı tutun",
+        "açılır pencereden çıkamamak veya odağı kaybetmek",
+        "form ve menüyü sadece klavyeyle tamamlayın"
+      ]
+    },
+    {
+      "heading": "Formları ve hata mesajlarını anlaşılır yapın",
+      "paragraphs": [
+        "Bu aşamadaki amaç, alanların ne istediğinin ve nasıl düzeltileceğinin bilinmesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından görünür etiket ve alanla ilişkili metin hatası kullanın. Değişikliği tamamlamadan önce yalnızca kırmızı kenarlıkla sorun belirtmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: başarılı ve hatalı gönderimi cihazda test edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "görünür etiket ve alanla ilişkili metin hatası kullanın",
+        "yalnızca kırmızı kenarlıkla sorun belirtmek",
+        "başarılı ve hatalı gönderimi cihazda test edin"
+      ]
+    },
+    {
+      "heading": "Görseller ve hareketli medyayı inceleyin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, bilginin sadece görsel veya sese bağlı olmaması. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından bilgi taşıyan görsellere alt metin ve videoya altyazı ekleyin. Değişikliği tamamlamadan önce temel yönergeyi sadece resme gömmek riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: hareketi durdurma ve altyazıyı kontrol edin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "bilgi taşıyan görsellere alt metin ve videoya altyazı ekleyin",
+        "temel yönergeyi sadece resme gömmek",
+        "hareketi durdurma ve altyazıyı kontrol edin"
+      ]
+    },
+    {
+      "heading": "Bulguları giderip tekrar test edin",
+      "paragraphs": [
+        "Bu aşamadaki amaç, otomatik raporun tüm kullanıcı deneyimini değerlendirememesi. Türkiye'deki işletmeler için kararın önemi, web deneyiminin çoğu zaman ilk tanışma noktası olmasından kaynaklanır. Ziyaretçi, işletmenin kendi ihtiyacını anlayıp anlamadığını ve anlatılan bilginin güvenilir olup olmadığını kısa sürede değerlendirmek ister. Bu yüzden sayfa veya süreç tasarlanırken gerçek kullanıcı görevi başlangıç noktası olmalıdır.",
+        "Uygulamada önce mevcut durumu inceleyin; ardından manuel test, yakınlaştırma ve gerçek görevleri birleştirin. Değişikliği tamamlamadan önce tek bir otomatik puanı erişilebilirlik belgesi saymak riskini kontrol edin. Yalnızca görünür tasarım sonucuna bakmayın: sorumlu, düzeltme ve doğrulama adımını kaydedin. Ekip, neden bu kararın verildiğini not ederse daha sonra gelen içerik veya teknik değişikliklerin etkisi de kolayca değerlendirilir.",
+        "Bu adım bir defalık kontrol olarak kalmamalıdır. Sorumluyu, güncelleme zamanını ve kabul koşulunu belirleyin. Yeni içerik, yeni form veya yeni sayfa geldiğinde aynı kuralı yeniden uygulayın; böylece küçük bir hata bütün siteye yayıldıktan sonra bulunmak yerine erken aşamada yakalanır."
+      ],
+      "bullets": [
+        "manuel test, yakınlaştırma ve gerçek görevleri birleştirin",
+        "tek bir otomatik puanı erişilebilirlik belgesi saymak",
+        "sorumlu, düzeltme ve doğrulama adımını kaydedin"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Otomatik testten geçmek erişilebilirliği garanti eder mi?",
+      "a": "Hayır. Otomatik araç bazı örüntüleri bulur fakat içerik, bağlam, klavye ve yardımcı teknoloji deneyimini bütünüyle değerlendiremez."
+    },
+    {
+      "q": "Her görsele alt metin eklenmeli mi?",
+      "a": "Bilgi taşıyan görsel anlamlı alternatif ister; dekoratif görsel gereksiz duyuru oluşturmamalıdır."
+    },
+    {
+      "q": "WCAG bir tasarım şablonu mudur?",
+      "a": "Hayır. Erişilebilirlik ölçütleri sunar; bu ölçütler gerçek içerik ve arayüzde uygulanıp test edilmelidir."
+    },
+    {
+      "q": "Erişilebilirlik ne zaman kontrol edilir?",
+      "a": "Tasarım, geliştirme ve yayın sürecinde; şablonlar veya etkileşimli bileşenler değiştiğinde yeniden kontrol edilmelidir."
+    }
+  ],
+  "sources": [
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "Google Search Central — Faydalı ve kullanıcı odaklı içerik",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Kullanıcı ihtiyaçlarına göre içerik yazımı",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    }
+  ],
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}
