@@ -132,206 +132,94 @@ header.nav{overflow:visible!important;z-index:500}
 }
 
 
-/* Hero composition: keep the rocket mascot visible and place copy in a clear zone */
-.hero-video{object-position:center 34%}
-.hero:before{background:linear-gradient(90deg,rgba(3,5,10,.64) 0%,rgba(3,5,10,.28) 58%,rgba(3,5,10,.08) 100%);pointer-events:none}
-.hero-inner{max-width:1180px}
-.hero-inner .eyebrow{width:max-content;max-width:100%;padding:8px 12px;background:rgba(5,7,12,.62);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:2px}
-.hero-inner h1,.hero-sub{ text-shadow:0 2px 18px rgba(0,0,0,.42)}
-.hero-inner h1{max-width:1000px}
-@media(max-width:760px){
-  .hero-video{object-position:center 30%!important;filter:brightness(.88) saturate(1)!important}
-  .hero:before{background:linear-gradient(90deg,rgba(3,5,10,.55) 0%,rgba(3,5,10,.22) 72%,rgba(3,5,10,.08) 100%)!important}
-  .hero{align-items:flex-start!important;padding-top:clamp(185px,27svh,250px)!important;padding-bottom:100px!important}
-  .hero-inner{margin-top:0!important;position:relative;z-index:2}
-  .hero-inner .eyebrow{font-size:8px;letter-spacing:1.5px;padding:7px 9px;margin-bottom:18px}
-  .hero-inner h1{font-size:clamp(48px,12.5vw,78px)!important;line-height:.92!important;letter-spacing:-.075em!important;margin:16px 0 22px!important}
-  .hero-sub{font-size:14px!important;line-height:1.6!important;max-width:330px!important;text-shadow:0 2px 14px rgba(0,0,0,.8)}
-  .hero-actions{align-items:flex-start!important;flex-direction:column!important;gap:14px!important}
-  .hero-actions .btn{max-width:100%;font-size:11px;padding:14px 16px}
-  .hero-actions .text-link{font-size:16px}
-  .hero-bottom{z-index:3}
+
+/* Clean hero system: one overlay, one transition, one mobile layout */
+.hero-video{display:block!important;z-index:0;object-fit:cover;object-position:center 40%;filter:brightness(.82) saturate(.92)}
+.hero:before{z-index:1;background:rgba(0,0,0,.24);pointer-events:none}
+.hero-inner{position:relative;z-index:2}
+.hero-bottom{z-index:3}
+.hero:after{
+  content:""!important;display:block!important;position:absolute;z-index:1;
+  left:0;right:0;bottom:-1px;top:auto;width:auto;height:clamp(100px,16vw,200px);
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  pointer-events:none;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 32%,rgba(255,255,255,.68) 72%,#fff 100%);
 }
-
-
-/* Smooth transition from the dark hero banner into the light next section */
-.hero{position:relative}
-.hero:after{content:"";display:block;position:absolute;z-index:1;left:0;right:0;bottom:-1px;height:clamp(110px,18vw,230px);pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 32%,rgba(255,255,255,.68) 72%,#fff 100%)}
-.manifesto{position:relative;background:#fff;color:#101116}
-.manifesto:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.2)}
-@media(max-width:760px){.hero:after{height:150px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.22) 35%,rgba(255,255,255,.76) 76%,#fff 100%)}}
-
-
-/* Give the dark rocket wings a subtle contrast edge on dark backgrounds */
-.logo-image{filter:drop-shadow(0 0 1px rgba(255,255,255,.95)) drop-shadow(0 2px 5px rgba(255,255,255,.16))}
-/* Keep the logo wordmark crisp; retain contrast edge only around the rocket emblem. */
-.logo-image{filter:none!important}
-footer .logo-image{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.98)) drop-shadow(0 2px 6px rgba(255,255,255,.18))}
-
-
-/* Mobile hero: reserve the upper-right/center area for the rocket mascot */
-@media(max-width:760px){
-  .hero-video{object-position:center 43%!important}
-  .hero{align-items:flex-end!important;padding:0 22px 112px!important;min-height:100svh!important}
-  .hero-inner{margin:0!important;width:100%;max-width:100%!important;position:relative;z-index:2}
-  .hero-inner .eyebrow{font-size:7px!important;letter-spacing:1.25px!important;padding:6px 8px!important;margin:0 0 12px!important}
-  .hero-inner h1{font-size:clamp(42px,10.8vw,70px)!important;line-height:.9!important;letter-spacing:-.075em!important;margin:12px 0 15px!important;max-width:100%!important}
-  .hero-sub{font-size:13px!important;line-height:1.5!important;max-width:310px!important;margin:0 0 18px!important}
-  .hero-actions{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:11px!important}
-  .hero-actions .btn{font-size:10px!important;padding:13px 14px!important;max-width:100%!important}
-  .hero-actions .text-link{font-size:15px!important}
-  .hero-bottom{bottom:18px!important}
+.manifesto{background:#fff;color:#101116;position:relative}
+/* A soft backlight only behind the rocket icon; no oval outline and no wordmark shadow */
+header.nav .logo,footer .logo{position:relative;isolation:isolate;filter:none!important}
+header.nav .logo:before,footer .logo:before{
+  content:"";position:absolute;z-index:-1;left:-7px;top:0;height:100%;
+  width:25%;pointer-events:none;border:0;border-radius:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.25) 0%,rgba(255,255,255,.12) 42%,rgba(255,255,255,0) 74%);
+  filter:blur(5px);box-shadow:none;
 }
-
-
-/* Mobile hero: headline at the top; secondary discovery link aligned with primary CTA */
-@media(max-width:760px){
-  .hero{align-items:flex-start!important;padding:clamp(145px,21svh,195px) 22px 100px!important}
-  .hero-inner{margin:0!important;width:100%;max-width:100%!important}
-  .hero-inner .eyebrow{margin-bottom:12px!important}
-  .hero-inner h1{margin:12px 0 16px!important}
-  .hero-sub{margin:0 0 18px!important}
-  .hero-actions{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:10px!important;width:100%!important}
-  .hero-actions .btn{justify-self:start!important;white-space:normal!important}
-  .hero-actions .text-link{justify-self:end!important;align-self:center!important;text-align:right!important;white-space:nowrap!important;font-size:clamp(12px,3.7vw,15px)!important}
-}
-
-
-/* Add a subtle white edge glow to the rocket emblem while keeping wordmark untouched */
-.logo-image{filter:none!important}
-.logo{filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 7px rgba(255,255,255,.42))}
-
-
-/* Refined mobile hero spacing: larger headline, CTAs lower, supporting copy slightly higher */
-@media(max-width:760px){
-  .hero{padding-top:clamp(135px,18svh,165px)!important;padding-bottom:100px!important}
-  .hero-inner .eyebrow{margin-bottom:10px!important}
-  .hero-inner h1{font-size:clamp(50px,13.2vw,84px)!important;line-height:.88!important;margin:10px 0 13px!important;letter-spacing:-.078em!important}
-  .hero-sub{margin:0 0 24px!important}
-  .hero-actions{margin-top:0!important;transform:translateY(14px)!important;grid-template-columns:minmax(0,1fr) auto!important;column-gap:8px!important}
-  .hero-actions .btn{align-self:center!important;padding:14px 12px!important;font-size:clamp(9px,2.7vw,11px)!important}
-  .hero-actions .text-link{font-size:clamp(11px,3.4vw,14px)!important;white-space:normal!important;max-width:38vw!important;line-height:1.2!important}
-}
-
-
-/* Final mobile hero layout: keep heading above the image focal point and CTAs clearly below */
+.logo-image{position:relative;z-index:1;filter:none!important}
 @media(max-width:760px){
   .hero{
-    display:flex!important;
-    align-items:flex-start!important;
-    min-height:100svh!important;
-    padding:clamp(130px,16svh,155px) 22px 120px!important;
+    display:block!important;position:relative!important;height:100svh!important;
+    min-height:680px!important;max-height:none!important;
+    padding:0 22px 110px!important;align-items:initial!important;
+  }
+  .hero-video{object-position:center 42%!important;filter:brightness(.86) saturate(.96)!important}
+  .hero:before{
+    background:linear-gradient(90deg,rgba(3,5,10,.38) 0%,rgba(3,5,10,.14) 70%,rgba(3,5,10,.05) 100%)!important;
   }
   .hero-inner{
-    width:100%!important;
-    margin:0!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:flex-start!important;
+    position:absolute!important;inset:0 22px 0!important;
+    width:auto!important;max-width:none!important;margin:0!important;
+    display:block!important;
   }
-  .hero-inner .eyebrow{margin:0 0 9px!important;max-width:100%!important}
-  .hero-inner h1{
-    font-size:clamp(44px,11.5vw,70px)!important;
-    line-height:.9!important;
-    margin:8px 0 12px!important;
-    letter-spacing:-.075em!important;
-  }
-  .hero-sub{margin:0 0 16px!important;max-width:310px!important}
-  .hero-actions{
-    width:100%!important;
-    display:flex!important;
-    flex-direction:row!important;
-    justify-content:space-between!important;
-    align-items:center!important;
-    gap:10px!important;
-    margin-top:12px!important;
-    transform:none!important;
-  }
-  .hero-actions .btn{flex:0 1 auto!important;max-width:58%!important;padding:13px 12px!important;font-size:10px!important}
-  .hero-actions .text-link{flex:0 1 auto!important;max-width:38%!important;text-align:right!important;white-space:normal!important;font-size:13px!important;line-height:1.2!important}
-}
-
-
-/* Clean mobile hero positioning: move the copy block up and actions down without overlap */
-@media(max-width:760px){
-  .hero{
-    min-height:100svh!important;
-    padding:clamp(155px,20svh,185px) 22px 115px!important;
-    align-items:flex-start!important;
-  }
-  .hero-inner{margin:0!important;width:100%!important;max-width:100%!important}
-  .hero-inner .eyebrow{font-size:7px!important;letter-spacing:1.1px!important;padding:6px 8px!important;margin-bottom:10px!important}
-  .hero-inner h1{font-size:clamp(44px,11.8vw,68px)!important;line-height:.9!important;margin:8px 0 13px!important;letter-spacing:-.075em!important}
-  .hero-sub{font-size:13px!important;line-height:1.48!important;max-width:310px!important;margin:0 0 22px!important}
-  .hero-actions{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;gap:8px!important;margin-top:10px!important;width:100%!important}
-  .hero-actions .btn{max-width:100%!important;white-space:normal!important;padding:13px 10px!important;font-size:clamp(9px,2.6vw,10px)!important}
-  .hero-actions .text-link{max-width:36vw!important;text-align:right!important;white-space:normal!important;font-size:clamp(11px,3.4vw,13px)!important;line-height:1.2!important}
-}
-/* Ensure no legacy hero styles can force horizontal overflow on small phones */
-@media(max-width:760px){
-  .hero-inner,.hero-inner h1,.hero-sub,.hero-actions{min-width:0!important;box-sizing:border-box!important}
-  .hero-inner h1 span{display:block;max-width:100%!important}
-}
-
-
-/* Match the annotated mobile composition: label/headline higher, supporting text and CTA grouped below */
-@media(max-width:760px){
-  .hero{
-    min-height:100svh!important;
-    padding:clamp(285px,35svh,340px) 22px 115px!important;
-    align-items:flex-start!important;
-  }
-  .hero-inner{width:100%!important;max-width:100%!important;margin:0!important}
   .hero-inner .eyebrow{
-    font-size:7px!important;letter-spacing:1.1px!important;
-    padding:6px 8px!important;margin:0 0 14px!important;
-    background:rgba(5,7,12,.76)!important;
+    position:absolute!important;top:clamp(145px,22svh,185px)!important;left:0!important;right:auto!important;
+    display:flex!important;width:max-content!important;max-width:100%!important;
+    margin:0!important;padding:6px 8px!important;gap:9px!important;
+    font-size:7px!important;line-height:1.25!important;letter-spacing:1.1px!important;
+    background:rgba(5,7,12,.78)!important;border:1px solid rgba(255,255,255,.14)!important;
+    backdrop-filter:blur(8px);
   }
+  .hero-inner .eyebrow:before{width:22px!important;flex:0 0 22px!important}
   .hero-inner h1{
-    font-size:clamp(43px,11.5vw,66px)!important;
-    line-height:.92!important;letter-spacing:-.075em!important;
-    margin:0 0 18px!important;max-width:100%!important;
+    position:absolute!important;top:clamp(190px,29svh,225px)!important;left:0!important;right:0!important;
+    max-width:100%!important;margin:0!important;
+    font-size:clamp(43px,11.5vw,66px)!important;line-height:.9!important;
+    letter-spacing:-.075em!important;text-shadow:0 2px 18px rgba(0,0,0,.4);
   }
+  .hero-inner h1 span{display:block!important;max-width:100%!important}
   .hero-sub{
-    font-size:13px!important;line-height:1.5!important;
-    max-width:100%!important;margin:0 0 26px!important;
+    position:absolute!important;top:clamp(315px,44svh,350px)!important;left:0!important;right:0!important;
+    width:auto!important;max-width:100%!important;margin:0!important;
+    font-size:13px!important;line-height:1.48!important;color:#f0f1f4!important;
+    text-shadow:0 2px 14px rgba(0,0,0,.8);
   }
   .hero-actions{
-    display:flex!important;flex-direction:row!important;
-    align-items:center!important;justify-content:space-between!important;
-    gap:10px!important;width:100%!important;margin:0!important;
+    position:absolute!important;top:clamp(415px,57svh,450px)!important;left:0!important;right:0!important;
+    width:100%!important;margin:0!important;padding:0!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr) max-content!important;
+    align-items:center!important;justify-content:space-between!important;gap:10px!important;
     transform:none!important;
   }
   .hero-actions .btn{
-    flex:0 1 52%!important;max-width:52%!important;
-    white-space:normal!important;padding:14px 10px!important;
-    font-size:10px!important;line-height:1.25!important;
+    justify-self:start!important;min-width:0!important;width:max-content!important;
+    max-width:100%!important;white-space:nowrap!important;
+    padding:14px 10px!important;font-size:10px!important;line-height:1.2!important;
   }
   .hero-actions .text-link{
-    flex:0 1 42%!important;max-width:42%!important;
-    text-align:right!important;white-space:normal!important;
-    font-size:clamp(12px,3.5vw,14px)!important;line-height:1.25!important;
+    justify-self:end!important;min-width:0!important;max-width:100%!important;
+    font-size:12px!important;line-height:1.2!important;text-align:right!important;
+    white-space:nowrap!important;gap:5px!important;
   }
+  .hero-actions .text-link span{font-size:12px!important}
+  .hero-bottom{left:22px!important;right:22px!important;bottom:18px!important;font-size:8px!important;letter-spacing:1.1px!important}
+  .hero-bottom .scroll-indicator{gap:7px!important}
+  .hero-bottom .scroll-indicator i{height:28px!important}
+  .hero:after{
+    height:130px!important;
+    background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.2) 35%,rgba(255,255,255,.76) 76%,#fff 100%)!important;
+  }
+  header.nav .logo:before,footer .logo:before{left:-5px!important;width:25%!important}
 }
-
-
-/* Separate mobile hero elements instead of moving the whole group together */
-@media(max-width:760px){
-  .hero{padding:0 22px 110px!important;align-items:stretch!important;display:block!important;min-height:100svh!important}
-  .hero-inner{position:absolute!important;inset:0 22px 0!important;width:auto!important;max-width:none!important;margin:0!important}
-  .hero-inner .eyebrow{position:absolute!important;top:clamp(250px,31svh,300px)!important;left:0!important;margin:0!important;max-width:100%!important}
-  .hero-inner h1{position:absolute!important;top:calc(clamp(250px,31svh,300px) + 48px)!important;left:0!important;right:0!important;margin:0!important;font-size:clamp(43px,11.5vw,66px)!important;line-height:.92!important;letter-spacing:-.075em!important}
-  .hero-sub{position:absolute!important;left:0!important;right:0!important;top:calc(clamp(250px,31svh,300px) + 160px)!important;max-width:100%!important;margin:0!important;font-size:13px!important;line-height:1.5!important}
-  .hero-actions{position:absolute!important;left:0!important;right:0!important;top:calc(clamp(250px,31svh,300px) + 245px)!important;width:100%!important;margin:0!important;display:flex!important;flex-direction:row!important;justify-content:space-between!important;align-items:center!important;gap:8px!important}
-  .hero-actions .btn{flex:0 1 54%!important;max-width:54%!important;padding:14px 10px!important;font-size:10px!important;line-height:1.25!important;white-space:normal!important}
-  .hero-actions .text-link{flex:0 1 42%!important;max-width:42%!important;text-align:right!important;white-space:normal!important;font-size:clamp(12px,3.5vw,14px)!important;line-height:1.25!important}
-}
-/* Restrict white logo glow to the rocket side of the brand mark */
-header.nav .logo{filter:none!important;position:relative!important}
-header.nav .logo:before{content:"";position:absolute;z-index:2;left:-3px;top:0;width:31%;height:100%;pointer-events:none;border-radius:45%;box-shadow:0 0 4px 2px rgba(255,255,255,.72),0 0 11px 3px rgba(255,255,255,.35)}
-footer .logo{filter:none!important;position:relative!important}
-footer .logo:before{content:"";position:absolute;z-index:2;left:-3px;top:0;width:20%;height:100%;pointer-events:none;border-radius:45%;box-shadow:0 0 4px 2px rgba(255,255,255,.72),0 0 11px 3px rgba(255,255,255,.35)}
-
+@media(prefers-reduced-motion:reduce){.hero-video{display:block!important}}
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
