@@ -6,6 +6,7 @@ on:
     paths:
       - "index.html"
       - "languages/*.html"
+      - "blog/**"
       - "asset/logo/favicon.svg"
       - "asset/css/responsive-overrides.css"
       - ".github/scripts/browser-qa.cjs"
@@ -14,6 +15,7 @@ on:
     paths:
       - "index.html"
       - "languages/*.html"
+      - "blog/**"
       - "asset/logo/favicon.svg"
       - ".github/scripts/browser-qa.cjs"
       - ".github/workflows/browser-qa.yml"
