@@ -233,6 +233,10 @@ jobs:
           if '<body class="arabic">' not in Path("languages/ar.html").read_text(encoding="utf-8"):
               raise SystemExit("Arabic body styling must work before JavaScript initializes")
           print("Branded favicon, generated article icon link, and static Arabic styling verified.")
+          ar_html = Path("languages/ar.html").read_text(encoding="utf-8")
+          if ".arabic .language-menu{left:0;right:auto}" not in ar_html:
+              raise SystemExit("RTL language menu must align inward from the left edge")
+          print("RTL language dropdown alignment is present.")
           if "SITE_URL: ${{ vars.SITE_URL }}" not in workflow:
               raise SystemExit("Daily workflow must read SITE_URL from repository variables")
           if 'echo "::error::Publishing cannot run' not in workflow or 'exit 1' not in workflow:
