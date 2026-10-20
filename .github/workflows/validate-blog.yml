@@ -48,6 +48,21 @@ jobs:
               expected = f"const pageLang='{locale}'"
               if expected not in text:
                   raise SystemExit(f"{filename}: wrong page language constant")
+              expected_hero = {"en": "HELLO", "tr": "MERHABA", "ar": "مرحباً"}[locale]
+              hero = re.search(r'<[^>]+data-i="heroLine1"[^>]*>([\\s\\S]*?)</[^>]+>', text)
+              if not hero or hero.group(1).strip() != expected_hero:
+                  raise SystemExit(f"{filename}: first headline is not statically rendered in {locale}")
+              if "html:not(.js-ready) .reveal" not in text or "document.documentElement.classList.add('js-ready')" not in text:
+                  raise SystemExit(f"{filename}: text visibility must have a JavaScript-failure fallback")
+              if "<meta name=\"description\" content=\"" not in text:
+                  raise SystemExit(f"{filename}: description meta tag missing")
+              expected_titles = {
+                  "en": "RocketPen — Build. Launch. Grow.",
+                  "tr": "RocketPen — İnşa Et. Başlat. Büyüt.",
+                  "ar": "روكيت بن — ابنِ. أطلق. انمُ."
+              }
+              if "<title>" + expected_titles[locale] + "</title>" not in text:
+                  raise SystemExit(f"{filename}: page title is not localized")
               for code, href in routes.items():
                   if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
                       raise SystemExit(f"{filename}: {code} link must target {href}")
