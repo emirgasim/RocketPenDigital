@@ -288,7 +288,7 @@ async function main(){
   const summary=['## Daily Digital Blog report — '+TODAY,'','Generated and quality-checked **'+newlyGenerated.length+' articles**: **'+newlyGenerated.filter(a=>a.lang==='en').length+' English**, **'+newlyGenerated.filter(a=>a.lang==='tr').length+' Turkish**, **'+newlyGenerated.filter(a=>a.lang==='ar').length+' Arabic**.','', '### English'];
   for(const lang of LANGS){if(lang!=='en')summary.push('### '+(lang==='tr'?'Türkçe':'العربية'));for(const a of newlyGenerated.filter(x=>x.lang===lang))summary.push('- ['+a.title+']('+reportBase+'/blog/'+a.lang+'/articles/'+a.slug+'.html)');summary.push('');}
   summary.push('> Publication links are confirmed after the following GitHub commit-and-push step succeeds.');
-  await fs.appendFile(summaryPath,summary.join('\\n')+'\\n');
+  await fs.appendFile(summaryPath,summary.join('\n')+'\n');
  }
  console.log('Generated 30 localized articles (10 per language). The workflow will commit and push them next. Add SITE_URL as a repository variable for absolute canonical URLs and sitemap.xml.');
 }
