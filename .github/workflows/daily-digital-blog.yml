@@ -32,8 +32,8 @@ jobs:
         id: readiness
         shell: bash
         env:
-          OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: \${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
         run: |
           TARGET=100
           en=$(find blog/data/en -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
@@ -50,7 +50,7 @@ jobs:
           echo "complete=false" >> "$GITHUB_OUTPUT"
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::error::Article target is not complete, but OPENAI_API_KEY is missing. Add it under Settings > Secrets and variables > Actions > Secrets, then re-run this workflow."
+            echo "::error::Publishing cannot run: article target is not complete and OPENAI_API_KEY is missing. Add it under Settings > Secrets and variables > Actions > Secrets, then re-run this workflow."
             printf '%s\n' '' '## Publishing blocked' '' 'The workflow is configured to continue until each language has 100 article JSON records, but OPENAI_API_KEY is missing. No new researched articles were generated in this run.' 'Add the secret and re-run this workflow.' >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
@@ -69,9 +69,9 @@ jobs:
       - name: Research, quality-check and publish up to 30 articles
         if: steps.readiness.outputs.ready == 'true'
         env:
-          OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: \${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
-          OPENAI_MODEL: \${{ vars.OPENAI_MODEL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
         run: node .github/scripts/publish-digital-blog.mjs
 
       - name: Commit and publish generated pages
