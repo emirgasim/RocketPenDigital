@@ -166,6 +166,21 @@ header.nav{overflow:visible!important;z-index:500}
 .logo-image{filter:drop-shadow(0 0 1px rgba(255,255,255,.95)) drop-shadow(0 2px 5px rgba(255,255,255,.16))}
 footer .logo-image{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.98)) drop-shadow(0 2px 6px rgba(255,255,255,.18))}
 
+
+/* Mobile hero: reserve the upper-right/center area for the rocket mascot */
+@media(max-width:760px){
+  .hero-video{object-position:center 43%!important}
+  .hero{align-items:flex-end!important;padding:0 22px 112px!important;min-height:100svh!important}
+  .hero-inner{margin:0!important;width:100%;max-width:100%!important;position:relative;z-index:2}
+  .hero-inner .eyebrow{font-size:7px!important;letter-spacing:1.25px!important;padding:6px 8px!important;margin:0 0 12px!important}
+  .hero-inner h1{font-size:clamp(42px,10.8vw,70px)!important;line-height:.9!important;letter-spacing:-.075em!important;margin:12px 0 15px!important;max-width:100%!important}
+  .hero-sub{font-size:13px!important;line-height:1.5!important;max-width:310px!important;margin:0 0 18px!important}
+  .hero-actions{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:11px!important}
+  .hero-actions .btn{font-size:10px!important;padding:13px 14px!important;max-width:100%!important}
+  .hero-actions .text-link{font-size:15px!important}
+  .hero-bottom{bottom:18px!important}
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
