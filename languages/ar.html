@@ -85,9 +85,9 @@ header.nav{min-height:84px;height:auto;padding-top:15px;padding-bottom:15px}
 .language-option-code{font:700 11px var(--display);letter-spacing:1px;color:var(--yellow)}
 .language-option-name{font-size:12px;color:#d7dae0}
 .language-check{font-size:13px;color:var(--yellow);opacity:0;transform:scale(.6);transition:opacity .2s ease,transform .2s ease}
-.language-option[aria-checked="true"]{background:rgba(255,235,0,.055)}
-.language-option[aria-checked="true"] .language-check{opacity:1;transform:scale(1)}
-.language-option[aria-checked="true"] .language-option-name{color:#fff}
+.language-option[aria-current="page"]{background:rgba(255,235,0,.055)}
+.language-option[aria-current="page"] .language-check{opacity:1;transform:scale(1)}
+.language-option[aria-current="page"] .language-option-name{color:#fff}
 .language-picker.is-open .language-option{animation:languageOptionIn .3s both}
 .language-picker.is-open .language-option:nth-child(2){animation-delay:.045s}
 .language-picker.is-open .language-option:nth-child(3){animation-delay:.09s}
@@ -363,7 +363,7 @@ const pageLang='ar';let current=pageLang;const langButton=document.getElementByI
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
 const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
 function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}
-function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;option.setAttribute('aria-checked',String(active));option.tabIndex=0})}
+function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
 langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();languageMenu.style.visibility='visible';languageMenu.style.pointerEvents='auto'}else{languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}});
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeLanguageMenu();if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
