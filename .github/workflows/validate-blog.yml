@@ -1,0 +1,45 @@
+name: Validate Digital Blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/publish-digital-blog.mjs"
+      - ".github/workflows/**"
+      - "blog/**"
+      - "index.html"
+      - "languages/*.html"
+  pull_request:
+    paths:
+      - ".github/scripts/publish-digital-blog.mjs"
+      - ".github/workflows/**"
+      - "blog/**"
+      - "index.html"
+      - "languages/*.html"
+  workflow_dispatch:
+
+jobs:
+  syntax-and-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check publisher syntax
+        run: node --check .github/scripts/publish-digital-blog.mjs
+      - name: Verify the localized blog structure
+        shell: bash
+        run: |
+          test -f blog/en/index.html
+          test -f blog/tr/index.html
+          test -f blog/ar/index.html
+          test -f blog/data/en/high-converting-website-guide.json
+          test -f blog/data/tr/donusum-odakli-web-sitesi-rehberi.json
+          test -f blog/data/ar/website-guide-uae-qatar.json
+          grep -q '<!-- POSTS_START -->' blog/en/index.html
+          grep -q '<!-- POSTS_END -->' blog/en/index.html
+          grep -q '<!-- POSTS_START -->' blog/tr/index.html
+          grep -q '<!-- POSTS_END -->' blog/tr/index.html
+          grep -q '<!-- POSTS_START -->' blog/ar/index.html
+          grep -q '<!-- POSTS_END -->' blog/ar/index.html
