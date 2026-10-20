@@ -153,6 +153,14 @@ header.nav{overflow:visible!important;z-index:500}
   .hero-bottom{z-index:3}
 }
 
+
+/* Smooth transition from the dark hero banner into the light next section */
+.hero{position:relative}
+.hero:after{content:"";display:block;position:absolute;z-index:1;left:0;right:0;bottom:-1px;height:clamp(110px,18vw,230px);pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.18) 32%,rgba(255,255,255,.68) 72%,#fff 100%)}
+.manifesto{position:relative;background:#fff;color:#101116}
+.manifesto:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.2)}
+@media(max-width:760px){.hero:after{height:150px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,.22) 35%,rgba(255,255,255,.76) 76%,#fff 100%)}}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
