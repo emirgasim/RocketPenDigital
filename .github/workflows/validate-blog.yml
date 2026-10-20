@@ -66,6 +66,18 @@ jobs:
               for code, href in routes.items():
                   if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
                       raise SystemExit(f"{filename}: {code} link must target {href}")
+              expected_button_code = {"en": "EN", "tr": "TR", "ar": "AR"}[locale]
+              if f'class="lang-code">{expected_button_code}</span>' not in text:
+                  raise SystemExit(f"{filename}: static language button code is wrong")
+              expected_picker_label = {"en": "Choose language", "tr": "Dil seçimi", "ar": "اختيار اللغة"}[locale]
+              if text.count(f'aria-label="{expected_picker_label}"') < 2:
+                  raise SystemExit(f"{filename}: language controls need localized accessible labels")
+              if text.count('<a href="#blog" data-i="navBlog">') != 1:
+                  raise SystemExit(f"{filename}: duplicate Digital Blog navigation link")
+              if "if(event.key==='Escape'&&languagePicker.classList.contains('is-open'))" not in text:
+                  raise SystemExit(f"{filename}: Escape must close the menu and restore focus")
+              if "const video=document.querySelector('.hero-video');\nif(video){" not in text:
+                  raise SystemExit(f"{filename}: video event handlers must tolerate a missing video element")
               if "blogCta:" not in text or '↗",eyebrow:' not in text:
                   raise SystemExit(f"{filename}: malformed blog CTA translation object")
               js = match.group(1)
