@@ -248,7 +248,7 @@ async function main(){
  }
  const byLang={};for(const lang of LANGS)byLang[lang]=await loadArticles(lang);
  const all=LANGS.flatMap(lang=>byLang[lang]);const titles=all.map(a=>a.title),slugs=all.map(a=>a.slug);
- const counts={en:4,tr:3,ar:3},variants=['implementation guide','decision framework','audit checklist','common mistakes and alternatives','measurement and optimization playbook'];
+ const counts={en:10,tr:10,ar:10},variants=['implementation guide','decision framework','audit checklist','common mistakes and alternatives','measurement and optimization playbook'];
  const tasks=[];
  for(const lang of LANGS){
   const pool=TOPICS[lang];let count=0,offset=0;
@@ -264,9 +264,9 @@ async function main(){
   }
   if(count!==counts[lang])throw new Error('Not enough unused topics to schedule '+lang);
  }
- console.log('Preparing 10 localized articles dated '+TODAY);
+ console.log('Preparing 30 localized articles: 10 English, 10 Turkish and 10 Arabic, dated '+TODAY);
  for(let i=0;i<tasks.length;i++){
-  const t=tasks[i];console.log('Generating '+(i+1)+'/10 ('+t.lang+'): '+t.topic);
+  const t=tasks[i];console.log('Generating '+(i+1)+'/'+tasks.length+' ('+t.lang+'): '+t.topic);
   const a=await requestArticle(t,titles,slugs);
   a.category=t.category;a.market=t.market;a.topicId=t.topicId;a.publishedAt=TODAY;a.updatedAt=TODAY;
   if(slugs.includes(a.slug))a.slug=a.slug+'-'+TODAY;
@@ -281,6 +281,6 @@ async function main(){
  for(const lang of LANGS)await renderIndex(lang,byLang[lang]);
  await updateSeoBlocks();
  await writeSitemap(all);
- console.log('Finished publishing 10 localized articles. Add SITE_URL as a repository variable for absolute canonicals and sitemap.xml.');
+ console.log('Finished publishing 30 localized articles (10 per language). Add SITE_URL as a repository variable for absolute canonicals and sitemap.xml.');
 }
 main().catch(err=>{console.error(err);process.exit(1)});
