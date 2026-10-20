@@ -1,8 +1,13 @@
 name: Daily Digital Blog Publishing
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/publish-digital-blog.mjs"
+      - ".github/workflows/daily-digital-blog.yml"
   schedule:
-    # 05:17 UTC = 08:17 Türkiye time; GitHub scheduled runs may start a little later.
+    # 05:17 UTC = 08:17 Türkiye time; runs continue daily until each language reaches 100 articles.
     - cron: "17 5 * * *"
   workflow_dispatch:
 
@@ -18,33 +23,42 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - name: Check publishing configuration
-        id: readiness
-        shell: bash
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: ${{ vars.SITE_URL }}
-        run: |
-          if [ -z "$SITE_URL" ]; then
-            echo "::warning::SITE_URL is missing. Canonical tags, hreflang annotations and sitemap.xml cannot be generated."
-            printf '%s\n' '## SEO configuration incomplete' '' 'The SITE_URL repository variable is missing. Add the canonical HTTPS origin under Settings → Secrets and variables → Actions → Variables to enable canonical URLs, hreflang and sitemap.xml.' >> "$GITHUB_STEP_SUMMARY"
-          else
-            printf '%s\n' '## SEO configuration' '' 'SITE_URL is configured. The publishing script will generate canonical URLs, hreflang and sitemap.xml.' >> "$GITHUB_STEP_SUMMARY"
-          fi
-          if [ -z "$OPENAI_API_KEY" ]; then
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::error::Publishing cannot run: OPENAI_API_KEY is missing or empty. Add it under Settings > Secrets and variables > Actions > Secrets."
-            printf '%s\n' '## Digital Blog publishing FAILED' '' 'No articles were generated. The OPENAI_API_KEY repository secret is missing or empty; the workflow is deliberately marked as failed rather than green while publishing is skipped.' 'Add the key under Settings → Secrets and variables → Actions → Secrets, then run this workflow manually to test it.' >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-          echo "ready=true" >> "$GITHUB_OUTPUT"
-          printf '%s\n' '## Digital Blog publishing configuration' '' 'The API key is present. The workflow will research, validate and publish the scheduled batch.' >> "$GITHUB_STEP_SUMMARY"
-
       - name: Checkout repository
-        if: steps.readiness.outputs.ready == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Check target progress and publishing configuration
+        id: readiness
+        shell: bash
+        env:
+          OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: \${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+        run: |
+          TARGET=100
+          en=$(find blog/data/en -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
+          tr=$(find blog/data/tr -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
+          ar=$(find blog/data/ar -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
+          printf 'Current article count — EN: %s/%s; TR: %s/%s; AR: %s/%s\n' "$en" "$TARGET" "$tr" "$TARGET" "$ar" "$TARGET"
+          printf '%s\n' '## Digital Blog target progress' '' "- English: **$en/$TARGET**" "- Turkish: **$tr/$TARGET**" "- Arabic: **$ar/$TARGET**" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$en" -ge "$TARGET" ] && [ "$tr" -ge "$TARGET" ] && [ "$ar" -ge "$TARGET" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+            printf '%s\n' '' 'All three language targets have been reached. No new articles are needed.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "complete=false" >> "$GITHUB_OUTPUT"
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::error::Article target is not complete, but OPENAI_API_KEY is missing. Add it under Settings > Secrets and variables > Actions > Secrets, then re-run this workflow."
+            printf '%s\n' '' '## Publishing blocked' '' 'The workflow is configured to continue until each language has 100 article JSON records, but OPENAI_API_KEY is missing. No new researched articles were generated in this run.' 'Add the secret and re-run this workflow.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+          if [ -z "$SITE_URL" ]; then
+            echo "::warning::SITE_URL is not configured. The workflow fallback will use the current workers.dev origin."
+          fi
+          printf '%s\n' '' 'The article API key is present. The workflow will research, quality-check and publish the next batch.' >> "$GITHUB_STEP_SUMMARY"
 
       - name: Set up Node.js
         if: steps.readiness.outputs.ready == 'true'
@@ -52,12 +66,12 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Research, quality-check and publish 30 articles (10 per language)
+      - name: Research, quality-check and publish up to 30 articles
         if: steps.readiness.outputs.ready == 'true'
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: ${{ vars.SITE_URL }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: \${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+          OPENAI_MODEL: \${{ vars.OPENAI_MODEL }}
         run: node .github/scripts/publish-digital-blog.mjs
 
       - name: Commit and publish generated pages
@@ -71,10 +85,9 @@ jobs:
           if [ -f robots.txt ]; then git add robots.txt; fi
           if git diff --cached --quiet; then
             echo "No generated content changes to commit."
+            printf '%s\n' '' 'No new content changes were produced. Review the generation logs before treating this as a publication day.' >> "$GITHUB_STEP_SUMMARY"
           else
-            git commit -m "Publish daily multilingual Digital Blog articles"
+            git commit -m "Publish researched multilingual Digital Blog batch"
             git push
-            printf '%s\n' '' '## Publication status' '' 'The generated article pages and blog indexes were committed and pushed successfully. The links listed above are ready to open on the live site.' '' '[Open the live Digital Blog](https://rocketpendigital.qasimm2012.workers.dev/blog/en/index.html) · [Türkçe](https://rocketpendigital.qasimm2012.workers.dev/blog/tr/index.html) · [العربية](https://rocketpendigital.qasimm2012.workers.dev/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
-          else
-            printf '%s\n' '' '## Publication status' '' 'No generated content changes were detected, so no new article commit was pushed. Review the generation logs before treating today as a publication day.' >> "$GITHUB_STEP_SUMMARY"
+            printf '%s\n' '' '## Publication status' '' 'The generated article pages, index pages and sitemap were committed and pushed successfully.' '' '[Open English Digital Blog](https://rocketpendigital.qasimm2012.workers.dev/blog/en/index.html) · [Türkçe](https://rocketpendigital.qasimm2012.workers.dev/blog/tr/index.html) · [العربية](https://rocketpendigital.qasimm2012.workers.dev/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
           fi
