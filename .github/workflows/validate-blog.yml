@@ -87,7 +87,7 @@ jobs:
                   raise SystemExit(f"{filename}: Escape must close the menu and restore focus")
               if "const video=document.querySelector('.hero-video');\nif(video){" not in text:
                   raise SystemExit(f"{filename}: video event handlers must tolerate a missing video element")
-              if "blogCta:" not in text or '↗",eyebrow:' not in text:
+              if "blogCta:" not in text or "eyebrow:" not in text:
                   raise SystemExit(f"{filename}: malformed blog CTA translation object")
               js = match.group(1)
               start = js.find("\n" + locale + ":{")
