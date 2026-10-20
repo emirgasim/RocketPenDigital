@@ -151,7 +151,18 @@ async function requestArticle(t,existingTitles,existingSlugs){
   if(!CATS.includes(a.category))errors.push('category is invalid');
   if(!Array.isArray(a.sections)||a.sections.length<6)errors.push('fewer than six sections');
   if(!Array.isArray(a.faq)||a.faq.length<4)errors.push('fewer than four FAQs');
-  a.sources=(a.sources||[]).filter(s=>s&&s.title&&typeof s.url==='string'&&s.url.startsWith('https://'));
+  const seenSourceUrls = new Set();
+  a.sources=(a.sources||[]).filter(s=>{
+   if(!s||typeof s.title!=='string'||!s.title.trim()||typeof s.url!=='string')return false;
+   try{
+    const u=new URL(s.url);
+    if(u.protocol!=='https:'||!u.hostname||u.username||u.password)return false;
+    const normalized=u.href;
+    if(seenSourceUrls.has(normalized))return false;
+    seenSourceUrls.add(normalized);
+    return true;
+   }catch{return false}
+  });
   if(a.sources.length<3)errors.push('fewer than three HTTPS sources');
   if(words(a)<800)errors.push('article has only '+words(a)+' words; minimum quality gate is 800');
   if(errors.length){t.validationError=errors.join('; ');continue}
@@ -229,6 +240,11 @@ async function writeSitemap(all){
 }
 async function main(){
  if(!API_KEY)throw new Error('OPENAI_API_KEY is missing. Add it as a repository Actions secret before automatic publishing can run.');
+ if(SITE_URL){
+  let configuredSite;
+  try{configuredSite=new URL(SITE_URL)}catch{throw new Error('SITE_URL must be a full HTTPS origin such as https://www.example.com')}
+  if(configuredSite.protocol!=='https:'||configuredSite.origin!==SITE_URL)throw new Error('SITE_URL must be an HTTPS origin without a path, query or fragment, e.g. https://www.example.com');
+ }
  const byLang={};for(const lang of LANGS)byLang[lang]=await loadArticles(lang);
  const all=LANGS.flatMap(lang=>byLang[lang]);const titles=all.map(a=>a.title),slugs=all.map(a=>a.slug);
  const counts={en:4,tr:3,ar:3},variants=['implementation guide','decision framework','audit checklist','common mistakes and alternatives','measurement and optimization playbook'];

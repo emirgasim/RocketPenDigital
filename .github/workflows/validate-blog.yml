@@ -182,6 +182,7 @@ jobs:
       - name: Verify crawler rules and publisher readiness safeguards
         shell: bash
         run: |
+          ruby -ryaml -e 'ARGV.each { |f| YAML.load_file(f, aliases: true); puts "#{f}: YAML parsed" }' .github/workflows/*.yml
           test -f robots.txt
           grep -qx 'User-agent: \*' robots.txt
           grep -qx 'Allow: /' robots.txt
@@ -189,6 +190,15 @@ jobs:
           from pathlib import Path
           workflow = Path(".github/workflows/daily-digital-blog.yml").read_text(encoding="utf-8")
           publisher = Path(".github/scripts/publish-digital-blog.mjs").read_text(encoding="utf-8")
+
+          main = publisher.split("async function main(){", 1)[1]
+          if "if(SITE_URL){" not in main or main.find("if(SITE_URL){") > main.find("const byLang={}"):
+              raise SystemExit("SITE_URL must be validated before any article generation/API requests")
+          if "const seenSourceUrls = new Set();" not in publisher:
+              raise SystemExit("Source URLs must be unique")
+          if "u.protocol!=='https:'||!u.hostname||u.username||u.password" not in publisher:
+              raise SystemExit("Each source must be a valid credential-free HTTPS URL")
+          print("Publisher validates its origin before generation and rejects malformed or duplicate source URLs.")
           if "SITE_URL: ${{ vars.SITE_URL }}" not in workflow:
               raise SystemExit("Daily workflow must read SITE_URL from repository variables")
           if 'echo "::error::Publishing cannot run' not in workflow or 'exit 1' not in workflow:
