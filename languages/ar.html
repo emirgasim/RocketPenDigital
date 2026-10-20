@@ -225,6 +225,40 @@ header.nav .logo:before,footer .logo:before{
 }
 .logo-image{position:relative!important;z-index:1!important;filter:none!important}
 
+
+/* Readability pass: slightly darker footage, stronger CTA contrast and legible bottom labels */
+.hero:before{background:rgba(0,0,0,.29)!important}
+@media(max-width:760px){
+  .hero-video{filter:brightness(.80) saturate(.96)!important}
+  .hero:before{
+    background:linear-gradient(180deg,rgba(3,5,10,.30) 0%,rgba(3,5,10,.16) 38%,rgba(3,5,10,.18) 72%,rgba(3,5,10,.27) 100%)!important;
+  }
+  .hero-inner .eyebrow{
+    font-size:8.5px!important;letter-spacing:.85px!important;
+    padding:7px 9px!important;text-shadow:0 1px 5px rgba(0,0,0,.8)!important;
+  }
+  .hero-sub{
+    font-size:13.5px!important;line-height:1.5!important;
+    text-shadow:0 2px 8px rgba(0,0,0,.95),0 0 14px rgba(0,0,0,.7)!important;
+  }
+  .hero-actions .btn{font-size:10.5px!important}
+  .hero-actions .text-link{
+    font-size:13.5px!important;font-weight:600!important;
+    color:#fff36a!important;
+    text-shadow:0 2px 4px rgba(0,0,0,1),0 3px 12px rgba(0,0,0,.95),0 0 20px rgba(0,0,0,.75)!important;
+  }
+  .hero-actions .text-link span{font-size:inherit!important}
+  .hero-bottom{
+    bottom:116px!important;
+    font-size:9.5px!important;line-height:1.35!important;
+    font-weight:600!important;letter-spacing:1px!important;
+    color:#fff!important;
+    text-shadow:0 2px 5px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.9)!important;
+  }
+  .hero-bottom .scroll-indicator{font-size:9.5px!important;font-weight:600!important;letter-spacing:.8px!important}
+  .hero-bottom .scroll-indicator i{height:30px!important}
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
