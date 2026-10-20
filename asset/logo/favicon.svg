@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RocketPen Digital Studio">
-  <rect width="64" height="64" rx="14" fill="#07090d"/>
-  <path d="M15 12h17c10 0 17 5.5 17 15 0 6.2-3.1 10.8-8.7 13.1L52 53H39L29.8 42H26v11H15V12zm11 9v11h6c4 0 6-1.8 6-5.5S36 21 32 21h-6z" fill="#F20D21"/>
-  <path d="M35.5 41.5 46 38l6 15H40z" fill="#FFEB00"/>
+  <rect width="64" height="64" rx="12" fill="#ffeb00"/>
+  <circle cx="32" cy="32" r="23" fill="#07090d"/>
+  <path d="M31.9 7.5c-6.7 8.2-12.3 18.1-12.3 29.1l12.3 10.1 12.4-10.1c0-11-5.7-20.9-12.4-29.1Z" fill="#f20d21"/>
+  <path d="M19.8 31.4 10.5 38.1l2.3 10.4 11.4-6.1M44.1 31.4l9.4 6.7-2.4 10.4-11.3-6.1" fill="#07090d"/>
+  <path d="M26.8 44.2 24 52.4l7.9-4.1 8 4.1-2.9-8.2" fill="#f20d21"/>
+  <circle cx="32" cy="24" r="6.8" fill="#ffeb00"/>
+  <circle cx="32" cy="24" r="4.2" fill="#07090d"/>
+  <circle cx="32" cy="24" r="2.1" fill="#f7f7f7"/>
+  <path d="M25 44.5 21.4 53l6.8-3.4 3.8 7.2 3.8-7.2 6.8 3.4-3.6-8.5" fill="#ffeb00"/>
 </svg>
