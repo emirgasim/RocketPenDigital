@@ -4,7 +4,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const API_KEY = process.env.OPENAI_API_KEY;
 const SITE_URL = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
-const MODEL = process.env.OPENAI_MODEL || 'gpt-6-luna';
+const MODEL = process.env.OPENAI_MODEL || 'gpt-6-astra';
 const TODAY = new Date().toISOString().slice(0, 10);
 const DAY = Math.floor(Date.now() / 86400000);
 const LANGS = ['en', 'tr', 'ar'];
@@ -138,7 +138,7 @@ async function requestArticle(t,existingTitles,existingSlugs){
  const instructions='You are the senior editor for RocketPen Digital Studio. Use the built-in web_search tool before writing. Create distinctive, people-first editorial content that demonstrates real analysis, practical steps, examples, decision criteria, balanced trade-offs and clear next actions. Avoid mass-produced boilerplate, repeated introductions, keyword stuffing, empty marketing language, unverified statistics, fabricated case studies or testimonials, legal claims without reliable sources, and promises of rankings or sales. Google may treat large volumes of unoriginal low-value pages as scaled content abuse, so every article must have a genuinely useful angle. Write natural '+locale.name+'. Market: '+t.market+'. Write approximately 900-1,300 words: an introduction, at least 6 substantive sections, 2-3 developed paragraphs per section, practical bullets where useful and 4-5 specific FAQs. Include 3-5 HTTPS sources actually consulted through web search. Return only the JSON schema requested. Slugs must be ASCII kebab-case.';
  const prompt='Create one publish-ready long-form article for RocketPen Digital Studio.\nLanguage: '+locale.name+' ('+t.lang+')\nTarget market: '+t.market+'\nTopic seed: '+t.topic+'\nEditorial topic ID: '+t.topicId+'\nCategory: '+t.category+'\nAllowed categories: '+CATS.join(', ')+'\nExisting titles to avoid: \n'+existingTitles.slice(-100).map(x=>'- '+x).join('\n')+'\nExisting slugs to avoid: '+existingSlugs.slice(-100).join(', ')+'\nThe article must be original for this locale, not a shallow translation of another page. Explain the reader problem, give a clear framework and checklist, note trade-offs, use specific hypothetical examples only when labelled hypothetical, and cite sources with exact URLs. Do not fabricate market statistics.';
  for(let attempt=0;attempt<2;attempt++){
-  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'auto',instructions:instructions,input:prompt+(attempt?'\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
+  const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'required',instructions:instructions,input:prompt+(attempt?'\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
   if(!response.ok){throw new Error('OpenAI API error '+response.status+': '+(await response.text()).slice(0,600))}
   const result=await response.json();
   const output=(result.output||[]).filter(x=>x.type==='message').flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('\n');
@@ -152,7 +152,7 @@ async function requestArticle(t,existingTitles,existingSlugs){
   if(!Array.isArray(a.sections)||a.sections.length<6)errors.push('fewer than six sections');
   if(!Array.isArray(a.faq)||a.faq.length<4)errors.push('fewer than four FAQs');
   a.sources=(a.sources||[]).filter(s=>s&&s.title&&typeof s.url==='string'&&s.url.startsWith('https://'));
-  if(a.sources.length<2)errors.push('fewer than two HTTPS sources');
+  if(a.sources.length<3)errors.push('fewer than three HTTPS sources');
   if(words(a)<800)errors.push('article has only '+words(a)+' words; minimum quality gate is 800');
   if(errors.length){t.validationError=errors.join('; ');continue}
   a.sources=a.sources.slice(0,5);a.lang=t.lang;a.market=t.market;a.topicId=t.topicId;a.publishedAt=TODAY;a.updatedAt=TODAY;
