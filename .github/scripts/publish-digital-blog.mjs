@@ -195,8 +195,10 @@ async function renderIndex(lang,articles){
 }
 async function updateSeoBlocks(){
  if(!SITE_URL){console.warn('SITE_URL is not configured; canonical tags and hreflang annotations are skipped. Set the repository variable SITE_URL to the canonical site origin.');return}
- let base;
- try{base=new URL(SITE_URL).origin}catch{throw new Error('SITE_URL must be a full origin such as https://www.example.com')}
+ let parsedSite;
+ try{parsedSite=new URL(SITE_URL)}catch{throw new Error('SITE_URL must be a full HTTPS origin such as https://www.example.com')}
+ if(parsedSite.protocol!=='https:'||parsedSite.origin!==SITE_URL)throw new Error('SITE_URL must be an HTTPS origin without a path, query or fragment, e.g. https://www.example.com');
+ const base=parsedSite.origin
  const locales=[['en','/'],['tr','/languages/tr.html'],['ar','/languages/ar.html']];
  const pageSet=[
   {file:'index.html',path:'/',group:locales},
@@ -216,12 +218,14 @@ async function updateSeoBlocks(){
  }
 }
 async function writeSitemap(all){
- if(!SITE_URL){console.warn('SITE_URL missing: canonical URLs and sitemap.xml are skipped; define the repository variable SITE_URL to enable them.');return}
+ const robotsLines=['User-agent: *','Allow: /'];
+ if(SITE_URL)robotsLines.push('Sitemap: '+SITE_URL+'/sitemap.xml');
+ await fs.writeFile(path.join(ROOT,'robots.txt'),robotsLines.join('\n')+'\n');
+ if(!SITE_URL){console.warn('SITE_URL missing: robots.txt was written, but canonical URLs, hreflang and sitemap.xml are skipped. Configure the repository variable SITE_URL to enable them.');return}
  const entries=[['/',''],['/languages/tr.html',''],['/languages/ar.html',''],['/blog/en/index.html',''],['/blog/tr/index.html',''],['/blog/ar/index.html','']];
  for(const a of all)entries.push(['/blog/'+a.lang+'/articles/'+a.slug+'.html',a.updatedAt||a.publishedAt]);
  const body=entries.map(e=>'<url><loc>'+esc(SITE_URL+e[0])+'</loc>'+(e[1]?'<lastmod>'+e[1]+'</lastmod>':'')+'</url>').join('\n');
  await fs.writeFile(path.join(ROOT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'\n</urlset>\n');
- await fs.writeFile(path.join(ROOT,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+SITE_URL+'/sitemap.xml\n');
 }
 async function main(){
  if(!API_KEY)throw new Error('OPENAI_API_KEY is missing. Add it as a repository Actions secret before automatic publishing can run.');

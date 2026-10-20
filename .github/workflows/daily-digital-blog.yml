@@ -23,15 +23,22 @@ jobs:
         shell: bash
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
         run: |
+          if [ -z "$SITE_URL" ]; then
+            echo "::warning::SITE_URL is missing. Canonical tags, hreflang annotations and sitemap.xml cannot be generated."
+            printf '%s\n' '## SEO configuration incomplete' '' 'The SITE_URL repository variable is missing. Add the canonical HTTPS origin under Settings → Secrets and variables → Actions → Variables to enable canonical URLs, hreflang and sitemap.xml.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf '%s\n' '## SEO configuration' '' 'SITE_URL is configured. The publishing script will generate canonical URLs, hreflang and sitemap.xml.' >> "$GITHUB_STEP_SUMMARY"
+          fi
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Publishing was skipped: add OPENAI_API_KEY under Settings > Secrets and variables > Actions."
-            printf '%s\n' '## Digital Blog publishing skipped' '' 'No articles were generated because the OPENAI_API_KEY repository secret is missing.' 'Add the key under Settings → Secrets and variables → Actions, then run this workflow manually to test it.' >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-            printf '%s\n' '## Digital Blog publishing configuration' '' 'The API key is present. The workflow will research, validate and publish the scheduled batch.' >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Publishing cannot run: OPENAI_API_KEY is missing or empty. Add it under Settings > Secrets and variables > Actions > Secrets."
+            printf '%s\n' '## Digital Blog publishing FAILED' '' 'No articles were generated. The OPENAI_API_KEY repository secret is missing or empty; the workflow is deliberately marked as failed rather than green while publishing is skipped.' 'Add the key under Settings → Secrets and variables → Actions → Secrets, then run this workflow manually to test it.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
           fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+          printf '%s\n' '## Digital Blog publishing configuration' '' 'The API key is present. The workflow will research, validate and publish the scheduled batch.' >> "$GITHUB_STEP_SUMMARY"
 
       - name: Checkout repository
         if: steps.readiness.outputs.ready == 'true'

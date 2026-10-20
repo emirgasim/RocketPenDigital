@@ -179,3 +179,23 @@ jobs:
           grep -q '<!-- POSTS_END -->' blog/tr/index.html
           grep -q '<!-- POSTS_START -->' blog/ar/index.html
           grep -q '<!-- POSTS_END -->' blog/ar/index.html
+      - name: Verify crawler rules and publisher readiness safeguards
+        shell: bash
+        run: |
+          test -f robots.txt
+          grep -qx 'User-agent: \*' robots.txt
+          grep -qx 'Allow: /' robots.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          workflow = Path(".github/workflows/daily-digital-blog.yml").read_text(encoding="utf-8")
+          publisher = Path(".github/scripts/publish-digital-blog.mjs").read_text(encoding="utf-8")
+          if "SITE_URL: ${{ vars.SITE_URL }}" not in workflow:
+              raise SystemExit("Daily workflow must read SITE_URL from repository variables")
+          if 'echo "::error::Publishing cannot run' not in workflow or 'exit 1' not in workflow:
+              raise SystemExit("Missing API key must fail the workflow instead of reporting a green skip")
+          if "robots.txt was written" not in publisher:
+              raise SystemExit("Publisher must create robots.txt even if SITE_URL is missing")
+          if "parsedSite.protocol!=='https:'||parsedSite.origin!==SITE_URL" not in publisher:
+              raise SystemExit("SITE_URL must be validated as a canonical HTTPS origin")
+          print("Crawler rules, explicit API-key failure and canonical-origin guard verified.")
+          PY
