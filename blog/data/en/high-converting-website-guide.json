@@ -1,0 +1,88 @@
+{
+  "lang": "en",
+  "slug": "high-converting-website-guide",
+  "market": "United States, United Kingdom and international service businesses",
+  "category": "web-seo",
+  "title": "A Practical Guide to a High-Converting Website for Service Businesses",
+  "description": "Learn how service businesses can structure a clear, credible website that answers buyer questions and turns qualified visits into enquiries.",
+  "excerpt": "A useful website does more than look polished. It guides the right visitor from a clear promise to a confident next step.",
+  "intro": "A business website should help the right people understand what you do, decide whether you are a credible fit, and take the next step without unnecessary effort. A visually impressive page can still underperform when its offer is vague, its proof is hidden, or visitors have to work too hard to contact the business. This guide lays out a practical framework for service companies, consultants, studios and B2B teams that want their website to support real business goals.",
+  "sections": [
+    {
+      "heading": "1. Start with one clear commercial goal",
+      "paragraphs": [
+        "Before choosing layouts, animation or colours, decide what a successful visit should produce. For one business that may be a consultation request; for another it may be a qualified phone call, a project brief or a product demo. The main call to action should match the decision the visitor is realistically ready to make. Asking a first-time visitor to commit to a large purchase is often less helpful than offering a clear discovery call or useful next step.",
+        "Define the audience and the problem you solve in plain language. Instead of describing the company only as “innovative” or “full-service”, explain who you help, what problem you address and what makes your approach useful. A visitor should be able to repeat your offer back to you after a quick scan of the opening screen. If several audiences need different services, give them clear routes rather than forcing every visitor through one generic message."
+      ]
+    },
+    {
+      "heading": "2. Structure pages around buyer questions",
+      "paragraphs": [
+        "People usually arrive with questions: Is this service relevant to my situation? What exactly is included? How does the process work? What might influence the investment? What information do you need from me? Organise service pages so they answer these questions in a logical order. A useful page normally includes a concise promise, the audience or use case, a description of the service, the process, proof, common questions and a next step.",
+        "Use a separate page for each important service when the audience, intent and explanation genuinely differ. This helps visitors find specific information and gives search engines a clearer understanding of each page. Do not create near-identical pages just to swap in a city name or keyword. Each page should contain meaningful, locally relevant information and serve a distinct visitor need."
+      ]
+    },
+    {
+      "heading": "3. Make trust visible, not implied",
+      "paragraphs": [
+        "Trust is built through specific and consistent evidence. Show real examples of work, explain the challenge and the thinking behind the solution, and describe the scope honestly. Where permission exists, include client names or testimonials with enough context to make them useful. If a result is measured, explain what was measured, over what period and what other factors may have contributed. Avoid unsupported superlatives and promises that cannot be substantiated.",
+        "Also make the basics easy to verify: a clear business identity, working contact details, an understandable privacy notice and consistent brand information across the website and relevant business profiles. Good design helps presentation, but clarity and accountability are what allow a prospective client to assess whether you are a credible partner."
+      ]
+    },
+    {
+      "heading": "4. Reduce friction in the conversion path",
+      "paragraphs": [
+        "Every extra field, unclear label or surprise step can create hesitation. Ask only for information needed to respond meaningfully. If a project needs a longer brief, start with a short form and collect additional details during the conversation. On mobile, make buttons easy to tap, keep labels descriptive, and ensure that contact actions work without requiring visitors to zoom or hunt through a footer.",
+        "Use one primary action consistently and reserve secondary actions for people who are not ready yet. For example, “Discuss your project” can be the primary action while “Explore our work” offers a lower-commitment route. Avoid presenting a row of equally prominent buttons that compete for attention. The best hierarchy depends on the customer journey, so review it with real enquiries and usability observations rather than relying on design taste alone."
+      ]
+    },
+    {
+      "heading": "5. Treat speed, accessibility and mobile layout as core requirements",
+      "paragraphs": [
+        "A page that loads slowly, shifts while loading or is difficult to read on a phone can undermine even strong copy. Optimise image dimensions and formats, avoid unnecessary scripts, test video behaviour on mobile, and check the page on real devices. Use readable type sizes, sufficient contrast, visible keyboard focus, meaningful alternative text and clear form labels. These choices improve usability for a wider range of people and often make the experience easier for everyone.",
+        "Use tools such as PageSpeed Insights and Search Console to investigate performance and crawling issues, but interpret the results alongside real user behaviour. Technical checks are signals to investigate, not a replacement for understanding where visitors struggle. Google's own documentation explains the relationship between search fundamentals, useful content and performance-related page experience."
+      ]
+    },
+    {
+      "heading": "6. Measure meaningful outcomes and improve in cycles",
+      "paragraphs": [
+        "Track the steps that connect a visit to a business result: relevant landing-page visits, service-page engagement, form starts, completed enquiries, qualified leads and booked conversations. Make sure analytics events reflect real user actions and test them after every major update. A large traffic number is not automatically a win if it attracts the wrong audience or creates no useful conversations.",
+        "Review patterns at a sensible interval, identify the largest obstacle, and test one substantial change at a time. That might be a clearer service headline, a more useful case study, a shorter form or better internal links from educational articles to relevant services. Keep a change log and allow enough data to accumulate before deciding whether a revision helped. A website becomes a growth asset through steady improvement, not through a one-time redesign alone."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How many pages should a service business website have?",
+      "a": "There is no universal number. Start with the pages needed to explain the business, key services, proof, process and contact options. Add a separate page when a topic has a distinct audience or search intent and deserves a useful, complete explanation."
+    },
+    {
+      "q": "Should every service have its own landing page?",
+      "a": "A separate page is helpful when the service has distinct deliverables, customers or questions. Avoid thin pages that repeat the same copy with only a keyword changed."
+    },
+    {
+      "q": "What should the main call to action say?",
+      "a": "Use language that describes the next step clearly, such as discussing a project, booking a consultation or requesting a proposal. Match the action to the commitment level of the intended visitor."
+    },
+    {
+      "q": "How can a business tell whether its website is working?",
+      "a": "Measure qualified enquiries and the steps leading to them, not just sessions. Combine analytics with lead quality, customer feedback and direct observation of usability problems."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central: SEO Starter Guide",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    },
+    {
+      "title": "web.dev: Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    },
+    {
+      "title": "W3C: Web Content Accessibility Guidelines (WCAG)",
+      "url": "https://www.w3.org/WAI/standards-guidelines/wcag/"
+    }
+  ],
+  "publishedAt": "2026-10-20",
+  "updatedAt": "2026-10-20"
+}
