@@ -454,3 +454,7 @@ html[lang="ar"] .article h3 {
     transform-origin: top right !important;
   }
 }
+
+/* Override legacy hero line-height declarations that were too tight at mobile zoom. */
+body .hero-inner h1 { line-height: 1.12 !important; }
+body .arabic .hero-inner h1, html[lang="ar"] .hero-inner h1 { line-height: 1.38 !important; letter-spacing: normal !important; }
