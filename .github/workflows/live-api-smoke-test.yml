@@ -1,0 +1,73 @@
+name: Live Site and OpenAI API Smoke Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check live website and static asset security
+        shell: bash
+        run: |
+          set -uo pipefail
+          base="https://rocketpendigital.qasimm2012.workers.dev"
+          fail=0
+          check() {
+            path="$1"
+            expected="$2"
+            code="$(curl --silent --show-error --location --max-time 15 -o /tmp/rp-response -w '%{http_code}' "$base$path" || true)"
+            printf '%-28s HTTP %s (expected %s)\n' "$path" "${code:-000}" "$expected"
+            case "$expected" in
+              2xx) [[ "$code" =~ ^2[0-9][0-9]$ ]] || fail=1 ;;
+              blocked) [[ "$code" == "403" || "$code" == "404" ]] || fail=1 ;;
+            esac
+          }
+          check "/" "2xx"
+          check "/languages/tr.html" "2xx"
+          check "/languages/ar.html" "2xx"
+          check "/asset/logo/favicon.svg" "2xx"
+          check "/.git/HEAD" "blocked"
+          check "/.git/config" "blocked"
+          check "/.wrangler/tmp/" "blocked"
+          if [ "$fail" -ne 0 ]; then
+            echo "::error::One or more live website/security checks failed."
+            exit 1
+          fi
+          echo "Live website and basic static-path checks passed."
+
+      - name: Check OpenAI API key and model access without generating content
+        shell: bash
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        run: |
+          set -euo pipefail
+          if [ -z "${OPENAI_API_KEY:-}" ]; then
+            echo "::error::OPENAI_API_KEY secret is missing or empty. The key value is never printed."
+            exit 1
+          fi
+          response="$(mktemp)"
+          status="$(curl --silent --show-error --max-time 20 \
+            -H "Authorization: Bearer ${OPENAI_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -o "$response" -w '%{http_code}' \
+            https://api.openai.com/v1/models || true)"
+          echo "OpenAI GET /v1/models HTTP status: ${status:-000}"
+          if [ "$status" != "200" ]; then
+            echo "::error::OpenAI API authentication/access check failed (HTTP ${status:-000}). Response body is intentionally not printed."
+            rm -f "$response"
+            exit 1
+          fi
+          model="${OPENAI_MODEL:-gpt-6-astra}"
+          if ! MODEL_TO_CHECK="$model" node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));const m=process.env.MODEL_TO_CHECK;process.exit(Array.isArray(d.data)&&d.data.some(x=>x.id===m)?0:1)' "$response"; then
+            echo "::warning::API key is valid, but configured model '${model}' was not found in the account model list. Check OPENAI_MODEL and account access."
+            rm -f "$response"
+            exit 1
+          fi
+          echo "OpenAI API authentication passed and configured model is listed. No content generation was requested."
+          rm -f "$response"
