@@ -545,3 +545,98 @@ html[lang="ar"] .article h3 {
 /* Override legacy hero line-height declarations that were too tight at mobile zoom. */
 body .hero-inner h1 { line-height: 1.12 !important; }
 body .arabic .hero-inner h1, html[lang="ar"] .hero-inner h1 { line-height: 1.38 !important; letter-spacing: normal !important; }
+
+
+/* Mobile homepage composition: keep the copy in a left-side column so the
+   rocket/astronaut artwork stays visible, and tighten the vertical rhythm. */
+@media (max-width: 760px) {
+  html body .hero:has(.hero-inner) {
+    align-items: flex-start !important;
+    padding-top: clamp(98px, 10svh, 126px) !important;
+  }
+
+  html body .hero:has(.hero-inner) .hero-inner {
+    width: min(78%, 34rem) !important;
+    max-width: 34rem !important;
+    margin: 0 auto 0 0 !important;
+    align-items: flex-start !important;
+  }
+
+  html body .hero-inner .eyebrow {
+    margin-bottom: 12px !important;
+  }
+
+  html body .hero-inner h1 {
+    font-size: clamp(2.15rem, 8.7vw, 3.8rem) !important;
+    line-height: 1.02 !important;
+    margin: 0 0 16px !important;
+    letter-spacing: -.035em !important;
+  }
+
+  html body .hero-inner .hero-sub {
+    max-width: 38ch !important;
+    font-size: clamp(13px, 2.8vw, 16px) !important;
+    line-height: 1.52 !important;
+    margin-bottom: 16px !important;
+  }
+
+  html body .hero-inner .hero-actions {
+    gap: 8px !important;
+  }
+
+  html body .hero-inner .hero-actions .btn {
+    min-height: 44px !important;
+    padding: 11px 14px !important;
+    font-size: 11px !important;
+  }
+
+  html body .hero-inner .hero-actions .text-link {
+    min-height: 0 !important;
+    padding: 4px 0 !important;
+    font-size: 12px !important;
+  }
+
+  html body .hero:has(.hero-inner):before {
+    background: linear-gradient(90deg, rgba(4,6,10,.78) 0%, rgba(4,6,10,.44) 54%, rgba(4,6,10,.08) 100%) !important;
+  }
+
+  html[dir="rtl"] body .hero:has(.hero-inner) .hero-inner {
+    margin: 0 0 0 auto !important;
+  }
+
+  html[dir="rtl"] body .hero:has(.hero-inner):before {
+    background: linear-gradient(270deg, rgba(4,6,10,.78) 0%, rgba(4,6,10,.44) 54%, rgba(4,6,10,.08) 100%) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  html body .hero:has(.hero-inner) .hero-inner {
+    width: min(92%, 34rem) !important;
+  }
+
+  html body .hero-inner h1 {
+    font-size: clamp(2.15rem, 9vw, 2.65rem) !important;
+  }
+}
+
+/* Keep the site navigation attached to the top edge after scrolling. */
+html body header.nav.is-scrolled {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  background: rgba(7,9,13,.94) !important;
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.24) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  backdrop-filter: blur(18px) !important;
+  animation: navIn .25s ease both;
+}
+
+@media (max-width: 760px) {
+  html body header.nav .lang-label {
+    display: none !important;
+  }
+}
