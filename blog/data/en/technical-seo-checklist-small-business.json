@@ -1,0 +1,123 @@
+{
+  "slug": "technical-seo-checklist-small-business",
+  "topicId": "technical-seo-checklist-implementation-guide-2026-10-21",
+  "category": "web-seo",
+  "title": "A Technical SEO Checklist for Small and Midsize Business Websites",
+  "description": "A step-by-step technical SEO review covering crawling, indexability, metadata, internal links, performance and release checks.",
+  "excerpt": "Work through technical foundations in a sensible order before investing in more pages or more keywords.",
+  "intro": "Technical SEO helps search engines discover, interpret and access pages that deserve to be found. It cannot make a weak offer useful or guarantee rankings, but mistakes can hide good content or send visitors to broken experiences. This checklist prioritises checks a small team can complete without chasing every tool warning.",
+  "sections": [
+    {
+      "heading": "Confirm which pages should be indexed",
+      "paragraphs": [
+        "List important pages—home, services, locations, articles and contact—and decide which should appear in search. Check that each returns a successful status and is not blocked accidentally by robots rules or a noindex directive. Staging pages, duplicate filters and private utility pages may need different treatment.",
+        "Use Google Search Console to inspect representative URLs and indexing reports. An indexed status does not promise visibility, and a submitted URL is not automatically indexed. Investigate the reported reason for exclusions instead of forcing every URL into the index regardless of its value."
+      ],
+      "bullets": [
+        "Test important URLs directly.",
+        "Review noindex directives and robots rules.",
+        "Investigate exclusions instead of resubmitting blindly."
+      ]
+    },
+    {
+      "heading": "Make page identity and metadata clear",
+      "paragraphs": [
+        "Give important pages distinct titles that describe their topic and help a searcher understand the destination. Meta descriptions can provide summaries when Google chooses to use them, but they are not guaranteed display text. Avoid repeating one generic title and description across the entire site.",
+        "Use a logical heading structure and one clear main topic per page. Headings help readers navigate and assistive technology interpret content; they should not be filled with repeated keyword phrases. Keep essential information in crawlable text instead of hiding it inside images or inaccessible interactions."
+      ],
+      "bullets": [
+        "Write unique, accurate titles and descriptions.",
+        "Use headings to organise a real topic.",
+        "Keep essential wording as text, not pixels."
+      ]
+    },
+    {
+      "heading": "Review internal links and URL structure",
+      "paragraphs": [
+        "Every important page should be reachable through useful internal links, not only a sitemap. Links help people discover related information and help crawlers understand relationships. Use descriptive anchor text and connect service pages, supporting articles and relevant next steps.",
+        "Prefer readable, stable URLs and avoid multiple paths for essentially identical content without a clear reason. When changing URLs, plan relevant redirects and update internal links. A redirect should preserve user intent; sending every retired page to the homepage can confuse visitors and search systems."
+      ],
+      "bullets": [
+        "Link important pages from relevant content.",
+        "Use descriptive anchor text.",
+        "Update links after URL changes."
+      ]
+    },
+    {
+      "heading": "Maintain the sitemap and robots rules",
+      "paragraphs": [
+        "A sitemap is a discovery hint for canonical URLs you want considered for indexing. Keep it current, use absolute URLs for the chosen public host and remove deleted or redirected pages. Do not list staging or preview URLs as though they were the public version.",
+        "A robots.txt file controls crawler access; it is not a reliable way to remove a page already known to search engines. Do not block style or script resources needed to understand a page. Check DNS and hosting separately: a correct sitemap cannot fix a domain that does not resolve or a server returning errors."
+      ],
+      "bullets": [
+        "List relevant public canonical URLs only.",
+        "Avoid blocking essential resources.",
+        "Check DNS and redirects separately."
+      ]
+    },
+    {
+      "heading": "Measure mobile performance and accessibility",
+      "paragraphs": [
+        "Review the real mobile experience: initial rendering, image loading, layout shifts, navigation responsiveness and form usability. Core Web Vitals offer a standard lens for loading, interactivity and visual stability, but a score is diagnostic rather than the goal. Fix issues that delay or obstruct a customer's task first.",
+        "Compress images, reduce unnecessary script work, avoid inserting content above existing text and test keyboard operation and contrast. Performance and accessibility reviews often reveal product issues: an oversized banner, intrusive modal or unclear form frustrates visitors even when a technical report appears green."
+      ],
+      "bullets": [
+        "Serve appropriately sized images.",
+        "Avoid unexpected layout shifts.",
+        "Test forms and navigation on real devices."
+      ]
+    },
+    {
+      "heading": "Make SEO part of the release process",
+      "paragraphs": [
+        "Use a pre-release checklist for status codes, titles, canonical host, language routes, internal links, robots, sitemap, analytics and mobile smoke tests. After launch, inspect representative URLs and look for unexpected 404s or redirects. Keep release dates so changes can be compared with search and conversion data.",
+        "Prioritise fixes by user impact, affected URLs and effort. A broken service page matters more than an obscure warning on a low-value page. Document what changed, what was tested and what remains uncertain. SEO becomes manageable as a repeatable release discipline rather than a one-time score chase."
+      ],
+      "bullets": [
+        "Test one URL from every important template.",
+        "Keep a release checklist and change log.",
+        "Fix blockers before low-impact warnings."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does submitting a sitemap guarantee indexing?",
+      "a": "No. A sitemap helps discovery, but search engines choose which pages to index. Ensure listed URLs are accessible, useful, canonical and linked appropriately."
+    },
+    {
+      "q": "Is a perfect technical SEO score necessary?",
+      "a": "No single audit score guarantees visibility. Use tools to find issues, then prioritise problems that prevent crawling, break experiences or affect important user tasks."
+    },
+    {
+      "q": "Should robots.txt hide duplicate pages?",
+      "a": "It is not a general removal mechanism. Robots rules restrict crawling but do not reliably remove known URLs. Choose canonical, indexing or access-control treatment for the specific case."
+    },
+    {
+      "q": "When should a site be audited?",
+      "a": "At launch, after major template or URL changes, after hosting/domain changes, and periodically as content grows. Small checks with each release catch issues earlier than an annual review."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — SEO Starter Guide",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    },
+    {
+      "title": "Google Search Central — How Search works",
+      "url": "https://developers.google.com/search/docs/fundamentals/how-search-works"
+    },
+    {
+      "title": "web.dev — Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

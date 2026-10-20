@@ -1,0 +1,119 @@
+{
+  "slug": "website-accessibility-practical-review",
+  "topicId": "accessibility-implementation-guide-2026-10-21",
+  "category": "web-seo",
+  "title": "A Practical Accessibility Review for Business Websites",
+  "description": "Review readable structure, keyboard use, contrast, forms, images and responsive behaviour with a practical WCAG-informed checklist.",
+  "excerpt": "Use task-based testing to find barriers that ordinary visual reviews often miss.",
+  "intro": "Accessibility helps people with different visual, hearing, motor and cognitive needs use the same website. It can also improve content clarity for other visitors. This guide offers a practical review informed by W3C guidance, while recognising that a short checklist does not replace a full accessibility evaluation.",
+  "sections": [
+    {
+      "heading": "Review structure and reading order",
+      "paragraphs": [
+        "Check that headings describe their content, links explain their destination, and navigation labels make sense outside the visual layout. Screen-reader users may explore headings or links separately, so repeated labels such as “click here” provide little context by themselves.",
+        "Use semantic HTML for navigation, main content, lists, buttons and forms. Styling should not be the only source of meaning. Test whether the page remains understandable when text size increases; content relying on position alone may become confusing when presented differently."
+      ],
+      "bullets": [
+        "Use meaningful headings and links.",
+        "Structure content with semantic elements.",
+        "Test reading order on narrow screens."
+      ]
+    },
+    {
+      "heading": "Check contrast and text readability",
+      "paragraphs": [
+        "Evaluate text and interface contrast against WCAG criteria, paying attention to small text, placeholders and text placed over images. A palette that looks elegant on a large display may be difficult to read on a phone or in bright light. Do not assume a pairing passes because it looks clear to one person.",
+        "Use comfortable line length and line height, and ensure text enlarges without overlapping controls or clipping. Avoid conveying status through colour alone; pair a warning colour with a label or explanation. These choices make the interface more robust without requiring a separate visual style for each user."
+      ],
+      "bullets": [
+        "Test small text and controls.",
+        "Allow resizing without overlap.",
+        "Use labels alongside colour to show status."
+      ]
+    },
+    {
+      "heading": "Navigate with a keyboard",
+      "paragraphs": [
+        "Use the site without a mouse. Tab through links, buttons, menus and forms; check that focus is visible and follows a sensible order. Ensure users can open and close menus, dismiss dialogs and return to the trigger. Keyboard testing reveals focus traps or controls that cannot be reached.",
+        "Do not remove focus outlines without providing a visible replacement. Ensure custom controls use appropriate semantics and respond to expected keys. For a video, carousel or language picker, check that controls work predictably and focus does not jump unexpectedly during updates."
+      ],
+      "bullets": [
+        "Show visible focus.",
+        "Check dialogs and menus can be exited.",
+        "Test important flows using only a keyboard."
+      ]
+    },
+    {
+      "heading": "Make forms and errors understandable",
+      "paragraphs": [
+        "Associate inputs with visible labels and state which fields are required. Provide specific instructions when a format is expected. When submission fails, explain the correction in text and connect the message to the field; do not rely only on a red outline or a message that disappears before it can be read.",
+        "Test the whole journey: entering data, correcting errors, submitting successfully and receiving confirmation. If a form requests information for follow-up, explain why it is needed. Short forms can still be inaccessible when labels are unclear, errors are not announced or controls are hard to use on touch screens."
+      ],
+      "bullets": [
+        "Provide visible labels and required-field cues.",
+        "Show specific field-level errors.",
+        "Explain what happens after submission."
+      ]
+    },
+    {
+      "heading": "Check images, motion and media",
+      "paragraphs": [
+        "Provide meaningful alternative text for informative images and avoid redundant announcements for decorative assets. A complex chart may need a short summary and key data in text. Do not put essential instructions only in an image where users cannot resize or translate the wording as needed.",
+        "Review auto-playing animation, flashing, motion and video controls. Provide captions for spoken information and allow users to pause moving content where required. Use motion to communicate state, not to obstruct reading or make people wait before completing a task."
+      ],
+      "bullets": [
+        "Use alt text that reflects the image's purpose.",
+        "Caption meaningful speech.",
+        "Respect reduced-motion preferences where applicable."
+      ]
+    },
+    {
+      "heading": "Test real tasks and keep improving",
+      "paragraphs": [
+        "Combine automated checks with manual keyboard review, zoom testing and assistive technology where possible. Automated tools flag some patterns but cannot judge whether an explanation is understandable, focus order fits the task or an image description conveys the right information.",
+        "Prioritise barriers that block core tasks: finding a service, understanding scope, completing forms and changing language. Keep a log of findings, owners and verification steps. Recheck after template changes because a usable component can become inaccessible when code or visual rules change."
+      ],
+      "bullets": [
+        "Prioritise barriers blocking core tasks.",
+        "Document and retest each finding.",
+        "Repeat checks after major interface changes."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does an automated pass mean a site is accessible?",
+      "a": "No. Automated tools detect certain patterns but cannot evaluate every content, keyboard, context or assistive-technology issue. Manual and user-centred testing remain necessary."
+    },
+    {
+      "q": "Should every image have alt text?",
+      "a": "Informative images need meaningful alternatives; decorative images should not create redundant noise. The right treatment depends on the image's purpose."
+    },
+    {
+      "q": "Is WCAG a design library?",
+      "a": "No. WCAG is a set of accessibility success criteria. Teams still need to interpret the criteria in context and test the experience."
+    },
+    {
+      "q": "When should accessibility be reviewed?",
+      "a": "Include checks in design, development and release testing, and revisit important flows when templates, content or interactive components change."
+    }
+  ],
+  "sources": [
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Understanding user needs",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

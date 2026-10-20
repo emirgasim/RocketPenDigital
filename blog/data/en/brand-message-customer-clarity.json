@@ -1,0 +1,119 @@
+{
+  "slug": "brand-message-customer-clarity",
+  "topicId": "brand-message-framework-2026-10-21",
+  "category": "brand-strategy",
+  "title": "How to Write a Brand Message Customers Understand Quickly",
+  "description": "Build a message hierarchy that explains your offer, shows evidence and helps visitors take a useful next step without buzzwords.",
+  "excerpt": "Use customer language, a clear promise and specific proof to replace vague claims with useful brand communication.",
+  "intro": "A brand message is not clear merely because it sounds polished to the people who wrote it. Customers arrive with their own language, concerns and knowledge. Strong messaging makes the offer easy to recognise, explains why it matters and provides enough evidence for a buyer to decide what to do next.",
+  "sections": [
+    {
+      "heading": "Collect the words customers already use",
+      "paragraphs": [
+        "Start with sales-call notes, support questions, reviews, proposal objections and search queries. Look for repeated descriptions of a problem, desired result and uncertainty that delays a decision. These phrases are useful raw material because they show how customers frame the issue before learning your internal terminology.",
+        "Do not copy every phrase blindly. Group similar language into themes and check whether themes appear across different customer types. One person's wording may be insightful but unique to their situation. Ask a few focused questions about the task they needed to complete and why alternatives felt inadequate."
+      ],
+      "bullets": [
+        "Review support and sales questions.",
+        "Separate repeated themes from isolated comments.",
+        "Keep a note of the situation behind each phrase."
+      ]
+    },
+    {
+      "heading": "Write the core promise in plain language",
+      "paragraphs": [
+        "A visitor should be able to answer three questions quickly: what do you do, who is it for, and why is it useful? “Unlock potential through innovation” sounds ambitious but provides little decision-making information. A direct statement about the service and business problem is easier to evaluate.",
+        "Use a two-part structure when the story will not fit on one line: a specific headline followed by a supporting sentence with scope or approach. Avoid packing every audience, service and benefit into one sentence. If a phrase needs several clauses to make sense, split it and test the reading order."
+      ],
+      "bullets": [
+        "Name the service and customer problem.",
+        "Use supporting copy to clarify scope.",
+        "Remove internal jargon customers do not recognise."
+      ]
+    },
+    {
+      "heading": "Create a message hierarchy",
+      "paragraphs": [
+        "Choose one primary proposition and a small number of supporting messages. Each supporting message should answer a different buyer question: what is included, how delivery works, what evidence supports the claim, or what happens after launch. Repeating the same benefit in several forms does not create a stronger hierarchy.",
+        "Map each message to proof and a place where customers can verify it. A claim about specialist expertise may link to relevant work; a process claim may show a timeline; a support claim should explain boundaries. Evidence prevents the page becoming a collection of adjectives."
+      ],
+      "bullets": [
+        "Use one primary proposition.",
+        "Match benefits to proof or scope details.",
+        "Place evidence beside the related claim."
+      ]
+    },
+    {
+      "heading": "Replace buzzwords with observable details",
+      "paragraphs": [
+        "Words such as premium, innovative, seamless and results-driven are not automatically wrong, but they are incomplete without a description of the experience. Explain the practical behaviour behind each adjective: who owns the project, what deliverables are produced, how feedback works or which decisions are made before production.",
+        "Underline every abstract claim and ask what a reader could see, compare or verify. Replace unsupported superlatives with factual descriptions. If a claim depends on context, state the context instead of making it universal. Better wording also makes the team more accountable for delivery."
+      ],
+      "bullets": [
+        "Ask what a customer can verify.",
+        "Replace absolutes with specific, supportable statements.",
+        "Explain process and deliverables concretely."
+      ]
+    },
+    {
+      "heading": "Adapt messages to each channel",
+      "paragraphs": [
+        "A homepage needs fast orientation, a service page needs scope and trade-offs, a case study needs process and evidence, and a social post often needs one idea. Reusing the same paragraph everywhere ignores the different task a visitor is trying to complete at that moment.",
+        "Keep a short message guide with the core promise, approved proof, customer terms and phrases to avoid. It should help writers stay consistent without becoming a rigid script. Invite sales and delivery teams to flag wording that attracts the wrong expectation or causes recurring confusion."
+      ],
+      "bullets": [
+        "Keep the promise consistent while changing depth.",
+        "Match detail to the visitor's next question.",
+        "Use feedback from sales and delivery."
+      ]
+    },
+    {
+      "heading": "Test understanding, not personal taste",
+      "paragraphs": [
+        "Ask people who resemble your audience to paraphrase the message, say what they believe is included and identify what remains unclear. Their paraphrase is more informative than whether they describe the line as clever. Test one major change at a time where possible so the team can learn what affected understanding.",
+        "Website behaviour is supporting evidence, not a complete explanation. Traffic source, audience fit, layout and offer clarity also affect outcomes. Review questions that keep arriving after visitors read the page; recurring questions often identify missing information better than a subjective design review."
+      ],
+      "bullets": [
+        "Ask for a paraphrase, not just a rating.",
+        "Track recurring questions after page visits.",
+        "Change one meaningful message element at a time."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How long should a brand message be?",
+      "a": "As short as the context allows, but not so short that it hides the service or its qualifications. A clear headline plus a specific supporting sentence is often more useful than a vague slogan."
+    },
+    {
+      "q": "Should the same message appear everywhere?",
+      "a": "Keep the central promise consistent, while adapting depth, examples and format to the channel. A service page and a short video do different jobs."
+    },
+    {
+      "q": "Can a playful tone still feel professional?",
+      "a": "Yes, when humour supports rather than obscures the offer, respects the audience and does not create misleading expectations. Scope and next steps should remain clear."
+    },
+    {
+      "q": "How do we start a messaging audit?",
+      "a": "Collect the homepage, service pages, proposals and social profiles; connect repeated claims to evidence; then ask real customers what they believe the business does after reading them."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Understanding user needs",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    },
+    {
+      "title": "Google Search Central — SEO Starter Guide",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

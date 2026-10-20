@@ -1,0 +1,119 @@
+{
+  "slug": "brand-positioning-service-businesses",
+  "topicId": "brand-positioning-implementation-guide-2026-10-21",
+  "category": "brand-strategy",
+  "title": "A Practical Brand Positioning Framework for Service Businesses",
+  "description": "Choose an audience, promise and credible proof to make a service business easier to understand, compare and remember.",
+  "excerpt": "Define a useful market position from customer needs, competitive alternatives and evidence—not a clever slogan alone.",
+  "intro": "Brand positioning is the choice of whom you serve, which problem you solve, and why a suitable customer should consider you instead of an alternative. It is not merely a tagline exercise. For service businesses, positioning must guide sales conversations, website copy, service design and everyday decisions.",
+  "sections": [
+    {
+      "heading": "Start with a specific customer situation",
+      "paragraphs": [
+        "Broad labels such as “small businesses” rarely tell a team what to prioritise. Find a real situation: a professional firm that has outgrown its website, a hospitality brand entering another market, or a B2B team struggling to explain a complex service. Situations make needs and trade-offs concrete.",
+        "Interview recent customers and lost prospects about the moment they began searching, the risks they hoped to avoid, alternatives they considered, and what finally helped them decide. Separate direct observations from interpretation; one anecdote can suggest a hypothesis but cannot prove a universal pattern."
+      ],
+      "bullets": [
+        "Describe a real customer situation.",
+        "Ask what triggered the search and what delayed the decision.",
+        "Record customer language before rewriting it."
+      ]
+    },
+    {
+      "heading": "Map the alternatives customers compare",
+      "paragraphs": [
+        "Competition includes more than firms selling the same service. A prospect may compare an agency with a freelancer, an internal hire, a template, delaying the project, or doing nothing. This wider choice set explains why a buyer may see your offer as unnecessary even when the work is excellent.",
+        "Compare the factors buyers actually use: speed, strategic guidance, specialist expertise, risk, post-launch support and effort required from their team. Do not assume every factor matters equally. Ask buyers to rank them, then identify where your business can credibly be different."
+      ],
+      "bullets": [
+        "Include the option of doing nothing.",
+        "Rank decision factors using buyer evidence.",
+        "Avoid claiming superiority on dimensions you cannot prove."
+      ]
+    },
+    {
+      "heading": "Turn a strength into a credible promise",
+      "paragraphs": [
+        "A positioning statement connects audience, need, offer and difference. A useful working formula is: “For [audience] facing [situation], we provide [service or outcome] through [approach], supported by [evidence].” It is an internal decision tool first, not necessarily copy to publish word for word.",
+        "Each promise needs proof: a transparent process, relevant portfolio work, qualifications, documented methods or a realistic example. If “fastest” or “best in the market” cannot be supported, remove it. A narrow, verifiable promise is often more persuasive than an expansive adjective."
+      ],
+      "bullets": [
+        "Connect each differentiator to proof.",
+        "Prefer precise scope over vague superlatives.",
+        "Label illustrative examples as hypothetical."
+      ]
+    },
+    {
+      "heading": "Translate positioning into messages",
+      "paragraphs": [
+        "Choose one main value proposition, a few supporting benefits and evidence for each. The homepage should explain who the business helps and why a visitor should care before asking that person to decode internal service names. Supporting messages can address scope, process, proof and next steps.",
+        "Use the same core idea across proposals, social content, sales calls and onboarding, adapting details to each channel. Consistency does not mean repeating a sentence everywhere. It means customers encounter the same promise while its explanation changes with their question and level of familiarity."
+      ],
+      "bullets": [
+        "Set one primary promise and three supporting messages.",
+        "Place proof where customers need it.",
+        "Keep terminology consistent across sales and delivery."
+      ]
+    },
+    {
+      "heading": "Test the position before a redesign",
+      "paragraphs": [
+        "Share two or three positioning options with people who resemble intended buyers. Ask them to paraphrase each option, identify whom they think it serves and say what they would need before contacting the business. Asking only which line they like measures preference, not necessarily understanding.",
+        "A lightweight test can use a proposal opening, landing-page wireframe or sales conversation. Record misunderstandings and objections. If several people interpret a message differently from its intended meaning, revise the offer or explanation before commissioning a complete visual rebrand."
+      ],
+      "bullets": [
+        "Test one major message change at a time.",
+        "Ask people to explain the offer in their own words.",
+        "Record confusion, not just positive reactions."
+      ]
+    },
+    {
+      "heading": "Turn the position into operating choices",
+      "paragraphs": [
+        "A position has value only when it changes decisions. It should help the team choose case studies, decline poor-fit requests, design packages, set boundaries and decide which enquiries deserve a conversation. If every prospect and service still appears equally suitable, the position may be too vague to guide action.",
+        "Review it when customer needs, capabilities or market conditions materially change—not whenever a trend appears. Track enquiry quality, sales objections, referral language and the gap between customer expectations and delivery. Positioning can improve clarity, but it cannot by itself guarantee growth."
+      ],
+      "bullets": [
+        "Use positioning to qualify requests and shape packages.",
+        "Review real objections and referral language.",
+        "Change strategy when evidence supports it."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is brand positioning the same as a slogan?",
+      "a": "No. Positioning is a strategic choice about audience, problem, value and differentiation. A slogan is one possible expression of that choice, not a substitute for the underlying decisions."
+    },
+    {
+      "q": "How many differentiators should a small business claim?",
+      "a": "Start with one central difference supported by two or three pieces of proof. A long list of generic strengths is hard to remember and difficult to deliver consistently."
+    },
+    {
+      "q": "Should positioning change by market?",
+      "a": "The core capability can remain stable while examples, terminology and proof adapt to each audience. Test whether an adaptation improves understanding instead of assuming one message fits every market."
+    },
+    {
+      "q": "How can we tell if positioning works?",
+      "a": "Look for clearer enquiries, fewer repeated explanations, more relevant referrals and better alignment between customer expectations and delivery. Combine interviews with sales and website data."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Understanding user needs",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    },
+    {
+      "title": "Google Search Central — SEO Starter Guide",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "professional-service-case-studies",
+  "topicId": "case-studies-implementation-guide-2026-10-21",
+  "category": "brand-strategy",
+  "title": "How to Turn Service Projects into Credible Case Studies",
+  "description": "A case-study framework covering context, constraints, decisions, evidence, outcomes and lessons that help future customers evaluate fit.",
+  "excerpt": "Explain what changed and why with evidence instead of unsupported claims or decorative before-and-after images.",
+  "intro": "A case study helps a prospective customer understand how a team approaches a real problem. It is not simply a gallery entry or success story. A credible case study explains the starting context, decisions, constraints, work delivered and evidence supporting any outcome described.",
+  "sections": [
+    {
+      "heading": "Choose a project that teaches something",
+      "paragraphs": [
+        "Choose a project because it reveals a useful process or decision, not only because the visuals are attractive. A small project with a clear constraint can teach more than a large project described with generic praise. Consider whether the example helps a target customer recognise a problem and understand the team's approach.",
+        "Define the reader and their main question. A service buyer may want to know how scope was clarified, what the team needed from the client, how feedback worked or what happened when the plan changed. Build the case around that question rather than forcing every project into the same narrative."
+      ],
+      "bullets": [
+        "Choose a useful lesson, not just an attractive image.",
+        "Define the target reader's question.",
+        "Publish only work you are allowed to share."
+      ]
+    },
+    {
+      "heading": "Get permission and agree on facts",
+      "paragraphs": [
+        "Confirm what can be shared: business name, imagery, quoted feedback, metrics, internal process and confidential information. Agree on who approves the final page and whether the client must review claims before publication. Store permission records with the project files so future edits do not rely on memory.",
+        "Separate verified facts from interpretation. Deliverables and milestones may be checked from records; claims about revenue or conversion need evidence and context. Do not create fictional testimonials, imply consent that was never granted or report a metric that was not measured reliably."
+      ],
+      "bullets": [
+        "Document image and quote permission.",
+        "Check claims against project records.",
+        "Protect confidential information and identifiers."
+      ]
+    },
+    {
+      "heading": "Explain the starting point and constraints",
+      "paragraphs": [
+        "Describe the problem in terms the reader understands: unclear messaging, inconsistent content, a slow page or a disconnected user journey. Include constraints that shaped the solution, such as existing systems, limited time, several stakeholders or accessibility requirements. Context makes the work understandable rather than blaming the client.",
+        "Use the simplest evidence available to describe the baseline: observed user issues, documented requirements, agreed goals or measured metrics. If no quantitative baseline exists, say so and focus on decisions and deliverables that can be verified. Context is more credible than a number without a method."
+      ],
+      "bullets": [
+        "State the problem and its business context.",
+        "Mention constraints that influenced the work.",
+        "Separate observed facts from assumptions."
+      ]
+    },
+    {
+      "heading": "Show the reasoning behind the work",
+      "paragraphs": [
+        "Explain why the team chose the approach and which alternatives were considered. A case study becomes more useful when it shows a trade-off: simplifying navigation rather than adding pages, clarifying content before a visual refresh, or phasing production to protect a launch date. The reasoning demonstrates judgement, not just capability.",
+        "Connect major deliverables to the problem they were meant to solve. For a website, describe information structure, content hierarchy or performance decisions. For a brand, explain audience insight and system rules. This helps buyers consider how the approach might fit their context."
+      ],
+      "bullets": [
+        "Explain decisions in the order made.",
+        "Connect each deliverable to a need.",
+        "Describe meaningful trade-offs."
+      ]
+    },
+    {
+      "heading": "Report outcomes with appropriate confidence",
+      "paragraphs": [
+        "Separate deliverables, observed changes and business outcomes. Launching a website is a deliverable; users completing a task more easily is an observed result; increased revenue is downstream and may have several causes. Use the strongest evidence available without turning correlation or a quote into a guarantee.",
+        "For quantitative results, provide the time window, comparison method and relevant conditions. If no formal analytics existed, be transparent instead of inventing a percentage. Lessons learned, reduced confusion or clearer workflows can be valuable outcomes when described precisely and supported by evidence."
+      ],
+      "bullets": [
+        "State how any metric was measured.",
+        "Label hypothetical examples honestly.",
+        "Do not promise the same outcome for every customer."
+      ]
+    },
+    {
+      "heading": "Make the story useful for future buyers",
+      "paragraphs": [
+        "End with what the team learned, which type of client may benefit and what a similar project would need to begin well. Link to a relevant service and related educational content so a reader can move from understanding to evaluation without pressure for immediate contact.",
+        "Review case studies periodically. Replace outdated screenshots, correct changed service details and remove claims that no longer reflect the offer. A small collection of specific, accurate stories can support trust more effectively than a large portfolio whose captions say little about the decisions behind the work."
+      ],
+      "bullets": [
+        "Add a helpful next step.",
+        "Keep screenshots current.",
+        "Review accuracy when services evolve."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can a project be a case study without numbers?",
+      "a": "Yes. Explain the problem, constraints, decisions, deliverables and verified lessons. Do not invent metrics merely to make a story look more impressive."
+    },
+    {
+      "q": "Should every client be named?",
+      "a": "No. Follow permission and confidentiality terms. An anonymised case can still be useful if context is clear and the description does not reveal protected information."
+    },
+    {
+      "q": "What makes a case study credible?",
+      "a": "Specific context, transparent reasoning, accurate evidence, clear limitations and permission for shared material. Avoid vague superlatives and claims that cannot be checked."
+    },
+    {
+      "q": "Where should case studies appear?",
+      "a": "Place relevant examples on service pages and in a portfolio, then link from useful articles or proposals. Placement should answer a buyer question rather than act as decoration."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Understanding user needs",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    },
+    {
+      "title": "Google Search Central — SEO Starter Guide",
+      "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "short-form-video-content-system",
+  "topicId": "short-video-implementation-guide-2026-10-21",
+  "category": "creative-video",
+  "title": "Build a Repeatable Short-Form Video System for Your Brand",
+  "description": "A production workflow for short videos covering audience questions, hooks, vertical framing, captions, approvals and performance review.",
+  "excerpt": "Move from random posting to a repeatable creative process connected to a specific audience need.",
+  "intro": "Short-form video can attract attention, but attention alone is not a content strategy. Teams need a reliable way to choose a useful subject, shape the opening, capture footage, review claims and learn from behaviour. A repeatable system improves consistency without making every video feel identical.",
+  "sections": [
+    {
+      "heading": "Start with a real viewer question",
+      "paragraphs": [
+        "Build ideas from customer questions, objections that delay decisions, common mistakes, demonstrations and choices that are difficult to understand from a static page. Each video should answer one question or reveal one useful detail. A topic that cannot be expressed in a sentence may be too broad for a short clip.",
+        "Organise ideas by purpose: clarify a service, demonstrate a process, explain a choice, show an example or address a misconception. Keep business goals in view, but do not make every clip an advertisement. A useful sequence can establish expertise and give viewers a reason to explore a service when relevant."
+      ],
+      "bullets": [
+        "Collect recurring questions from real conversations.",
+        "Choose one audience and learning goal per clip.",
+        "Create a topic backlog before filming."
+      ]
+    },
+    {
+      "heading": "Write the opening and payoff together",
+      "paragraphs": [
+        "A hook earns attention by naming a problem, showing a useful detail or promising what the viewer will learn. The payoff must deliver that promise. Avoid misleading suspense, exaggerated claims or an opening unrelated to the video; short-term attention is not worth weakening trust.",
+        "Outline three parts: the opening question, two or three points that answer it, and a relevant next step. Read the lines aloud before recording. If a sentence sounds unnatural or contains several ideas, simplify it. A script should make the speaker clear rather than force artificial viral language."
+      ],
+      "bullets": [
+        "Make the opening specific.",
+        "Deliver the promised answer.",
+        "Keep the next step proportionate to the content."
+      ]
+    },
+    {
+      "heading": "Capture for the final placement",
+      "paragraphs": [
+        "For vertical placements such as Reels, plan framing, text and subject position for a 9:16 canvas from the start. Keep important words and faces within safe areas because platform interface elements may cover the edges. Record a clean master where practical so other versions can be produced without cropping out the subject.",
+        "Good audio and clear lighting are often more valuable than complicated camera movement. Record a test, listen with headphones, check background noise and ensure the subject is visible on a phone. Use supporting shots when they clarify the explanation; decorative cuts can increase edit time without improving comprehension."
+      ],
+      "bullets": [
+        "Plan vertical framing and safe margins.",
+        "Check audio and lighting before the full take.",
+        "Record B-roll only when it serves the idea."
+      ]
+    },
+    {
+      "heading": "Edit for understanding, not speed alone",
+      "paragraphs": [
+        "Remove pauses that add no meaning, but leave enough time to understand a step. Captions improve access and support silent viewing; proofread names, technical terms and multilingual text carefully. Captions must match what is said rather than invent a stronger promise than the speaker made.",
+        "Use motion, sound effects and emphasis only when they reinforce the message. Check text against light and dark footage and ensure it remains legible in a small preview. For processes or sequences, number stages or show the result so viewers can follow without guessing."
+      ],
+      "bullets": [
+        "Proofread every caption.",
+        "Check text size on a phone.",
+        "Make visuals support rather than distract."
+      ]
+    },
+    {
+      "heading": "Build approvals into the workflow",
+      "paragraphs": [
+        "Assign roles for brief, filming, editing, technical review and final approval. In sensitive sectors, decide who checks claims, privacy and disclosures before shooting. Get permission before showing identifiable clients, private spaces or confidential materials; a checklist should catch issues before the video is scheduled.",
+        "Maintain a content log with topic, audience, format, date, hook, call to action and result. Reuse footage responsibly, but do not repost mechanically when a platform needs a different opening, pace or context. Batching saves setup time when each clip retains a distinct useful point."
+      ],
+      "bullets": [
+        "Name a final approver.",
+        "Confirm image, music and location permissions.",
+        "Keep a record of the version actually published."
+      ]
+    },
+    {
+      "heading": "Measure learning and refine the next batch",
+      "paragraphs": [
+        "Choose metrics based on the video's job. Early retention can help assess the opening; saves or shares may signal usefulness; qualified visits and enquiries show whether the topic connects to a service need. No single metric explains everything, so do not treat view count as proof of commercial impact.",
+        "Review videos together and note which questions keep attention, where viewers leave, which explanations prompt useful discussion, and which calls to action attract poor-fit enquiries. Use these findings to improve the next brief. A measured production cycle is more durable than chasing every format trend."
+      ],
+      "bullets": [
+        "Set a purpose before publishing.",
+        "Compare similar formats and audiences.",
+        "Record what to test in the next batch."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How long should a short video be?",
+      "a": "Use the length needed to answer the question clearly. A concise demonstration may be short; a nuanced explanation may need more time. Do not remove essential context to hit an arbitrary duration."
+    },
+    {
+      "q": "Does every video need a sales call to action?",
+      "a": "No. Some should teach, demonstrate or address objections. Match the next step to viewer readiness and use a sales action when it follows naturally."
+    },
+    {
+      "q": "Are captions useful when a speaker is clear?",
+      "a": "Captions support accessibility and viewers watching without sound. Proofread them and keep text readable without covering the subject or interface controls."
+    },
+    {
+      "q": "How should performance be evaluated?",
+      "a": "Define the purpose first, then review retention, meaningful engagement, visits and qualified enquiries as appropriate. Compare similar formats and avoid causal claims based on one high-view post."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Meta for Business — Reels ads and creative",
+      "url": "https://www.facebook.com/business/ads/facebook-instagram-reels-ads"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

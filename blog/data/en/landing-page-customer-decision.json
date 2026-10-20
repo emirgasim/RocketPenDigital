@@ -1,0 +1,123 @@
+{
+  "slug": "landing-page-customer-decision",
+  "topicId": "landing-page-implementation-guide-2026-10-21",
+  "category": "web-seo",
+  "title": "Designing a Landing Page Around One Clear Customer Decision",
+  "description": "Plan a focused landing page with a clear promise, evidence, realistic scope, accessible forms and meaningful measurement.",
+  "excerpt": "Help visitors decide whether to take the next step instead of asking one page to explain every service at once.",
+  "intro": "A landing page should make one decision easier: book a consultation, request a quote, download a guide or check whether a service fits. A page can contain several sections, but its hierarchy should help a specific audience understand the offer, judge credibility and take the next relevant action.",
+  "sections": [
+    {
+      "heading": "Define the visitor and decision",
+      "paragraphs": [
+        "Write down where the visitor came from, what they already know and what action they should consider. Someone from a focused campaign may need confirmation of one promise; a general visitor may need broader context. A page designed for everyone often fails to help any one person decide.",
+        "Describe success in user terms: understand the service, confirm it applies to their situation, evaluate risk and know the next step. Use that statement to guide content, design and measurement. If there are several unrelated primary actions, consider whether the offer is too broad or separate destinations are needed."
+      ],
+      "bullets": [
+        "Describe the audience and task in one sentence.",
+        "Choose one primary action.",
+        "Match the page to its campaign or source link."
+      ]
+    },
+    {
+      "heading": "Write a concrete headline and offer",
+      "paragraphs": [
+        "A headline should connect the offer with the customer's problem or desired task. Add a supporting line that defines scope, audience or approach. Avoid promises about transformation when the page does not explain what the visitor receives, how the process works or what information begins the project.",
+        "Show qualifications before a visitor fills a form: availability, service area, deliverables, requirements and what happens next. Be careful with prices or timelines that depend on scope. Clear constraints help unsuitable visitors self-select and suitable prospects begin with realistic expectations."
+      ],
+      "bullets": [
+        "Name the service and problem.",
+        "Explain deliverables and boundaries.",
+        "State what happens after a visitor responds."
+      ]
+    },
+    {
+      "heading": "Arrange proof around buyer questions",
+      "paragraphs": [
+        "Choose evidence that supports the promise: relevant project examples, transparent process, credentials, genuine testimonials with permission or a clear explanation of review steps. Each proof item should answer a likely question. A wall of logos or superlatives can look impressive while leaving service details and risks unanswered.",
+        "Describe outcomes without presenting them as guaranteed. Explain the context of examples and label hypothetical illustrations accurately. When buyers evaluate fit, a case study explaining decisions and constraints can be more useful than a dramatic before-and-after image without evidence."
+      ],
+      "bullets": [
+        "Place proof beside the claim it supports.",
+        "Use genuine, permissioned testimonials.",
+        "Explain the context of examples."
+      ]
+    },
+    {
+      "heading": "Make the form easy and respectful",
+      "paragraphs": [
+        "Request only the information needed for the next step. Every extra field adds effort, but removing fields may make follow-up less effective. Choose a balance based on how the team uses the information, then test the form on a phone with real input, validation errors and a slower connection.",
+        "Explain what happens after submission, how information will be used and when a response can reasonably be expected. Use visible labels, identify required fields and explain errors in text rather than colour alone. Avoid preselected marketing consent or confusing controls that pressure users into sharing more than intended."
+      ],
+      "bullets": [
+        "Keep field requirements proportionate.",
+        "Show visible labels and helpful errors.",
+        "Explain the next step and data use."
+      ]
+    },
+    {
+      "heading": "Design for mobile, accessibility and speed",
+      "paragraphs": [
+        "Review the page on a small screen from the visitor's starting point. Keep the offer and primary action easy to find, make tap targets usable and avoid pop-ups that obscure content. Compress media and reduce non-essential scripts so useful information is not held up by decoration.",
+        "Check contrast, keyboard navigation, form labels and focus against recognised accessibility guidance. Accessibility is not a finishing touch; it helps people with different needs complete the task. The hierarchy should remain understandable when users zoom or navigate with assistive technology."
+      ],
+      "bullets": [
+        "Test using keyboard and touch.",
+        "Avoid unexpected layout shifts.",
+        "Keep essential text usable when zoomed."
+      ]
+    },
+    {
+      "heading": "Measure the decision and improve carefully",
+      "paragraphs": [
+        "Track the key event that represents the intended outcome and distinguish it from minor interactions such as scrolling. Google Analytics separates important key events from other events, so define event names and completion rules before launch. A form event should not count a failed submission as a completed enquiry.",
+        "Change one meaningful part at a time where practical: headline, proof order, form length or call-to-action text. Compare similar traffic sources and date ranges, and avoid choosing a winner from a handful of visits. Combine quantitative signals with lead quality and customer conversations to improve useful enquiries rather than raw submissions."
+      ],
+      "bullets": [
+        "Define success before release.",
+        "Validate tracking at real completion.",
+        "Use qualitative feedback with analytics."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should a landing page have only one button?",
+      "a": "Not necessarily. It can repeat the same primary action and provide secondary navigation. The key is avoiding competing actions that represent unrelated decisions."
+    },
+    {
+      "q": "Do testimonials always improve conversion?",
+      "a": "They can help when genuine and relevant, but generic or unverifiable praise may add little trust. Provide context and never fabricate customer experiences."
+    },
+    {
+      "q": "How many form fields should we use?",
+      "a": "Use the smallest set that supports the next real step. The right number depends on the service and qualification needs; measure completion quality instead of copying a universal rule."
+    },
+    {
+      "q": "What should be tested first?",
+      "a": "Fix technical blockers and unclear offers first. Then test headline, scope, proof and form friction while tracking the business outcome that matters."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Analytics — Events and key events",
+      "url": "https://support.google.com/analytics/answer/13965727?hl=en"
+    },
+    {
+      "title": "W3C WAI — WCAG 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/"
+    },
+    {
+      "title": "web.dev — Web Vitals",
+      "url": "https://web.dev/articles/vitals"
+    },
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "social-media-editorial-calendar",
+  "topicId": "social-calendar-implementation-guide-2026-10-21",
+  "category": "social-content",
+  "title": "How to Build a Social Media Calendar Around Business Goals",
+  "description": "Plan useful social content with audience questions, editorial pillars, manageable cadence, clear ownership and meaningful review.",
+  "excerpt": "Connect each post to a customer need instead of filling dates just for the sake of posting.",
+  "intro": "A social calendar is valuable when it helps a team publish relevant work consistently, not when it becomes an endless list of dates. The strongest process begins with audience needs, business priorities and content the team can responsibly produce, then turns those choices into a manageable rhythm.",
+  "sections": [
+    {
+      "heading": "Define the job of each channel",
+      "paragraphs": [
+        "List the audiences you need to reach and the tasks they use each platform for. A channel may be useful for visual discovery, professional education, community conversation or product updates, but its role should be based on your actual audience rather than a broad claim that every business must be everywhere.",
+        "Choose a small number of channels the team can maintain well. Review where qualified people already interact, which formats the team can produce with quality and what moderation is required. A consistent presence can be more manageable than a scattered schedule of neglected posts."
+      ],
+      "bullets": [
+        "Name the audience for each channel.",
+        "Define the intended action or learning.",
+        "Check whether production and moderation capacity exists."
+      ]
+    },
+    {
+      "heading": "Choose editorial pillars with boundaries",
+      "paragraphs": [
+        "Editorial pillars are repeatable subjects that support brand expertise and customer needs. For a digital studio, they might include website decisions, brand strategy, content production, campaign learning and behind-the-scenes process. Each pillar needs a reason to exist and an example question it helps answer.",
+        "Give each pillar boundaries so the team does not publish the same idea under different headings. Define suitable formats, evidence requirements and topics that need specialist approval. If every post is a sales pitch, the calendar feels narrow; if none connects to the service, attention may not lead to useful conversations."
+      ],
+      "bullets": [
+        "Write the audience question for each pillar.",
+        "Define its scope and exclusions.",
+        "Connect educational themes to relevant services where appropriate."
+      ]
+    },
+    {
+      "heading": "Plan the content mix and effort",
+      "paragraphs": [
+        "Mark posts by purpose: explain, demonstrate, address an objection, show a process, invite conversation or share an update. Balance does not require a universal ratio; it requires a reason for each item and enough useful material to meet audience needs. Leave room for timely information without letting trends consume the plan.",
+        "Estimate production effort honestly. A polished video may need a script, filming, editing and approval, while a short expert note can be quicker. Assign an owner, reviewer, asset requirements and deadline. A calendar without capacity behind it encourages last-minute posts and quality shortcuts."
+      ],
+      "bullets": [
+        "Set owners and realistic deadlines.",
+        "Include review and moderation time.",
+        "Reserve space for relevant timely topics."
+      ]
+    },
+    {
+      "heading": "Repurpose ideas without copying blindly",
+      "paragraphs": [
+        "One developed idea can become an article, short video, carousel, sales follow-up or newsletter section. Repurposing works when each version matches its context: a video needs a visual opening, an article explains detail, and a short post surfaces one takeaway. Copying the same text everywhere ignores how people consume different formats.",
+        "Maintain a source note and central claim so facts remain consistent. Update time-sensitive information before republication. If the original piece changes, review derivatives too; otherwise an old snippet can remain live after the main guidance has been corrected."
+      ],
+      "bullets": [
+        "Keep a link to the original asset.",
+        "Adapt the hook and example to the channel.",
+        "Recheck claims before reposting older content."
+      ]
+    },
+    {
+      "heading": "Create an approval and community loop",
+      "paragraphs": [
+        "Decide who checks facts, brand voice, rights, privacy and sector-specific restrictions. Use approved asset folders and explicit permission for people, client work and third-party media. Give staff a route for urgent corrections and a way to pause scheduled content when an event makes it inappropriate.",
+        "Community management belongs in the calendar. Set response expectations, identify questions needing a subject expert and create a safe route for complaints or sensitive information. An answer may reveal a future topic, but do not expose personal details or promise a resolution the team cannot deliver."
+      ],
+      "bullets": [
+        "Define a clear approval owner.",
+        "Create a correction and escalation path.",
+        "Protect private information in public replies."
+      ]
+    },
+    {
+      "heading": "Review outcomes and retire weak routines",
+      "paragraphs": [
+        "Measure posts against their purpose. Useful signals include qualified profile visits, saves, thoughtful replies, site sessions, enquiries or assisted sales conversations. Reach and reactions can be informative, but they are not interchangeable with business impact; interpret them in the context of audience, format and distribution.",
+        "Run a short monthly review: keep what serves a real need, revise what confuses people and retire formats that consume time without clear purpose. Record experiments and context. A calendar should evolve with the audience, business and team capacity, not because every week needs a new trend."
+      ],
+      "bullets": [
+        "Track purpose-specific metrics.",
+        "Record lessons for the next month.",
+        "Stop producing formats that have no clear job."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How far ahead should we plan?",
+      "a": "Plan themes and capacity in advance, then leave room for timely topics. The right horizon depends on approvals and production complexity; rigid schedules can become outdated."
+    },
+    {
+      "q": "How often should a business post?",
+      "a": "Choose a cadence the team can sustain at a useful quality level. There is no single frequency that fits every audience or platform."
+    },
+    {
+      "q": "Should the calendar focus on trends?",
+      "a": "Use trends only when they fit the audience, brand and timing. A trend is not a substitute for expertise or a customer need."
+    },
+    {
+      "q": "Which metrics belong in the calendar?",
+      "a": "Track publication status, purpose and a few outcome indicators. Keep deeper analysis in a review so each calendar entry remains easy to use."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Google Search Central — Creating helpful, reliable, people-first content",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+    },
+    {
+      "title": "Office for National Statistics — Understanding user needs",
+      "url": "https://service-manual.ons.gov.uk/content/writing-for-users/user-needs"
+    },
+    {
+      "title": "Meta for Business — Reels ads and creative",
+      "url": "https://www.facebook.com/business/ads/facebook-instagram-reels-ads"
+    }
+  ],
+  "lang": "en",
+  "market": "United States, United Kingdom and international English-speaking markets",
+  "publishedAt": "2026-10-21",
+  "updatedAt": "2026-10-21"
+}
