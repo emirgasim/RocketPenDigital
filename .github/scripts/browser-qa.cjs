@@ -87,7 +87,7 @@ async function visible(page, selector) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
         await assertResponsiveText(page, width, route.path);
-        assert.equal(await visible(page, '#mobileNavToggle'), false, width + 'px mobile view must not show a hamburger button');
+        assert.equal(await page.locator('#mobileNavToggle').count(), 0, width + 'px mobile view must not include hamburger markup');
         assert.ok(await visible(page, '#primaryNavigation'), width + 'px primary navigation should remain visible without a hamburger');
         const navRect = await page.locator('#primaryNavigation').evaluate(el => {
           const r = el.getBoundingClientRect();
@@ -108,6 +108,14 @@ async function visible(page, selector) {
         await page.keyboard.press('Escape');
         assert.ok((await page.evaluate(() => document.documentElement.scrollWidth)) <= width + 1, width + 'px page should not overflow horizontally');
       }
+
+      await page.evaluate(() => window.scrollTo(0, 360));
+      await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
+      const stickyState = await page.locator('header.nav').evaluate(el => ({ position: getComputedStyle(el).position, top: el.getBoundingClientRect().top, zIndex: getComputedStyle(el).zIndex }));
+      assert.equal(stickyState.position, 'fixed', 'mobile top bar should remain fixed during scroll: ' + JSON.stringify(stickyState));
+      assert.ok(Math.abs(stickyState.top) <= 1, 'fixed top bar should stay aligned to the viewport top: ' + JSON.stringify(stickyState));
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForFunction(() => !document.querySelector('header.nav').classList.contains('is-scrolled'));
 
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.locator('#lang').click();
