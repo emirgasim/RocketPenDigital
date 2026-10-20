@@ -69,6 +69,71 @@ jobs:
           node --check /tmp/rocketpen-en.js
           node --check /tmp/rocketpen-tr.js
           node --check /tmp/rocketpen-ar.js
+      - name: Audit HTML links, assets and duplicate IDs
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit, unquote
+          import os
+
+          ROOT = Path.cwd().resolve()
+          class Checker(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.ids = []
+                  self.refs = []
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if attrs.get("id"):
+                      self.ids.append(attrs["id"])
+                  for name in ("href", "src"):
+                      value = attrs.get(name)
+                      if value:
+                          self.refs.append((name, value))
+
+          html_files = sorted(ROOT.rglob("*.html"))
+          parsed = {}
+          problems = []
+          for file in html_files:
+              checker = Checker()
+              checker.feed(file.read_text(encoding="utf-8"))
+              checker.close()
+              parsed[file] = checker
+              duplicates = sorted({x for x in checker.ids if checker.ids.count(x) > 1})
+              if duplicates:
+                  problems.append(f"{file.relative_to(ROOT)}: duplicate IDs {duplicates}")
+
+          for file, checker in parsed.items():
+              for kind, value in checker.refs:
+                  value = value.strip()
+                  if not value or value.startswith(("data:", "javascript:", "mailto:", "tel:", "blob:")):
+                      continue
+                  url = urlsplit(value)
+                  if url.scheme or url.netloc:
+                      continue
+                  if kind == "href" and not url.path:
+                      target = file
+                  elif url.path.startswith("/"):
+                      target = ROOT / unquote(url.path.lstrip("/"))
+                  else:
+                      target = file.parent / unquote(url.path)
+                  target = Path(os.path.normpath(str(target)))
+                  if target.is_dir():
+                      target = target / "index.html"
+                  if not target.exists():
+                      problems.append(f"{file.relative_to(ROOT)}: missing {kind} target {value} -> {target}")
+                      continue
+                  if url.fragment and target in parsed:
+                      fragment = unquote(url.fragment)
+                      if fragment not in parsed[target].ids:
+                          problems.append(f"{file.relative_to(ROOT)}: missing fragment {value} -> {target}")
+          if problems:
+              print("\n".join(problems))
+              raise SystemExit(f"HTML audit failed with {len(problems)} issue(s)")
+          print(f"HTML audit passed: {len(html_files)} pages, all local references and IDs checked.")
+          PY
       - name: Check published article JSON
         run: |
           node -e "for (const f of ['blog/data/en/high-converting-website-guide.json','blog/data/tr/donusum-odakli-web-sitesi-rehberi.json','blog/data/ar/website-guide-uae-qatar.json']) JSON.parse(require('fs').readFileSync(f,'utf8')); console.log('Article JSON valid')"
