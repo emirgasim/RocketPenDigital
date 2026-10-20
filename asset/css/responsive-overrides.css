@@ -640,3 +640,103 @@ html body header.nav.is-scrolled {
     display: none !important;
   }
 }
+
+/* Mobile hero hierarchy: keep the heading above and place the paragraph and
+   primary actions in the lower area that previously held the scroll prompt. */
+.hero-bottom-copy { display:none; }
+
+@media (max-width: 760px) {
+  html body .hero:has(.hero-inner) {
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:space-between !important;
+    align-items:stretch !important;
+    padding-bottom:clamp(78px, 10svh, 118px) !important;
+  }
+
+  html body .hero-inner .hero-sub,
+  html body .hero-inner .hero-actions {
+    display:none !important;
+  }
+
+  html body .hero-bottom-copy {
+    display:block !important;
+    position:relative !important;
+    z-index:3 !important;
+    flex:0 0 auto !important;
+    width:min(92%, 38rem) !important;
+    max-width:38rem !important;
+    margin:auto 0 0 !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+
+  html body .hero-bottom-copy .hero-sub {
+    display:block !important;
+    position:static !important;
+    width:100% !important;
+    max-width:38ch !important;
+    height:auto !important;
+    margin:0 0 16px !important;
+    padding:0 !important;
+    font-size:clamp(14px, 3.7vw, 17px) !important;
+    line-height:1.55 !important;
+    color:#f0f1f4 !important;
+    overflow-wrap:break-word !important;
+  }
+
+  html body .hero-bottom-copy .hero-actions {
+    display:flex !important;
+    position:static !important;
+    flex-flow:row wrap !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:10px 14px !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+
+  html body .hero-bottom-copy .hero-actions .btn {
+    display:inline-flex !important;
+    flex:0 1 auto !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    min-height:44px !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:12px 14px !important;
+    font-size:11px !important;
+    line-height:1.45 !important;
+    text-align:center !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  html body .hero-bottom-copy .hero-actions .text-link {
+    display:inline-flex !important;
+    flex:0 1 auto !important;
+    width:auto !important;
+    max-width:100% !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:5px 0 !important;
+    font-size:12px !important;
+    line-height:1.5 !important;
+    white-space:normal !important;
+    overflow-wrap:anywhere !important;
+  }
+
+  html[dir="rtl"] body .hero-bottom-copy {
+    margin-left:0 !important;
+    margin-right:auto !important;
+  }
+}
+
+@media (min-width: 761px) {
+  html body .hero-bottom-copy { display:none !important; }
+}
