@@ -41,7 +41,7 @@ jobs:
           }
           for filename, (locale, routes) in pages.items():
               text = Path(filename).read_text(encoding="utf-8")
-              match = re.search(r"<script>([\\s\\S]*?)</script>", text)
+              match = re.search(r"<script>([\s\S]*?)</script>", text)
               if not match:
                   raise SystemExit(f"{filename}: inline application script missing")
               Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
@@ -51,9 +51,20 @@ jobs:
               for code, href in routes.items():
                   if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
                       raise SystemExit(f"{filename}: {code} link must target {href}")
-              if "blogCta:" not in text or "↗",eyebrow:" not in text:
+              if "blogCta:" not in text or '↗",eyebrow:' not in text:
                   raise SystemExit(f"{filename}: malformed blog CTA translation object")
-          print("Language routes and inline scripts extracted.")
+              js = match.group(1)
+              start = js.find("\n" + locale + ":{")
+              if start < 0:
+                  raise SystemExit(f"{filename}: locale translation block missing")
+              next_locale = {"en": "tr", "tr": "ar"}.get(locale)
+              end = js.find("\n" + next_locale + ":{", start) if next_locale else js.find("\n};", start)
+              block = js[start:end if end >= 0 else len(js)]
+              keys = set(re.findall(r'data-i="([^"]+)"', text))
+              missing = [key for key in keys if not re.search(r'(?<![\w$])' + re.escape(key) + r'\s*:', block)]
+              if missing:
+                  raise SystemExit(f"{filename}: locale {locale} has missing translations: {missing}")
+          print("Language routes, translations and inline scripts extracted.")
           PY
           node --check /tmp/rocketpen-en.js
           node --check /tmp/rocketpen-tr.js
