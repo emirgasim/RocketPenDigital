@@ -67,15 +67,14 @@ jobs:
                   if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
                       raise SystemExit(f"{filename}: {code} link must target {href}")
               expected_button_code = {"en": "EN", "tr": "TR", "ar": "AR"}[locale]
-              expected_mobile_label = {"en": "Open navigation", "tr": "Menüyü aç", "ar": "فتح القائمة"}[locale]
-              if f'aria-label="{expected_mobile_label}"' not in text:
-                  raise SystemExit(f"{filename}: mobile navigation label must be localized")
-              if 'id="mobileNavToggle"' not in text or 'aria-controls="primaryNavigation"' not in text or 'id="primaryNavigation"' not in text:
-                  raise SystemExit(f"{filename}: accessible mobile navigation toggle or target is missing")
-              if "mobileNavToggle.addEventListener('click'" not in text or "closeMobileNav();mobileNavToggle.focus();return" not in text:
-                  raise SystemExit(f"{filename}: mobile navigation toggle and Escape focus handling are required")
-              if "html.js-ready .nav-links{display:none}" not in text or "html.js-ready .nav.mobile-open .nav-links{display:flex}" not in text:
-                  raise SystemExit(f"{filename}: mobile navigation must have progressive-enhancement visibility rules")
+              if 'id="mobileNavToggle"' in text or 'class="mobile-nav-toggle"' in text:
+                  raise SystemExit(f"{filename}: hamburger navigation must not be included")
+              if 'id="primaryNavigation"' not in text:
+                  raise SystemExit(f"{filename}: primary navigation is missing")
+              if "html.js-ready .nav-links{display:none}" in text or "html.js-ready .nav.mobile-open .nav-links{display:flex}" in text:
+                  raise SystemExit(f"{filename}: navigation must remain visible without a hamburger toggle")
+              if "mobileNavToggle" in text or "closeMobileNav" in text:
+                  raise SystemExit(f"{filename}: unused hamburger navigation script remains")
               if f'class="lang-code">{expected_button_code}</span>' not in text:
                   raise SystemExit(f"{filename}: static language button code is wrong")
               expected_picker_label = {"en": "Choose language", "tr": "Dil seçimi", "ar": "اختيار اللغة"}[locale]
