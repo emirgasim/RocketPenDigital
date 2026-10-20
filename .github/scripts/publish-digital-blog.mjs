@@ -234,14 +234,14 @@ async function renderIndex(lang,articles){
   archive=archive.slice(0,asi+start.length)+'\\n'+pageCards+'\\n'+archive.slice(aei);
   const aps=archive.indexOf(pagerStart),ape=archive.indexOf(pagerEnd);
   archive=archive.slice(0,aps+pagerStart.length)+'\\n'+paginationMarkup(lang,page,total)+'\\n'+archive.slice(ape);
-  archive=archive.replace(/<title>([^<]*)<\\/title>/i,(_,title)=>'<title>'+({en:'Articles — Page ',tr:'Makaleler — Sayfa ',ar:'المقالات — الصفحة '}[lang])+page+' | RocketPen Digital Studio</title>');
+  archive=archive.replace(/<title>[^<]*<\/title>/i,'<title>'+({en:'Articles — Page ',tr:'Makaleler — Sayfa ',ar:'المقالات — الصفحة '}[lang])+page+' | RocketPen Digital Studio</title>');
   archive=archive.replace(/<meta name="description" content="[^"]*">/i,'<meta name="description" content="'+esc(({en:'Browse practical RocketPen Digital Studio articles. Archive page ',tr:'RocketPen Digital Studio makalelerini ve uygulamalı rehberlerini keşfedin. Arşiv sayfası ',ar:'تصفح مقالات وأدلة RocketPen Digital Studio. صفحة الأرشيف '}[lang])+page)+'">');
-  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/asset\\/logo\\/logo-header\\.png"/g,'href="/asset/logo/logo-header.png"');
-  archive=archive.replace(/src="\\.\\.\\/\\.\\.\\/asset\\/logo\\/logo-header\\.png"/g,'src="/asset/logo/logo-header.png"');
-  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/index\\.html/g,'href="/index.html');
-  archive=archive.replace(/href="\\.\\.\\/\\.\\.\\/languages\\/(tr|ar)\\.html/g,'href="/languages/$1.html');
+  archive=archive.replaceAll('src="../../asset/logo/logo-header.png"','src="/asset/logo/logo-header.png"');
+  archive=archive.replaceAll('href="../../index.html','href="/index.html');
+  archive=archive.replaceAll('href="../../languages/tr.html','href="/languages/tr.html');
+  archive=archive.replaceAll('href="../../languages/ar.html','href="/languages/ar.html');
   archive=archive.replace(/<link rel="canonical" href="[^"]*">/i,'');
-  if(SITE_URL)archive=archive.replace('</head>','<link rel="canonical" href="'+SITE_URL+'/blog/'+lang+'/page/'+page+'.html">\\n</head>');
+  if(SITE_URL)archive=archive.replace('</head>','<link rel="canonical" href="'+SITE_URL+'/blog/'+lang+'/page/'+page+'.html">\n</head>');
   await fs.writeFile(path.join(archiveDir,page+'.html'),archive);
  }
  for(const name of await fs.readdir(archiveDir)){
@@ -279,7 +279,7 @@ async function writeSitemap(all){
  await fs.writeFile(path.join(ROOT,'robots.txt'),robotsLines.join('\n')+'\n');
  if(!SITE_URL){console.warn('SITE_URL missing: robots.txt was written, but canonical URLs, hreflang and sitemap.xml are skipped. Configure the repository variable SITE_URL to enable them.');return}
  const entries=[['/',''],['/languages/tr.html',''],['/languages/ar.html',''],['/blog/en/index.html',''],['/blog/tr/index.html',''],['/blog/ar/index.html','']];
- for(const lang of LANGS){const dir=path.join(ROOT,'blog',lang,'page');try{for(const name of await fs.readdir(dir)){if(/^\\d+\\.html$/.test(name))entries.push(['/blog/'+lang+'/page/'+name,'']);}}catch{}}
+ for(const lang of LANGS){const dir=path.join(ROOT,'blog',lang,'page');try{for(const name of await fs.readdir(dir)){if(/^\d+\.html$/.test(name))entries.push(['/blog/'+lang+'/page/'+name,'']);}}catch{}}
  for(const a of all)entries.push(['/blog/'+a.lang+'/articles/'+a.slug+'.html',a.updatedAt||a.publishedAt]);
  const body=entries.map(e=>'<url><loc>'+esc(SITE_URL+e[0])+'</loc>'+(e[1]?'<lastmod>'+e[1]+'</lastmod>':'')+'</url>').join('\n');
  await fs.writeFile(path.join(ROOT,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+body+'\n</urlset>\n');
