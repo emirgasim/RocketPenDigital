@@ -273,6 +273,47 @@ footer .logo-image{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.98)) drop-shad
   .hero-inner h1 span{display:block;max-width:100%!important}
 }
 
+
+/* Match the annotated mobile composition: label/headline higher, supporting text and CTA grouped below */
+@media(max-width:760px){
+  .hero{
+    min-height:100svh!important;
+    padding:clamp(285px,35svh,340px) 22px 115px!important;
+    align-items:flex-start!important;
+  }
+  .hero-inner{width:100%!important;max-width:100%!important;margin:0!important}
+  .hero-inner .eyebrow{
+    font-size:7px!important;letter-spacing:1.1px!important;
+    padding:6px 8px!important;margin:0 0 14px!important;
+    background:rgba(5,7,12,.76)!important;
+  }
+  .hero-inner h1{
+    font-size:clamp(43px,11.5vw,66px)!important;
+    line-height:.92!important;letter-spacing:-.075em!important;
+    margin:0 0 18px!important;max-width:100%!important;
+  }
+  .hero-sub{
+    font-size:13px!important;line-height:1.5!important;
+    max-width:100%!important;margin:0 0 26px!important;
+  }
+  .hero-actions{
+    display:flex!important;flex-direction:row!important;
+    align-items:center!important;justify-content:space-between!important;
+    gap:10px!important;width:100%!important;margin:0!important;
+    transform:none!important;
+  }
+  .hero-actions .btn{
+    flex:0 1 52%!important;max-width:52%!important;
+    white-space:normal!important;padding:14px 10px!important;
+    font-size:10px!important;line-height:1.25!important;
+  }
+  .hero-actions .text-link{
+    flex:0 1 42%!important;max-width:42%!important;
+    text-align:right!important;white-space:normal!important;
+    font-size:clamp(12px,3.5vw,14px)!important;line-height:1.25!important;
+  }
+}
+
 </style>
 </head>
 <body><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
