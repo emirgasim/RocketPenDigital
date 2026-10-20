@@ -314,6 +314,8 @@ html.js-ready .reveal.visible{opacity:1;transform:none;filter:none}
  html.js-ready .nav-links{display:none}
  html.js-ready .nav.mobile-open .nav-links{display:flex}
 }
+
+@media(prefers-reduced-motion:reduce){.hero-video{display:none!important}}
 </style>
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 </head>
@@ -325,7 +327,7 @@ html.js-ready .reveal.visible{opacity:1;transform:none;filter:none}
 </header>
 <main>
 <section class="hero" id="home">
-<video class="hero-video" autoplay muted loop playsinline preload="auto" aria-label="RocketPen cinematic background video"><source src="../asset/video/banner-vid1.MP4" type="video/mp4"></video>
+<video class="hero-video" muted loop playsinline preload="metadata" aria-label="RocketPen cinematic background video"><source src="../asset/video/banner-vid1.MP4" type="video/mp4"></video>
 <div class="hero-inner">
 <div class="eyebrow" data-i="eyebrow">استوديو إبداعي ورقمي مستقل</div>
 <h1><span data-i="heroLine1">مرحباً</span><span class="line2" data-i="heroLine2">يا أهل الأرض.</span></h1>
@@ -406,8 +408,18 @@ document.querySelectorAll('.reveal,.services-intro,.service,.step,.contact-card'
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
 const video=document.querySelector('.hero-video');
 if(video){
+ const motionPreference=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+ const startVideo=()=>{
+  if(motionPreference.matches||document.hidden){video.pause();return}
+  try{const playback=video.play();if(playback&&typeof playback.catch==='function')playback.catch(()=>{})}
+  catch(error){console.debug('Hero video playback is unavailable:',error)}
+ };
+ const updateMotionPreference=()=>{if(motionPreference.matches)video.pause();else startVideo()};
  video.addEventListener('error',()=>{console.warn('Hero video failed to load:',video.currentSrc)});
- document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();return}try{const playback=video.play();if(playback&&typeof playback.catch==='function')playback.catch(()=>{})}catch(error){console.debug('Hero video playback is unavailable:',error)}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();return}startVideo()});
+ if(typeof motionPreference.addEventListener==='function')motionPreference.addEventListener('change',updateMotionPreference);
+ else if(typeof motionPreference.addListener==='function')motionPreference.addListener(updateMotionPreference);
+ startVideo();
 }
 document.documentElement.classList.add('js-ready');
 </script>

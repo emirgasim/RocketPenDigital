@@ -208,6 +208,20 @@ jobs:
           if "u.protocol!=='https:'||!u.hostname||u.username||u.password" not in publisher:
               raise SystemExit("Each source must be a valid credential-free HTTPS URL")
           print("Publisher validates its origin before generation and rejects malformed or duplicate source URLs.")
+          for filename in ("index.html", "languages/tr.html", "languages/ar.html"):
+              html = Path(filename).read_text(encoding="utf-8")
+              video = html.split('<video class="hero-video"', 1)[1].split(">", 1)[0]
+              if "autoplay" in video.split():
+                  raise SystemExit(f"{filename}: autoplay attribute bypasses reduced-motion preference")
+              if 'preload="metadata"' not in video:
+                  raise SystemExit(f"{filename}: hero video should not use eager preload")
+              if "@media(prefers-reduced-motion:reduce){.hero-video{display:none!important}}" not in html:
+                  raise SystemExit(f"{filename}: hero video must be hidden for reduced-motion users")
+              js = html.split("const video=document.querySelector('.hero-video');", 1)[1]
+              js = js.split("document.documentElement.classList.add('js-ready')", 1)[0]
+              if "motionPreference.matches||document.hidden" not in js or "video.pause()" not in js:
+                  raise SystemExit(f"{filename}: video playback must respect reduced-motion and background state")
+          print("Hero autoplay is gated by reduced-motion preference and non-eager video loading.")
           if "SITE_URL: ${{ vars.SITE_URL }}" not in workflow:
               raise SystemExit("Daily workflow must read SITE_URL from repository variables")
           if 'echo "::error::Publishing cannot run' not in workflow or 'exit 1' not in workflow:
