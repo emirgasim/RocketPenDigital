@@ -422,6 +422,66 @@
       "slug": "seo-for-consultants.html",
       "title": "SEO for Consultants: Explain Your Expertise and Fit",
       "description": "SEO for consultants: structure service pages around client problems, demonstrate expertise with useful resources and make the first consultation step clear."
+    },
+    {
+      "slug": "seo-for-home-services.html",
+      "title": "SEO for Home Service Businesses: Win Local, Relevant Enquiries",
+      "description": "SEO for home service businesses: clarify service areas, build useful service pages, keep business information accurate and measure calls and qualified bookings."
+    },
+    {
+      "slug": "seo-for-law-firms.html",
+      "title": "SEO for Law Firms: Be Clear About Practice Areas and Jurisdiction",
+      "description": "SEO for law firms: organise practice-area pages, explain jurisdiction and process, demonstrate verified credentials and measure relevant client enquiries."
+    },
+    {
+      "slug": "seo-for-manufacturers.html",
+      "title": "SEO for Manufacturers: Make Technical Products Easier to Evaluate",
+      "description": "SEO for manufacturers: structure product and application pages, publish accurate specifications, support distributor journeys and measure qualified technical enquiries."
+    },
+    {
+      "slug": "seo-for-membership-sites.html",
+      "title": "SEO for Membership Sites: Make Public Content Useful and Member Areas Secure",
+      "description": "SEO for membership sites: separate indexable public resources from gated content, explain membership value, manage access rules and measure qualified sign-ups."
+    },
+    {
+      "slug": "seo-for-mobile-apps.html",
+      "title": "App Discovery and Website SEO: Connect the Search Journey",
+      "description": "A guide to app and website discovery: explain app value on the web, align landing pages with store listings, track installs responsibly and support users after download."
+    },
+    {
+      "slug": "seo-for-new-websites.html",
+      "title": "SEO for New Websites: Build the Foundations Before Launch",
+      "description": "SEO for new websites: plan crawlable navigation, unique page purposes, metadata, internal links, analytics and launch checks before publishing."
+    },
+    {
+      "slug": "seo-for-nonprofits.html",
+      "title": "SEO for Nonprofits: Help People Find the Mission and Take Action",
+      "description": "SEO for nonprofits: make mission, programmes, impact reports and ways to participate discoverable while keeping donation and volunteer journeys clear and trustworthy."
+    },
+    {
+      "slug": "seo-for-online-courses.html",
+      "title": "SEO for Online Courses: Help Learners Choose the Right Programme",
+      "description": "SEO for online courses: organise course and subject pages, explain prerequisites and outcomes, publish useful sample lessons and measure qualified enrolments."
+    },
+    {
+      "slug": "seo-for-restaurants.html",
+      "title": "SEO for Restaurants: Keep Menus, Hours and Local Details Accurate",
+      "description": "SEO for restaurants: maintain accurate business profiles, searchable menus, location information, reservation paths and trustworthy review responses."
+    },
+    {
+      "slug": "seo-for-saas-companies.html",
+      "title": "SEO for SaaS Companies: Connect Search Intent to Product Fit",
+      "description": "SEO for SaaS companies: build useful solution and comparison pages, explain integrations and limitations, support onboarding and measure qualified trials or demos."
+    },
+    {
+      "slug": "seo-for-travel-businesses.html",
+      "title": "SEO for Travel Businesses: Keep Destination and Availability Details Trustworthy",
+      "description": "SEO for travel businesses: organise destination and trip pages, publish accurate practical details, support booking decisions and manage seasonal content responsibly."
+    },
+    {
+      "slug": "cookie-consent-ux.html",
+      "title": "Cookie Consent UX: Make Choices Clear and Respectful",
+      "description": "A cookie consent UX guide to clear purposes, balanced choices, consent persistence, accessible controls and testing that consent signals are respected."
     }
   ]
 }
