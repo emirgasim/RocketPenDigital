@@ -233,8 +233,20 @@ jobs:
           icon = Path("asset/logo/favicon.svg")
           if not icon.exists() or "<svg" not in icon.read_text(encoding="utf-8"):
               raise SystemExit("Branded SVG favicon is missing or invalid")
+          import re
+          favicon_link = re.compile(r"""<link\b[^>]*>""")
+          favicon_attrs = re.compile(r"""([a-zA-Z-]+)=["']([^"']*)["']""")
           for path in Path(".").rglob("*.html"):
-              if 'rel="icon" type="image/svg+xml" href="/asset/logo/favicon.svg"' not in path.read_text(encoding="utf-8"):
+              html = path.read_text(encoding="utf-8")
+              has_favicon = any(
+                  (lambda attrs: attrs.get("rel") == "icon" and
+                                 attrs.get("type") == "image/svg+xml" and
+                                 attrs.get("href") == "/asset/logo/favicon.svg")(
+                      dict(favicon_attrs.findall(link))
+                  )
+                  for link in favicon_link.findall(html)
+              )
+              if not has_favicon:
                   raise SystemExit(f"{path}: branded favicon link missing")
           if '<link rel="icon" type="image/svg+xml" href="/asset/logo/favicon.svg">' not in publisher:
               raise SystemExit("Generated articles must include branded favicon")
