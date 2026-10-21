@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://rocketpendigital.qasimm2012.workers.dev/sitemap.xml
+Sitemap: https://rocketpendigital.com/sitemap.xml
