@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { chromium } = require('playwright');
+const { chromium, webkit } = require('playwright');
 
 const BASE = 'http://127.0.0.1:4173';
 const routes = [
@@ -98,15 +98,13 @@ async function reviewCarouselState(page) {
     const track = document.querySelector('#reviewsTrack');
     if (!viewport || !track) throw new Error('reviews carousel markup is missing');
     const cards = [...track.querySelectorAll('.reviews-card')];
-    const firstSet = track.querySelector('.reviews-set');
-    if (cards.length !== 150 || !firstSet) throw new Error('reviews carousel should render three copies of 50 cards');
+    if (cards.length !== 5) throw new Error('reviews carousel should render a five-card rolling window');
     const viewportRect = viewport.getBoundingClientRect();
     const cardRects = cards.map((el) => ({ el, rect: el.getBoundingClientRect() }));
     const nearest = cardRects
       .map((item) => ({ ...item, delta: Math.abs(item.rect.left - (viewportRect.left + 1)) }))
       .sort((a, b) => a.delta - b.delta)[0];
-    const gap = parseFloat(getComputedStyle(firstSet).gap || '16') || 16;
-    const step = firstSet.querySelector('.reviews-card').getBoundingClientRect().width + gap;
+    const step = cardRects[1].rect.left - cardRects[0].rect.left;
     const matrix = new DOMMatrix(getComputedStyle(track).transform);
     const offset = -matrix.m41;
     const visible = cardRects.filter((item) => item.rect.right > viewportRect.left + 1 && item.rect.left < viewportRect.right - 1);
@@ -123,7 +121,10 @@ async function reviewCarouselState(page) {
       visibleCards: visible.length,
       nextCardPeek: peek,
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-      setCount: track.querySelectorAll('.reviews-set').length
+      setCount: track.querySelectorAll('.reviews-set').length,
+      viewportWidth: viewportRect.width,
+      sectionWidth: viewport.parentElement.getBoundingClientRect().width,
+      firstCardWidth: cardRects[1].rect.width
     };
   });
 }
@@ -156,7 +157,8 @@ async function dragReviews(page, direction, step) {
 }
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  const browserType = process.env.QA_BROWSER === 'webkit' ? webkit : chromium;
+  const browser = await browserType.launch({ headless: true });
   const failures = [];
   try {
     const videoHead = await fetch(BASE + '/asset/video/banner-vid1.MP4', { method: 'HEAD' });
@@ -191,15 +193,22 @@ async function dragReviews(page, direction, step) {
       assert.equal(await page.locator('#mobileNavToggle').count(), 0, 'hamburger markup must not be included');
 
       assert.equal(await page.locator('.reviews-view-all').getAttribute('href'), '/reviews/' + route.lang + '/index.html', 'read-all link must point to the matching locale page');
-      await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 150);
-      assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 3, 'carousel should have three copies for seamless looping');
-      assert.equal(await page.locator('#reviewsTrack .reviews-set').first().locator('.reviews-card').count(), 50, 'each carousel set should contain all 50 reviews');
+      assert.ok(!/[↗↖⬆]/u.test(await page.locator('.reviews-view-all').innerText()), route.path + ' read-all link must not display decorative arrow emoji');
+      await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 5);
+      assert.equal(await page.locator('#reviewsTrack .reviews-card').count(), 5, 'carousel should keep a small rolling window to avoid oversized WebKit layers');
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 0, 'carousel should not render giant duplicate review sets');
 // Verify both wrap boundaries and rapid repeated navigation before unrelated
       // language-menu checks, so carousel regressions are surfaced directly.
       await page.setViewportSize({ width: 390, height: 844 });
       await page.locator('#reviewsViewport').hover();
       await page.waitForTimeout(80);
       const boundaryStart = await reviewCarouselState(page);
+      assert.ok(boundaryStart.viewportWidth >= boundaryStart.sectionWidth - 2,
+        route.path + ' reviews viewport must use the full available mobile width: ' + JSON.stringify(boundaryStart));
+      assert.ok(boundaryStart.viewportWidth > boundaryStart.firstCardWidth,
+        route.path + ' mobile reviews viewport must reveal the next card instead of clipping to one narrow slice: ' + JSON.stringify(boundaryStart));
+      assert.ok(boundaryStart.visibleCards >= 2,
+        route.path + ' reviews carousel must render cards before the first interaction: ' + JSON.stringify(boundaryStart));
       const previousExpected = ((boundaryStart.leftIndex - 2 + 50) % 50) + 1;
       await page.locator('#reviewsPrev').click();
       await page.waitForTimeout(500);
@@ -358,6 +367,9 @@ async function dragReviews(page, direction, step) {
 
       await page.evaluate(() => window.scrollTo(0, 360));
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
+      // The nav enters with a 400ms keyframe animation; wait for that motion to finish
+      // before asserting its final fixed position, especially in WebKit.
+      await page.waitForTimeout(450);
       const stickyState = await page.locator('header.nav').evaluate(el => ({ position: getComputedStyle(el).position, top: el.getBoundingClientRect().top, zIndex: getComputedStyle(el).zIndex }));
       assert.equal(stickyState.position, 'fixed', 'mobile top bar should remain fixed during scroll: ' + JSON.stringify(stickyState));
       assert.ok(Math.abs(stickyState.top) <= 1, 'fixed top bar should stay aligned to the viewport top: ' + JSON.stringify(stickyState));
@@ -503,7 +515,7 @@ async function dragReviews(page, direction, step) {
     await reduceContext.close();
 
     if (failures.length) throw new Error(failures.join('\n'));
-    console.log('Browser QA passed: locale routes, language menu, Escape/focus, hamburger-free horizontal mobile navigation and viewport bounds (390px/320px), logo/favicon/video asset responses, no-JS content visibility, Arabic RTL, and reduced-motion video behavior.');
+    console.log('Browser QA passed (' + (process.env.QA_BROWSER === 'webkit' ? 'WebKit' : 'Chromium') + '): locale routes, review boundaries/rapid navigation and mobile viewport geometry, language menu, responsive navigation, assets, no-JS visibility, Arabic RTL, and reduced motion.');
   } finally {
     await browser.close();
   }

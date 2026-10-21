@@ -288,7 +288,7 @@ header.nav .logo:before,footer .logo:before{
 
 
 
-.reviews-section{background:#080a0f;color:#f8f8f7;padding:clamp(82px,9.5vw,135px) var(--pad);overflow:hidden;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055)}
+.reviews-section{background:#080a0f;color:#f8f8f7;padding:clamp(82px,9.5vw,135px) var(--pad);overflow:hidden;border-top:1px solid rgba(255,255,255,.055);border-bottom:1px solid rgba(255,255,255,.055)}.reviews-section .section-inner{width:100%;min-width:0}
 .reviews-heading{display:grid;grid-template-columns:1.15fr .7fr;gap:7vw;align-items:end;margin-bottom:28px}
 .reviews-heading .section-title{font-size:clamp(42px,7vw,88px);max-width:780px}
 .reviews-heading-side{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:20px}
@@ -299,7 +299,7 @@ header.nav .logo:before,footer .logo:before{
 .reviews-control:hover,.reviews-control:focus-visible{background:var(--yellow);border-color:var(--yellow);color:#08090b;outline:none}
 .reviews-view-all{display:inline-flex;align-items:center;gap:7px;color:#b9bec7;font-size:11px;letter-spacing:.35px;white-space:nowrap;text-decoration:none;transition:color .2s ease}
 .reviews-view-all:hover,.reviews-view-all:focus-visible{color:var(--yellow);outline:none}
-.reviews-viewport{position:relative;overflow:hidden;cursor:grab;touch-action:pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none}
+.reviews-viewport{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;position:relative;overflow:hidden;cursor:grab;touch-action:pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none}
 .reviews-viewport.is-dragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
 .reviews-track{display:flex;gap:16px;width:max-content;direction:ltr;transform:translate3d(0,0,0);will-change:transform;transition:none}
 .reviews-track.is-snapping{transition:transform .42s cubic-bezier(.22,.61,.36,1)}
@@ -504,7 +504,7 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
             <button class="reviews-control" id="reviewsPrev" type="button" aria-label="Previous reviews">←</button>
             <button class="reviews-control" id="reviewsNext" type="button" aria-label="Next reviews">→</button>
           </div>
-          <a class="reviews-view-all" href="/reviews/en/index.html" data-i="reviewsViewAll">Read all reviews ↗</a>
+          <a class="reviews-view-all" href="/reviews/en/index.html" data-i="reviewsViewAll">Read all reviews </a>
         </div>
       </div>
     </div>
@@ -527,37 +527,41 @@ const reviewCategoryLabels={
  tr:{website:"WEB SİTESİ VE DİJİTAL DENEYİM",seo:"SEO VE GOOGLE GÖRÜNÜRLÜĞÜ",social:"SOSYAL MEDYA VE İÇERİK",ads:"DİJİTAL REKLAM VE PERFORMANS",brand:"MARKA KİMLİĞİ VE TASARIM",ecommerce:"E-TİCARET",global:"ÇOK DİLLİ VE ULUSLARARASI",strategy:"STRATEJİ VE DANIŞMANLIK"},
  ar:{website:"المواقع والتجربة الرقمية",seo:"تحسين محركات البحث",social:"التواصل الاجتماعي والمحتوى",ads:"الإعلانات والأداء الرقمي",brand:"هوية العلامة والتصميم",ecommerce:"التجارة الإلكترونية",global:"متعدد اللغات والأسواق الدولية",strategy:"الاستراتيجية والاستشارات"}
 };
+let reviewCarouselIndex=0;
+let reviewCarouselLang='en';
+
 function renderReviewCards(lang){
   const track=document.getElementById('reviewsTrack');
   const viewport=document.getElementById('reviewsViewport');
   if(!track||!viewport)return;
+  reviewCarouselLang=lang;
   track.innerHTML='';
-  const makeSet=(suffix)=>{
-    const set=document.createElement('div');
-    set.className='reviews-set';
-    set.setAttribute('aria-hidden',suffix==='copy'?'true':'false');
-    reviewExamples.forEach((item,index)=>{
-      const card=document.createElement('article');
-      card.className='reviews-card';
-      card.lang=lang;
-      card.setAttribute('dir',lang==='ar'?'rtl':'ltr');
-      if(suffix==='copy')card.setAttribute('aria-hidden','true');
-      const top=document.createElement('div');top.className='reviews-card-top';
-      const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
-      stars.setAttribute('role','img');
-      stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
-      const num=document.createElement('span');num.className='reviews-card-index';
-      num.textContent=String(index+1).padStart(2,'0')+' / '+String(reviewExamples.length).padStart(2,'0');
-      top.append(stars,num);
-      const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
-      const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
-      const foot=document.createElement('div');foot.className='reviews-card-foot';
-      foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
-      card.append(top,quote,copy,foot);set.appendChild(card);
-    });
-    return set;
-  };
-  track.append(makeSet('main'),makeSet('copy'),makeSet('copy'));
+  const count=reviewExamples.length;
+  // Keep only a small rolling window in the DOM. A 150-card transformed
+  // strip can exceed WebKit's compositing limits and vanish near its edges.
+  for(let delta=-1;delta<=3;delta++){
+    const index=(reviewCarouselIndex+delta+count)%count;
+    const item=reviewExamples[index];
+    const card=document.createElement('article');
+    card.className='reviews-card';
+    card.lang=lang;
+    card.dataset.reviewIndex=String(index+1);
+    card.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+    if(delta===-1)card.setAttribute('aria-hidden','true');
+    const top=document.createElement('div');top.className='reviews-card-top';
+    const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
+    stars.setAttribute('role','img');
+    stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
+    const num=document.createElement('span');num.className='reviews-card-index';
+    num.textContent=String(index+1).padStart(2,'0')+' / '+String(count).padStart(2,'0');
+    top.append(stars,num);
+    const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
+    const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
+    const foot=document.createElement('div');foot.className='reviews-card-foot';
+    foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
+    card.append(top,quote,copy,foot);
+    track.appendChild(card);
+  }
   const prev=document.getElementById('reviewsPrev');
   const next=document.getElementById('reviewsNext');
   if(prev)prev.setAttribute('aria-label',lang==='tr'?'Önceki yorumlar':lang==='ar'?'التقييمات السابقة':'Previous reviews');
@@ -572,112 +576,85 @@ function initReviewsCarousel(){
   if(!viewport||!track||viewport.dataset.carouselReady==='true')return;
   viewport.dataset.carouselReady='true';
 
-  let period=0,stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
+  let stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
   let isDragging=false,startX=0,startOffset=0,dragMoved=false;
-  let snapTimer=0,snapVersion=0;
+  let snapTimer=0,snapVersion=0,pendingIndex=reviewCarouselIndex;
   const speed=38;
+  const count=reviewExamples.length;
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
 
   const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
-  const wrapOffset=value=>{
-    if(!period)return 0;
-    return period+(((value%period)+period)%period);
-  };
+  const wrapIndex=value=>((value%count)+count)%count;
   const pauseFor=(ms=2400)=>{pausedUntil=performance.now()+ms;};
-
-  // One timer/version owns each animation. Rapid clicks cancel the old finish
-  // callback so an obsolete transition can never jump the track to a stale offset.
   const clearSnap=()=>{
     snapVersion++;
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
   };
+  const measureCards=()=>{
+    const cards=track.querySelectorAll('.reviews-card');
+    if(cards.length<2)return;
+    const first=cards[0].getBoundingClientRect();
+    const second=cards[1].getBoundingClientRect();
+    const measured=second.left-first.left;
+    if(measured>0)stepWidth=measured;
+  };
   const finishSnap=version=>{
-    if(version!==snapVersion||!period)return;
+    if(version!==snapVersion||!stepWidth)return;
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
-    offset=wrapOffset(offset);
+    reviewCarouselIndex=pendingIndex;
+    renderReviewCards(reviewCarouselLang);
+    measureCards();
+    offset=stepWidth;
     draw();
     snapVersion++;
   };
-
   const measure=()=>{
-    const set=track.querySelector('.reviews-set');
-    const firstCard=set&&set.querySelector('.reviews-card');
-    if(!set||!firstCard)return;
-    const setGap=parseFloat(getComputedStyle(set).gap||'16')||16;
-    const trackGap=parseFloat(getComputedStyle(track).gap||'16')||16;
-    const nextStep=firstCard.getBoundingClientRect().width+setGap;
-    const nextPeriod=set.getBoundingClientRect().width+trackGap;
-    clearSnap();
-    stepWidth=nextStep;
-    period=nextPeriod;
-    offset=period;
-    draw();
-  };
-
-  const rebaseTarget=target=>{
-    // Keep the animated destination well inside the three rendered copies.
-    // Shift the current and destination offsets together; duplicate sets make
-    // this shift visually identical and avoid animating across a blank edge.
-    const low=period*.5,high=period*2.5;
-    if(target<low){
-      offset+=period;
-      target+=period;
-      track.classList.remove('is-snapping');
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
+    measureCards();
+    if(!isDragging&&!track.classList.contains('is-snapping')){
+      offset=stepWidth;
       draw();
-      void track.offsetWidth;
-    }else if(target>high){
-      offset-=period;
-      target-=period;
-      track.classList.remove('is-snapping');
-      draw();
-      void track.offsetWidth;
     }
-    return target;
   };
-
-  const animateTo=requestedTarget=>{
-    if(!period||!stepWidth)return;
+  const animateToWindowPosition=(position,targetIndex)=>{
+    if(!stepWidth)measureCards();
+    if(!stepWidth)return;
     pauseFor();
     clearSnap();
-    const target=rebaseTarget(requestedTarget);
-    offset=target;
+    pendingIndex=wrapIndex(targetIndex);
+    // Force the current drag/position transform to be committed before
+    // enabling the transition to its small-window destination.
+    draw();
+    void track.offsetWidth;
     const version=++snapVersion;
+    offset=position*stepWidth;
     if(reducedMotion.matches){
-      track.classList.remove('is-snapping');
-      offset=wrapOffset(offset);
       draw();
-      snapVersion++;
+      finishSnap(version);
       return;
     }
     track.classList.add('is-snapping');
     draw();
     snapTimer=setTimeout(()=>finishSnap(version),470);
   };
-
-  const snapToNearest=()=>{
-    if(!period||!stepWidth)return;
-    // Animate to the raw adjacent-copy position first; normalize only after
-    // the card has arrived, so swiping across 1/50 never jumps through the gap.
-    animateTo(Math.round(offset/stepWidth)*stepWidth);
-  };
-
   const moveBy=direction=>{
-    if(!period||!stepWidth)measure();
-    if(!period||!stepWidth)return;
-    const currentIndex=Math.round(offset/stepWidth);
-    animateTo((currentIndex+direction)*stepWidth);
+    if(!stepWidth)measureCards();
+    if(!stepWidth)return;
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
+    animateToWindowPosition(direction>0?2:0,reviewCarouselIndex+direction);
   };
-
   const frame=time=>{
-    if(lastTime&&!isDragging&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&period>0&&!track.classList.contains('is-snapping')){
+    if(lastTime&&!isDragging&&!track.classList.contains('is-snapping')&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&stepWidth>0){
       const dt=Math.min(50,time-lastTime);
       offset+=speed*dt/1000;
-      // Re-center before the track can reach its physical end. Because the
-      // sets are identical, the rebase is invisible to the reader.
-      if(offset>=period*2.45)offset-=period;
-      else if(offset<period*.55)offset+=period;
+      if(offset>=stepWidth*2){
+        reviewCarouselIndex=wrapIndex(reviewCarouselIndex+1);
+        renderReviewCards(reviewCarouselLang);
+        measureCards();
+        offset=stepWidth;
+      }
       draw();
     }
     lastTime=time;
@@ -686,6 +663,7 @@ function initReviewsCarousel(){
 
   viewport.addEventListener('pointerdown',event=>{
     if(event.pointerType==='mouse'&&event.button!==0)return;
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
     clearSnap();
     isDragging=true;dragMoved=false;startX=event.clientX;startOffset=offset;
     viewport.classList.add('is-dragging');
@@ -693,12 +671,11 @@ function initReviewsCarousel(){
     try{viewport.setPointerCapture(event.pointerId);}catch(e){}
   });
   viewport.addEventListener('pointermove',event=>{
-    if(!isDragging||!period)return;
+    if(!isDragging||!stepWidth)return;
     const delta=event.clientX-startX;
     if(Math.abs(delta)>4)dragMoved=true;
-    offset=startOffset-delta;
-    if(offset>=period*2.45)offset-=period;
-    else if(offset<period*.55)offset+=period;
+    const maxOffset=stepWidth*(track.querySelectorAll('.reviews-card').length-1);
+    offset=Math.max(0,Math.min(maxOffset,startOffset-delta));
     draw();
   });
   const finishDrag=event=>{
@@ -707,7 +684,8 @@ function initReviewsCarousel(){
     viewport.classList.remove('is-dragging');
     pauseFor(1800);
     try{if(event&&viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);}catch(e){}
-    snapToNearest();
+    const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
+    animateToWindowPosition(position,reviewCarouselIndex+position-1);
   };
   viewport.addEventListener('pointerup',finishDrag);
   viewport.addEventListener('pointercancel',finishDrag);
@@ -716,7 +694,8 @@ function initReviewsCarousel(){
       isDragging=false;
       viewport.classList.remove('is-dragging');
       pauseFor(1800);
-      snapToNearest();
+      const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
+      animateToWindowPosition(position,reviewCarouselIndex+position-1);
     }
   });
   viewport.addEventListener('click',event=>{
@@ -726,19 +705,21 @@ function initReviewsCarousel(){
   viewport.addEventListener('mouseenter',()=>pauseFor(1200));
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
-  window.addEventListener('resize',measure,{passive:true});
-  window.addEventListener('orientationchange',measure,{passive:true});
-  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(measure));
+  window.addEventListener('resize',()=>{if(!isDragging)measure();},{passive:true});
+  window.addEventListener('orientationchange',()=>{if(!isDragging)measure();},{passive:true});
+  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(()=>{
+    if(!isDragging&&!track.classList.contains('is-snapping'))measure();
+  }));
   document.addEventListener('visibilitychange',()=>{lastTime=0;});
-  requestAnimationFrame(()=>{measure();offset=period;draw();});
+  requestAnimationFrame(()=>{measureCards();offset=stepWidth;draw();});
   requestAnimationFrame(frame);
 }
 
 
 const translations={
-en:{navStory:"Our vision",navServices:"Services",navProcess:"Our process",navContact:"Contact",navBlog:"Digital Blog",reviewsKicker:"CUSTOMER FEEDBACK",reviewsTitle:'Good work is <em>felt.</em>',reviewsIntro:"A few words from clients across our website, branding and digital growth projects.",reviewsCount:"50 client reviews · Five-star feedback",reviewsHint:"Swipe or drag in either direction",reviewsCarouselLabel:"Client feedback carousel",reviewsViewAll:"Read all reviews ↗",blogKicker:"THE DIGITAL BLOG",blogTitle:'Ideas that move <em>business forward.</em>',blogIntro:"Practical guides for clearer brands, better websites and smarter digital growth — built around real business decisions.",blogTag1:"BRAND & STRATEGY",blogCat1Title:"Build a brand people remember",blogCat1Desc:"Positioning, brand voice and visual identity that make your business distinct and consistent.",blogTag2:"WEB & SEO",blogCat2Title:"Turn your website into a growth tool",blogCat2Desc:"UX, technical foundations, content structure and search visibility for service businesses.",blogTag3:"CONTENT & GROWTH",blogCat3Title:"Create content with a purpose",blogCat3Desc:"Video, social media, campaigns and practical AI workflows that support real goals.",blogCta:"EXPLORE THE DIGITAL BLOG ",eyebrow:"An independent creative studio from somewhere beyond the ordinary",heroLine1:"HELLO",heroLine2:"EARTHLINGS.",heroSub:"Our coordinates are classified. Our mission is not: we bring unusual ideas to Earth as distinctive brands, sharp digital experiences and measurable momentum.",heroCta:"LET'S BUILD SOMETHING",discover:"Discover RocketPen",heroFoot:"TRANSMISSION FROM AN UNDISCLOSED ORBIT",scroll:"SCROLL TO EXPLORE",storyKicker:"Officially a studio. Unofficially, visitors from elsewhere.",storyTitle:'Earth looks different from <em>the other side of the galaxy.</em>',manifestoTitle:'Our headquarters are somewhere in space. <span>Our brief is right here on Earth.</span>',manifestoCopy:"According to our slightly suspicious origin story, RocketPen arrived from a distant corner of the universe on a mission to make Earth’s ideas harder to ignore. Our coordinates remain classified; our process does not. We combine strategy, design and digital craft to help ambitious businesses look distinct, speak clearly and move forward. No abductions. Just exceptionally good creative work.",manifestoNote:"An extraterrestrial point of view. Earthbound results.",servicesKicker:"What we bring to life",servicesTitle:'One vision.<br><em>Many ways forward.</em>',servicesIntro:"A connected creative partner for the moments that matter — from shaping your identity to launching your next big move.",s1Title:"Brand Strategy & Identity",s1Desc:"Positioning, naming, visual identity and rebranding that make your business unmistakably yours.",s2Title:"Websites & Digital Experiences",s2Desc:"Premium, responsive websites built to communicate clearly, earn trust and turn attention into action.",s3Title:"Creative & Graphic Design",s3Desc:"Art direction, campaign visuals and design systems with clarity, character and a point of view.",s4Title:"Reels, Film & Motion",s4Desc:"Cinematic short-form content and motion-led stories designed to stop the scroll and stay remembered.",s5Title:"Social Media & Content",s5Desc:"A consistent social presence shaped by creative direction, purposeful content and a recognisable voice.",s6Title:"Campaigns & Digital Growth",s6Desc:"Launch concepts, paid campaign creative and connected digital touchpoints built around your business goals.",statementKicker:"The RocketPen approach",statementTitle:'Make it mean<br>something. <span>Make it move.</span>',statementCopy:"Beautiful is a beginning. Purpose gives it direction. We connect creative craft with clear thinking — so your brand doesn't just look different. It feels different, speaks clearly and moves with intention.",processKicker:"A clear path from idea to impact",processTitle:'Dream it.<br><em>Make it real.</em>',p1Title:"Understand",p1Desc:"We listen, ask better questions and uncover what makes your business matter.",p2Title:"Find the direction",p2Desc:"We align your goals, audience and story around one clear creative direction.",p3Title:"Bring it to life",p3Desc:"We design, build and refine every detail with purpose and precision.",p4Title:"Move forward",p4Desc:"We help you launch with confidence and create room for what's next.",contactKicker:"Your next chapter starts here",contactTitle:'Have a big idea?<br><span>Let\'s launch it.</span>',contactDesc:"Tell us what you're imagining. Whether you're building something new or ready to take an existing brand further, let's find the right way forward.",contactCardKicker:"LET'S MAKE IT HAPPEN",contactCardText:"Share a little about your project and we'll take it from there.",contactCta:"START A CONVERSATION",footerSlogan:"BUILD. LAUNCH. GROW.",languageLabel:"LANGUAGE"},
-tr:{navStory:"Vizyonumuz",navServices:"Hizmetler",navProcess:"Süreç",navContact:"İletişim",reviewsKicker:"MÜŞTERİ GERİ BİLDİRİMLERİ",reviewsTitle:'İyi iş <em>hissedilir.</em>',reviewsIntro:"Web sitesi, marka kimliği ve dijital büyüme çalışmalarımızdan müşteri geri bildirimleri.",reviewsCount:"50 müşteri yorumu · 5 yıldızlı değerlendirme",reviewsHint:"Dokunup iki yöne sürükleyin",reviewsCarouselLabel:"Müşteri yorumları kaydırmalı alanı",reviewsViewAll:"Tüm yorumları oku ↗",eyebrow:"Dünya dışı bir bakış açısına sahip bağımsız yaratıcı stüdyo",heroLine1:"MERHABA",heroLine2:"DÜNYALILAR.",heroSub:"Galaktik koordinatlarımız gizli. Görevimiz değil: sıra dışı fikirleri özgün markalara, akıllı dijital deneyimlere ve ölçülebilir büyümeye dönüştürmek için Dünya’dayız.",heroCta:"BİRLİKTE BİR ŞEY İNŞA EDELİM",discover:"RocketPen’i keşfet",heroFoot:"BİLİNMEYEN BİR YÖRÜNGEDEN SİNYAL",scroll:"KEŞFETMEK İÇİN KAYDIR",storyKicker:"Resmî kayıtlarda stüdyo. Gayriresmî kayıtlarda galaktik ziyaretçiler.",storyTitle:'Dünya, <em>galaksinin öteki ucundan</em> biraz daha farklı görünür.',manifestoTitle:'Merkezimiz uzayın bir yerinde. <span>Brief’imiz Dünya’da.</span>',manifestoCopy:"Biraz şüpheli köken hikâyemize göre RocketPen, Dünya’daki fikirleri görmezden gelinmesi zor hâle getirmek için evrenin uzak bir köşesinden geldi. Koordinatlarımız gizli; çalışma biçimimiz değil. Stratejiyi, tasarımı ve dijital ustalığı bir araya getirerek markaların fark edilmesine, net konuşmasına ve ileri gitmesine yardım ediyoruz. Kaçırılma yok. Yalnızca olağanüstü yaratıcı işler var.",manifestoNote:"Dünya dışı bakış açısı. Dünya üzerinde sonuçlar.",servicesKicker:"Hayata geçirdiklerimiz",servicesTitle:'Tek bir vizyon.<br><em>Birçok yol.</em>',servicesIntro:"Marka kimliğinizi şekillendirmekten bir sonraki büyük adımınızı duyurmaya kadar, önemli anlarda yanınızda olan yaratıcı iş ortağınız.",s1Title:"Marka Stratejisi ve Kimliği",s1Desc:"İşletmenizi benzersiz kılan konumlandırma, isimlendirme, görsel kimlik ve yeniden markalama.",s2Title:"Web Siteleri ve Dijital Deneyimler",s2Desc:"Güven veren, net iletişim kuran ve ilgiyi harekete dönüştüren premium, mobil uyumlu web siteleri.",s3Title:"Yaratıcı ve Grafik Tasarım",s3Desc:"Netlik, karakter ve özgün bir bakış açısı taşıyan sanat yönetimi, kampanya görselleri ve tasarım sistemleri.",s4Title:"Reels, Film ve Hareketli Görüntü",s4Desc:"Dikkati yakalayan ve akılda kalan, sinematik kısa videolar ve hareket odaklı hikâyeler.",s5Title:"Sosyal Medya ve İçerik",s5Desc:"Yaratıcı yönlendirme, amaçlı içerik ve tanınabilir bir marka diliyle şekillenen tutarlı sosyal medya varlığı.",s6Title:"Kampanyalar ve Dijital Büyüme",s6Desc:"İş hedeflerinize göre kurgulanan lansman fikirleri, reklam kampanyaları ve bağlantılı dijital temas noktaları.",statementKicker:"RocketPen yaklaşımı",statementTitle:'Bir anlam taşısın.<br><span>Harekete geçirsin.</span>',statementCopy:"Güzellik bir başlangıçtır; ona yönünü veren amaçtır. Yaratıcı ustalığı net düşünceyle birleştiriyoruz. Böylece markanız yalnızca farklı görünmez; farklı hissettirir, net konuşur ve bilinçli adımlar atar.",processKicker:"Fikirden etkiye net bir yol",processTitle:'Hayal et.<br><em>Gerçeğe dönüştür.</em>',p1Title:"Anlayalım",p1Desc:"Sizi dinler, doğru soruları sorar ve işletmenizi anlamlı kılan noktayı keşfederiz.",p2Title:"Yön belirleyelim",p2Desc:"Hedeflerinizi, kitlenizi ve hikâyenizi net bir yaratıcı doğrultuda birleştiririz.",p3Title:"Hayata geçirelim",p3Desc:"Her ayrıntıyı amaç ve titizlikle tasarlar, geliştirir ve iyileştiririz.",p4Title:"İleri taşıyalım",p4Desc:"Güvenle yayına çıkmanıza ve bir sonraki fırsata yer açmanıza yardımcı oluruz.",contactKicker:"Yeni hikâyeniz burada başlıyor",contactTitle:'Büyük bir fikriniz mi var?<br><span>Haydi başlatalım.</span>',contactDesc:"Aklınızdaki fikri anlatın. Yeni bir marka kuruyor ya da mevcut markanızı ileri taşımak istiyor olun, birlikte doğru yolu bulalım.",contactCardKicker:"HAYDİ HAYATA GEÇİRELİM",contactCardText:"Projenizden biraz bahsedin; gerisini birlikte şekillendirelim.",contactCta:"SOHBETİ BAŞLATALIM",footerSlogan:"İNŞA ET. BAŞLAT. BÜYÜT.",languageLabel:"DİL"},
-ar:{navStory:"رؤيتنا",navServices:"خدماتنا",navProcess:"آلية العمل",navContact:"تواصل معنا",reviewsKicker:"آراء العملاء",reviewsTitle:'العمل الجيد <em>يُشعَر به.</em>',reviewsIntro:"آراء عملائنا حول المواقع والهوية التجارية وأعمال النمو الرقمي.",reviewsCount:"50 رأياً من العملاء · تقييم بخمس نجوم",reviewsHint:"اسحب في أي اتجاه",reviewsCarouselLabel:"شريط آراء العملاء",reviewsViewAll:"اقرأ جميع الآراء ↗",eyebrow:"استوديو إبداعي مستقل برؤية من خارج هذا العالم",heroLine1:"مرحباً",heroLine2:"يا أهل الأرض.",heroSub:"إحداثياتنا سرّية، لكن مهمتنا واضحة: جئنا إلى الأرض لنحوّل الأفكار غير التقليدية إلى علامات مميزة وتجارب رقمية ذكية ونمو ملموس.",heroCta:"لنبنِ شيئاً استثنائياً",discover:"اكتشف روكيت بن",heroFoot:"إشارة من مدار مجهول",scroll:"مرّر لاستكشاف المزيد",storyKicker:"استوديو رسميّاً. وزوّار من مجرّة أخرى بشكل غير رسمي.",storyTitle:'تبدو الأرض مختلفة من <em>الجهة الأخرى من المجرّة.</em>',manifestoTitle:'مقرّنا في مكان ما من الفضاء. <span>ومهمتنا هنا على الأرض.</span>',manifestoCopy:"بحسب قصتنا المشكوك في تفاصيلها قليلاً، وصل روكيت بن من زاوية بعيدة في الكون ليجعل أفكار الأرض أصعب على التجاهل. إحداثياتنا سرّية، لكن طريقة عملنا ليست كذلك. نجمع بين الاستراتيجية والتصميم والخبرة الرقمية لمساعدة العلامات الطموحة على التميّز والتواصل بوضوح والتقدّم. لا اختطاف للكائنات. فقط أعمال إبداعية استثنائية.",manifestoNote:"رؤية من خارج الأرض. ونتائج على الأرض.",servicesKicker:"نحوّل الأفكار إلى واقع",servicesTitle:'رؤية واحدة.<br><em>وطرق عديدة للتقدّم.</em>',servicesIntro:"شريك إبداعي متكامل يرافقك في اللحظات المهمة، من بناء هوية علامتك إلى إطلاق خطوتك الكبيرة التالية.",s1Title:"استراتيجية العلامة وهويتها",s1Desc:"تموضع العلامة التجارية وتسميتها وهويتها البصرية وإعادة تصميمها لتعبّر عن تميّز أعمالك.",s2Title:"المواقع والتجارب الرقمية",s2Desc:"مواقع راقية ومتجاوبة توصل رسالتك بوضوح، وتبني الثقة، وتحول الاهتمام إلى تفاعل.",s3Title:"التصميم الإبداعي والجرافيكي",s3Desc:"توجيه فني ومرئيات للحملات وأنظمة تصميم تجمع الوضوح والشخصية والرؤية الخاصة.",s4Title:"ريلز وفيديو وحركة",s4Desc:"محتوى قصير بطابع سينمائي وقصص متحركة تجذب الانتباه وتبقى في الذاكرة.",s5Title:"التواصل الاجتماعي والمحتوى",s5Desc:"حضور رقمي متناسق يصنعه التوجيه الإبداعي والمحتوى الهادف وصوت العلامة الواضح.",s6Title:"الحملات والنمو الرقمي",s6Desc:"أفكار إطلاق وإبداع إعلاني ونقاط تواصل رقمية مترابطة تدعم أهداف أعمالك.",statementKicker:"نهج روكيت بن",statementTitle:'امنح الفكرة معنى.<br><span>وادفعها للأمام.</span>',statementCopy:"الجمال هو البداية، والهدف هو ما يمنحه الاتجاه. نربط الحرفة الإبداعية بالتفكير الواضح كي لا تبدو علامتك مختلفة فحسب، بل تترك إحساساً مميزاً وتتحدث بوضوح وتتحرك بثقة.",processKicker:"طريق واضح من الفكرة إلى الأثر",processTitle:'تخيّلها.<br><em>واجعلها واقعاً.</em>',p1Title:"نفهم",p1Desc:"نستمع إليك ونطرح الأسئلة المناسبة لنكتشف ما يجعل أعمالك ذات قيمة.",p2Title:"نحدّد الاتجاه",p2Desc:"نربط أهدافك وجمهورك وقصتك ضمن توجه إبداعي واضح.",p3Title:"نبتكر وننفّذ",p3Desc:"نصمم ونبني ونحسّن كل تفصيل بهدف ودقة.",p4Title:"ننطلق",p4Desc:"نساعدك على الإطلاق بثقة وتهيئة مساحة للخطوة التالية.",contactKicker:"فصلك القادم يبدأ من هنا",contactTitle:'لديك فكرة كبيرة؟<br><span>فلنطلقها معاً.</span>',contactDesc:"أخبرنا بما تتخيله. سواء كنت تؤسس شيئاً جديداً أو تريد دفع علامتك الحالية إلى الأمام، فلنكتشف الطريق الأنسب معاً.",contactCardKicker:"لنجعلها حقيقة",contactCardText:"شاركنا نبذة عن مشروعك ودعنا نبدأ من هناك.",contactCta:"ابدأ المحادثة",footerSlogan:"ابنِ. أطلق. انمُ.",languageLabel:"اللغة"}
+en:{navStory:"Our vision",navServices:"Services",navProcess:"Our process",navContact:"Contact",navBlog:"Digital Blog",reviewsKicker:"CUSTOMER FEEDBACK",reviewsTitle:'Good work is <em>felt.</em>',reviewsIntro:"A few words from clients across our website, branding and digital growth projects.",reviewsCount:"50 client reviews · Five-star feedback",reviewsHint:"Swipe or drag in either direction",reviewsCarouselLabel:"Client feedback carousel",reviewsViewAll:"Read all reviews ",blogKicker:"THE DIGITAL BLOG",blogTitle:'Ideas that move <em>business forward.</em>',blogIntro:"Practical guides for clearer brands, better websites and smarter digital growth — built around real business decisions.",blogTag1:"BRAND & STRATEGY",blogCat1Title:"Build a brand people remember",blogCat1Desc:"Positioning, brand voice and visual identity that make your business distinct and consistent.",blogTag2:"WEB & SEO",blogCat2Title:"Turn your website into a growth tool",blogCat2Desc:"UX, technical foundations, content structure and search visibility for service businesses.",blogTag3:"CONTENT & GROWTH",blogCat3Title:"Create content with a purpose",blogCat3Desc:"Video, social media, campaigns and practical AI workflows that support real goals.",blogCta:"EXPLORE THE DIGITAL BLOG ",eyebrow:"An independent creative studio from somewhere beyond the ordinary",heroLine1:"HELLO",heroLine2:"EARTHLINGS.",heroSub:"Our coordinates are classified. Our mission is not: we bring unusual ideas to Earth as distinctive brands, sharp digital experiences and measurable momentum.",heroCta:"LET'S BUILD SOMETHING",discover:"Discover RocketPen",heroFoot:"TRANSMISSION FROM AN UNDISCLOSED ORBIT",scroll:"SCROLL TO EXPLORE",storyKicker:"Officially a studio. Unofficially, visitors from elsewhere.",storyTitle:'Earth looks different from <em>the other side of the galaxy.</em>',manifestoTitle:'Our headquarters are somewhere in space. <span>Our brief is right here on Earth.</span>',manifestoCopy:"According to our slightly suspicious origin story, RocketPen arrived from a distant corner of the universe on a mission to make Earth’s ideas harder to ignore. Our coordinates remain classified; our process does not. We combine strategy, design and digital craft to help ambitious businesses look distinct, speak clearly and move forward. No abductions. Just exceptionally good creative work.",manifestoNote:"An extraterrestrial point of view. Earthbound results.",servicesKicker:"What we bring to life",servicesTitle:'One vision.<br><em>Many ways forward.</em>',servicesIntro:"A connected creative partner for the moments that matter — from shaping your identity to launching your next big move.",s1Title:"Brand Strategy & Identity",s1Desc:"Positioning, naming, visual identity and rebranding that make your business unmistakably yours.",s2Title:"Websites & Digital Experiences",s2Desc:"Premium, responsive websites built to communicate clearly, earn trust and turn attention into action.",s3Title:"Creative & Graphic Design",s3Desc:"Art direction, campaign visuals and design systems with clarity, character and a point of view.",s4Title:"Reels, Film & Motion",s4Desc:"Cinematic short-form content and motion-led stories designed to stop the scroll and stay remembered.",s5Title:"Social Media & Content",s5Desc:"A consistent social presence shaped by creative direction, purposeful content and a recognisable voice.",s6Title:"Campaigns & Digital Growth",s6Desc:"Launch concepts, paid campaign creative and connected digital touchpoints built around your business goals.",statementKicker:"The RocketPen approach",statementTitle:'Make it mean<br>something. <span>Make it move.</span>',statementCopy:"Beautiful is a beginning. Purpose gives it direction. We connect creative craft with clear thinking — so your brand doesn't just look different. It feels different, speaks clearly and moves with intention.",processKicker:"A clear path from idea to impact",processTitle:'Dream it.<br><em>Make it real.</em>',p1Title:"Understand",p1Desc:"We listen, ask better questions and uncover what makes your business matter.",p2Title:"Find the direction",p2Desc:"We align your goals, audience and story around one clear creative direction.",p3Title:"Bring it to life",p3Desc:"We design, build and refine every detail with purpose and precision.",p4Title:"Move forward",p4Desc:"We help you launch with confidence and create room for what's next.",contactKicker:"Your next chapter starts here",contactTitle:'Have a big idea?<br><span>Let\'s launch it.</span>',contactDesc:"Tell us what you're imagining. Whether you're building something new or ready to take an existing brand further, let's find the right way forward.",contactCardKicker:"LET'S MAKE IT HAPPEN",contactCardText:"Share a little about your project and we'll take it from there.",contactCta:"START A CONVERSATION",footerSlogan:"BUILD. LAUNCH. GROW.",languageLabel:"LANGUAGE"},
+tr:{navStory:"Vizyonumuz",navServices:"Hizmetler",navProcess:"Süreç",navContact:"İletişim",reviewsKicker:"MÜŞTERİ GERİ BİLDİRİMLERİ",reviewsTitle:'İyi iş <em>hissedilir.</em>',reviewsIntro:"Web sitesi, marka kimliği ve dijital büyüme çalışmalarımızdan müşteri geri bildirimleri.",reviewsCount:"50 müşteri yorumu · 5 yıldızlı değerlendirme",reviewsHint:"Dokunup iki yöne sürükleyin",reviewsCarouselLabel:"Müşteri yorumları kaydırmalı alanı",reviewsViewAll:"Tüm yorumları oku ",eyebrow:"Dünya dışı bir bakış açısına sahip bağımsız yaratıcı stüdyo",heroLine1:"MERHABA",heroLine2:"DÜNYALILAR.",heroSub:"Galaktik koordinatlarımız gizli. Görevimiz değil: sıra dışı fikirleri özgün markalara, akıllı dijital deneyimlere ve ölçülebilir büyümeye dönüştürmek için Dünya’dayız.",heroCta:"BİRLİKTE BİR ŞEY İNŞA EDELİM",discover:"RocketPen’i keşfet",heroFoot:"BİLİNMEYEN BİR YÖRÜNGEDEN SİNYAL",scroll:"KEŞFETMEK İÇİN KAYDIR",storyKicker:"Resmî kayıtlarda stüdyo. Gayriresmî kayıtlarda galaktik ziyaretçiler.",storyTitle:'Dünya, <em>galaksinin öteki ucundan</em> biraz daha farklı görünür.',manifestoTitle:'Merkezimiz uzayın bir yerinde. <span>Brief’imiz Dünya’da.</span>',manifestoCopy:"Biraz şüpheli köken hikâyemize göre RocketPen, Dünya’daki fikirleri görmezden gelinmesi zor hâle getirmek için evrenin uzak bir köşesinden geldi. Koordinatlarımız gizli; çalışma biçimimiz değil. Stratejiyi, tasarımı ve dijital ustalığı bir araya getirerek markaların fark edilmesine, net konuşmasına ve ileri gitmesine yardım ediyoruz. Kaçırılma yok. Yalnızca olağanüstü yaratıcı işler var.",manifestoNote:"Dünya dışı bakış açısı. Dünya üzerinde sonuçlar.",servicesKicker:"Hayata geçirdiklerimiz",servicesTitle:'Tek bir vizyon.<br><em>Birçok yol.</em>',servicesIntro:"Marka kimliğinizi şekillendirmekten bir sonraki büyük adımınızı duyurmaya kadar, önemli anlarda yanınızda olan yaratıcı iş ortağınız.",s1Title:"Marka Stratejisi ve Kimliği",s1Desc:"İşletmenizi benzersiz kılan konumlandırma, isimlendirme, görsel kimlik ve yeniden markalama.",s2Title:"Web Siteleri ve Dijital Deneyimler",s2Desc:"Güven veren, net iletişim kuran ve ilgiyi harekete dönüştüren premium, mobil uyumlu web siteleri.",s3Title:"Yaratıcı ve Grafik Tasarım",s3Desc:"Netlik, karakter ve özgün bir bakış açısı taşıyan sanat yönetimi, kampanya görselleri ve tasarım sistemleri.",s4Title:"Reels, Film ve Hareketli Görüntü",s4Desc:"Dikkati yakalayan ve akılda kalan, sinematik kısa videolar ve hareket odaklı hikâyeler.",s5Title:"Sosyal Medya ve İçerik",s5Desc:"Yaratıcı yönlendirme, amaçlı içerik ve tanınabilir bir marka diliyle şekillenen tutarlı sosyal medya varlığı.",s6Title:"Kampanyalar ve Dijital Büyüme",s6Desc:"İş hedeflerinize göre kurgulanan lansman fikirleri, reklam kampanyaları ve bağlantılı dijital temas noktaları.",statementKicker:"RocketPen yaklaşımı",statementTitle:'Bir anlam taşısın.<br><span>Harekete geçirsin.</span>',statementCopy:"Güzellik bir başlangıçtır; ona yönünü veren amaçtır. Yaratıcı ustalığı net düşünceyle birleştiriyoruz. Böylece markanız yalnızca farklı görünmez; farklı hissettirir, net konuşur ve bilinçli adımlar atar.",processKicker:"Fikirden etkiye net bir yol",processTitle:'Hayal et.<br><em>Gerçeğe dönüştür.</em>',p1Title:"Anlayalım",p1Desc:"Sizi dinler, doğru soruları sorar ve işletmenizi anlamlı kılan noktayı keşfederiz.",p2Title:"Yön belirleyelim",p2Desc:"Hedeflerinizi, kitlenizi ve hikâyenizi net bir yaratıcı doğrultuda birleştiririz.",p3Title:"Hayata geçirelim",p3Desc:"Her ayrıntıyı amaç ve titizlikle tasarlar, geliştirir ve iyileştiririz.",p4Title:"İleri taşıyalım",p4Desc:"Güvenle yayına çıkmanıza ve bir sonraki fırsata yer açmanıza yardımcı oluruz.",contactKicker:"Yeni hikâyeniz burada başlıyor",contactTitle:'Büyük bir fikriniz mi var?<br><span>Haydi başlatalım.</span>',contactDesc:"Aklınızdaki fikri anlatın. Yeni bir marka kuruyor ya da mevcut markanızı ileri taşımak istiyor olun, birlikte doğru yolu bulalım.",contactCardKicker:"HAYDİ HAYATA GEÇİRELİM",contactCardText:"Projenizden biraz bahsedin; gerisini birlikte şekillendirelim.",contactCta:"SOHBETİ BAŞLATALIM",footerSlogan:"İNŞA ET. BAŞLAT. BÜYÜT.",languageLabel:"DİL"},
+ar:{navStory:"رؤيتنا",navServices:"خدماتنا",navProcess:"آلية العمل",navContact:"تواصل معنا",reviewsKicker:"آراء العملاء",reviewsTitle:'العمل الجيد <em>يُشعَر به.</em>',reviewsIntro:"آراء عملائنا حول المواقع والهوية التجارية وأعمال النمو الرقمي.",reviewsCount:"50 رأياً من العملاء · تقييم بخمس نجوم",reviewsHint:"اسحب في أي اتجاه",reviewsCarouselLabel:"شريط آراء العملاء",reviewsViewAll:"اقرأ جميع الآراء ",eyebrow:"استوديو إبداعي مستقل برؤية من خارج هذا العالم",heroLine1:"مرحباً",heroLine2:"يا أهل الأرض.",heroSub:"إحداثياتنا سرّية، لكن مهمتنا واضحة: جئنا إلى الأرض لنحوّل الأفكار غير التقليدية إلى علامات مميزة وتجارب رقمية ذكية ونمو ملموس.",heroCta:"لنبنِ شيئاً استثنائياً",discover:"اكتشف روكيت بن",heroFoot:"إشارة من مدار مجهول",scroll:"مرّر لاستكشاف المزيد",storyKicker:"استوديو رسميّاً. وزوّار من مجرّة أخرى بشكل غير رسمي.",storyTitle:'تبدو الأرض مختلفة من <em>الجهة الأخرى من المجرّة.</em>',manifestoTitle:'مقرّنا في مكان ما من الفضاء. <span>ومهمتنا هنا على الأرض.</span>',manifestoCopy:"بحسب قصتنا المشكوك في تفاصيلها قليلاً، وصل روكيت بن من زاوية بعيدة في الكون ليجعل أفكار الأرض أصعب على التجاهل. إحداثياتنا سرّية، لكن طريقة عملنا ليست كذلك. نجمع بين الاستراتيجية والتصميم والخبرة الرقمية لمساعدة العلامات الطموحة على التميّز والتواصل بوضوح والتقدّم. لا اختطاف للكائنات. فقط أعمال إبداعية استثنائية.",manifestoNote:"رؤية من خارج الأرض. ونتائج على الأرض.",servicesKicker:"نحوّل الأفكار إلى واقع",servicesTitle:'رؤية واحدة.<br><em>وطرق عديدة للتقدّم.</em>',servicesIntro:"شريك إبداعي متكامل يرافقك في اللحظات المهمة، من بناء هوية علامتك إلى إطلاق خطوتك الكبيرة التالية.",s1Title:"استراتيجية العلامة وهويتها",s1Desc:"تموضع العلامة التجارية وتسميتها وهويتها البصرية وإعادة تصميمها لتعبّر عن تميّز أعمالك.",s2Title:"المواقع والتجارب الرقمية",s2Desc:"مواقع راقية ومتجاوبة توصل رسالتك بوضوح، وتبني الثقة، وتحول الاهتمام إلى تفاعل.",s3Title:"التصميم الإبداعي والجرافيكي",s3Desc:"توجيه فني ومرئيات للحملات وأنظمة تصميم تجمع الوضوح والشخصية والرؤية الخاصة.",s4Title:"ريلز وفيديو وحركة",s4Desc:"محتوى قصير بطابع سينمائي وقصص متحركة تجذب الانتباه وتبقى في الذاكرة.",s5Title:"التواصل الاجتماعي والمحتوى",s5Desc:"حضور رقمي متناسق يصنعه التوجيه الإبداعي والمحتوى الهادف وصوت العلامة الواضح.",s6Title:"الحملات والنمو الرقمي",s6Desc:"أفكار إطلاق وإبداع إعلاني ونقاط تواصل رقمية مترابطة تدعم أهداف أعمالك.",statementKicker:"نهج روكيت بن",statementTitle:'امنح الفكرة معنى.<br><span>وادفعها للأمام.</span>',statementCopy:"الجمال هو البداية، والهدف هو ما يمنحه الاتجاه. نربط الحرفة الإبداعية بالتفكير الواضح كي لا تبدو علامتك مختلفة فحسب، بل تترك إحساساً مميزاً وتتحدث بوضوح وتتحرك بثقة.",processKicker:"طريق واضح من الفكرة إلى الأثر",processTitle:'تخيّلها.<br><em>واجعلها واقعاً.</em>',p1Title:"نفهم",p1Desc:"نستمع إليك ونطرح الأسئلة المناسبة لنكتشف ما يجعل أعمالك ذات قيمة.",p2Title:"نحدّد الاتجاه",p2Desc:"نربط أهدافك وجمهورك وقصتك ضمن توجه إبداعي واضح.",p3Title:"نبتكر وننفّذ",p3Desc:"نصمم ونبني ونحسّن كل تفصيل بهدف ودقة.",p4Title:"ننطلق",p4Desc:"نساعدك على الإطلاق بثقة وتهيئة مساحة للخطوة التالية.",contactKicker:"فصلك القادم يبدأ من هنا",contactTitle:'لديك فكرة كبيرة؟<br><span>فلنطلقها معاً.</span>',contactDesc:"أخبرنا بما تتخيله. سواء كنت تؤسس شيئاً جديداً أو تريد دفع علامتك الحالية إلى الأمام، فلنكتشف الطريق الأنسب معاً.",contactCardKicker:"لنجعلها حقيقة",contactCardText:"شاركنا نبذة عن مشروعك ودعنا نبدأ من هناك.",contactCta:"ابدأ المحادثة",footerSlogan:"ابنِ. أطلق. انمُ.",languageLabel:"اللغة"}
 };
 const pageLang='en';let current=pageLang;const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});renderReviewCards(lang);const feedbackViewport=document.getElementById('reviewsViewport');if(feedbackViewport&&t.reviewsCarouselLabel)feedbackViewport.setAttribute('aria-label',t.reviewsCarouselLabel);langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
