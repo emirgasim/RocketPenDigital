@@ -329,9 +329,7 @@ async function dragReviews(page, direction, step) {
       if (!afterRightDrag.reducedMotion) {
         await page.waitForTimeout(2600);
         const afterAutoplay = await reviewCarouselState(page);
-        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
-        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
-        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
+        assert.notEqual(afterAutoplay.leftIndex, afterRightDrag.leftIndex, route.path + ' carousel should advance to another review automatically after interaction');
       }
 
       for (const width of [1024, 768]) {
