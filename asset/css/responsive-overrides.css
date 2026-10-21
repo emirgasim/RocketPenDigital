@@ -963,3 +963,27 @@ body.arabic #languageMenu {
   left: auto !important;
   right: 0 !important;
 }
+
+
+/* Mobile dropdowns use viewport anchoring instead of inheriting legacy nav transforms. */
+@media (max-width: 760px) {
+  html[dir="ltr"] body #languageMenu {
+    position: fixed !important;
+    top: 72px !important;
+    right: 16px !important;
+    left: auto !important;
+    width: min(190px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform-origin: top right !important;
+  }
+  html[dir="rtl"] body #languageMenu,
+  body.arabic #languageMenu {
+    position: fixed !important;
+    top: 72px !important;
+    left: 16px !important;
+    right: auto !important;
+    width: min(190px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform-origin: top left !important;
+  }
+}
