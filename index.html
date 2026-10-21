@@ -603,7 +603,7 @@ function initReviewsCarousel(){
     viewport.scrollLeft=0;
   };
   let pointerStartX=null;
-  viewport.addEventListener('pointerdown',event=>{pointerStartX=event.clientX;});
+  viewport.addEventListener('pointerdown',event=>{pointerStartX=event.clientX;try{viewport.setPointerCapture(event.pointerId);}catch{}});
   viewport.addEventListener('pointerup',event=>{
     if(pointerStartX===null)return;
     const delta=event.clientX-pointerStartX;
