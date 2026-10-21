@@ -362,6 +362,66 @@
       "slug": "startup-marketing-strategy-and-planning-framework.html",
       "title": "Startup Marketing: Validate Demand Before Scaling Channels",
       "description": "A startup marketing guide to customer discovery, positioning, focused experiments, channel economics and learning from early demand."
+    },
+    {
+      "slug": "technical-seo-strategy-and-planning-framework.html",
+      "title": "Technical SEO: Make Important Pages Discoverable and Reliable",
+      "description": "A technical SEO guide to crawling, indexation, canonical URLs, redirects, rendering, structured data and performance prioritisation."
+    },
+    {
+      "slug": "video-marketing-strategy-and-planning-framework.html",
+      "title": "Video Marketing: Plan for the Viewer, Not Just the View Count",
+      "description": "A video marketing guide to audience intent, hooks, production briefs, captions, distribution, calls to action and meaningful performance measures."
+    },
+    {
+      "slug": "web-accessibility-strategy-and-planning-guide.html",
+      "title": "Web Accessibility: Make Important Tasks Usable by More People",
+      "description": "A web accessibility guide to semantic structure, keyboard navigation, contrast, forms, alternative text and manual testing against relevant standards."
+    },
+    {
+      "slug": "website-copywriting-strategy-and-planning-framework.html",
+      "title": "Website Copywriting: Explain the Offer and the Next Step",
+      "description": "A website copywriting guide to audience language, clear value propositions, service-page structure, credible proof and calls to action."
+    },
+    {
+      "slug": "website-design-strategy-and-planning-framework.html",
+      "title": "Website Design: Align Structure, Usability and Business Goals",
+      "description": "A website design guide to information architecture, visual hierarchy, responsive behaviour, accessibility, performance and task-based quality assurance."
+    },
+    {
+      "slug": "website-migration-strategy-and-planning-guide.html",
+      "title": "Website Migration: Protect URLs, Content and Search Signals",
+      "description": "A website migration guide to URL inventories, redirect mapping, canonical checks, staging QA, launch monitoring and recovery planning."
+    },
+    {
+      "slug": "website-performance-strategy-and-planning-guide.html",
+      "title": "Website Performance: Improve the Experience That Users Actually Feel",
+      "description": "A website performance guide to Core Web Vitals, image and font loading, JavaScript cost, caching, field data and regression monitoring."
+    },
+    {
+      "slug": "youtube-seo-strategy-and-planning-guide.html",
+      "title": "YouTube SEO: Help the Right Viewer Find and Finish the Video",
+      "description": "A YouTube SEO guide to viewer intent, accurate titles, thumbnails, descriptions, chapters, captions, retention and audience satisfaction."
+    },
+    {
+      "slug": "seo-for-accountants.html",
+      "title": "SEO for Accounting Firms: Build Trust Before the First Call",
+      "description": "SEO for accounting firms: organise service pages by client need, strengthen local visibility, explain credentials accurately and turn relevant searches into qualified enquiries."
+    },
+    {
+      "slug": "seo-for-agencies.html",
+      "title": "SEO for Digital Agencies: Turn Expertise into Qualified Leads",
+      "description": "SEO for digital agencies: clarify service positioning, publish evidence-led case studies, strengthen internal links and measure qualified pipeline rather than raw traffic."
+    },
+    {
+      "slug": "seo-for-architects.html",
+      "title": "SEO for Architecture Firms: Make Projects and Expertise Findable",
+      "description": "SEO for architecture firms: organise project portfolios, describe services and locations, optimise visual content and help suitable clients understand the firm's process."
+    },
+    {
+      "slug": "seo-for-consultants.html",
+      "title": "SEO for Consultants: Explain Your Expertise and Fit",
+      "description": "SEO for consultants: structure service pages around client problems, demonstrate expertise with useful resources and make the first consultation step clear."
     }
   ]
 }
