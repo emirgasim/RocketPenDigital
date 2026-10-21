@@ -581,7 +581,9 @@ function initReviewsCarousel(){
     const card=track.querySelector('.reviews-card');
     if(!card)return;
     const gap=parseFloat(getComputedStyle(track).columnGap)||16;
-    viewport.scrollBy({left:direction*(card.getBoundingClientRect().width+gap),behavior:reducedMotion.matches?'auto':'smooth'});
+    const step=card.getBoundingClientRect().width+gap;
+    const maxScroll=Math.max(0,viewport.scrollWidth-viewport.clientWidth);
+    viewport.scrollLeft=Math.max(0,Math.min(maxScroll,viewport.scrollLeft+direction*step));
   };
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
