@@ -230,12 +230,12 @@ async function reviewCarouselState(page) {
       const beforeNext = await reviewCarouselState(page);
       assert.ok(beforeNext.maxScroll > 0, route.path + ' five-card preview should support native horizontal scrolling');
       await page.locator('#reviewsNext').click();
-      await page.waitForTimeout(500);
+      await page.waitForFunction(before => document.querySelector('#reviewsViewport').scrollLeft > before + 1, beforeNext.offset, { timeout: 2500 });
       const afterNext = await reviewCarouselState(page);
       assert.ok(afterNext.offset > beforeNext.offset, route.path + ' next control should scroll the preview forward');
       assert.ok(afterNext.visibleCards >= 1, route.path + ' cards must remain visible after horizontal scrolling');
       await page.locator('#reviewsPrev').click();
-      await page.waitForTimeout(500);
+      await page.waitForFunction(after => document.querySelector('#reviewsViewport').scrollLeft < after - 1, afterNext.offset, { timeout: 2500 });
       const afterPrevious = await reviewCarouselState(page);
       assert.ok(afterPrevious.offset < afterNext.offset, route.path + ' previous control should scroll the preview backward');
       await page.evaluate(() => window.scrollTo(0, 0));
