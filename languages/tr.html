@@ -500,7 +500,7 @@ function initReviewsCarousel(){
     const gap=parseFloat(getComputedStyle(track).columnGap)||16;
     const step=card.getBoundingClientRect().width+gap;
     const maxScroll=Math.max(0,viewport.scrollWidth-viewport.clientWidth);
-    viewport.scrollLeft=Math.max(0,Math.min(maxScroll,viewport.scrollLeft+direction*step));
+    viewport.scrollTo({left:Math.max(0,Math.min(maxScroll,viewport.scrollLeft+direction*step)),behavior:reducedMotion.matches?'auto':'smooth'});
   };
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
