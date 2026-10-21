@@ -99,3 +99,13 @@ body.arabic header.nav > .nav-right .lang {
     padding: 10px 12px !important;
   }
 }
+
+/* Consistent soft white glow for the RocketPen header logo across pages using the shared UI stylesheet. */
+header.nav > .logo .logo-image,
+header.nav .brand-link .logo-image,
+header.nav .brand-link img.logo,
+.top .brand-link .logo,
+.top .brand-link .logo-image,
+header .logo-image {
+  filter: drop-shadow(0 0 5px rgba(255,255,255,.32)) drop-shadow(0 0 13px rgba(255,255,255,.16)) !important;
+}
