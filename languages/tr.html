@@ -355,6 +355,17 @@ header.nav .logo-image {
 .service .service-link{grid-column:3;grid-row:2;justify-self:start;align-self:start;display:inline-block;margin-top:8px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px;color:inherit;max-width:100%;overflow-wrap:anywhere}
 .service .service-marker{grid-column:4;grid-row:1 / span 2;align-self:center}
 @media(max-width:760px){.service .service-link{grid-column:2;grid-row:3;margin-top:8px}.service .service-marker{grid-column:3;grid-row:1 / span 3}}
+
+/* Touch fix: do not let the first tap only activate the service-card hover state.
+   Keep hover animation for mouse/trackpad; touch users can follow service links on first tap. */
+@media (hover: none), (pointer: coarse) {
+  .service:hover { padding-left: 0 !important; padding-right: 0 !important; }
+  .service:hover:before { transform: scaleX(0) !important; }
+  .service:hover .service-marker { background: transparent !important; border-color: #626875 !important; transform: none !important; }
+  .service .service-link { position: relative; z-index: 5; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .service .service-link:focus,
+  .service .service-link:active { outline: none !important; }
+}
 </style>
 <link rel="stylesheet" href="/asset/css/responsive-overrides.css">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
