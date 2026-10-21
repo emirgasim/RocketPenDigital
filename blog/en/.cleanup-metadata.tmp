@@ -242,6 +242,66 @@
       "slug": "email-automation-strategy-and-planning-guide.html",
       "title": "Email Automation: Trigger Helpful Messages at the Right Moment",
       "description": "An email automation guide to lifecycle triggers, segmentation, suppression rules, deliverability, testing and measuring downstream actions."
+    },
+    {
+      "slug": "email-marketing-strategy-and-planning-framework.html",
+      "title": "Email Marketing: Earn Attention and Send Relevant Updates",
+      "description": "An email marketing guide to permission-based lists, useful editorial planning, segmentation, deliverability, accessible messages and performance measurement."
+    },
+    {
+      "slug": "influencer-marketing-strategy-and-planning-framework.html",
+      "title": "Influencer Marketing: Choose Partners for Audience Fit and Trust",
+      "description": "An influencer marketing guide to audience relevance, creator due diligence, clear briefs, disclosure, usage rights and measurable campaign outcomes."
+    },
+    {
+      "slug": "international-marketing-strategy-and-planning-framework.html",
+      "title": "International Marketing: Validate the Market Before Scaling",
+      "description": "An international marketing framework for market selection, localisation, channel fit, local trust signals, operational readiness and market-level measurement."
+    },
+    {
+      "slug": "landing-page-design-strategy-and-planning-guide.html",
+      "title": "Landing Page Design: Help Visitors Make One Clear Decision",
+      "description": "A landing page design guide to message match, page hierarchy, evidence, calls to action, mobile usability and conversion testing."
+    },
+    {
+      "slug": "lead-generation-strategy-and-planning-framework.html",
+      "title": "Lead Generation: Attract the Right Enquiries and Follow Up Well",
+      "description": "A lead generation guide to audience fit, landing pages, qualification criteria, response workflows and measuring lead quality."
+    },
+    {
+      "slug": "local-seo-strategy-and-planning-framework.html",
+      "title": "Local SEO: Help Nearby Customers Find the Right Service",
+      "description": "A local SEO guide to Google Business Profile accuracy, location pages, reviews, service areas, local relevance and qualified enquiry measurement."
+    },
+    {
+      "slug": "marketing-attribution-strategy-and-planning-guide.html",
+      "title": "Marketing Attribution: Understand the Limits of Credit",
+      "description": "A marketing attribution guide to consistent conversion definitions, campaign tagging, customer journeys, model limitations and incrementality testing."
+    },
+    {
+      "slug": "marketing-automation-strategy-and-planning-framework.html",
+      "title": "Marketing Automation: Build Useful, Governed Workflows",
+      "description": "A marketing automation guide to lifecycle triggers, CRM integration, data quality, permissions, suppression logic and measurable workflow outcomes."
+    },
+    {
+      "slug": "marketing-operations-strategy-and-planning-guide.html",
+      "title": "Marketing Operations: Make Workflows Repeatable and Accountable",
+      "description": "A marketing operations guide to process ownership, campaign intake, approvals, data standards, martech governance and operational performance."
+    },
+    {
+      "slug": "marketing-reporting-strategy-and-planning-framework.html",
+      "title": "Marketing Reporting: Show What Changed and What to Do Next",
+      "description": "A marketing reporting guide to audience-specific dashboards, consistent KPI definitions, campaign context, data quality and decision-ready commentary."
+    },
+    {
+      "slug": "mobile-marketing-strategy-and-planning-guide.html",
+      "title": "Mobile Marketing: Design for Context, Speed and Consent",
+      "description": "A mobile marketing guide to mobile-first journeys, responsive landing pages, messaging permissions, app-versus-web decisions and useful measurement."
+    },
+    {
+      "slug": "paid-search-strategy-and-planning-framework.html",
+      "title": "Paid Search: Match Spend to Search Intent",
+      "description": "A paid search guide to keyword intent, campaign structure, negative keywords, landing-page alignment, budget controls and conversion quality."
     }
   ]
 }
