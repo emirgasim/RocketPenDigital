@@ -281,6 +281,16 @@ async function dragReviews(page, direction, step) {
       assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' blog heading should be present');
       assert.equal(await page.locator('link[href="/asset/css/responsive-overrides.css"]').count(), 1, 'blog must load shared responsive overrides');
+      assert.equal(await page.locator('link[href="/asset/css/site-global-ui.css"]').count(), 1, 'blog must load shared top-bar styles');
+      if (route.lang === 'ar') {
+        const headerAlignment = await page.evaluate(() => {
+          const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+          const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+          return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+        });
+        assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic blog logo should stay on the right: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic blog language control should stay on the left: ' + JSON.stringify(headerAlignment));
+      }
 
       for (const width of [390, 320]) {
         await page.setViewportSize({ width, height: 844 });
@@ -310,6 +320,42 @@ async function dragReviews(page, direction, step) {
         assert.ok(metrics.nav.left >= -1 && metrics.nav.right <= width + 1, route.path + ' mobile nav must stay within viewport at ' + width + 'px: ' + JSON.stringify(metrics.nav));
         for (const item of metrics.itemBounds) {
           assert.ok(item.left >= -1 && item.right <= width + 1, route.path + ' nav items must stay within viewport at ' + width + 'px: ' + JSON.stringify(item));
+        }
+      }
+      await context.close();
+    }
+
+
+    const reviewListRoutes = [
+      { path: '/reviews/en/index.html', lang: 'en', dir: 'ltr' },
+      { path: '/reviews/tr/index.html', lang: 'tr', dir: 'ltr' },
+      { path: '/reviews/ar/index.html', lang: 'ar', dir: 'rtl' },
+    ];
+    for (const route of reviewListRoutes) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const page = await context.newPage();
+      page.on('pageerror', error => failures.push(route.path + ' pageerror: ' + error.message));
+      const response = await page.goto(BASE + route.path, { waitUntil: 'domcontentloaded' });
+      assert.equal(response.status(), 200, route.path + ' should load');
+      assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
+      assert.equal(await page.locator('html').getAttribute('dir'), route.dir);
+      assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' should have a localized heading');
+      assert.equal(await page.locator('.review-list-card').count(), 50, route.path + ' should list all 50 reviews');
+      await page.locator('.brand img').evaluate(img => img.decode());
+      assert.ok(await page.locator('.brand img').evaluate(img => img.naturalWidth > 0), route.path + ' brand logo must decode');
+      for (const width of [390, 320]) {
+        await page.setViewportSize({ width, height: 844 });
+        await page.waitForTimeout(50);
+        const metrics = await page.evaluate(() => ({
+          width: document.documentElement.clientWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          logo: (() => { const r = document.querySelector('.site-header .brand').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+          actions: (() => { const r = document.querySelector('.site-header .header-actions').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+        }));
+        assert.ok(metrics.scrollWidth <= width + 1, route.path + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+        if (route.lang === 'ar') {
+          assert.ok(metrics.logo.center > width / 2, width + 'px Arabic review-list logo should stay on the right: ' + JSON.stringify(metrics));
+          assert.ok(metrics.actions.center < width / 2, width + 'px Arabic review-list actions should stay on the left: ' + JSON.stringify(metrics));
         }
       }
       await context.close();
