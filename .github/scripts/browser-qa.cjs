@@ -262,7 +262,7 @@ async function dragReviews(page, direction, step) {
       await page.locator('#reviewsViewport').hover();
       await page.waitForTimeout(100);
       const beforeNext = await reviewCarouselState(page);
-      const expectedNext = (Math.floor(beforeNext.offset / beforeNext.step) + 1) % 50 + 1;
+      const expectedNext = (beforeNext.leftIndex % 50) + 1;
       await page.locator('#reviewsNext').click();
       await page.waitForTimeout(500);
       const afterNext = await reviewCarouselState(page);
@@ -270,7 +270,7 @@ async function dragReviews(page, direction, step) {
       assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
       assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
 
-      const expectedPrevious = ((Math.floor(afterNext.offset / afterNext.step) - 1) % 50 + 50) % 50 + 1;
+      const expectedPrevious = ((afterNext.leftIndex - 2 + 50) % 50) + 1;
       await page.locator('#reviewsPrev').click();
       await page.waitForTimeout(500);
       const afterPrevious = await reviewCarouselState(page);
@@ -278,14 +278,14 @@ async function dragReviews(page, direction, step) {
       assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
 
       const beforeLeftDrag = await reviewCarouselState(page);
-      const expectedAfterLeftDrag = (Math.floor(beforeLeftDrag.offset / beforeLeftDrag.step) + 1) % 50 + 1;
+      const expectedAfterLeftDrag = (beforeLeftDrag.leftIndex % 50) + 1;
       const leftDragTrace = await dragReviews(page, 1, beforeLeftDrag.step);
       const afterLeftDrag = await reviewCarouselState(page);
       assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify({ afterLeftDrag, leftDragTrace }));
       assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review: ' + JSON.stringify({ beforeLeftDrag, afterLeftDrag, leftDragTrace }));
 
       const beforeRightDrag = await reviewCarouselState(page);
-      const expectedAfterRightDrag = ((Math.floor(beforeRightDrag.offset / beforeRightDrag.step) - 1) % 50 + 50) % 50 + 1;
+      const expectedAfterRightDrag = ((beforeRightDrag.leftIndex - 2 + 50) % 50) + 1;
       await dragReviews(page, -1, beforeRightDrag.step);
       const afterRightDrag = await reviewCarouselState(page);
       assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
