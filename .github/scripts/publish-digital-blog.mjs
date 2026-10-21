@@ -4,7 +4,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const API_KEY = process.env.OPENAI_API_KEY;
 const SITE_URL = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
-const MODEL = process.env.OPENAI_MODEL || 'gpt-6-sol';
+const MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 const TODAY = new Date().toISOString().slice(0, 10);
 const DAY = Math.floor(Date.now() / 86400000);
 const LANGS = ['en', 'tr', 'ar'];

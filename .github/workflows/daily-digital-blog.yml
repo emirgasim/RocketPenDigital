@@ -71,7 +71,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
-          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-6-sol' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
         run: node .github/scripts/publish-digital-blog.mjs
 
       - name: Commit and publish generated pages
