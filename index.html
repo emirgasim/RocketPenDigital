@@ -489,7 +489,6 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
         </div>
       </div>
     </div>
-    <p 
     <div class="reviews-viewport" id="reviewsViewport" aria-label="Client feedback carousel">
       <div class="reviews-track" id="reviewsTrack"></div>
     </div>
@@ -513,7 +512,6 @@ function renderReviewCards(lang){
   const track=document.getElementById('reviewsTrack');
   const viewport=document.getElementById('reviewsViewport');
   if(!track||!viewport)return;
-  const previousPosition=viewport.scrollLeft;
   track.innerHTML='';
   const makeSet=(suffix)=>{
     const set=document.createElement('div');
@@ -527,66 +525,92 @@ function renderReviewCards(lang){
       if(suffix==='copy')card.setAttribute('aria-hidden','true');
       const top=document.createElement('div');top.className='reviews-card-top';
       const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
-      stars.setAttribute('role','img');stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
+      stars.setAttribute('role','img');
+      stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
       const num=document.createElement('span');num.className='reviews-card-index';
       num.textContent=String(index+1).padStart(2,'0')+' / '+String(reviewExamples.length).padStart(2,'0');
       top.append(stars,num);
       const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
-      const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang];
+      const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
       const foot=document.createElement('div');foot.className='reviews-card-foot';
-      foot.textContent=reviewCategoryLabels[lang][item.category];
+      foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
       card.append(top,quote,copy,foot);set.appendChild(card);
     });
     return set;
   };
   track.append(makeSet('main'),makeSet('copy'));
-  requestAnimationFrame(()=>{viewport.scrollLeft=Math.min(previousPosition,track.scrollWidth/2);});
+  const prev=document.getElementById('reviewsPrev');
+  const next=document.getElementById('reviewsNext');
+  if(prev)prev.setAttribute('aria-label',lang==='tr'?'Önceki yorumlar':lang==='ar'?'التقييمات السابقة':'Previous reviews');
+  if(next)next.setAttribute('aria-label',lang==='tr'?'Sonraki yorumlar':lang==='ar'?'التقييمات التالية':'Next reviews');
+  viewport.setAttribute('aria-label',lang==='tr'?'Müşteri yorumları kaydırmalı alanı':lang==='ar'?'شريط آراء العملاء':'Client feedback carousel');
+  window.dispatchEvent(new Event('reviews:rendered'));
 }
 
-(function initReviewsCarousel(){
- const viewport=document.getElementById('reviewsViewport');
- const track=document.getElementById('reviewsTrack');
- if(!viewport||!track)return;
- let setWidth=0,lastTime=0,raf=0,pausedUntil=0,isDragging=false,startX=0,startScroll=0,dragMoved=false;
- const speed=34;
- const measure=()=>{const set=track.querySelector('.reviews-set');if(set)setWidth=set.getBoundingClientRect().width+16;};
- const normalize=()=>{if(!setWidth)return;if(viewport.scrollLeft>=setWidth)viewport.scrollLeft-=setWidth;else if(viewport.scrollLeft<0)viewport.scrollLeft+=setWidth;};
- const frame=(time)=>{
-   if(lastTime&& !isDragging && time>pausedUntil && !document.hidden){
-     const dt=Math.min(40,time-lastTime);
-     viewport.scrollLeft+=speed*dt/1000;
-     if(setWidth&&viewport.scrollLeft>=setWidth)viewport.scrollLeft-=setWidth;
-   }
-   lastTime=time;raf=requestAnimationFrame(frame);
- };
- const pause=()=>{pausedUntil=performance.now()+2600;};
- viewport.addEventListener('pointerdown',event=>{
-   if(event.pointerType==='mouse'&&event.button!==0)return;
-   isDragging=true;dragMoved=false;startX=event.clientX;startScroll=viewport.scrollLeft;
-   viewport.classList.add('is-dragging');viewport.setPointerCapture?.(event.pointerId);pause();
- });
- viewport.addEventListener('pointermove',event=>{
-   if(!isDragging)return;
-   const delta=event.clientX-startX;
-   if(Math.abs(delta)>4)dragMoved=true;
-   viewport.scrollLeft=startScroll-delta;
-   normalize();
- });
- const release=event=>{
-   if(!isDragging)return;isDragging=false;viewport.classList.remove('is-dragging');pause();
-   try{if(event&&viewport.hasPointerCapture?.(event.pointerId))viewport.releasePointerCapture(event.pointerId);}catch(e){}
- };
- viewport.addEventListener('pointerup',release);
- viewport.addEventListener('pointercancel',release);
- viewport.addEventListener('lostpointercapture',()=>{isDragging=false;viewport.classList.remove('is-dragging');});
- viewport.addEventListener('click',event=>{if(dragMoved){event.preventDefault();event.stopPropagation();dragMoved=false;}});
- viewport.addEventListener('wheel',pause,{passive:true});
- document.getElementById('reviewsPrev')?.addEventListener('click',()=>{pause();viewport.scrollLeft-=330;normalize();});
- document.getElementById('reviewsNext')?.addEventListener('click',()=>{pause();viewport.scrollLeft+=330;normalize();});
- window.addEventListener('resize',()=>{measure();normalize();});
- document.addEventListener('visibilitychange',()=>{lastTime=0;});
- requestAnimationFrame(()=>{measure();viewport.scrollLeft=setWidth;raf=requestAnimationFrame(frame);});
-})();
+function initReviewsCarousel(){
+  const viewport=document.getElementById('reviewsViewport');
+  const track=document.getElementById('reviewsTrack');
+  if(!viewport||!track||viewport.dataset.carouselReady==='true')return;
+  viewport.dataset.carouselReady='true';
+  let setWidth=0,offset=0,lastTime=0,pausedUntil=0,isDragging=false,startX=0,startOffset=0,dragMoved=false;
+  const speed=38;
+  const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+  const wrap=value=>setWidth?((value%setWidth)+setWidth)%setWidth:0;
+  const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
+  const measure=()=>{
+    const set=track.querySelector('.reviews-set');
+    if(!set)return;
+    const gap=parseFloat(getComputedStyle(track).columnGap||getComputedStyle(track).gap||'16')||16;
+    setWidth=set.getBoundingClientRect().width+gap;
+    offset=wrap(offset);
+    draw();
+  };
+  const pauseFor=(ms=2200)=>{pausedUntil=performance.now()+ms;};
+  const moveBy=delta=>{pauseFor();offset=wrap(offset+delta);draw();};
+  const frame=time=>{
+    if(lastTime&&!isDragging&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches){
+      const dt=Math.min(50,time-lastTime);
+      offset=wrap(offset+speed*dt/1000);
+      draw();
+    }
+    lastTime=time;
+    requestAnimationFrame(frame);
+  };
+  viewport.addEventListener('pointerdown',event=>{
+    if(event.pointerType==='mouse'&&event.button!==0)return;
+    isDragging=true;dragMoved=false;startX=event.clientX;startOffset=offset;
+    viewport.classList.add('is-dragging');pauseFor();
+    try{viewport.setPointerCapture(event.pointerId);}catch(e){}
+  });
+  viewport.addEventListener('pointermove',event=>{
+    if(!isDragging)return;
+    const delta=event.clientX-startX;
+    if(Math.abs(delta)>4)dragMoved=true;
+    offset=wrap(startOffset-delta);
+    draw();
+  });
+  const release=event=>{
+    if(!isDragging)return;
+    isDragging=false;viewport.classList.remove('is-dragging');pauseFor(1800);
+    try{if(event&&viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);}catch(e){}
+  };
+  viewport.addEventListener('pointerup',release);
+  viewport.addEventListener('pointercancel',release);
+  viewport.addEventListener('lostpointercapture',()=>{isDragging=false;viewport.classList.remove('is-dragging');});
+  viewport.addEventListener('click',event=>{
+    if(dragMoved){event.preventDefault();event.stopPropagation();dragMoved=false;}
+  });
+  viewport.addEventListener('wheel',()=>pauseFor(),{passive:true});
+  viewport.addEventListener('mouseenter',()=>pauseFor(1200));
+  document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-330);});
+  document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(330);});
+  window.addEventListener('resize',measure,{passive:true});
+  window.addEventListener('orientationchange',measure,{passive:true});
+  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(measure));
+  document.addEventListener('visibilitychange',()=>{lastTime=0;});
+  requestAnimationFrame(()=>{measure();offset=0;draw();});
+  requestAnimationFrame(frame);
+}
 
 const translations={
 en:{navStory:"Our vision",navServices:"Services",navProcess:"Our process",navContact:"Contact",navBlog:"Digital Blog",reviewsKicker:"CUSTOMER FEEDBACK",reviewsTitle:'Good work is <em>felt.</em>',reviewsIntro:"A few words from clients across our website, branding and digital growth projects.",reviewsCount:"50 client reviews · Five-star feedback",reviewsHint:"Swipe or drag in either direction",reviewsCarouselLabel:"Client feedback carousel",blogKicker:"THE DIGITAL BLOG",blogTitle:'Ideas that move <em>business forward.</em>',blogIntro:"Practical guides for clearer brands, better websites and smarter digital growth — built around real business decisions.",blogTag1:"BRAND & STRATEGY",blogCat1Title:"Build a brand people remember",blogCat1Desc:"Positioning, brand voice and visual identity that make your business distinct and consistent.",blogTag2:"WEB & SEO",blogCat2Title:"Turn your website into a growth tool",blogCat2Desc:"UX, technical foundations, content structure and search visibility for service businesses.",blogTag3:"CONTENT & GROWTH",blogCat3Title:"Create content with a purpose",blogCat3Desc:"Video, social media, campaigns and practical AI workflows that support real goals.",blogCta:"EXPLORE THE DIGITAL BLOG ",eyebrow:"An independent creative studio from somewhere beyond the ordinary",heroLine1:"HELLO",heroLine2:"EARTHLINGS.",heroSub:"Our coordinates are classified. Our mission is not: we bring unusual ideas to Earth as distinctive brands, sharp digital experiences and measurable momentum.",heroCta:"LET'S BUILD SOMETHING",discover:"Discover RocketPen",heroFoot:"TRANSMISSION FROM AN UNDISCLOSED ORBIT",scroll:"SCROLL TO EXPLORE",storyKicker:"Officially a studio. Unofficially, visitors from elsewhere.",storyTitle:'Earth looks different from <em>the other side of the galaxy.</em>',manifestoTitle:'Our headquarters are somewhere in space. <span>Our brief is right here on Earth.</span>',manifestoCopy:"According to our slightly suspicious origin story, RocketPen arrived from a distant corner of the universe on a mission to make Earth’s ideas harder to ignore. Our coordinates remain classified; our process does not. We combine strategy, design and digital craft to help ambitious businesses look distinct, speak clearly and move forward. No abductions. Just exceptionally good creative work.",manifestoNote:"An extraterrestrial point of view. Earthbound results.",servicesKicker:"What we bring to life",servicesTitle:'One vision.<br><em>Many ways forward.</em>',servicesIntro:"A connected creative partner for the moments that matter — from shaping your identity to launching your next big move.",s1Title:"Brand Strategy & Identity",s1Desc:"Positioning, naming, visual identity and rebranding that make your business unmistakably yours.",s2Title:"Websites & Digital Experiences",s2Desc:"Premium, responsive websites built to communicate clearly, earn trust and turn attention into action.",s3Title:"Creative & Graphic Design",s3Desc:"Art direction, campaign visuals and design systems with clarity, character and a point of view.",s4Title:"Reels, Film & Motion",s4Desc:"Cinematic short-form content and motion-led stories designed to stop the scroll and stay remembered.",s5Title:"Social Media & Content",s5Desc:"A consistent social presence shaped by creative direction, purposeful content and a recognisable voice.",s6Title:"Campaigns & Digital Growth",s6Desc:"Launch concepts, paid campaign creative and connected digital touchpoints built around your business goals.",statementKicker:"The RocketPen approach",statementTitle:'Make it mean<br>something. <span>Make it move.</span>',statementCopy:"Beautiful is a beginning. Purpose gives it direction. We connect creative craft with clear thinking — so your brand doesn't just look different. It feels different, speaks clearly and moves with intention.",processKicker:"A clear path from idea to impact",processTitle:'Dream it.<br><em>Make it real.</em>',p1Title:"Understand",p1Desc:"We listen, ask better questions and uncover what makes your business matter.",p2Title:"Find the direction",p2Desc:"We align your goals, audience and story around one clear creative direction.",p3Title:"Bring it to life",p3Desc:"We design, build and refine every detail with purpose and precision.",p4Title:"Move forward",p4Desc:"We help you launch with confidence and create room for what's next.",contactKicker:"Your next chapter starts here",contactTitle:'Have a big idea?<br><span>Let\'s launch it.</span>',contactDesc:"Tell us what you're imagining. Whether you're building something new or ready to take an existing brand further, let's find the right way forward.",contactCardKicker:"LET'S MAKE IT HAPPEN",contactCardText:"Share a little about your project and we'll take it from there.",contactCta:"START A CONVERSATION",footerSlogan:"BUILD. LAUNCH. GROW.",languageLabel:"LANGUAGE"},
@@ -603,7 +627,7 @@ document.addEventListener('click',event=>{if(!languagePicker.contains(event.targ
 
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePicker.classList.contains('is-open')){event.preventDefault();closeLanguageMenu();langButton.focus();return}if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
 
-setLang(pageLang);syncLanguageOptions();
+setLang(pageLang);initReviewsCarousel();syncLanguageOptions();
 document.getElementById('year').textContent=new Date().getFullYear();
 const nav=document.querySelector('.nav'),progress=document.getElementById('scrollProgress');
 const updateScroll=()=>{
