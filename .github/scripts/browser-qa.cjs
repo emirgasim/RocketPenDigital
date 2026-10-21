@@ -128,6 +128,8 @@ async function reviewCarouselState(page) {
   });
 }
 async function dragReviews(page, direction, step) {
+  await page.locator('#reviewsViewport').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(100);
   await page.evaluate(() => {
     const viewport = document.querySelector('#reviewsViewport');
     if (!viewport || viewport.dataset.qaTrace === 'true') return;
