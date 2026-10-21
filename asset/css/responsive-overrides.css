@@ -774,3 +774,75 @@ html body header.nav.is-scrolled {
     font-size: clamp(2.3rem, 9vw, 2.65rem) !important;
   }
 }
+
+
+/* Arabic RTL header alignment: keep the brand anchored on the right and the language control on the left.
+   Override older absolute-positioning rules without changing header height or the visual theme. */
+html[dir="rtl"] body header.nav,
+body.arabic header.nav {
+  direction: rtl !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+html[dir="rtl"] body header.nav > .logo,
+body.arabic header.nav > .logo {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  order: 0 !important;
+  align-self: center !important;
+  flex: 0 1 auto !important;
+}
+html[dir="rtl"] body header.nav > .nav-right,
+body.arabic header.nav > .nav-right {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  order: 1 !important;
+  align-self: center !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+html[dir="rtl"] body header.nav > .nav-right .language-picker,
+body.arabic header.nav > .nav-right .language-picker {
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+html[dir="rtl"] body header.nav > .nav-right .lang,
+body.arabic header.nav > .nav-right .lang {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+@media (max-width: 760px) {
+  html[dir="rtl"] body header.nav,
+  body.arabic header.nav {
+    height: 94px !important;
+    min-height: 94px !important;
+    padding: 12px 20px !important;
+    gap: 12px !important;
+  }
+  html[dir="rtl"] body header.nav > .logo .logo-image,
+  body.arabic header.nav > .logo .logo-image {
+    width: clamp(155px, 48vw, 220px) !important;
+    max-width: 100% !important;
+    max-height: 48px !important;
+    object-fit: contain !important;
+    object-position: right center !important;
+  }
+  html[dir="rtl"] body header.nav > .nav-right .lang,
+  body.arabic header.nav > .nav-right .lang {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+  }
+}
