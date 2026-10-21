@@ -473,7 +473,7 @@ function renderReviewCards(lang){
     });
     return set;
   };
-  track.append(makeSet('main'),makeSet('copy'));
+  track.append(makeSet('main'),makeSet('copy'),makeSet('copy'));
   const prev=document.getElementById('reviewsPrev');
   const next=document.getElementById('reviewsNext');
   if(prev)prev.setAttribute('aria-label',lang==='tr'?'Önceki yorumlar':lang==='ar'?'التقييمات السابقة':'Previous reviews');
@@ -493,7 +493,7 @@ function initReviewsCarousel(){
   const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
   const bounded=value=>{
     if(!period)return 0;
-    while(value<0)value+=period;
+    while(value<period)value+=period;
     while(value>=period*2)value-=period;
     return value;
   };
@@ -504,7 +504,7 @@ function initReviewsCarousel(){
   const settleAtEquivalentPosition=()=>{
     if(!period)return;
     if(offset>=period*2-1)offset-=period;
-    else if(offset<0)offset+=period;
+    else if(offset<period-1)offset+=period;
     clearSnap();
     draw();
   };
