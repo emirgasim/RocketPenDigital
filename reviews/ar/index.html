@@ -58,6 +58,59 @@ footer{max-width:1600px;margin:0 auto;padding:24px var(--pad);border-top:1px sol
   body.arabic .site-header .header-actions{direction:rtl;justify-content:flex-start}
 }
 
+
+/* Arabic mobile header: keep the brand flush right and locale choices flush left.
+   Hide the return link on narrow screens so it cannot force the language row into a second, centered line. */
+@media(max-width:760px){
+  body.arabic .site-header{
+    direction:rtl;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 20px;
+    min-height:74px;
+    gap:12px;
+  }
+  body.arabic .site-header .brand{
+    flex:0 0 auto;
+    min-width:0;
+    max-width:calc(100% - 118px);
+    margin:0;
+  }
+  body.arabic .site-header .brand img{
+    width:clamp(152px,45vw,205px);
+    max-width:100%;
+    max-height:46px;
+    object-position:right center;
+  }
+  body.arabic .site-header .header-actions{
+    direction:rtl;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    flex:0 0 auto;
+    width:auto;
+    min-width:0;
+    flex-wrap:nowrap;
+    gap:0;
+    margin:0;
+  }
+  body.arabic .site-header .back-home{display:none}
+  body.arabic .site-header .locale-nav{
+    display:flex;
+    flex:0 0 auto;
+    flex-wrap:nowrap;
+    gap:0;
+    margin:0;
+  }
+}
+@media(max-width:360px){
+  body.arabic .site-header{padding:13px 14px;gap:8px}
+  body.arabic .site-header .brand{max-width:calc(100% - 100px)}
+  body.arabic .site-header .brand img{width:clamp(120px,40vw,132px);max-height:42px}
+  body.arabic .site-header .locale-nav a{min-width:27px;padding:7px 3px;font-size:9px}
+}
+
 </style>
 </head>
 <body class="arabic">
