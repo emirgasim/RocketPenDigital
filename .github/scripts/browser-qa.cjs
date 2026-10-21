@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { chromium } = require('playwright');
+const { chromium, webkit } = require('playwright');
 
 const BASE = 'http://127.0.0.1:4173';
 const routes = [
@@ -123,7 +123,10 @@ async function reviewCarouselState(page) {
       visibleCards: visible.length,
       nextCardPeek: peek,
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-      setCount: track.querySelectorAll('.reviews-set').length
+      setCount: track.querySelectorAll('.reviews-set').length,
+      viewportWidth: viewportRect.width,
+      sectionWidth: viewport.parentElement.getBoundingClientRect().width,
+      firstCardWidth: firstSet.querySelector('.reviews-card').getBoundingClientRect().width
     };
   });
 }
@@ -156,7 +159,8 @@ async function dragReviews(page, direction, step) {
 }
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  const browserType = process.env.QA_BROWSER === 'webkit' ? webkit : chromium;
+  const browser = await browserType.launch({ headless: true });
   const failures = [];
   try {
     const videoHead = await fetch(BASE + '/asset/video/banner-vid1.MP4', { method: 'HEAD' });
@@ -200,6 +204,10 @@ async function dragReviews(page, direction, step) {
       await page.locator('#reviewsViewport').hover();
       await page.waitForTimeout(80);
       const boundaryStart = await reviewCarouselState(page);
+      assert.ok(boundaryStart.viewportWidth >= boundaryStart.sectionWidth - 2,
+        route.path + ' reviews viewport must use the full available mobile width: ' + JSON.stringify(boundaryStart));
+      assert.ok(boundaryStart.viewportWidth > boundaryStart.firstCardWidth,
+        route.path + ' mobile reviews viewport must reveal the next card instead of clipping to one narrow slice: ' + JSON.stringify(boundaryStart));
       const previousExpected = ((boundaryStart.leftIndex - 2 + 50) % 50) + 1;
       await page.locator('#reviewsPrev').click();
       await page.waitForTimeout(500);
@@ -503,7 +511,7 @@ async function dragReviews(page, direction, step) {
     await reduceContext.close();
 
     if (failures.length) throw new Error(failures.join('\n'));
-    console.log('Browser QA passed: locale routes, language menu, Escape/focus, hamburger-free horizontal mobile navigation and viewport bounds (390px/320px), logo/favicon/video asset responses, no-JS content visibility, Arabic RTL, and reduced-motion video behavior.');
+    console.log('Browser QA passed (' + (process.env.QA_BROWSER === 'webkit' ? 'WebKit' : 'Chromium') + '): locale routes, review boundaries/rapid navigation and mobile viewport geometry, language menu, responsive navigation, assets, no-JS visibility, Arabic RTL, and reduced motion.');
   } finally {
     await browser.close();
   }
