@@ -571,77 +571,119 @@ function initReviewsCarousel(){
   const track=document.getElementById('reviewsTrack');
   if(!viewport||!track||viewport.dataset.carouselReady==='true')return;
   viewport.dataset.carouselReady='true';
-  let period=0,stepWidth=0,offset=0,lastTime=0,pausedUntil=0,isDragging=false,startX=0,startOffset=0,dragMoved=false,snapTimer=0;
+
+  let period=0,stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
+  let isDragging=false,startX=0,startOffset=0,dragMoved=false;
+  let snapTimer=0,snapVersion=0;
   const speed=38;
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+
   const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
   const wrapOffset=value=>{
     if(!period)return 0;
-    const normalized=((value%period)+period)%period;
-    return period+normalized;
+    return period+(((value%period)+period)%period);
   };
-  const bounded=value=>wrapOffset(value);
+  const pauseFor=(ms=2400)=>{pausedUntil=performance.now()+ms;};
+
+  // One timer/version owns each animation. Rapid clicks cancel the old finish
+  // callback so an obsolete transition can never jump the track to a stale offset.
   const clearSnap=()=>{
+    snapVersion++;
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
   };
-  const settleAtEquivalentPosition=()=>{
-    if(!period)return;
+  const finishSnap=version=>{
+    if(version!==snapVersion||!period)return;
+    if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
+    track.classList.remove('is-snapping');
     offset=wrapOffset(offset);
-    clearSnap();
     draw();
+    snapVersion++;
   };
+
   const measure=()=>{
     const set=track.querySelector('.reviews-set');
     const firstCard=set&&set.querySelector('.reviews-card');
     if(!set||!firstCard)return;
     const setGap=parseFloat(getComputedStyle(set).gap||'16')||16;
     const trackGap=parseFloat(getComputedStyle(track).gap||'16')||16;
-    stepWidth=firstCard.getBoundingClientRect().width+setGap;
-    period=set.getBoundingClientRect().width+trackGap;
+    const nextStep=firstCard.getBoundingClientRect().width+setGap;
+    const nextPeriod=set.getBoundingClientRect().width+trackGap;
     clearSnap();
+    stepWidth=nextStep;
+    period=nextPeriod;
     offset=period;
     draw();
   };
-  const pauseFor=(ms=2400)=>{pausedUntil=performance.now()+ms;};
-  const animateTo=target=>{
+
+  const rebaseTarget=target=>{
+    // Keep the animated destination well inside the three rendered copies.
+    // Shift the current and destination offsets together; duplicate sets make
+    // this shift visually identical and avoid animating across a blank edge.
+    const low=period*.5,high=period*2.5;
+    if(target<low){
+      offset+=period;
+      target+=period;
+      track.classList.remove('is-snapping');
+      draw();
+      void track.offsetWidth;
+    }else if(target>high){
+      offset-=period;
+      target-=period;
+      track.classList.remove('is-snapping');
+      draw();
+      void track.offsetWidth;
+    }
+    return target;
+  };
+
+  const animateTo=requestedTarget=>{
     if(!period||!stepWidth)return;
     pauseFor();
     clearSnap();
+    const target=rebaseTarget(requestedTarget);
     offset=target;
+    const version=++snapVersion;
+    if(reducedMotion.matches){
+      track.classList.remove('is-snapping');
+      offset=wrapOffset(offset);
+      draw();
+      snapVersion++;
+      return;
+    }
     track.classList.add('is-snapping');
     draw();
-    const finish=event=>{
-      if(event&&event.target!==track)return;
-      if(event&&event.propertyName&&event.propertyName!=='transform')return;
-      track.removeEventListener('transitionend',finish);
-      if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
-      settleAtEquivalentPosition();
-    };
-    track.addEventListener('transitionend',finish);
-    snapTimer=setTimeout(()=>finish(),520);
+    snapTimer=setTimeout(()=>finishSnap(version),470);
   };
+
   const snapToNearest=()=>{
     if(!period||!stepWidth)return;
-    const index=Math.round(offset/stepWidth);
-    animateTo(wrapOffset(index*stepWidth));
+    // Animate to the raw adjacent-copy position first; normalize only after
+    // the card has arrived, so swiping across 1/50 never jumps through the gap.
+    animateTo(Math.round(offset/stepWidth)*stepWidth);
   };
+
   const moveBy=direction=>{
     if(!period||!stepWidth)measure();
     if(!period||!stepWidth)return;
     const currentIndex=Math.round(offset/stepWidth);
-    animateTo(wrapOffset((currentIndex+direction)*stepWidth));
+    animateTo((currentIndex+direction)*stepWidth);
   };
+
   const frame=time=>{
     if(lastTime&&!isDragging&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&period>0&&!track.classList.contains('is-snapping')){
       const dt=Math.min(50,time-lastTime);
       offset+=speed*dt/1000;
-      if(offset>=period*2)offset=wrapOffset(offset);
+      // Re-center before the track can reach its physical end. Because the
+      // sets are identical, the rebase is invisible to the reader.
+      if(offset>=period*2.45)offset-=period;
+      else if(offset<period*.55)offset+=period;
       draw();
     }
     lastTime=time;
     requestAnimationFrame(frame);
   };
+
   viewport.addEventListener('pointerdown',event=>{
     if(event.pointerType==='mouse'&&event.button!==0)return;
     clearSnap();
@@ -654,7 +696,9 @@ function initReviewsCarousel(){
     if(!isDragging||!period)return;
     const delta=event.clientX-startX;
     if(Math.abs(delta)>4)dragMoved=true;
-    offset=bounded(startOffset-delta);
+    offset=startOffset-delta;
+    if(offset>=period*2.45)offset-=period;
+    else if(offset<period*.55)offset+=period;
     draw();
   });
   const finishDrag=event=>{
@@ -668,7 +712,12 @@ function initReviewsCarousel(){
   viewport.addEventListener('pointerup',finishDrag);
   viewport.addEventListener('pointercancel',finishDrag);
   viewport.addEventListener('lostpointercapture',()=>{
-    if(isDragging){isDragging=false;viewport.classList.remove('is-dragging');pauseFor(1800);snapToNearest();}
+    if(isDragging){
+      isDragging=false;
+      viewport.classList.remove('is-dragging');
+      pauseFor(1800);
+      snapToNearest();
+    }
   });
   viewport.addEventListener('click',event=>{
     if(dragMoved){event.preventDefault();event.stopPropagation();dragMoved=false;}
@@ -684,6 +733,7 @@ function initReviewsCarousel(){
   requestAnimationFrame(()=>{measure();offset=period;draw();});
   requestAnimationFrame(frame);
 }
+
 
 const translations={
 en:{navStory:"Our vision",navServices:"Services",navProcess:"Our process",navContact:"Contact",navBlog:"Digital Blog",reviewsKicker:"CUSTOMER FEEDBACK",reviewsTitle:'Good work is <em>felt.</em>',reviewsIntro:"A few words from clients across our website, branding and digital growth projects.",reviewsCount:"50 client reviews · Five-star feedback",reviewsHint:"Swipe or drag in either direction",reviewsCarouselLabel:"Client feedback carousel",reviewsViewAll:"Read all reviews ↗",blogKicker:"THE DIGITAL BLOG",blogTitle:'Ideas that move <em>business forward.</em>',blogIntro:"Practical guides for clearer brands, better websites and smarter digital growth — built around real business decisions.",blogTag1:"BRAND & STRATEGY",blogCat1Title:"Build a brand people remember",blogCat1Desc:"Positioning, brand voice and visual identity that make your business distinct and consistent.",blogTag2:"WEB & SEO",blogCat2Title:"Turn your website into a growth tool",blogCat2Desc:"UX, technical foundations, content structure and search visibility for service businesses.",blogTag3:"CONTENT & GROWTH",blogCat3Title:"Create content with a purpose",blogCat3Desc:"Video, social media, campaigns and practical AI workflows that support real goals.",blogCta:"EXPLORE THE DIGITAL BLOG ",eyebrow:"An independent creative studio from somewhere beyond the ordinary",heroLine1:"HELLO",heroLine2:"EARTHLINGS.",heroSub:"Our coordinates are classified. Our mission is not: we bring unusual ideas to Earth as distinctive brands, sharp digital experiences and measurable momentum.",heroCta:"LET'S BUILD SOMETHING",discover:"Discover RocketPen",heroFoot:"TRANSMISSION FROM AN UNDISCLOSED ORBIT",scroll:"SCROLL TO EXPLORE",storyKicker:"Officially a studio. Unofficially, visitors from elsewhere.",storyTitle:'Earth looks different from <em>the other side of the galaxy.</em>',manifestoTitle:'Our headquarters are somewhere in space. <span>Our brief is right here on Earth.</span>',manifestoCopy:"According to our slightly suspicious origin story, RocketPen arrived from a distant corner of the universe on a mission to make Earth’s ideas harder to ignore. Our coordinates remain classified; our process does not. We combine strategy, design and digital craft to help ambitious businesses look distinct, speak clearly and move forward. No abductions. Just exceptionally good creative work.",manifestoNote:"An extraterrestrial point of view. Earthbound results.",servicesKicker:"What we bring to life",servicesTitle:'One vision.<br><em>Many ways forward.</em>',servicesIntro:"A connected creative partner for the moments that matter — from shaping your identity to launching your next big move.",s1Title:"Brand Strategy & Identity",s1Desc:"Positioning, naming, visual identity and rebranding that make your business unmistakably yours.",s2Title:"Websites & Digital Experiences",s2Desc:"Premium, responsive websites built to communicate clearly, earn trust and turn attention into action.",s3Title:"Creative & Graphic Design",s3Desc:"Art direction, campaign visuals and design systems with clarity, character and a point of view.",s4Title:"Reels, Film & Motion",s4Desc:"Cinematic short-form content and motion-led stories designed to stop the scroll and stay remembered.",s5Title:"Social Media & Content",s5Desc:"A consistent social presence shaped by creative direction, purposeful content and a recognisable voice.",s6Title:"Campaigns & Digital Growth",s6Desc:"Launch concepts, paid campaign creative and connected digital touchpoints built around your business goals.",statementKicker:"The RocketPen approach",statementTitle:'Make it mean<br>something. <span>Make it move.</span>',statementCopy:"Beautiful is a beginning. Purpose gives it direction. We connect creative craft with clear thinking — so your brand doesn't just look different. It feels different, speaks clearly and moves with intention.",processKicker:"A clear path from idea to impact",processTitle:'Dream it.<br><em>Make it real.</em>',p1Title:"Understand",p1Desc:"We listen, ask better questions and uncover what makes your business matter.",p2Title:"Find the direction",p2Desc:"We align your goals, audience and story around one clear creative direction.",p3Title:"Bring it to life",p3Desc:"We design, build and refine every detail with purpose and precision.",p4Title:"Move forward",p4Desc:"We help you launch with confidence and create room for what's next.",contactKicker:"Your next chapter starts here",contactTitle:'Have a big idea?<br><span>Let\'s launch it.</span>',contactDesc:"Tell us what you're imagining. Whether you're building something new or ready to take an existing brand further, let's find the right way forward.",contactCardKicker:"LET'S MAKE IT HAPPEN",contactCardText:"Share a little about your project and we'll take it from there.",contactCta:"START A CONVERSATION",footerSlogan:"BUILD. LAUNCH. GROW.",languageLabel:"LANGUAGE"},
