@@ -444,37 +444,41 @@ const reviewCategoryLabels={
  tr:{website:"WEB SİTESİ VE DİJİTAL DENEYİM",seo:"SEO VE GOOGLE GÖRÜNÜRLÜĞÜ",social:"SOSYAL MEDYA VE İÇERİK",ads:"DİJİTAL REKLAM VE PERFORMANS",brand:"MARKA KİMLİĞİ VE TASARIM",ecommerce:"E-TİCARET",global:"ÇOK DİLLİ VE ULUSLARARASI",strategy:"STRATEJİ VE DANIŞMANLIK"},
  ar:{website:"المواقع والتجربة الرقمية",seo:"تحسين محركات البحث",social:"التواصل الاجتماعي والمحتوى",ads:"الإعلانات والأداء الرقمي",brand:"هوية العلامة والتصميم",ecommerce:"التجارة الإلكترونية",global:"متعدد اللغات والأسواق الدولية",strategy:"الاستراتيجية والاستشارات"}
 };
+let reviewCarouselIndex=0;
+let reviewCarouselLang='en';
+
 function renderReviewCards(lang){
   const track=document.getElementById('reviewsTrack');
   const viewport=document.getElementById('reviewsViewport');
   if(!track||!viewport)return;
+  reviewCarouselLang=lang;
   track.innerHTML='';
-  const makeSet=(suffix)=>{
-    const set=document.createElement('div');
-    set.className='reviews-set';
-    set.setAttribute('aria-hidden',suffix==='copy'?'true':'false');
-    reviewExamples.forEach((item,index)=>{
-      const card=document.createElement('article');
-      card.className='reviews-card';
-      card.lang=lang;
-      card.setAttribute('dir',lang==='ar'?'rtl':'ltr');
-      if(suffix==='copy')card.setAttribute('aria-hidden','true');
-      const top=document.createElement('div');top.className='reviews-card-top';
-      const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
-      stars.setAttribute('role','img');
-      stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
-      const num=document.createElement('span');num.className='reviews-card-index';
-      num.textContent=String(index+1).padStart(2,'0')+' / '+String(reviewExamples.length).padStart(2,'0');
-      top.append(stars,num);
-      const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
-      const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
-      const foot=document.createElement('div');foot.className='reviews-card-foot';
-      foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
-      card.append(top,quote,copy,foot);set.appendChild(card);
-    });
-    return set;
-  };
-  track.append(makeSet('main'),makeSet('copy'),makeSet('copy'));
+  const count=reviewExamples.length;
+  // Keep only a small rolling window in the DOM. A 150-card transformed
+  // strip can exceed WebKit's compositing limits and vanish near its edges.
+  for(let delta=-1;delta<=3;delta++){
+    const index=(reviewCarouselIndex+delta+count)%count;
+    const item=reviewExamples[index];
+    const card=document.createElement('article');
+    card.className='reviews-card';
+    card.lang=lang;
+    card.dataset.reviewIndex=String(index+1);
+    card.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+    if(delta===-1)card.setAttribute('aria-hidden','true');
+    const top=document.createElement('div');top.className='reviews-card-top';
+    const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
+    stars.setAttribute('role','img');
+    stars.setAttribute('aria-label',lang==='tr'?'5 üzerinden 5 yıldız':lang==='ar'?'5 من 5 نجوم':'5 out of 5 stars');
+    const num=document.createElement('span');num.className='reviews-card-index';
+    num.textContent=String(index+1).padStart(2,'0')+' / '+String(count).padStart(2,'0');
+    top.append(stars,num);
+    const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
+    const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
+    const foot=document.createElement('div');foot.className='reviews-card-foot';
+    foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
+    card.append(top,quote,copy,foot);
+    track.appendChild(card);
+  }
   const prev=document.getElementById('reviewsPrev');
   const next=document.getElementById('reviewsNext');
   if(prev)prev.setAttribute('aria-label',lang==='tr'?'Önceki yorumlar':lang==='ar'?'التقييمات السابقة':'Previous reviews');
@@ -489,118 +493,85 @@ function initReviewsCarousel(){
   if(!viewport||!track||viewport.dataset.carouselReady==='true')return;
   viewport.dataset.carouselReady='true';
 
-  let period=0,stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
+  let stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
   let isDragging=false,startX=0,startOffset=0,dragMoved=false;
-  let snapTimer=0,snapVersion=0;
+  let snapTimer=0,snapVersion=0,pendingIndex=reviewCarouselIndex;
   const speed=38;
+  const count=reviewExamples.length;
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
 
   const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
-  const wrapOffset=value=>{
-    if(!period)return 0;
-    return period+(((value%period)+period)%period);
-  };
+  const wrapIndex=value=>((value%count)+count)%count;
   const pauseFor=(ms=2400)=>{pausedUntil=performance.now()+ms;};
-
-  // One timer/version owns each animation. Rapid clicks cancel the old finish
-  // callback so an obsolete transition can never jump the track to a stale offset.
   const clearSnap=()=>{
     snapVersion++;
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
   };
+  const measureCards=()=>{
+    const cards=track.querySelectorAll('.reviews-card');
+    if(cards.length<2)return;
+    const first=cards[0].getBoundingClientRect();
+    const second=cards[1].getBoundingClientRect();
+    const measured=second.left-first.left;
+    if(measured>0)stepWidth=measured;
+  };
   const finishSnap=version=>{
-    if(version!==snapVersion||!period)return;
+    if(version!==snapVersion||!stepWidth)return;
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
-    offset=wrapOffset(offset);
+    reviewCarouselIndex=pendingIndex;
+    renderReviewCards(reviewCarouselLang);
+    measureCards();
+    offset=stepWidth;
     draw();
     snapVersion++;
   };
-
   const measure=()=>{
-    const set=track.querySelector('.reviews-set');
-    const firstCard=set&&set.querySelector('.reviews-card');
-    if(!set||!firstCard)return;
-    const cards=set.querySelectorAll('.reviews-card');
-    if(!cards.length)return;
-    // Measure the actual rendered distance between cards, then derive one full
-    // 50-card repeat from that step. This keeps Safari sub-pixel rounding from
-    // accumulating a mismatch between the snap distance and the copy boundary.
-    const firstRect=firstCard.getBoundingClientRect();
-    const secondRect=cards[1]?.getBoundingClientRect();
-    const fallbackGap=parseFloat(getComputedStyle(set).gap||'16')||16;
-    const nextStep=secondRect?secondRect.left-firstRect.left:firstRect.width+fallbackGap;
-    const nextPeriod=nextStep*cards.length;
-    clearSnap();
-    stepWidth=nextStep;
-    period=nextPeriod;
-    offset=period;
-    draw();
-  };
-
-  const rebaseTarget=target=>{
-    // Keep the animated destination well inside the three rendered copies.
-    // Shift the current and destination offsets together; duplicate sets make
-    // this shift visually identical and avoid animating across a blank edge.
-    const low=period*.5,high=period*2.5;
-    if(target<low){
-      offset+=period;
-      target+=period;
-      track.classList.remove('is-snapping');
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
+    measureCards();
+    if(!isDragging&&!track.classList.contains('is-snapping')){
+      offset=stepWidth;
       draw();
-      void track.offsetWidth;
-    }else if(target>high){
-      offset-=period;
-      target-=period;
-      track.classList.remove('is-snapping');
-      draw();
-      void track.offsetWidth;
     }
-    return target;
   };
-
-  const animateTo=requestedTarget=>{
-    if(!period||!stepWidth)return;
+  const animateToWindowPosition=(position,targetIndex)=>{
+    if(!stepWidth)measureCards();
+    if(!stepWidth)return;
     pauseFor();
     clearSnap();
-    const target=rebaseTarget(requestedTarget);
-    offset=target;
+    pendingIndex=wrapIndex(targetIndex);
+    // Force the current drag/position transform to be committed before
+    // enabling the transition to its small-window destination.
+    draw();
+    void track.offsetWidth;
     const version=++snapVersion;
+    offset=position*stepWidth;
     if(reducedMotion.matches){
-      track.classList.remove('is-snapping');
-      offset=wrapOffset(offset);
       draw();
-      snapVersion++;
+      finishSnap(version);
       return;
     }
     track.classList.add('is-snapping');
     draw();
     snapTimer=setTimeout(()=>finishSnap(version),470);
   };
-
-  const snapToNearest=()=>{
-    if(!period||!stepWidth)return;
-    // Animate to the raw adjacent-copy position first; normalize only after
-    // the card has arrived, so swiping across 1/50 never jumps through the gap.
-    animateTo(Math.round(offset/stepWidth)*stepWidth);
-  };
-
   const moveBy=direction=>{
-    if(!period||!stepWidth)measure();
-    if(!period||!stepWidth)return;
-    const currentIndex=Math.round(offset/stepWidth);
-    animateTo((currentIndex+direction)*stepWidth);
+    if(!stepWidth)measureCards();
+    if(!stepWidth)return;
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
+    animateToWindowPosition(direction>0?2:0,reviewCarouselIndex+direction);
   };
-
   const frame=time=>{
-    if(lastTime&&!isDragging&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&period>0&&!track.classList.contains('is-snapping')){
+    if(lastTime&&!isDragging&&!track.classList.contains('is-snapping')&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&stepWidth>0){
       const dt=Math.min(50,time-lastTime);
       offset+=speed*dt/1000;
-      // Re-center before the track can reach its physical end. Because the
-      // sets are identical, the rebase is invisible to the reader.
-      if(offset>=period*2.45)offset-=period;
-      else if(offset<period*.55)offset+=period;
+      if(offset>=stepWidth*2){
+        reviewCarouselIndex=wrapIndex(reviewCarouselIndex+1);
+        renderReviewCards(reviewCarouselLang);
+        measureCards();
+        offset=stepWidth;
+      }
       draw();
     }
     lastTime=time;
@@ -609,6 +580,7 @@ function initReviewsCarousel(){
 
   viewport.addEventListener('pointerdown',event=>{
     if(event.pointerType==='mouse'&&event.button!==0)return;
+    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
     clearSnap();
     isDragging=true;dragMoved=false;startX=event.clientX;startOffset=offset;
     viewport.classList.add('is-dragging');
@@ -616,12 +588,11 @@ function initReviewsCarousel(){
     try{viewport.setPointerCapture(event.pointerId);}catch(e){}
   });
   viewport.addEventListener('pointermove',event=>{
-    if(!isDragging||!period)return;
+    if(!isDragging||!stepWidth)return;
     const delta=event.clientX-startX;
     if(Math.abs(delta)>4)dragMoved=true;
-    offset=startOffset-delta;
-    if(offset>=period*2.45)offset-=period;
-    else if(offset<period*.55)offset+=period;
+    const maxOffset=stepWidth*(track.querySelectorAll('.reviews-card').length-1);
+    offset=Math.max(0,Math.min(maxOffset,startOffset-delta));
     draw();
   });
   const finishDrag=event=>{
@@ -630,7 +601,8 @@ function initReviewsCarousel(){
     viewport.classList.remove('is-dragging');
     pauseFor(1800);
     try{if(event&&viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);}catch(e){}
-    snapToNearest();
+    const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
+    animateToWindowPosition(position,reviewCarouselIndex+position-1);
   };
   viewport.addEventListener('pointerup',finishDrag);
   viewport.addEventListener('pointercancel',finishDrag);
@@ -639,7 +611,8 @@ function initReviewsCarousel(){
       isDragging=false;
       viewport.classList.remove('is-dragging');
       pauseFor(1800);
-      snapToNearest();
+      const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
+      animateToWindowPosition(position,reviewCarouselIndex+position-1);
     }
   });
   viewport.addEventListener('click',event=>{
@@ -649,11 +622,13 @@ function initReviewsCarousel(){
   viewport.addEventListener('mouseenter',()=>pauseFor(1200));
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
-  window.addEventListener('resize',measure,{passive:true});
-  window.addEventListener('orientationchange',measure,{passive:true});
-  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(measure));
+  window.addEventListener('resize',()=>{if(!isDragging)measure();},{passive:true});
+  window.addEventListener('orientationchange',()=>{if(!isDragging)measure();},{passive:true});
+  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(()=>{
+    if(!isDragging&&!track.classList.contains('is-snapping'))measure();
+  }));
   document.addEventListener('visibilitychange',()=>{lastTime=0;});
-  requestAnimationFrame(()=>{measure();offset=period;draw();});
+  requestAnimationFrame(()=>{measureCards();offset=stepWidth;draw();});
   requestAnimationFrame(frame);
 }
 
