@@ -194,6 +194,51 @@ async function dragReviews(page, direction, step) {
       await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 150);
       assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 3, 'carousel should have three copies for seamless looping');
       assert.equal(await page.locator('#reviewsTrack .reviews-set').first().locator('.reviews-card').count(), 50, 'each carousel set should contain all 50 reviews');
+// Verify both wrap boundaries and rapid repeated navigation before unrelated
+      // language-menu checks, so carousel regressions are surfaced directly.
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(80);
+      const boundaryStart = await reviewCarouselState(page);
+      const previousExpected = ((boundaryStart.leftIndex - 2 + 50) % 50) + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevBoundary = await reviewCarouselState(page);
+      assert.equal(afterPrevBoundary.leftIndex, previousExpected, route.path + ' previous arrow must wrap from review 1 to review 50: ' + JSON.stringify({boundaryStart,afterPrevBoundary}));
+      assert.ok(afterPrevBoundary.alignment <= 5 && afterPrevBoundary.visibleCards >= 2, route.path + ' previous boundary must keep cards visible: ' + JSON.stringify(afterPrevBoundary));
+
+      const nextExpected = (afterPrevBoundary.leftIndex % 50) + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNextBoundary = await reviewCarouselState(page);
+      assert.equal(afterNextBoundary.leftIndex, nextExpected, route.path + ' next arrow must wrap from review 50 to review 1: ' + JSON.stringify({afterPrevBoundary,afterNextBoundary}));
+      assert.ok(afterNextBoundary.alignment <= 5 && afterNextBoundary.visibleCards >= 2, route.path + ' next boundary must keep cards visible: ' + JSON.stringify(afterNextBoundary));
+
+      const burstStart = await reviewCarouselState(page);
+      const burstMoves = 137;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsPrev');
+        for (let i=0;i<count;i++) button.click();
+      }, burstMoves);
+      await page.waitForTimeout(520);
+      const afterPrevBurst = await reviewCarouselState(page);
+      const expectedAfterPrevBurst = ((burstStart.leftIndex - 1 - burstMoves + 5000) % 50) + 1;
+      assert.equal(afterPrevBurst.leftIndex, expectedAfterPrevBurst, route.path + ' 137 rapid previous clicks must keep the loop stable: ' + JSON.stringify({burstStart,afterPrevBurst}));
+      assert.ok(afterPrevBurst.alignment <= 5 && afterPrevBurst.visibleCards >= 2, route.path + ' previous burst must not make cards disappear: ' + JSON.stringify(afterPrevBurst));
+
+      const nextBurstMoves = 189;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsNext');
+        for (let i=0;i<count;i++) button.click();
+      }, nextBurstMoves);
+      await page.waitForTimeout(520);
+      const afterNextBurst = await reviewCarouselState(page);
+      const expectedAfterNextBurst = ((expectedAfterPrevBurst - 1 + nextBurstMoves) % 50) + 1;
+      assert.equal(afterNextBurst.leftIndex, expectedAfterNextBurst, route.path + ' 189 rapid next clicks must keep the loop stable: ' + JSON.stringify({afterNextBurst,expectedAfterNextBurst}));
+      assert.ok(afterNextBurst.alignment <= 5 && afterNextBurst.visibleCards >= 2, route.path + ' next burst must not make cards disappear: ' + JSON.stringify(afterNextBurst));
+
+      await page.evaluate(() => window.scrollTo(0,0));
+      await page.waitForTimeout(80);
       if (route.lang === 'ar') {
         const headerAlignment = await page.evaluate(() => {
           const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
