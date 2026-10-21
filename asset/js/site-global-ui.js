@@ -35,7 +35,8 @@
   var update=function(){
     var root=document.documentElement;
     var max=Math.max(0,root.scrollHeight-window.innerHeight);
-    var ratio=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+    var current=Math.max(0,window.scrollY||root.scrollTop||0);
+    var ratio=max>0?Math.min(1,Math.max(0,current/max)):0;
     fill.style.width=(ratio*100)+'%';
   };
   window.addEventListener('scroll',update,{passive:true});
