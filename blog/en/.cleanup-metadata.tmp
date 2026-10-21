@@ -722,6 +722,11 @@
       "slug": "ugc-content-strategy.html",
       "title": "User-Generated Content Strategy: Use Customer Contributions Responsibly",
       "description": "A user-generated content strategy guide to consent, moderation, usage rights, authenticity, accessibility and measuring how customer contributions support decisions."
+    },
+    {
+      "slug": "website-project-timeline.html",
+      "title": "Website Project Timeline: Plan Around Decisions and Dependencies",
+      "description": "A website project timeline guide to discovery, content, design, development, review, launch dependencies and realistic milestone planning."
     }
   ]
 }
