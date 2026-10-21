@@ -250,12 +250,34 @@ async function dragReviews(page, direction, step) {
       await page.waitForTimeout(80);
       if (route.lang === 'ar') {
         const headerAlignment = await page.evaluate(() => {
-          const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+          const logoElement = document.querySelector('header.nav > .logo');
+          const imageElement = logoElement.querySelector('.logo-image');
+          const logo = logoElement.getBoundingClientRect();
+          const image = imageElement.getBoundingClientRect();
           const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
-          return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+          const glow = getComputedStyle(logoElement, '::before');
+          const glowLeft = logo.left + (parseFloat(glow.left) || 0);
+          const glowWidth = parseFloat(glow.width) || 0;
+          return {
+            width: innerWidth,
+            logoCenter: (logo.left + logo.right) / 2,
+            languageCenter: (language.left + language.right) / 2,
+            logoWidth: logo.width,
+            imageWidth: image.width,
+            imageLeft: image.left,
+            glowLeft,
+            glowRight: glowLeft + glowWidth,
+            glowWidth
+          };
         });
         assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic homepage logo should stay on the right: ' + JSON.stringify(headerAlignment));
         assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        assert.ok(Math.abs(headerAlignment.logoWidth - headerAlignment.imageWidth) <= 2,
+          'Arabic logo link must shrink-wrap the actual logo image instead of leaving a wide empty area: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.glowWidth > 0,
+          'Arabic homepage rocket backlight must exist: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.glowRight <= headerAlignment.imageLeft + headerAlignment.imageWidth * 0.42,
+          'Arabic rocket backlight must stay behind the rocket mark, not float between the menu and wordmark: ' + JSON.stringify(headerAlignment));
       }
 
       await page.locator('#lang').click();
@@ -478,12 +500,18 @@ async function dragReviews(page, direction, step) {
           width: document.documentElement.clientWidth,
           scrollWidth: document.documentElement.scrollWidth,
           logo: (() => { const r = document.querySelector('.site-header .brand').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+          locale: (() => { const r = document.querySelector('.site-header .locale-nav').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
           actions: (() => { const r = document.querySelector('.site-header .header-actions').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+          backHomeDisplay: getComputedStyle(document.querySelector('.site-header .back-home')).display,
         }));
         assert.ok(metrics.scrollWidth <= width + 1, route.path + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
         if (route.lang === 'ar') {
           assert.ok(metrics.logo.center > width / 2, width + 'px Arabic review-list logo should stay on the right: ' + JSON.stringify(metrics));
-          assert.ok(metrics.actions.center < width / 2, width + 'px Arabic review-list actions should stay on the left: ' + JSON.stringify(metrics));
+          assert.ok(metrics.locale.center < width / 2, width + 'px Arabic language choices should stay on the left: ' + JSON.stringify(metrics));
+          assert.ok(Math.abs((width - metrics.logo.right) - metrics.locale.left) <= 10,
+            width + 'px Arabic logo and locale menu should have symmetric outer margins: ' + JSON.stringify(metrics));
+          assert.equal(metrics.backHomeDisplay, 'none',
+            width + 'px Arabic review header should hide the return link rather than push languages onto a second centered row');
         }
       }
       await context.close();
