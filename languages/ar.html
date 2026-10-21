@@ -310,12 +310,10 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
 .reviews-control:hover,.reviews-control:focus-visible{background:var(--yellow);border-color:var(--yellow);color:#08090b;outline:none}
 .reviews-view-all{display:inline-flex;align-items:center;gap:7px;color:#b9bec7;font-size:11px;letter-spacing:.35px;white-space:nowrap;text-decoration:none;transition:color .2s ease}
 .reviews-view-all:hover,.reviews-view-all:focus-visible{color:var(--yellow);outline:none}
-.reviews-viewport{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;position:relative;overflow:hidden;cursor:grab;touch-action:pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none}
-.reviews-viewport.is-dragging{cursor:grabbing;user-select:none;-webkit-user-select:none}
-.reviews-track{display:flex;gap:16px;width:max-content;direction:ltr;transform:translate3d(0,0,0);will-change:transform;transition:none}
-.reviews-track.is-snapping{transition:transform .42s cubic-bezier(.22,.61,.36,1)}
-.reviews-viewport.is-dragging .reviews-track{transition:none!important}
+.reviews-viewport{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;position:relative;overflow-x:auto;overflow-y:hidden;cursor:grab;touch-action:pan-x pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.reviews-track{display:flex;gap:16px;width:max-content;direction:ltr;transform:none!important;will-change:auto;transition:none!important}
 .reviews-set{display:flex;gap:16px;flex:0 0 auto;width:max-content}
+.reviews-track>.reviews-card{scroll-snap-align:start}
 .reviews-card{flex:0 0 clamp(275px,29vw,365px);min-height:235px;padding:24px 23px 22px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.13);display:flex;flex-direction:column;gap:17px;white-space:normal;transition:border-color .25s ease,transform .25s ease,background .25s ease}
 .reviews-card:hover{border-color:rgba(255,235,0,.42);background:linear-gradient(145deg,rgba(255,235,0,.065),rgba(255,255,255,.02));transform:translateY(-3px)}
 .reviews-card:active{transform:scale(.985);border-color:var(--yellow);background:linear-gradient(145deg,rgba(255,235,0,.09),rgba(255,255,255,.025))}
@@ -346,7 +344,7 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
  .reviews-foot{align-items:flex-start;flex-direction:column;gap:8px}
 }
 @media(min-width:761px){.arabic .reviews-heading .section-title{font-size:clamp(42px,6.3vw,78px);max-width:100%;line-height:1.18;letter-spacing:0;overflow-wrap:anywhere}}
-@media(prefers-reduced-motion:reduce){.reviews-card,.reviews-control{transition:none}.reviews-track.is-snapping{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.reviews-card,.reviews-control{transition:none}}
 
 </style>
 <link rel="stylesheet" href="/asset/css/responsive-overrides.css">
@@ -445,7 +443,7 @@ const reviewCategoryLabels={
  tr:{website:"WEB SİTESİ VE DİJİTAL DENEYİM",seo:"SEO VE GOOGLE GÖRÜNÜRLÜĞÜ",social:"SOSYAL MEDYA VE İÇERİK",ads:"DİJİTAL REKLAM VE PERFORMANS",brand:"MARKA KİMLİĞİ VE TASARIM",ecommerce:"E-TİCARET",global:"ÇOK DİLLİ VE ULUSLARARASI",strategy:"STRATEJİ VE DANIŞMANLIK"},
  ar:{website:"المواقع والتجربة الرقمية",seo:"تحسين محركات البحث",social:"التواصل الاجتماعي والمحتوى",ads:"الإعلانات والأداء الرقمي",brand:"هوية العلامة والتصميم",ecommerce:"التجارة الإلكترونية",global:"متعدد اللغات والأسواق الدولية",strategy:"الاستراتيجية والاستشارات"}
 };
-let reviewCarouselIndex=0;
+let reviewPreviewIndexes=[];
 let reviewCarouselLang='en';
 
 function renderReviewCards(lang){
@@ -453,19 +451,23 @@ function renderReviewCards(lang){
   const viewport=document.getElementById('reviewsViewport');
   if(!track||!viewport)return;
   reviewCarouselLang=lang;
-  track.innerHTML='';
   const count=reviewExamples.length;
-  // Keep only a small rolling window in the DOM. A 150-card transformed
-  // strip can exceed WebKit's compositing limits and vanish near its edges.
-  for(let delta=-1;delta<=3;delta++){
-    const index=(reviewCarouselIndex+delta+count)%count;
+  if(!reviewPreviewIndexes.length){
+    const shuffled=Array.from({length:count},(_,index)=>index);
+    for(let i=shuffled.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
+    }
+    reviewPreviewIndexes=shuffled.slice(0,Math.min(5,count));
+  }
+  track.replaceChildren();
+  for(const index of reviewPreviewIndexes){
     const item=reviewExamples[index];
     const card=document.createElement('article');
     card.className='reviews-card';
     card.lang=lang;
     card.dataset.reviewIndex=String(index+1);
     card.setAttribute('dir',lang==='ar'?'rtl':'ltr');
-    if(delta===-1)card.setAttribute('aria-hidden','true');
     const top=document.createElement('div');top.className='reviews-card-top';
     const stars=document.createElement('span');stars.className='reviews-stars';stars.textContent='★★★★★';
     stars.setAttribute('role','img');
@@ -485,7 +487,6 @@ function renderReviewCards(lang){
   if(prev)prev.setAttribute('aria-label',lang==='tr'?'Önceki yorumlar':lang==='ar'?'التقييمات السابقة':'Previous reviews');
   if(next)next.setAttribute('aria-label',lang==='tr'?'Sonraki yorumlar':lang==='ar'?'التقييمات التالية':'Next reviews');
   viewport.setAttribute('aria-label',lang==='tr'?'Müşteri yorumları kaydırmalı alanı':lang==='ar'?'شريط آراء العملاء':'Client feedback carousel');
-  window.dispatchEvent(new Event('reviews:rendered'));
 }
 
 function initReviewsCarousel(){
@@ -493,144 +494,15 @@ function initReviewsCarousel(){
   const track=document.getElementById('reviewsTrack');
   if(!viewport||!track||viewport.dataset.carouselReady==='true')return;
   viewport.dataset.carouselReady='true';
-
-  let stepWidth=0,offset=0,lastTime=0,pausedUntil=0;
-  let isDragging=false,startX=0,startOffset=0,dragMoved=false;
-  let snapTimer=0,snapVersion=0,pendingIndex=reviewCarouselIndex;
-  const speed=38;
-  const count=reviewExamples.length;
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
-
-  const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
-  const wrapIndex=value=>((value%count)+count)%count;
-  const pauseFor=(ms=2400)=>{pausedUntil=performance.now()+ms;};
-  const clearSnap=()=>{
-    snapVersion++;
-    if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
-    track.classList.remove('is-snapping');
-  };
-  const measureCards=()=>{
-    const cards=track.querySelectorAll('.reviews-card');
-    if(cards.length<2)return;
-    const first=cards[0].getBoundingClientRect();
-    const second=cards[1].getBoundingClientRect();
-    const measured=second.left-first.left;
-    if(measured>0)stepWidth=measured;
-  };
-  const finishSnap=version=>{
-    if(version!==snapVersion||!stepWidth)return;
-    if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
-    track.classList.remove('is-snapping');
-    reviewCarouselIndex=pendingIndex;
-    renderReviewCards(reviewCarouselLang);
-    measureCards();
-    offset=stepWidth;
-    draw();
-    snapVersion++;
-  };
-  const measure=()=>{
-    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
-    measureCards();
-    if(!isDragging&&!track.classList.contains('is-snapping')){
-      offset=stepWidth;
-      draw();
-    }
-  };
-  const animateToWindowPosition=(position,targetIndex)=>{
-    if(!stepWidth)measureCards();
-    if(!stepWidth)return;
-    pauseFor();
-    clearSnap();
-    pendingIndex=wrapIndex(targetIndex);
-    // Force the current drag/position transform to be committed before
-    // enabling the transition to its small-window destination.
-    draw();
-    void track.offsetWidth;
-    const version=++snapVersion;
-    offset=position*stepWidth;
-    if(reducedMotion.matches){
-      draw();
-      finishSnap(version);
-      return;
-    }
-    track.classList.add('is-snapping');
-    draw();
-    snapTimer=setTimeout(()=>finishSnap(version),470);
-  };
   const moveBy=direction=>{
-    if(!stepWidth)measureCards();
-    if(!stepWidth)return;
-    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
-    animateToWindowPosition(direction>0?2:0,reviewCarouselIndex+direction);
+    const card=track.querySelector('.reviews-card');
+    if(!card)return;
+    const gap=parseFloat(getComputedStyle(track).columnGap)||16;
+    viewport.scrollBy({left:direction*(card.getBoundingClientRect().width+gap),behavior:reducedMotion.matches?'auto':'smooth'});
   };
-  const frame=time=>{
-    if(lastTime&&!isDragging&&!track.classList.contains('is-snapping')&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&stepWidth>0){
-      const dt=Math.min(50,time-lastTime);
-      offset+=speed*dt/1000;
-      if(offset>=stepWidth*2){
-        reviewCarouselIndex=wrapIndex(reviewCarouselIndex+1);
-        renderReviewCards(reviewCarouselLang);
-        measureCards();
-        offset=stepWidth;
-      }
-      draw();
-    }
-    lastTime=time;
-    requestAnimationFrame(frame);
-  };
-
-  viewport.addEventListener('pointerdown',event=>{
-    if(event.pointerType==='mouse'&&event.button!==0)return;
-    if(track.classList.contains('is-snapping'))finishSnap(snapVersion);
-    clearSnap();
-    isDragging=true;dragMoved=false;startX=event.clientX;startOffset=offset;
-    viewport.classList.add('is-dragging');
-    pauseFor();
-    try{viewport.setPointerCapture(event.pointerId);}catch(e){}
-  });
-  viewport.addEventListener('pointermove',event=>{
-    if(!isDragging||!stepWidth)return;
-    const delta=event.clientX-startX;
-    if(Math.abs(delta)>4)dragMoved=true;
-    const maxOffset=stepWidth*(track.querySelectorAll('.reviews-card').length-1);
-    offset=Math.max(0,Math.min(maxOffset,startOffset-delta));
-    draw();
-  });
-  const finishDrag=event=>{
-    if(!isDragging)return;
-    isDragging=false;
-    viewport.classList.remove('is-dragging');
-    pauseFor(1800);
-    try{if(event&&viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);}catch(e){}
-    const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
-    animateToWindowPosition(position,reviewCarouselIndex+position-1);
-  };
-  viewport.addEventListener('pointerup',finishDrag);
-  viewport.addEventListener('pointercancel',finishDrag);
-  viewport.addEventListener('lostpointercapture',()=>{
-    if(isDragging){
-      isDragging=false;
-      viewport.classList.remove('is-dragging');
-      pauseFor(1800);
-      const position=Math.max(0,Math.min(track.querySelectorAll('.reviews-card').length-1,Math.round(offset/stepWidth)));
-      animateToWindowPosition(position,reviewCarouselIndex+position-1);
-    }
-  });
-  viewport.addEventListener('click',event=>{
-    if(dragMoved){event.preventDefault();event.stopPropagation();dragMoved=false;}
-  });
-  viewport.addEventListener('wheel',()=>pauseFor(),{passive:true});
-  viewport.addEventListener('mouseenter',()=>pauseFor(1200));
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
-  window.addEventListener('resize',()=>{if(!isDragging)measure();},{passive:true});
-  window.addEventListener('orientationchange',()=>{if(!isDragging)measure();},{passive:true});
-  window.addEventListener('reviews:rendered',()=>requestAnimationFrame(()=>{
-    if(!isDragging&&!track.classList.contains('is-snapping'))measure();
-  }));
-  document.addEventListener('visibilitychange',()=>{lastTime=0;});
-  requestAnimationFrame(()=>{measureCards();offset=stepWidth;draw();});
-  requestAnimationFrame(frame);
 }
 
 
