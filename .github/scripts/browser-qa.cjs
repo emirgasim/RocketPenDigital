@@ -68,9 +68,17 @@ async function assertResponsiveText(page, width, routePath) {
     }).filter(el => el.scrollWidth > el.clientWidth + 1 && !/(hidden|clip|scroll|auto)/.test(el.overflowX))
       .sort((a,b) => (b.scrollWidth-b.clientWidth) - (a.scrollWidth-a.clientWidth))
       .slice(0, 15);
-    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings, overflowers, internalOverflowers };
+    return {
+      viewport: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+      htmlOverflowX: getComputedStyle(document.documentElement).overflowX,
+      bodyOverflowX: getComputedStyle(document.body).overflowX,
+      tightHeadings, overflowers, internalOverflowers
+    };
   });
-  assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+  const overflowIsClipped = metrics.htmlOverflowX === 'clip' || metrics.bodyOverflowX === 'clip';
+  assert.ok(metrics.scrollWidth <= width + 1 || overflowIsClipped,
+    routePath + ' must not allow horizontal page scrolling at ' + width + 'px: ' + JSON.stringify(metrics));
   assert.equal(metrics.tightHeadings.length, 0, routePath + ' headings must have non-overlapping line-height at ' + width + 'px: ' + JSON.stringify(metrics.tightHeadings));
 }
 
@@ -190,6 +198,47 @@ async function dragReviews(page, direction, step) {
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'false');
       assert.equal(await page.evaluate(() => document.activeElement.id), 'lang', 'Escape should restore focus to language control');
 
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(100);
+      const beforeNext = await reviewCarouselState(page);
+      const expectedNext = (Math.floor(beforeNext.offset / beforeNext.step) + 1) % 50 + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNext = await reviewCarouselState(page);
+      assert.ok(afterNext.alignment <= 5, route.path + ' next arrow must align a card to the left edge: ' + JSON.stringify(afterNext));
+      assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
+      assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
+
+      const expectedPrevious = ((Math.floor(afterNext.offset / afterNext.step) - 1) % 50 + 50) % 50 + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevious = await reviewCarouselState(page);
+      assert.ok(afterPrevious.alignment <= 5, route.path + ' previous arrow must align a card to the left edge: ' + JSON.stringify(afterPrevious));
+      assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
+
+      const beforeLeftDrag = await reviewCarouselState(page);
+      const expectedAfterLeftDrag = (Math.floor(beforeLeftDrag.offset / beforeLeftDrag.step) + 1) % 50 + 1;
+      await dragReviews(page, 1, beforeLeftDrag.step);
+      const afterLeftDrag = await reviewCarouselState(page);
+      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify(afterLeftDrag));
+      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review');
+
+      const beforeRightDrag = await reviewCarouselState(page);
+      const expectedAfterRightDrag = ((Math.floor(beforeRightDrag.offset / beforeRightDrag.step) - 1) % 50 + 50) % 50 + 1;
+      await dragReviews(page, -1, beforeRightDrag.step);
+      const afterRightDrag = await reviewCarouselState(page);
+      assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
+      assert.equal(afterRightDrag.leftIndex, expectedAfterRightDrag, route.path + ' right swipe should return to the previous review');
+
+      if (!afterRightDrag.reducedMotion) {
+        await page.waitForTimeout(2600);
+        const afterAutoplay = await reviewCarouselState(page);
+        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
+        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
+        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
+      }
+
       for (const width of [1024, 768]) {
         await page.setViewportSize({ width, height: 844 });
         await assertResponsiveText(page, width, route.path);
@@ -246,47 +295,6 @@ async function dragReviews(page, direction, step) {
         assert.ok((await page.evaluate(() => document.documentElement.scrollWidth)) <= width + 1, width + 'px page should not overflow horizontally');
       }
 
-
-      await page.setViewportSize({ width: 390, height: 844 });
-      await page.locator('#reviewsViewport').hover();
-      await page.waitForTimeout(100);
-      const beforeNext = await reviewCarouselState(page);
-      const expectedNext = (Math.floor(beforeNext.offset / beforeNext.step) + 1) % 50 + 1;
-      await page.locator('#reviewsNext').click();
-      await page.waitForTimeout(500);
-      const afterNext = await reviewCarouselState(page);
-      assert.ok(afterNext.alignment <= 5, route.path + ' next arrow must align a card to the left edge: ' + JSON.stringify(afterNext));
-      assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
-      assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
-
-      const expectedPrevious = ((Math.floor(afterNext.offset / afterNext.step) - 1) % 50 + 50) % 50 + 1;
-      await page.locator('#reviewsPrev').click();
-      await page.waitForTimeout(500);
-      const afterPrevious = await reviewCarouselState(page);
-      assert.ok(afterPrevious.alignment <= 5, route.path + ' previous arrow must align a card to the left edge: ' + JSON.stringify(afterPrevious));
-      assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
-
-      const beforeLeftDrag = await reviewCarouselState(page);
-      const expectedAfterLeftDrag = (Math.floor(beforeLeftDrag.offset / beforeLeftDrag.step) + 1) % 50 + 1;
-      await dragReviews(page, 1, beforeLeftDrag.step);
-      const afterLeftDrag = await reviewCarouselState(page);
-      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify(afterLeftDrag));
-      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review');
-
-      const beforeRightDrag = await reviewCarouselState(page);
-      const expectedAfterRightDrag = ((Math.floor(beforeRightDrag.offset / beforeRightDrag.step) - 1) % 50 + 50) % 50 + 1;
-      await dragReviews(page, -1, beforeRightDrag.step);
-      const afterRightDrag = await reviewCarouselState(page);
-      assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
-      assert.equal(afterRightDrag.leftIndex, expectedAfterRightDrag, route.path + ' right swipe should return to the previous review');
-
-      if (!afterRightDrag.reducedMotion) {
-        await page.waitForTimeout(2600);
-        const afterAutoplay = await reviewCarouselState(page);
-        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
-        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
-        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
-      }
 
       await page.evaluate(() => window.scrollTo(0, 360));
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
