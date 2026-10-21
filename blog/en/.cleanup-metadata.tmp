@@ -662,6 +662,66 @@
       "slug": "saas-pricing-page-ux.html",
       "title": "SaaS Pricing Page UX: Help Buyers Compare Plans Confidently",
       "description": "A SaaS pricing page UX guide to clear plan differences, billing terms, feature limits, add-ons, FAQs and accessible paths to signup or sales."
+    },
+    {
+      "slug": "saas-website-messaging.html",
+      "title": "SaaS Website Messaging: Explain the Product in Customer Language",
+      "description": "A SaaS website messaging guide to audience problems, product value, use cases, integrations, proof, limitations and calls to action across the buying journey."
+    },
+    {
+      "slug": "social-media-crisis-plan.html",
+      "title": "Social Media Crisis Plan: Respond Quickly Without Guessing",
+      "description": "A social media crisis plan guide to escalation triggers, response ownership, verified facts, holding statements, privacy protection and post-incident learning."
+    },
+    {
+      "slug": "video-content-repurposing.html",
+      "title": "Video Content Repurposing: Adapt the Message for Each Format",
+      "description": "A video content repurposing guide to selecting source moments, adapting edits for each platform, preserving context, captions, rights and measuring useful outcomes."
+    },
+    {
+      "slug": "video-marketing-funnel.html",
+      "title": "Video Marketing Funnel: Match Video to the Buyer's Next Question",
+      "description": "A video marketing funnel guide to awareness, evaluation, onboarding, relevant calls to action and measuring how video supports the customer journey."
+    },
+    {
+      "slug": "video-production-brief.html",
+      "title": "Video Production Brief: Align the Story Before Filming",
+      "description": "A video production brief guide to audience, objective, core message, script structure, visual requirements, rights, accessibility, deliverables and approvals."
+    },
+    {
+      "slug": "video-seo-website-guide.html",
+      "title": "Video SEO for Websites: Make the Video and Page Useful Together",
+      "description": "A video SEO guide for websites covering indexable watch pages, descriptive titles, transcripts, thumbnails, structured data and reliable playback."
+    },
+    {
+      "slug": "customer-success-content.html",
+      "title": "Customer Success Content: Help Customers Reach Value After Purchase",
+      "description": "A customer success content guide to onboarding checklists, task-based education, troubleshooting, lifecycle guidance and measuring successful adoption."
+    },
+    {
+      "slug": "marketing-retainer-scope.html",
+      "title": "Marketing Retainer Scope: Define Ongoing Work and Change Rules",
+      "description": "A marketing retainer scope guide to recurring deliverables, responsibilities, review cycles, exclusions, capacity and how scope changes are agreed."
+    },
+    {
+      "slug": "customer-referral-program.html",
+      "title": "Customer Referral Program: Make Recommendations Easy and Ethical",
+      "description": "A customer referral program guide to referral fit, simple sharing, clear eligibility, reward terms, fraud prevention and measuring sustainable acquisition."
+    },
+    {
+      "slug": "loyalty-program-marketing.html",
+      "title": "Loyalty Programme Marketing: Reward Behaviour Customers Value",
+      "description": "A loyalty programme marketing guide to customer value, reward economics, clear rules, useful personalisation and measuring repeat behaviour without over-discounting."
+    },
+    {
+      "slug": "nps-csat-customer-metrics.html",
+      "title": "NPS and CSAT: Use Customer Scores with Context",
+      "description": "A guide to NPS and CSAT definitions, survey timing, response bias, segmentation and combining customer scores with operational evidence."
+    },
+    {
+      "slug": "ugc-content-strategy.html",
+      "title": "User-Generated Content Strategy: Use Customer Contributions Responsibly",
+      "description": "A user-generated content strategy guide to consent, moderation, usage rights, authenticity, accessibility and measuring how customer contributions support decisions."
     }
   ]
 }
