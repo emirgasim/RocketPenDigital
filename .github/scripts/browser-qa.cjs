@@ -23,6 +23,17 @@ async function assertResponsiveText(page, width, routePath) {
     const overflowers = [...document.querySelectorAll('body *')].map(el => {
       const r = el.getBoundingClientRect();
       const style = getComputedStyle(el);
+      let clippedBy = '';
+      for (let parent = el.parentElement; parent && parent !== document.body; parent = parent.parentElement) {
+        const ps = getComputedStyle(parent);
+        if (/(hidden|clip|scroll|auto)/.test(ps.overflowX)) {
+          const pr = parent.getBoundingClientRect();
+          if (r.left < pr.left - 1 || r.right > pr.right + 1) {
+            clippedBy = parent.id ? '#' + parent.id : parent.className ? '.' + String(parent.className).split(/\\s+/).join('.') : parent.tagName.toLowerCase();
+            break;
+          }
+        }
+      }
       return {
         tag: el.tagName.toLowerCase(),
         id: el.id || '',
@@ -32,11 +43,13 @@ async function assertResponsiveText(page, width, routePath) {
         width: Math.round(r.width * 10) / 10,
         display: style.display,
         position: style.position,
+        clippedBy,
         text: (el.innerText || '').trim().slice(0, 48)
       };
-    }).filter(el => el.width > 0 && (el.left < -1 || el.right > document.documentElement.clientWidth + 1))
+    }).filter(el => el.width > 0 && !el.clippedBy &&
+                    (el.left < -1 || el.right > document.documentElement.clientWidth + 1))
       .sort((a,b) => Math.max(0, b.right-document.documentElement.clientWidth, -b.left) - Math.max(0, a.right-document.documentElement.clientWidth, -a.left))
-      .slice(0, 12);
+      .slice(0, 15);
     return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings, overflowers };
   });
   assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
