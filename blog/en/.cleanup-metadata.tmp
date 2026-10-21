@@ -602,6 +602,66 @@
       "slug": "crm-marketing-integration.html",
       "title": "CRM and Marketing Integration: Keep Handoffs and Data Consistent",
       "description": "A CRM and marketing integration guide to field mapping, lead lifecycle definitions, consent, duplicate handling, sync failures and reporting consistency."
+    },
+    {
+      "slug": "customer-journey-mapping.html",
+      "title": "Customer Journey Mapping: Find Friction Across the Whole Experience",
+      "description": "A customer journey mapping guide to customer goals, touchpoints, handoffs, pain points, evidence gathering and prioritising service improvements."
+    },
+    {
+      "slug": "customer-survey-design.html",
+      "title": "Customer Survey Design: Ask Questions That Produce Useful Evidence",
+      "description": "A customer survey design guide to clear objectives, neutral wording, response options, sampling, bias, privacy and turning results into decisions."
+    },
+    {
+      "slug": "digital-asset-management.html",
+      "title": "Digital Asset Management: Keep Brand Files Findable and Current",
+      "description": "A digital asset management guide to asset naming, metadata, permissions, version control, ownership and reliable distribution of approved brand files."
+    },
+    {
+      "slug": "digital-pr-link-earning.html",
+      "title": "Digital PR and Link Earning: Create Reasons for Relevant Sites to Cite You",
+      "description": "A digital PR link earning guide to original evidence, useful resources, journalist relevance, ethical outreach and evaluating editorial link quality."
+    },
+    {
+      "slug": "expert-interview-content.html",
+      "title": "Expert Interview Content: Turn Specialist Knowledge into a Useful Resource",
+      "description": "An expert interview content guide to focused questions, preparation, fact checking, consent, editing and repurposing specialist insight without distorting it."
+    },
+    {
+      "slug": "google-ads-account-audit.html",
+      "title": "Google Ads Account Audit: Check Structure, Tracking and Spend",
+      "description": "A Google Ads account audit checklist for conversion tracking, search terms, campaign structure, bidding, landing pages, budget pacing and account governance."
+    },
+    {
+      "slug": "lead-scoring-b2b-guide.html",
+      "title": "B2B Lead Scoring: Prioritise Follow-Up with Clear Criteria",
+      "description": "A B2B lead scoring guide to fit and intent signals, score decay, sales validation, CRM hygiene and measuring whether scoring improves follow-up quality."
+    },
+    {
+      "slug": "marketing-data-governance.html",
+      "title": "Marketing Data Governance: Define Ownership, Meaning and Access",
+      "description": "A marketing data governance guide to metric definitions, data ownership, access controls, naming standards, quality checks and responsible retention."
+    },
+    {
+      "slug": "original-research-content.html",
+      "title": "Original Research Content: Publish Evidence Others Can Verify",
+      "description": "An original research content guide to research questions, sampling, methodology, data permissions, limitations and turning findings into useful resources."
+    },
+    {
+      "slug": "paid-media-budget-pacing.html",
+      "title": "Paid Media Budget Pacing: Spend Deliberately Across the Period",
+      "description": "A paid media budget pacing guide to spend forecasts, daily variance, campaign priorities, seasonality, guardrails and interpreting delivery against outcomes."
+    },
+    {
+      "slug": "privacy-first-analytics.html",
+      "title": "Privacy-First Analytics: Measure What You Need with Less Data",
+      "description": "A privacy-first analytics guide to purpose-based measurement, data minimisation, consent-aware tags, aggregation, retention and useful reporting."
+    },
+    {
+      "slug": "saas-pricing-page-ux.html",
+      "title": "SaaS Pricing Page UX: Help Buyers Compare Plans Confidently",
+      "description": "A SaaS pricing page UX guide to clear plan differences, billing terms, feature limits, add-ons, FAQs and accessible paths to signup or sales."
     }
   ]
 }
