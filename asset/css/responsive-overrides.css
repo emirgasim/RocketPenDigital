@@ -943,3 +943,23 @@ body.arabic header.nav > .nav-right .lang {
   html[dir="rtl"] body header.nav > .nav-right,
   body.arabic header.nav > .nav-right { left: 16px !important; }
 }
+
+
+/* Final mobile safety rules: sticky header wins over RTL positioning, dropdown stays in viewport. */
+html body header.nav.is-scrolled {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+}
+html body #languageMenu {
+  max-width: min(280px, calc(100vw - 24px)) !important;
+  box-sizing: border-box !important;
+}
+html[dir="rtl"] body #languageMenu,
+body.arabic #languageMenu {
+  left: auto !important;
+  right: 0 !important;
+}
