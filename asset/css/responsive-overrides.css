@@ -776,6 +776,16 @@ html body header.nav.is-scrolled {
 }
 
 
+/* Keep right-to-left layouts from creating a small horizontal page scroll when legacy full-width elements meet the browser scrollbar. */
+html[dir="rtl"] {
+  max-width: 100%;
+  overflow-x: clip;
+}
+html[dir="rtl"] body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 /* Arabic RTL header alignment: keep the brand anchored on the right and the language control on the left.
    Override older absolute-positioning rules without changing header height or the visual theme. */
 html[dir="rtl"] body header.nav,
