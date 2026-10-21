@@ -193,6 +193,7 @@ async function dragReviews(page, direction, step) {
       assert.equal(await page.locator('#mobileNavToggle').count(), 0, 'hamburger markup must not be included');
 
       assert.equal(await page.locator('.reviews-view-all').getAttribute('href'), '/reviews/' + route.lang + '/index.html', 'read-all link must point to the matching locale page');
+      assert.ok(!/[↗↖⬆]/u.test(await page.locator('.reviews-view-all').innerText()), route.path + ' read-all link must not display decorative arrow emoji');
       await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 5);
       assert.equal(await page.locator('#reviewsTrack .reviews-card').count(), 5, 'carousel should keep a small rolling window to avoid oversized WebKit layers');
       assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 0, 'carousel should not render giant duplicate review sets');
