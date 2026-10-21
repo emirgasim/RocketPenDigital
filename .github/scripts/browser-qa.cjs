@@ -128,6 +128,18 @@ async function reviewCarouselState(page) {
   });
 }
 async function dragReviews(page, direction, step) {
+  await page.evaluate(() => {
+    const viewport = document.querySelector('#reviewsViewport');
+    if (!viewport || viewport.dataset.qaTrace === 'true') return;
+    viewport.dataset.qaTrace = 'true';
+    window.__rpDragTrace = [];
+    for (const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture']) {
+      viewport.addEventListener(type, event => window.__rpDragTrace.push({
+        type, x: Math.round(event.clientX), y: Math.round(event.clientY),
+        button: event.button, pointerType: event.pointerType
+      }));
+    }
+  });
   const box = await page.locator('#reviewsViewport').boundingBox();
   assert.ok(box, 'reviews viewport should have a bounding box');
   const startX = box.x + Math.min(box.width - 24, step * 0.8);
@@ -138,6 +150,7 @@ async function dragReviews(page, direction, step) {
   await page.mouse.move(endX, y, { steps: 8 });
   await page.mouse.up();
   await page.waitForTimeout(500);
+  return page.evaluate(() => window.__rpDragTrace || []);
 }
 
 (async () => {
@@ -219,10 +232,10 @@ async function dragReviews(page, direction, step) {
 
       const beforeLeftDrag = await reviewCarouselState(page);
       const expectedAfterLeftDrag = (Math.floor(beforeLeftDrag.offset / beforeLeftDrag.step) + 1) % 50 + 1;
-      await dragReviews(page, 1, beforeLeftDrag.step);
+      const leftDragTrace = await dragReviews(page, 1, beforeLeftDrag.step);
       const afterLeftDrag = await reviewCarouselState(page);
-      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify(afterLeftDrag));
-      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review');
+      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify({ afterLeftDrag, leftDragTrace }));
+      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review: ' + JSON.stringify({ beforeLeftDrag, afterLeftDrag, leftDragTrace }));
 
       const beforeRightDrag = await reviewCarouselState(page);
       const expectedAfterRightDrag = ((Math.floor(beforeRightDrag.offset / beforeRightDrag.step) - 1) % 50 + 50) % 50 + 1;
