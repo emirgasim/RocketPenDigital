@@ -225,10 +225,10 @@ header.nav{overflow:visible!important;z-index:500}
   .hero-bottom{z-index:5!important;color:#292d35!important}
 }
 /* A soft white backlight behind only the left rocket emblem: never an oval border */
-header.nav .logo,footer .logo{position:relative!important;isolation:isolate!important;filter:none!important}
+header.nav .logo,footer .logo{position:relative!important;isolation:isolate!important;filter:none!important;width:max-content!important;max-width:100%!important;flex:0 0 auto!important}
 header.nav .logo:before,footer .logo:before{
-  content:""!important;position:absolute!important;z-index:0!important;left:-8px!important;top:-5%!important;
-  width:27%!important;height:110%!important;pointer-events:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+  content:""!important;position:absolute!important;z-index:0!important;left:-4px!important;right:auto!important;top:-5%!important;
+  width:28%!important;max-width:58px!important;height:110%!important;pointer-events:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
   background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.48) 0%,rgba(255,255,255,.29) 35%,rgba(255,255,255,.1) 58%,rgba(255,255,255,0) 77%)!important;
   filter:blur(5px)!important;
 }
