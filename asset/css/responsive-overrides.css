@@ -774,3 +774,216 @@ html body header.nav.is-scrolled {
     font-size: clamp(2.3rem, 9vw, 2.65rem) !important;
   }
 }
+
+
+/* Keep right-to-left layouts from creating a small horizontal page scroll when legacy full-width elements meet the browser scrollbar. */
+html[dir="rtl"] {
+  max-width: 100%;
+  overflow-x: clip;
+}
+html[dir="rtl"] body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Pin the Arabic brand and language control to opposite sides so flex sizing cannot center the logo. */
+html[dir="rtl"] body header.nav,
+body.arabic header.nav {
+  position: relative !important;
+}
+html[dir="rtl"] body header.nav > .logo,
+body.arabic header.nav > .logo {
+  position: absolute !important;
+  right: 24px !important;
+  left: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  flex: none !important;
+}
+html[dir="rtl"] body header.nav > .nav-right,
+body.arabic header.nav > .nav-right {
+  position: absolute !important;
+  left: 20px !important;
+  right: auto !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  flex: none !important;
+}
+/* Arabic RTL header alignment: keep the brand anchored on the right and the language control on the left.
+   Override older absolute-positioning rules without changing header height or the visual theme. */
+html[dir="rtl"] body header.nav,
+body.arabic header.nav {
+  direction: rtl !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+html[dir="rtl"] body header.nav > .logo,
+body.arabic header.nav > .logo {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  order: 0 !important;
+  align-self: center !important;
+  flex: 0 0 auto !important;
+  overflow: clip !important;
+}
+html[dir="rtl"] body header.nav > .nav-right,
+body.arabic header.nav > .nav-right {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  order: 1 !important;
+  align-self: center !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+html[dir="rtl"] body header.nav > .nav-right .language-picker,
+body.arabic header.nav > .nav-right .language-picker {
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+html[dir="rtl"] body header.nav > .nav-right .lang,
+body.arabic header.nav > .nav-right .lang {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+@media (max-width: 760px) {
+  html[dir="rtl"] body header.nav,
+  body.arabic header.nav {
+    height: 94px !important;
+    min-height: 94px !important;
+    padding: 12px 20px !important;
+    gap: 12px !important;
+  }
+  html[dir="rtl"] body header.nav > .logo .logo-image,
+  body.arabic header.nav > .logo .logo-image {
+    width: clamp(155px, 48vw, 220px) !important;
+    max-width: 100% !important;
+    max-height: 48px !important;
+    object-fit: contain !important;
+    object-position: right center !important;
+  }
+  html[dir="rtl"] body header.nav > .nav-right .lang,
+  body.arabic header.nav > .nav-right .lang {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 10px 12px !important;
+  }
+}
+
+
+/* Final RTL header override: preserve fixed-on-scroll behavior and pin logo/language to opposite edges. */
+html[dir="rtl"] body header.nav,
+body.arabic header.nav {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+html[dir="rtl"] body header.nav.is-scrolled,
+body.arabic header.nav.is-scrolled {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+}
+html[dir="rtl"] body header.nav > .logo,
+body.arabic header.nav > .logo {
+  position: absolute !important;
+  right: 24px !important;
+  left: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  order: 0 !important;
+  flex: none !important;
+  overflow: visible !important;
+}
+html[dir="rtl"] body header.nav > .nav-right,
+body.arabic header.nav > .nav-right {
+  position: absolute !important;
+  left: 20px !important;
+  right: auto !important;
+  top: 50% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  order: 1 !important;
+  flex: none !important;
+}
+html[dir="rtl"] body header.nav > .nav-right .language-picker,
+body.arabic header.nav > .nav-right .language-picker,
+html[dir="rtl"] body header.nav > .nav-right .lang,
+body.arabic header.nav > .nav-right .lang {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+@media (max-width: 760px) {
+  html[dir="rtl"] body header.nav > .logo,
+  body.arabic header.nav > .logo { right: 16px !important; }
+  html[dir="rtl"] body header.nav > .nav-right,
+  body.arabic header.nav > .nav-right { left: 16px !important; }
+}
+
+
+/* Final mobile safety rules: sticky header wins over RTL positioning, dropdown stays in viewport. */
+html body header.nav.is-scrolled {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+}
+html body #languageMenu {
+  max-width: min(280px, calc(100vw - 24px)) !important;
+  box-sizing: border-box !important;
+}
+html[dir="rtl"] body #languageMenu,
+body.arabic #languageMenu {
+  left: auto !important;
+  right: 0 !important;
+}
+
+
+/* Mobile dropdowns use viewport anchoring instead of inheriting legacy nav transforms. */
+@media (max-width: 760px) {
+  html[dir="ltr"] body #languageMenu {
+    position: fixed !important;
+    top: 72px !important;
+    right: 16px !important;
+    left: auto !important;
+    width: min(190px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform-origin: top right !important;
+  }
+  html[dir="rtl"] body #languageMenu,
+  body.arabic #languageMenu {
+    position: fixed !important;
+    top: 72px !important;
+    left: 16px !important;
+    right: auto !important;
+    width: min(190px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform-origin: top left !important;
+  }
+}

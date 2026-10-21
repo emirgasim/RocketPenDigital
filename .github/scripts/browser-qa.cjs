@@ -20,9 +20,65 @@ async function assertResponsiveText(page, width, routePath) {
       const lineHeight = parseFloat(style.lineHeight);
       return Number.isFinite(fontSize) && Number.isFinite(lineHeight) && lineHeight < fontSize * 1.02;
     }).map(el => ({ text: (el.innerText || '').trim().slice(0, 70), fontSize: getComputedStyle(el).fontSize, lineHeight: getComputedStyle(el).lineHeight }));
-    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings };
+    const overflowers = [...document.querySelectorAll('body *')].map(el => {
+      const r = el.getBoundingClientRect();
+      const style = getComputedStyle(el);
+      let clippedBy = '';
+      for (let parent = el.parentElement; parent && parent !== document.body; parent = parent.parentElement) {
+        const ps = getComputedStyle(parent);
+        if (/(hidden|clip|scroll|auto)/.test(ps.overflowX)) {
+          const pr = parent.getBoundingClientRect();
+          if (r.left < pr.left - 1 || r.right > pr.right + 1) {
+            clippedBy = parent.id ? '#' + parent.id : parent.className ? '.' + String(parent.className).split(/\\s+/).join('.') : parent.tagName.toLowerCase();
+            break;
+          }
+        }
+      }
+      return {
+        tag: el.tagName.toLowerCase(),
+        id: el.id || '',
+        className: typeof el.className === 'string' ? el.className.slice(0, 90) : '',
+        left: Math.round(r.left * 10) / 10,
+        right: Math.round(r.right * 10) / 10,
+        width: Math.round(r.width * 10) / 10,
+        display: style.display,
+        position: style.position,
+        clippedBy,
+        text: (el.innerText || '').trim().slice(0, 48)
+      };
+    }).filter(el => el.width > 0 && !el.clippedBy &&
+                    (el.left < -1 || el.right > document.documentElement.clientWidth + 1))
+      .sort((a,b) => Math.max(0, b.right-document.documentElement.clientWidth, -b.left) - Math.max(0, a.right-document.documentElement.clientWidth, -a.left))
+      .slice(0, 15);
+    const internalOverflowers = [...document.querySelectorAll('html, body, body *')].map(el => {
+      const r = el.getBoundingClientRect();
+      const style = getComputedStyle(el);
+      return {
+        tag: el.tagName.toLowerCase(),
+        id: el.id || '',
+        className: typeof el.className === 'string' ? el.className.slice(0, 90) : '',
+        left: Math.round(r.left * 10) / 10,
+        right: Math.round(r.right * 10) / 10,
+        clientWidth: el.clientWidth,
+        scrollWidth: el.scrollWidth,
+        overflowX: style.overflowX,
+        position: style.position,
+        text: (el.innerText || '').trim().slice(0, 48)
+      };
+    }).filter(el => el.scrollWidth > el.clientWidth + 1 && !/(hidden|clip|scroll|auto)/.test(el.overflowX))
+      .sort((a,b) => (b.scrollWidth-b.clientWidth) - (a.scrollWidth-a.clientWidth))
+      .slice(0, 15);
+    return {
+      viewport: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+      htmlOverflowX: getComputedStyle(document.documentElement).overflowX,
+      bodyOverflowX: getComputedStyle(document.body).overflowX,
+      tightHeadings, overflowers, internalOverflowers
+    };
   });
-  assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+  const overflowIsClipped = metrics.htmlOverflowX === 'clip' || metrics.bodyOverflowX === 'clip';
+  assert.ok(metrics.scrollWidth <= width + 1 || overflowIsClipped,
+    routePath + ' must not allow horizontal page scrolling at ' + width + 'px: ' + JSON.stringify(metrics));
   assert.equal(metrics.tightHeadings.length, 0, routePath + ' headings must have non-overlapping line-height at ' + width + 'px: ' + JSON.stringify(metrics.tightHeadings));
 }
 
@@ -33,6 +89,70 @@ async function visible(page, selector) {
     return style.display !== 'none' && style.visibility !== 'hidden' &&
       Number(style.opacity) > 0 && rect.width > 0 && rect.height > 0;
   });
+}
+
+
+async function reviewCarouselState(page) {
+  return page.evaluate(() => {
+    const viewport = document.querySelector('#reviewsViewport');
+    const track = document.querySelector('#reviewsTrack');
+    if (!viewport || !track) throw new Error('reviews carousel markup is missing');
+    const cards = [...track.querySelectorAll('.reviews-card')];
+    const firstSet = track.querySelector('.reviews-set');
+    if (cards.length !== 150 || !firstSet) throw new Error('reviews carousel should render three copies of 50 cards');
+    const viewportRect = viewport.getBoundingClientRect();
+    const cardRects = cards.map((el) => ({ el, rect: el.getBoundingClientRect() }));
+    const nearest = cardRects
+      .map((item) => ({ ...item, delta: Math.abs(item.rect.left - (viewportRect.left + 1)) }))
+      .sort((a, b) => a.delta - b.delta)[0];
+    const gap = parseFloat(getComputedStyle(firstSet).gap || '16') || 16;
+    const step = firstSet.querySelector('.reviews-card').getBoundingClientRect().width + gap;
+    const matrix = new DOMMatrix(getComputedStyle(track).transform);
+    const offset = -matrix.m41;
+    const visible = cardRects.filter((item) => item.rect.right > viewportRect.left + 1 && item.rect.left < viewportRect.right - 1);
+    const next = cardRects
+      .filter((item) => item.rect.left > nearest.rect.left + 2)
+      .sort((a, b) => a.rect.left - b.rect.left)[0];
+    const peek = next ? Math.max(0, Math.min(viewportRect.right, next.rect.right) - Math.max(viewportRect.left, next.rect.left)) : 0;
+    const indexText = nearest.el.querySelector('.reviews-card-index')?.textContent || '0';
+    return {
+      offset,
+      step,
+      alignment: nearest.delta,
+      leftIndex: parseInt(indexText.split('/')[0], 10),
+      visibleCards: visible.length,
+      nextCardPeek: peek,
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      setCount: track.querySelectorAll('.reviews-set').length
+    };
+  });
+}
+async function dragReviews(page, direction, step) {
+  await page.locator('#reviewsViewport').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(100);
+  await page.evaluate(() => {
+    const viewport = document.querySelector('#reviewsViewport');
+    if (!viewport || viewport.dataset.qaTrace === 'true') return;
+    viewport.dataset.qaTrace = 'true';
+    window.__rpDragTrace = [];
+    for (const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture']) {
+      viewport.addEventListener(type, event => window.__rpDragTrace.push({
+        type, x: Math.round(event.clientX), y: Math.round(event.clientY),
+        button: event.button, pointerType: event.pointerType
+      }));
+    }
+  });
+  const box = await page.locator('#reviewsViewport').boundingBox();
+  assert.ok(box, 'reviews viewport should have a bounding box');
+  const startX = box.x + Math.min(box.width - 24, step * 0.8);
+  const endX = startX - direction * step * 0.7;
+  const y = box.y + Math.max(20, Math.min(box.height / 2, 72));
+  await page.mouse.move(startX, y);
+  await page.mouse.down();
+  await page.mouse.move(endX, y, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(500);
+  return page.evaluate(() => window.__rpDragTrace || []);
 }
 
 (async () => {
@@ -70,6 +190,65 @@ async function visible(page, selector) {
       assert.equal(await page.locator('.nav-links').count(), 0, 'top navigation links must be removed');
       assert.equal(await page.locator('#mobileNavToggle').count(), 0, 'hamburger markup must not be included');
 
+      assert.equal(await page.locator('.reviews-view-all').getAttribute('href'), '/reviews/' + route.lang + '/index.html', 'read-all link must point to the matching locale page');
+      await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 150);
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 3, 'carousel should have three copies for seamless looping');
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').first().locator('.reviews-card').count(), 50, 'each carousel set should contain all 50 reviews');
+// Verify both wrap boundaries and rapid repeated navigation before unrelated
+      // language-menu checks, so carousel regressions are surfaced directly.
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(80);
+      const boundaryStart = await reviewCarouselState(page);
+      const previousExpected = ((boundaryStart.leftIndex - 2 + 50) % 50) + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevBoundary = await reviewCarouselState(page);
+      assert.equal(afterPrevBoundary.leftIndex, previousExpected, route.path + ' previous arrow must wrap from review 1 to review 50: ' + JSON.stringify({boundaryStart,afterPrevBoundary}));
+      assert.ok(afterPrevBoundary.alignment <= 5 && afterPrevBoundary.visibleCards >= 2, route.path + ' previous boundary must keep cards visible: ' + JSON.stringify(afterPrevBoundary));
+
+      const nextExpected = (afterPrevBoundary.leftIndex % 50) + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNextBoundary = await reviewCarouselState(page);
+      assert.equal(afterNextBoundary.leftIndex, nextExpected, route.path + ' next arrow must wrap from review 50 to review 1: ' + JSON.stringify({afterPrevBoundary,afterNextBoundary}));
+      assert.ok(afterNextBoundary.alignment <= 5 && afterNextBoundary.visibleCards >= 2, route.path + ' next boundary must keep cards visible: ' + JSON.stringify(afterNextBoundary));
+
+      const burstStart = await reviewCarouselState(page);
+      const burstMoves = 137;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsPrev');
+        for (let i=0;i<count;i++) button.click();
+      }, burstMoves);
+      await page.waitForTimeout(520);
+      const afterPrevBurst = await reviewCarouselState(page);
+      const expectedAfterPrevBurst = ((burstStart.leftIndex - 1 - burstMoves + 5000) % 50) + 1;
+      assert.equal(afterPrevBurst.leftIndex, expectedAfterPrevBurst, route.path + ' 137 rapid previous clicks must keep the loop stable: ' + JSON.stringify({burstStart,afterPrevBurst}));
+      assert.ok(afterPrevBurst.alignment <= 5 && afterPrevBurst.visibleCards >= 2, route.path + ' previous burst must not make cards disappear: ' + JSON.stringify(afterPrevBurst));
+
+      const nextBurstMoves = 189;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsNext');
+        for (let i=0;i<count;i++) button.click();
+      }, nextBurstMoves);
+      await page.waitForTimeout(520);
+      const afterNextBurst = await reviewCarouselState(page);
+      const expectedAfterNextBurst = ((expectedAfterPrevBurst - 1 + nextBurstMoves) % 50) + 1;
+      assert.equal(afterNextBurst.leftIndex, expectedAfterNextBurst, route.path + ' 189 rapid next clicks must keep the loop stable: ' + JSON.stringify({afterNextBurst,expectedAfterNextBurst}));
+      assert.ok(afterNextBurst.alignment <= 5 && afterNextBurst.visibleCards >= 2, route.path + ' next burst must not make cards disappear: ' + JSON.stringify(afterNextBurst));
+
+      await page.evaluate(() => window.scrollTo(0,0));
+      await page.waitForTimeout(80);
+      if (route.lang === 'ar') {
+        const headerAlignment = await page.evaluate(() => {
+          const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+          const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+          return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+        });
+        assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic homepage logo should stay on the right: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+      }
+
       await page.locator('#lang').click();
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'true');
       await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
@@ -79,9 +258,60 @@ async function visible(page, selector) {
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'false');
       assert.equal(await page.evaluate(() => document.activeElement.id), 'lang', 'Escape should restore focus to language control');
 
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(100);
+      const beforeNext = await reviewCarouselState(page);
+      const expectedNext = (beforeNext.leftIndex % 50) + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNext = await reviewCarouselState(page);
+      assert.ok(afterNext.alignment <= 5, route.path + ' next arrow must align a card to the left edge: ' + JSON.stringify(afterNext));
+      assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
+      assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
+
+      const expectedPrevious = ((afterNext.leftIndex - 2 + 50) % 50) + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevious = await reviewCarouselState(page);
+      assert.ok(afterPrevious.alignment <= 5, route.path + ' previous arrow must align a card to the left edge: ' + JSON.stringify(afterPrevious));
+      assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
+
+      const beforeLeftDrag = await reviewCarouselState(page);
+      const expectedAfterLeftDrag = (beforeLeftDrag.leftIndex % 50) + 1;
+      const leftDragTrace = await dragReviews(page, 1, beforeLeftDrag.step);
+      const afterLeftDrag = await reviewCarouselState(page);
+      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify({ afterLeftDrag, leftDragTrace }));
+      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review: ' + JSON.stringify({ beforeLeftDrag, afterLeftDrag, leftDragTrace }));
+
+      const beforeRightDrag = await reviewCarouselState(page);
+      const expectedAfterRightDrag = ((beforeRightDrag.leftIndex - 2 + 50) % 50) + 1;
+      await dragReviews(page, -1, beforeRightDrag.step);
+      const afterRightDrag = await reviewCarouselState(page);
+      assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
+      assert.equal(afterRightDrag.leftIndex, expectedAfterRightDrag, route.path + ' right swipe should return to the previous review');
+
+      if (!afterRightDrag.reducedMotion) {
+        await page.waitForTimeout(2600);
+        const afterAutoplay = await reviewCarouselState(page);
+        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
+        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
+        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
+      }
+
       for (const width of [1024, 768]) {
         await page.setViewportSize({ width, height: 844 });
         await assertResponsiveText(page, width, route.path);
+
+        if (route.lang === 'ar') {
+          const headerAlignment = await page.evaluate(() => {
+            const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+            const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+            return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+          });
+          assert.ok(headerAlignment.logoCenter > width / 2, width + 'px Arabic logo should stay on the right: ' + JSON.stringify(headerAlignment));
+          assert.ok(headerAlignment.languageCenter < width / 2, width + 'px Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        }
       }
 
       for (const width of [390, 320]) {
@@ -89,6 +319,15 @@ async function visible(page, selector) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
         await assertResponsiveText(page, width, route.path);
+        if (route.lang === 'ar') {
+          const headerAlignment = await page.evaluate(() => {
+            const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+            const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+            return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+          });
+          assert.ok(headerAlignment.logoCenter > width / 2, width + 'px Arabic logo should stay on the right: ' + JSON.stringify(headerAlignment));
+          assert.ok(headerAlignment.languageCenter < width / 2, width + 'px Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        }
         assert.equal(await page.locator('#primaryNavigation').count(), 0, width + 'px mobile view must not include a navigation menu');
         assert.equal(await page.locator('#mobileNavToggle').count(), 0, width + 'px mobile view must not include hamburger markup');
         assert.equal(await page.locator('.hero-bottom').count(), 0, 'scroll hint and hero footer should be removed');
@@ -115,6 +354,7 @@ async function visible(page, selector) {
         await page.keyboard.press('Escape');
         assert.ok((await page.evaluate(() => document.documentElement.scrollWidth)) <= width + 1, width + 'px page should not overflow horizontally');
       }
+
 
       await page.evaluate(() => window.scrollTo(0, 360));
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
@@ -157,16 +397,26 @@ async function visible(page, selector) {
       assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' blog heading should be present');
       assert.equal(await page.locator('link[href="/asset/css/responsive-overrides.css"]').count(), 1, 'blog must load shared responsive overrides');
+      assert.equal(await page.locator('link[href="/asset/css/site-global-ui.css"]').count(), 1, 'blog must load shared top-bar styles');
+      if (route.lang === 'ar') {
+        const headerAlignment = await page.evaluate(() => {
+          const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+          const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+          return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+        });
+        assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic blog logo should stay on the right: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic blog language control should stay on the left: ' + JSON.stringify(headerAlignment));
+      }
 
       for (const width of [390, 320]) {
         await page.setViewportSize({ width, height: 844 });
         await page.reload({ waitUntil: 'domcontentloaded' });
         const metrics = await page.evaluate(() => {
           const hero = document.querySelector('main > .hero');
-          const header = document.querySelector('header.top');
+          const header = document.querySelector('header.nav');
           const tag = document.querySelector('main > .hero .tag');
-          const nav = document.querySelector('header.top nav.nav');
-          const headerItems = [...document.querySelectorAll('header.top nav.nav > a, header.top nav.nav summary')];
+          const nav = document.querySelector('header.nav');
+          const headerItems = [...document.querySelectorAll('header.nav > .logo, header.nav > .nav-right, header.nav .language-picker, header.nav .lang')];
           const rect = el => {
             const r = el.getBoundingClientRect();
             return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
@@ -186,6 +436,42 @@ async function visible(page, selector) {
         assert.ok(metrics.nav.left >= -1 && metrics.nav.right <= width + 1, route.path + ' mobile nav must stay within viewport at ' + width + 'px: ' + JSON.stringify(metrics.nav));
         for (const item of metrics.itemBounds) {
           assert.ok(item.left >= -1 && item.right <= width + 1, route.path + ' nav items must stay within viewport at ' + width + 'px: ' + JSON.stringify(item));
+        }
+      }
+      await context.close();
+    }
+
+
+    const reviewListRoutes = [
+      { path: '/reviews/en/index.html', lang: 'en', dir: 'ltr' },
+      { path: '/reviews/tr/index.html', lang: 'tr', dir: 'ltr' },
+      { path: '/reviews/ar/index.html', lang: 'ar', dir: 'rtl' },
+    ];
+    for (const route of reviewListRoutes) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const page = await context.newPage();
+      page.on('pageerror', error => failures.push(route.path + ' pageerror: ' + error.message));
+      const response = await page.goto(BASE + route.path, { waitUntil: 'domcontentloaded' });
+      assert.equal(response.status(), 200, route.path + ' should load');
+      assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
+      assert.equal(await page.locator('html').getAttribute('dir'), route.dir);
+      assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' should have a localized heading');
+      assert.equal(await page.locator('.review-list-card').count(), 50, route.path + ' should list all 50 reviews');
+      await page.locator('.brand img').evaluate(img => img.decode());
+      assert.ok(await page.locator('.brand img').evaluate(img => img.naturalWidth > 0), route.path + ' brand logo must decode');
+      for (const width of [390, 320]) {
+        await page.setViewportSize({ width, height: 844 });
+        await page.waitForTimeout(50);
+        const metrics = await page.evaluate(() => ({
+          width: document.documentElement.clientWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          logo: (() => { const r = document.querySelector('.site-header .brand').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+          actions: (() => { const r = document.querySelector('.site-header .header-actions').getBoundingClientRect(); return { left:r.left, right:r.right, center:(r.left+r.right)/2 }; })(),
+        }));
+        assert.ok(metrics.scrollWidth <= width + 1, route.path + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
+        if (route.lang === 'ar') {
+          assert.ok(metrics.logo.center > width / 2, width + 'px Arabic review-list logo should stay on the right: ' + JSON.stringify(metrics));
+          assert.ok(metrics.actions.center < width / 2, width + 'px Arabic review-list actions should stay on the left: ' + JSON.stringify(metrics));
         }
       }
       await context.close();
