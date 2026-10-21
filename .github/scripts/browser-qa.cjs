@@ -50,7 +50,25 @@ async function assertResponsiveText(page, width, routePath) {
                     (el.left < -1 || el.right > document.documentElement.clientWidth + 1))
       .sort((a,b) => Math.max(0, b.right-document.documentElement.clientWidth, -b.left) - Math.max(0, a.right-document.documentElement.clientWidth, -a.left))
       .slice(0, 15);
-    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings, overflowers };
+    const internalOverflowers = [...document.querySelectorAll('html, body, body *')].map(el => {
+      const r = el.getBoundingClientRect();
+      const style = getComputedStyle(el);
+      return {
+        tag: el.tagName.toLowerCase(),
+        id: el.id || '',
+        className: typeof el.className === 'string' ? el.className.slice(0, 90) : '',
+        left: Math.round(r.left * 10) / 10,
+        right: Math.round(r.right * 10) / 10,
+        clientWidth: el.clientWidth,
+        scrollWidth: el.scrollWidth,
+        overflowX: style.overflowX,
+        position: style.position,
+        text: (el.innerText || '').trim().slice(0, 48)
+      };
+    }).filter(el => el.scrollWidth > el.clientWidth + 1 && !/(hidden|clip|scroll|auto)/.test(el.overflowX))
+      .sort((a,b) => (b.scrollWidth-b.clientWidth) - (a.scrollWidth-a.clientWidth))
+      .slice(0, 15);
+    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings, overflowers, internalOverflowers };
   });
   assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
   assert.equal(metrics.tightHeadings.length, 0, routePath + ' headings must have non-overlapping line-height at ' + width + 'px: ' + JSON.stringify(metrics.tightHeadings));
