@@ -94,37 +94,66 @@ async function visible(page, selector) {
 
 async function reviewCarouselState(page) {
   return page.evaluate(() => {
-    const viewport=document.querySelector('#reviewsViewport');
-    const track=document.querySelector('#reviewsTrack');
-    if(!viewport||!track)throw new Error('reviews carousel markup is missing');
-    const cards=[...track.querySelectorAll('.reviews-card')];
-    if(cards.length!==5)throw new Error('reviews preview should render exactly five cards');
-    const vr=viewport.getBoundingClientRect();
-    const measured=cards.map(el=>({el,rect:el.getBoundingClientRect()}));
-    const visible=measured.filter(item=>item.rect.right>vr.left+1&&item.rect.left<vr.right-1);
-    const nearest=measured.slice().sort((a,b)=>Math.abs(a.rect.left-vr.left)-Math.abs(b.rect.left-vr.left))[0];
-    const next=measured.filter(item=>item.rect.left>vr.left+2).sort((a,b)=>a.rect.left-b.rect.left)[0];
-    const peek=next?Math.max(0,Math.min(vr.right,next.rect.right)-Math.max(vr.left,next.rect.left)):0;
-    const cardWidth=cards[0].getBoundingClientRect().width;
-    const gap=parseFloat(getComputedStyle(track).columnGap)||16;
+    const viewport = document.querySelector('#reviewsViewport');
+    const track = document.querySelector('#reviewsTrack');
+    if (!viewport || !track) throw new Error('reviews carousel markup is missing');
+    const cards = [...track.querySelectorAll('.reviews-card')];
+    if (cards.length !== 5) throw new Error('reviews carousel should render a five-card rolling window');
+    const viewportRect = viewport.getBoundingClientRect();
+    const cardRects = cards.map((el) => ({ el, rect: el.getBoundingClientRect() }));
+    const nearest = cardRects
+      .map((item) => ({ ...item, delta: Math.abs(item.rect.left - (viewportRect.left + 1)) }))
+      .sort((a, b) => a.delta - b.delta)[0];
+    const step = cardRects[1].rect.left - cardRects[0].rect.left;
+    const matrix = new DOMMatrix(getComputedStyle(track).transform);
+    const offset = -matrix.m41;
+    const visible = cardRects.filter((item) => item.rect.right > viewportRect.left + 1 && item.rect.left < viewportRect.right - 1);
+    const next = cardRects
+      .filter((item) => item.rect.left > nearest.rect.left + 2)
+      .sort((a, b) => a.rect.left - b.rect.left)[0];
+    const peek = next ? Math.max(0, Math.min(viewportRect.right, next.rect.right) - Math.max(viewportRect.left, next.rect.left)) : 0;
+    const indexText = nearest.el.querySelector('.reviews-card-index')?.textContent || '0';
     return {
-      offset:viewport.scrollLeft,
-      maxScroll:Math.max(0,viewport.scrollWidth-viewport.clientWidth),
-      step:cardWidth+gap,
-      alignment:Math.abs(nearest.rect.left-vr.left),
-      leftIndex:parseInt((nearest.el.querySelector('.reviews-card-index')?.textContent||'0').split('/')[0],10),
-      indexes:cards.map(el=>Number(el.dataset.reviewIndex)),
-      visibleCards:visible.length,
-      nextCardPeek:peek,
-      reducedMotion:window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-      setCount:track.querySelectorAll('.reviews-set').length,
-      viewportWidth:vr.width,
-      sectionWidth:viewport.parentElement.getBoundingClientRect().width,
-      firstCardWidth:cardWidth,
-      transform:getComputedStyle(track).transform,
-      willChange:getComputedStyle(track).willChange
+      offset,
+      step,
+      alignment: nearest.delta,
+      leftIndex: parseInt(indexText.split('/')[0], 10),
+      visibleCards: visible.length,
+      nextCardPeek: peek,
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      setCount: track.querySelectorAll('.reviews-set').length,
+      viewportWidth: viewportRect.width,
+      sectionWidth: viewport.parentElement.getBoundingClientRect().width,
+      firstCardWidth: cardRects[1].rect.width
     };
   });
+}
+async function dragReviews(page, direction, step) {
+  await page.locator('#reviewsViewport').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(100);
+  await page.evaluate(() => {
+    const viewport = document.querySelector('#reviewsViewport');
+    if (!viewport || viewport.dataset.qaTrace === 'true') return;
+    viewport.dataset.qaTrace = 'true';
+    window.__rpDragTrace = [];
+    for (const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture']) {
+      viewport.addEventListener(type, event => window.__rpDragTrace.push({
+        type, x: Math.round(event.clientX), y: Math.round(event.clientY),
+        button: event.button, pointerType: event.pointerType
+      }));
+    }
+  });
+  const box = await page.locator('#reviewsViewport').boundingBox();
+  assert.ok(box, 'reviews viewport should have a bounding box');
+  const startX = box.x + Math.min(box.width - 24, step * 0.8);
+  const endX = startX - direction * step * 0.7;
+  const y = box.y + Math.max(20, Math.min(box.height / 2, 72));
+  await page.mouse.move(startX, y);
+  await page.mouse.down();
+  await page.mouse.move(endX, y, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(500);
+  return page.evaluate(() => window.__rpDragTrace || []);
 }
 
 (async () => {
@@ -166,19 +195,57 @@ async function reviewCarouselState(page) {
       assert.equal(await page.locator('.reviews-view-all').getAttribute('href'), '/reviews/' + route.lang + '/index.html', 'read-all link must point to the matching locale page');
       assert.ok(!/[↗↖⬆]/u.test(await page.locator('.reviews-view-all').innerText()), route.path + ' read-all link must not display decorative arrow emoji');
       await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 5);
-      const initialReviews = await reviewCarouselState(page);
-      assert.equal(initialReviews.indexes.length, 5, 'preview must render exactly five reviews');
-      assert.equal(new Set(initialReviews.indexes).size, 5, 'preview reviews must be unique');
-      assert.ok(initialReviews.indexes.every(index => Number.isInteger(index) && index >= 1 && index <= 50),
-        'preview must sample from the 50-review collection: ' + JSON.stringify(initialReviews.indexes));
-      assert.equal(initialReviews.setCount, 0, 'preview must not duplicate or clone review sets');
-      assert.equal(initialReviews.transform, 'none', 'review track must not use a continuously updated transform');
-      const idleScrollLeft = initialReviews.offset;
-      await page.waitForTimeout(900);
-      const afterIdle = await reviewCarouselState(page);
-      assert.equal(afterIdle.offset, idleScrollLeft, route.path + ' preview must stay still unless the visitor scrolls it');
-      assert.equal(afterIdle.transform, 'none', route.path + ' preview must not animate while the page is idle');
-      assert.ok(initialReviews.visibleCards >= 2, route.path + ' preview should reveal part of the next card');
+      assert.equal(await page.locator('#reviewsTrack .reviews-card').count(), 5, 'carousel should keep a small rolling window to avoid oversized WebKit layers');
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 0, 'carousel should not render giant duplicate review sets');
+// Verify both wrap boundaries and rapid repeated navigation before unrelated
+      // language-menu checks, so carousel regressions are surfaced directly.
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(80);
+      const boundaryStart = await reviewCarouselState(page);
+      assert.ok(boundaryStart.viewportWidth >= boundaryStart.sectionWidth - 2,
+        route.path + ' reviews viewport must use the full available mobile width: ' + JSON.stringify(boundaryStart));
+      assert.ok(boundaryStart.viewportWidth > boundaryStart.firstCardWidth,
+        route.path + ' mobile reviews viewport must reveal the next card instead of clipping to one narrow slice: ' + JSON.stringify(boundaryStart));
+      assert.ok(boundaryStart.visibleCards >= 2,
+        route.path + ' reviews carousel must render cards before the first interaction: ' + JSON.stringify(boundaryStart));
+      const previousExpected = ((boundaryStart.leftIndex - 2 + 50) % 50) + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevBoundary = await reviewCarouselState(page);
+      assert.equal(afterPrevBoundary.leftIndex, previousExpected, route.path + ' previous arrow must wrap from review 1 to review 50: ' + JSON.stringify({boundaryStart,afterPrevBoundary}));
+      assert.ok(afterPrevBoundary.alignment <= 5 && afterPrevBoundary.visibleCards >= 2, route.path + ' previous boundary must keep cards visible: ' + JSON.stringify(afterPrevBoundary));
+
+      const nextExpected = (afterPrevBoundary.leftIndex % 50) + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNextBoundary = await reviewCarouselState(page);
+      assert.equal(afterNextBoundary.leftIndex, nextExpected, route.path + ' next arrow must wrap from review 50 to review 1: ' + JSON.stringify({afterPrevBoundary,afterNextBoundary}));
+      assert.ok(afterNextBoundary.alignment <= 5 && afterNextBoundary.visibleCards >= 2, route.path + ' next boundary must keep cards visible: ' + JSON.stringify(afterNextBoundary));
+
+      const burstStart = await reviewCarouselState(page);
+      const burstMoves = 137;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsPrev');
+        for (let i=0;i<count;i++) button.click();
+      }, burstMoves);
+      await page.waitForTimeout(520);
+      const afterPrevBurst = await reviewCarouselState(page);
+      const expectedAfterPrevBurst = ((burstStart.leftIndex - 1 - burstMoves + 5000) % 50) + 1;
+      assert.equal(afterPrevBurst.leftIndex, expectedAfterPrevBurst, route.path + ' 137 rapid previous clicks must keep the loop stable: ' + JSON.stringify({burstStart,afterPrevBurst}));
+      assert.ok(afterPrevBurst.alignment <= 5 && afterPrevBurst.visibleCards >= 2, route.path + ' previous burst must not make cards disappear: ' + JSON.stringify(afterPrevBurst));
+
+      const nextBurstMoves = 189;
+      await page.evaluate(count => {
+        const button = document.getElementById('reviewsNext');
+        for (let i=0;i<count;i++) button.click();
+      }, nextBurstMoves);
+      await page.waitForTimeout(520);
+      const afterNextBurst = await reviewCarouselState(page);
+      const expectedAfterNextBurst = ((expectedAfterPrevBurst - 1 + nextBurstMoves) % 50) + 1;
+      assert.equal(afterNextBurst.leftIndex, expectedAfterNextBurst, route.path + ' 189 rapid next clicks must keep the loop stable: ' + JSON.stringify({afterNextBurst,expectedAfterNextBurst}));
+      assert.ok(afterNextBurst.alignment <= 5 && afterNextBurst.visibleCards >= 2, route.path + ' next burst must not make cards disappear: ' + JSON.stringify(afterNextBurst));
+
       await page.evaluate(() => window.scrollTo(0,0));
       await page.waitForTimeout(80);
       if (route.lang === 'ar') {
@@ -227,26 +294,46 @@ async function reviewCarouselState(page) {
       assert.equal(await page.evaluate(() => document.activeElement.id), 'lang', 'Escape should restore focus to language control');
 
       await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(100);
       const beforeNext = await reviewCarouselState(page);
-      assert.ok(beforeNext.maxScroll > 0, route.path + ' five-card preview should support native horizontal scrolling');
+      const expectedNext = (beforeNext.leftIndex % 50) + 1;
       await page.locator('#reviewsNext').click();
-      await page.waitForFunction(before => document.querySelector('#reviewsViewport').scrollLeft > before + 1, beforeNext.offset, { timeout: 2500 });
+      await page.waitForTimeout(500);
       const afterNext = await reviewCarouselState(page);
-      assert.ok(afterNext.offset > beforeNext.offset, route.path + ' next control should scroll the preview forward');
-      assert.ok(afterNext.visibleCards >= 1, route.path + ' cards must remain visible after horizontal scrolling');
+      assert.ok(afterNext.alignment <= 5, route.path + ' next arrow must align a card to the left edge: ' + JSON.stringify(afterNext));
+      assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
+      assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
+
+      const expectedPrevious = ((afterNext.leftIndex - 2 + 50) % 50) + 1;
       await page.locator('#reviewsPrev').click();
-      await page.waitForFunction(after => document.querySelector('#reviewsViewport').scrollLeft < after - 1, afterNext.offset, { timeout: 2500 });
+      await page.waitForTimeout(500);
       const afterPrevious = await reviewCarouselState(page);
-      assert.ok(afterPrevious.offset < afterNext.offset, route.path + ' previous control should scroll the preview backward');
-      await page.evaluate(() => window.scrollTo(0, 0));
-      await page.waitForTimeout(80);
-      const horizontalBeforeVerticalScroll = await page.locator('#reviewsViewport').evaluate(el => el.scrollLeft);
-      await page.evaluate(() => window.scrollTo(0, 360));
-      await page.waitForTimeout(450);
-      const horizontalAfterVerticalScroll = await page.locator('#reviewsViewport').evaluate(el => el.scrollLeft);
-      assert.equal(horizontalAfterVerticalScroll, horizontalBeforeVerticalScroll,
-        route.path + ' vertical page scrolling must not trigger carousel movement');
-      await page.evaluate(() => window.scrollTo(0, 0));
+      assert.ok(afterPrevious.alignment <= 5, route.path + ' previous arrow must align a card to the left edge: ' + JSON.stringify(afterPrevious));
+      assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
+
+      const beforeLeftDrag = await reviewCarouselState(page);
+      const expectedAfterLeftDrag = (beforeLeftDrag.leftIndex % 50) + 1;
+      const leftDragTrace = await dragReviews(page, 1, beforeLeftDrag.step);
+      const afterLeftDrag = await reviewCarouselState(page);
+      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify({ afterLeftDrag, leftDragTrace }));
+      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review: ' + JSON.stringify({ beforeLeftDrag, afterLeftDrag, leftDragTrace }));
+
+      const beforeRightDrag = await reviewCarouselState(page);
+      const expectedAfterRightDrag = ((beforeRightDrag.leftIndex - 2 + 50) % 50) + 1;
+      await dragReviews(page, -1, beforeRightDrag.step);
+      const afterRightDrag = await reviewCarouselState(page);
+      assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
+      assert.equal(afterRightDrag.leftIndex, expectedAfterRightDrag, route.path + ' right swipe should return to the previous review');
+
+      if (!afterRightDrag.reducedMotion) {
+        await page.waitForTimeout(2600);
+        const afterAutoplay = await reviewCarouselState(page);
+        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
+        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
+        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
+      }
+
       for (const width of [1024, 768]) {
         await page.setViewportSize({ width, height: 844 });
         await assertResponsiveText(page, width, route.path);
@@ -349,6 +436,10 @@ async function reviewCarouselState(page) {
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' blog heading should be present');
       assert.equal(await page.locator('link[href="/asset/css/responsive-overrides.css"]').count(), 1, 'blog must load shared responsive overrides');
       assert.equal(await page.locator('link[href="/asset/css/site-global-ui.css"]').count(), 1, 'blog must load shared top-bar styles');
+      assert.equal(await page.locator('#articleSearch').count(), 0, route.path + ' blog should not show a search box');
+      assert.equal(await page.locator('#categoryFilter').count(), 0, route.path + ' blog should not show a topic category filter');
+      assert.equal(await page.locator('#archiveStatus').count(), 0, route.path + ' blog should not show archive filter status');
+      assert.ok(await page.locator('.latest .article-card').count() > 0, route.path + ' blog should show its guide list');
       if (route.lang === 'ar') {
         const headerAlignment = await page.evaluate(() => {
           const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
