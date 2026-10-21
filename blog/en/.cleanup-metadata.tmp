@@ -482,6 +482,66 @@
       "slug": "cookie-consent-ux.html",
       "title": "Cookie Consent UX: Make Choices Clear and Respectful",
       "description": "A cookie consent UX guide to clear purposes, balanced choices, consent persistence, accessible controls and testing that consent signals are respected."
+    },
+    {
+      "slug": "knowledge-base-seo.html",
+      "title": "Knowledge Base SEO: Make Support Answers Easy to Find",
+      "description": "A knowledge base SEO guide to task-based article titles, information architecture, internal search, indexation, freshness and reducing repeated support friction."
+    },
+    {
+      "slug": "brand-voice-examples.html",
+      "title": "Brand Voice Examples: Turn Tone Principles into Real Copy",
+      "description": "Brand voice examples for service pages, social posts, emails and support replies, with a practical method for keeping tone consistent without sounding robotic."
+    },
+    {
+      "slug": "brand-voice-guidelines.html",
+      "title": "Brand Voice Guidelines: Give Writers a Practical Shared Standard",
+      "description": "A brand voice guidelines guide to tone principles, audience language, approved terminology, examples, review rules and maintaining consistency across channels."
+    },
+    {
+      "slug": "brand-naming-process.html",
+      "title": "Brand Naming: Evaluate Names for Meaning, Use and Risk",
+      "description": "A brand naming guide to audience fit, distinctiveness, pronunciation, language checks, domain research and trademark review before a name is adopted."
+    },
+    {
+      "slug": "http-status-codes-seo.html",
+      "title": "HTTP Status Codes for SEO: Return the Right Response",
+      "description": "An HTTP status code guide for SEO covering 200, 301, 302, 404, 410 and 5xx responses, with practical checks for redirects and retired pages."
+    },
+    {
+      "slug": "javascript-seo-rendering.html",
+      "title": "JavaScript SEO: Verify What Search Engines Can Render",
+      "description": "A JavaScript SEO guide to rendered content, crawlable links, hydration errors, client-side routing, server rendering and testing the actual page output."
+    },
+    {
+      "slug": "faceted-navigation-seo.html",
+      "title": "Faceted Navigation SEO: Control Filter URLs Without Hiding Useful Pages",
+      "description": "A faceted navigation SEO guide to filter combinations, crawl demand, canonical strategy, internal links and deciding which filtered pages deserve indexation."
+    },
+    {
+      "slug": "technical-seo-crawl-budget.html",
+      "title": "Crawl Budget: Help Search Engines Spend Time on Important URLs",
+      "description": "A crawl budget guide to URL quality, server response, internal links, faceted navigation, crawl demand and when crawl-budget work is actually warranted."
+    },
+    {
+      "slug": "xml-sitemap-best-practices.html",
+      "title": "XML Sitemap Best Practices: Submit the URLs You Want Indexed",
+      "description": "XML sitemap best practices covering canonical URLs, status codes, lastmod accuracy, language variants, pagination and ongoing validation."
+    },
+    {
+      "slug": "topic-cluster-planning.html",
+      "title": "Topic Cluster Planning: Connect Related Pages Around User Intent",
+      "description": "A topic cluster planning guide to choosing a core page, mapping related questions, avoiding keyword cannibalisation and building useful internal links."
+    },
+    {
+      "slug": "utm-tracking-campaigns.html",
+      "title": "UTM Tracking: Keep Campaign Reporting Consistent",
+      "description": "A UTM tracking guide to naming conventions, source and medium definitions, campaign tagging, redirects, privacy considerations and reporting quality."
+    },
+    {
+      "slug": "digital-project-brief.html",
+      "title": "Digital Project Brief: Align the Team Before Design or Development",
+      "description": "A digital project brief guide covering goals, audience, scope, deliverables, content, integrations, approvals, constraints and measurable acceptance criteria."
     }
   ]
 }
