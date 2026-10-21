@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07090d"><meta name="description" content="Browse all 50 client feedback notes across website, brand identity and digital growth work."><title>Client Reviews | RocketPen Digital Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#ffeb00;--line:rgba(255,255,255,.13);--pad:clamp(22px,5.5vw,88px);--font:'DM Sans',sans-serif;--display:'Space Grotesk',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:#07090d;color:#f8f8f7;font-family:var(--font);-webkit-font-smoothing:antialiased}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}.scroll-progress{position:fixed;z-index:2147483647;top:0;left:0;right:0;width:100%;height:3px;background:rgba(255,255,255,.14);pointer-events:none}.scroll-progress span{display:block;width:0;height:100%;background:var(--yellow);box-shadow:0 0 8px rgba(255,235,0,.32);will-change:width}
+.site-header{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px var(--pad);min-height:82px;background:rgba(7,9,13,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand img{display:block;width:clamp(175px,22vw,260px);height:auto;max-height:56px;object-fit:contain;object-position:left center}
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex-wrap:wrap}.back-home{color:#d4d7de;font-size:12px;white-space:nowrap;transition:color .2s}.back-home:hover{color:var(--yellow)}
+.locale-nav{display:flex;gap:6px}.locale-nav a{display:inline-flex;min-width:36px;justify-content:center;padding:9px 10px;color:#afb4bd;border:1px solid transparent;font-size:11px;letter-spacing:1px}.locale-nav a:hover,.locale-nav a[aria-current="page"]{color:var(--yellow);border-color:rgba(255,235,0,.42);background:rgba(255,235,0,.04)}
+main{width:100%;max-width:1600px;margin:0 auto;padding:clamp(54px,8vw,112px) var(--pad) 100px}.intro-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;max-width:1250px;margin:0 auto 44px}
+.kicker{color:var(--yellow);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}h1{font:600 clamp(42px,7vw,86px)/.98 var(--display);letter-spacing:-.065em;margin:0;max-width:950px}h1 em{color:var(--yellow);font-style:normal}.intro-copy{max-width:700px;color:#b9bec7;font-size:15px;line-height:1.8;margin:20px 0 0}.count{flex-shrink:0;border:1px solid rgba(255,255,255,.15);padding:11px 14px;color:#e5e7ec;font-size:10px;letter-spacing:1px;white-space:nowrap}
+.review-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1250px;margin:0 auto}.review-list-card{padding:25px 25px 22px;min-height:245px;display:flex;flex-direction:column;gap:16px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.015));transition:border-color .22s ease,background .22s ease;scroll-margin-top:100px}.review-list-card:hover{border-color:rgba(255,235,0,.38);background:linear-gradient(145deg,rgba(255,235,0,.045),rgba(255,255,255,.015))}
+.review-list-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.review-list-stars{color:var(--yellow);font-size:14px;letter-spacing:3px;white-space:nowrap}.review-list-index{font-size:10px;letter-spacing:1.4px;color:#a6abb5}.review-list-quote{height:16px;color:var(--yellow);font:500 31px/1 var(--display)}.review-list-copy{color:#f0f1f3;font-size:15px;line-height:1.8;margin:0}.review-list-category{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);color:#939aa6;font-size:10px;letter-spacing:1.2px;text-transform:uppercase}
+[lang="ar"] .review-list-copy{text-align:right}[lang="ar"] .review-list-category{letter-spacing:0;text-transform:none}[lang="ar"] h1{letter-spacing:0}
+footer{max-width:1600px;margin:0 auto;padding:24px var(--pad);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:18px;color:#9299a5;font-size:11px}.footer-mark{letter-spacing:2px;text-transform:uppercase;color:#d2d6df}
+@media(max-width:760px){.site-header{min-height:74px;padding:13px 20px;gap:12px}.brand img{width:clamp(152px,45vw,205px);max-height:46px}.header-actions{gap:10px}.back-home{font-size:11px}.locale-nav{gap:0}.locale-nav a{min-width:31px;padding:8px 6px;font-size:10px}main{padding:48px 20px 72px}.intro-row{align-items:flex-start;flex-direction:column;gap:18px;margin-bottom:27px}.kicker{font-size:9px;letter-spacing:2.2px}h1{font-size:clamp(39px,11.6vw,63px);line-height:1.02}.intro-copy{font-size:13px;line-height:1.75}.count{padding:9px 11px}.review-list{grid-template-columns:1fr;gap:12px}.review-list-card{min-height:0;padding:22px 19px}.review-list-copy{font-size:14px;line-height:1.8}footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.review-list-card,.back-home,.locale-nav a{transition:none}}
+</style>
+</head>
+<body>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+<header class="site-header"><a class="brand" href="/index.html" aria-label="RocketPen Digital Studio"><img src="../../asset/logo/logo-header.png" alt="RocketPen Digital Studio"></a><div class="header-actions"><a class="back-home" href="/index.html">← Back to website</a><nav class="locale-nav" aria-label="Language"><a href="/reviews/en/index.html" aria-current="page">EN</a><a href="/reviews/tr/index.html" >TR</a><a href="/reviews/ar/index.html" >AR</a></nav></div></header>
+<main><div class="intro-row"><div><div class="kicker">CUSTOMER FEEDBACK</div><h1>All client reviews</h1><p class="intro-copy">Browse all 50 client feedback notes across website, brand identity and digital growth work.</p></div><div class="count">50 reviews</div></div><section class="review-list" aria-label="All client reviews">
+<article class="review-list-card" id="review-01" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">01 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We struggled to explain exactly what kind of website we wanted. They brought our ideas together and turned them into a design we’re happy with.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-02" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">02 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Our old website didn’t look right on phones. The new design has made it much easier to use.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-03" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">03 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted a website that looked good but was also easy for customers to navigate. It met our expectations.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-04" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">04 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We were having trouble with our contact form. They found and fixed the issue, and things now run more smoothly.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-05" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">05 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">It was our first time commissioning a website, so we had lots of questions. Their step-by-step explanations made things easier.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-06" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">06 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We refreshed our website design. The result looks simpler, more modern and better suited to our business.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-07" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">07 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Mobile compatibility mattered to us. The site now looks more organised across different screen sizes.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-08" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">08 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We discussed the features we needed one by one, and they developed a solution that fits our needs.</p>
+  <div class="review-list-category">WEBSITE &amp; DIGITAL</div>
+</article>
+<article class="review-list-card" id="review-09" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">09 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We didn’t know where to start to become more visible on Google. They helped us set our priorities.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-10" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">10 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Our website headings and descriptions were quite inconsistent. The SEO updates gave our pages a more organised structure.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-11" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">11 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We discovered several technical SEO issues we hadn’t known about. It helped that they explained the next steps clearly.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-12" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">12 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to reach more local customers. We now plan our local SEO activities with a clearer understanding of our area.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-13" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">13 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to review and update our older blog posts. We’ve now given the content a more structured format.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-14" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">14 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">It was useful to identify broken links and technical issues on our site. We now know where to start fixing things.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-15" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">15 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We gained a better understanding that SEO is about more than keywords. They looked at the site structure and content together.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-16" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">16 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We received support with international SEO for our English content. We’re now more organised when targeting different countries.</p>
+  <div class="review-list-category">SEO &amp; GOOGLE VISIBILITY</div>
+</article>
+<article class="review-list-card" id="review-17" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">17 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We were always wondering what to post on social media. Having a content calendar has taken some of that pressure away.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-18" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">18 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted our brand to look more consistent on social media. We liked how they brought our visual style together.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-19" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">19 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Our posts used to look very different from one another. Our account now has a more cohesive palette and design style.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-20" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">20 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We found it hard to come up with ideas for Reels. Planning content topics has saved us time.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-21" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">21 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Instead of trying something completely different with every post, we’ve started following a clearer plan. That mattered to us.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-22" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">22 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We’re a small business and don’t have much time for social media. Working with a plan makes things easier.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-23" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">23 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Working on content ideas that suit our audience has made our posts more relevant.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-24" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">24 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to look professional without sounding too formal. Defining our brand voice was helpful.</p>
+  <div class="review-list-category">SOCIAL MEDIA &amp; CONTENT</div>
+</article>
+<article class="review-list-card" id="review-25" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">25 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We needed a clearer plan for using our advertising budget. Defining our goals was a good starting point.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-26" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">26 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We were running ads but couldn’t interpret the results properly. Reviewing measurement gave us a different perspective.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-27" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">27 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We’ve started taking a more structured approach to audience selection and messaging for our campaigns.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-28" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">28 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to understand what visitors from ads do on our website. The help with conversion tracking was useful.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-29" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">29 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We realised that not every campaign should be handled the same way. Planning around each goal makes more sense.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-30" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">30 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We learned not to judge ad performance only by clicks. We’re focusing on more meaningful metrics now.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-31" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">31 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Discussing our expectations and goals before each campaign made the process easier to understand.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-32" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">32 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We used to overlook measurement. Now we collect data more consistently so we can compare results.</p>
+  <div class="review-list-category">DIGITAL ADS &amp; PERFORMANCE</div>
+</article>
+<article class="review-list-card" id="review-33" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">33 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We had a logo, but our overall brand look wasn’t fully established. Bringing the colours and design language together worked well.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-34" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">34 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted our brand to look more modern. The design approach now feels much closer to what we had in mind.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-35" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">35 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Our presentations and social media visuals had different styles. We liked seeing them brought into harmony.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-36" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">36 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We weren’t sure where to start with a new brand. Working on the visual identity helped clarify our ideas.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-37" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">37 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">The designs needed to look good and reflect our brand. We appreciated that they paid attention to both.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-38" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">38 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We created a more organised design system for campaign visuals. Preparing new content is easier now.</p>
+  <div class="review-list-category">BRAND IDENTITY &amp; DESIGN</div>
+</article>
+<article class="review-list-card" id="review-39" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">39 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Information on our product pages was a little confusing. A clearer presentation makes the products easier for customers to understand.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-40" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">40 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to improve how our online store looks on mobile. It’s now easier to find products.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-41" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">41 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">It was useful to look at where customers struggle on our e-commerce site. We identified where to begin making improvements.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-42" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">42 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted clearer product descriptions. Organising the content improved the overall look of our store.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-43" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">43 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">Planning campaign visuals and page layouts in advance has made our work easier during promotional periods.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-44" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">44 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted a more organised digital store in terms of both design and user experience. The updates suited our needs.</p>
+  <div class="review-list-category">E-COMMERCE</div>
+</article>
+<article class="review-list-card" id="review-45" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">45 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We wanted to reach customers abroad as well. Planning a multilingual website showed us where to start.</p>
+  <div class="review-list-category">MULTILINGUAL &amp; GLOBAL</div>
+</article>
+<article class="review-list-card" id="review-46" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">46 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We had English pages, but the language wasn’t consistent across the whole site. Making the content more consistent was an important step.</p>
+  <div class="review-list-category">MULTILINGUAL &amp; GLOBAL</div>
+</article>
+<article class="review-list-card" id="review-47" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">47 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We also want to reach Arabic-speaking customers. We learned that right-to-left layout matters alongside translation.</p>
+  <div class="review-list-category">MULTILINGUAL &amp; GLOBAL</div>
+</article>
+<article class="review-list-card" id="review-48" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">48 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We realised that using the same copy everywhere isn’t enough when targeting different countries. We’re taking a more thoughtful approach to localisation.</p>
+  <div class="review-list-category">MULTILINGUAL &amp; GLOBAL</div>
+</article>
+<article class="review-list-card" id="review-49" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">49 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We had lots of digital ideas but didn’t know which to prioritise. Ranking the work by importance helped us.</p>
+  <div class="review-list-category">STRATEGY &amp; CONSULTING</div>
+</article>
+<article class="review-list-card" id="review-50" lang="en" dir="ltr">
+  <div class="review-list-top"><span class="review-list-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><span class="review-list-index">50 / 50</span></div>
+  <div class="review-list-quote" aria-hidden="true">“</div>
+  <p class="review-list-copy">We used to think about the website, content and advertising separately. Bringing them together around one goal gave us a more joined-up approach.</p>
+  <div class="review-list-category">STRATEGY &amp; CONSULTING</div>
+</article>
+</section></main>
+<footer><span class="footer-mark">ROCKETPEN DIGITAL STUDIO</span><a class="back-home" href="/index.html">← Back to website</a><span>© 2026 RocketPen Digital Studio</span></footer>
+<script>
+const progress=document.getElementById('scrollProgress');
+function updateProgress(){const root=document.documentElement;const max=Math.max(0,root.scrollHeight-window.innerHeight);const current=Math.max(0,window.scrollY||root.scrollTop||0);if(progress)progress.style.width=(max>0?Math.min(100,current/max*100):0)+'%';}
+window.addEventListener('scroll',updateProgress,{passive:true});window.addEventListener('resize',updateProgress);window.addEventListener('load',updateProgress);updateProgress();
+</script>
+</body></html>
