@@ -302,6 +302,66 @@
       "slug": "paid-search-strategy-and-planning-framework.html",
       "title": "Paid Search: Match Spend to Search Intent",
       "description": "A paid search guide to keyword intent, campaign structure, negative keywords, landing-page alignment, budget controls and conversion quality."
+    },
+    {
+      "slug": "paid-social-strategy-and-planning-guide.html",
+      "title": "Paid Social: Connect Creative, Audience and Measurement",
+      "description": "A paid social guide to audience strategy, creative testing, frequency, landing-page continuity, consent-aware tracking and outcome measurement."
+    },
+    {
+      "slug": "podcast-marketing-strategy-and-planning-guide.html",
+      "title": "Podcast Marketing: Help the Right Listeners Discover Each Episode",
+      "description": "A podcast marketing guide to episode positioning, guest promotion, show notes, short clips, distribution and measuring listener engagement."
+    },
+    {
+      "slug": "pricing-strategy-strategy-and-planning-guide.html",
+      "title": "Pricing Strategy: Make Value, Scope and Trade-Offs Clear",
+      "description": "A pricing strategy guide to customer value, cost structure, packaging, price testing, discount governance and measuring sustainable margins."
+    },
+    {
+      "slug": "privacy-compliance-strategy-and-planning-framework.html",
+      "title": "Privacy Compliance: Collect Less and Explain More",
+      "description": "A privacy compliance guide to data mapping, purpose limitation, consent, retention, access controls and practical governance for digital marketing."
+    },
+    {
+      "slug": "product-marketing-strategy-and-planning-framework.html",
+      "title": "Product Marketing: Explain Fit, Value and Differentiation",
+      "description": "A product marketing guide to audience segmentation, positioning, launch planning, sales enablement, customer proof and product adoption measurement."
+    },
+    {
+      "slug": "reputation-management-strategy-and-planning-framework.html",
+      "title": "Reputation Management: Respond with Accuracy and Accountability",
+      "description": "A reputation management guide to review monitoring, response standards, issue escalation, customer privacy and tracking trust-related outcomes."
+    },
+    {
+      "slug": "retail-media-strategy-and-planning-guide.html",
+      "title": "Retail Media: Measure Incremental Value Across Retailers",
+      "description": "A retail media guide to retailer selection, sponsored placements, product data, campaign measurement, margin and incrementality."
+    },
+    {
+      "slug": "saas-content-strategy-and-planning-guide.html",
+      "title": "SaaS Content: Support Evaluation, Activation and Adoption",
+      "description": "A SaaS content strategy guide to comparison pages, onboarding education, use-case content, product adoption and measuring content-assisted outcomes."
+    },
+    {
+      "slug": "search-advertising-strategy-and-planning-guide.html",
+      "title": "Search Advertising: Build a Measurable Campaign Structure",
+      "description": "A search advertising guide to intent-based structure, query review, ad relevance, landing-page quality, budget pacing and conversion tracking."
+    },
+    {
+      "slug": "shopify-seo-strategy-and-planning-guide.html",
+      "title": "Shopify SEO: Improve Collections, Products and Crawl Clarity",
+      "description": "A Shopify SEO guide to collection structure, product variants, canonical URLs, app-generated content, speed and organic shopping performance."
+    },
+    {
+      "slug": "social-media-marketing-strategy-and-planning-framework.html",
+      "title": "Social Media Marketing: Build a Sustainable Content System",
+      "description": "A social media marketing guide to audience goals, content pillars, publishing cadence, community response, platform fit and meaningful measurement."
+    },
+    {
+      "slug": "startup-marketing-strategy-and-planning-framework.html",
+      "title": "Startup Marketing: Validate Demand Before Scaling Channels",
+      "description": "A startup marketing guide to customer discovery, positioning, focused experiments, channel economics and learning from early demand."
     }
   ]
 }
