@@ -262,6 +262,8 @@ async function dragReviews(page, direction, step) {
             width: innerWidth,
             logoCenter: (logo.left + logo.right) / 2,
             languageCenter: (language.left + language.right) / 2,
+            logoRightGap: innerWidth - logo.right,
+            languageLeftGap: language.left,
             logoWidth: logo.width,
             imageWidth: image.width,
             imageLeft: image.left,
@@ -272,6 +274,8 @@ async function dragReviews(page, direction, step) {
         });
         assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic homepage logo should stay on the right: ' + JSON.stringify(headerAlignment));
         assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        assert.ok(Math.abs(headerAlignment.logoRightGap - headerAlignment.languageLeftGap) <= 8,
+          'Arabic homepage logo and language menu must have equal outer gutters: ' + JSON.stringify(headerAlignment));
         assert.ok(Math.abs(headerAlignment.logoWidth - headerAlignment.imageWidth) <= 2,
           'Arabic logo link must shrink-wrap the actual logo image instead of leaving a wide empty area: ' + JSON.stringify(headerAlignment));
         assert.ok(headerAlignment.glowWidth > 0,
