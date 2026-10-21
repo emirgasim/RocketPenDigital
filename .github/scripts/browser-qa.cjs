@@ -35,6 +35,55 @@ async function visible(page, selector) {
   });
 }
 
+
+async function reviewCarouselState(page) {
+  return page.evaluate(() => {
+    const viewport = document.querySelector('#reviewsViewport');
+    const track = document.querySelector('#reviewsTrack');
+    if (!viewport || !track) throw new Error('reviews carousel markup is missing');
+    const cards = [...track.querySelectorAll('.reviews-card')];
+    const firstSet = track.querySelector('.reviews-set');
+    if (cards.length !== 150 || !firstSet) throw new Error('reviews carousel should render three copies of 50 cards');
+    const viewportRect = viewport.getBoundingClientRect();
+    const cardRects = cards.map((el) => ({ el, rect: el.getBoundingClientRect() }));
+    const nearest = cardRects
+      .map((item) => ({ ...item, delta: Math.abs(item.rect.left - (viewportRect.left + 1)) }))
+      .sort((a, b) => a.delta - b.delta)[0];
+    const gap = parseFloat(getComputedStyle(firstSet).gap || '16') || 16;
+    const step = firstSet.querySelector('.reviews-card').getBoundingClientRect().width + gap;
+    const matrix = new DOMMatrix(getComputedStyle(track).transform);
+    const offset = -matrix.m41;
+    const visible = cardRects.filter((item) => item.rect.right > viewportRect.left + 1 && item.rect.left < viewportRect.right - 1);
+    const next = cardRects
+      .filter((item) => item.rect.left > nearest.rect.left + 2)
+      .sort((a, b) => a.rect.left - b.rect.left)[0];
+    const peek = next ? Math.max(0, Math.min(viewportRect.right, next.rect.right) - Math.max(viewportRect.left, next.rect.left)) : 0;
+    const indexText = nearest.el.querySelector('.reviews-card-index')?.textContent || '0';
+    return {
+      offset,
+      step,
+      alignment: nearest.delta,
+      leftIndex: parseInt(indexText.split('/')[0], 10),
+      visibleCards: visible.length,
+      nextCardPeek: peek,
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      setCount: track.querySelectorAll('.reviews-set').length
+    };
+  });
+}
+async function dragReviews(page, direction, step) {
+  const box = await page.locator('#reviewsViewport').boundingBox();
+  assert.ok(box, 'reviews viewport should have a bounding box');
+  const startX = box.x + Math.min(box.width - 24, step * 0.8);
+  const endX = startX - direction * step * 0.7;
+  const y = box.y + Math.max(20, Math.min(box.height / 2, 72));
+  await page.mouse.move(startX, y);
+  await page.mouse.down();
+  await page.mouse.move(endX, y, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(500);
+}
+
 (async () => {
   const browser = await chromium.launch({ headless: true });
   const failures = [];
@@ -70,6 +119,20 @@ async function visible(page, selector) {
       assert.equal(await page.locator('.nav-links').count(), 0, 'top navigation links must be removed');
       assert.equal(await page.locator('#mobileNavToggle').count(), 0, 'hamburger markup must not be included');
 
+      assert.equal(await page.locator('.reviews-view-all').getAttribute('href'), '/reviews/' + route.lang + '/index.html', 'read-all link must point to the matching locale page');
+      await page.waitForFunction(() => document.querySelectorAll('#reviewsTrack .reviews-card').length === 150);
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').count(), 3, 'carousel should have three copies for seamless looping');
+      assert.equal(await page.locator('#reviewsTrack .reviews-set').first().locator('.reviews-card').count(), 50, 'each carousel set should contain all 50 reviews');
+      if (route.lang === 'ar') {
+        const headerAlignment = await page.evaluate(() => {
+          const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+          const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+          return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+        });
+        assert.ok(headerAlignment.logoCenter > headerAlignment.width / 2, 'Arabic homepage logo should stay on the right: ' + JSON.stringify(headerAlignment));
+        assert.ok(headerAlignment.languageCenter < headerAlignment.width / 2, 'Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+      }
+
       await page.locator('#lang').click();
       assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'true');
       await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
@@ -82,6 +145,16 @@ async function visible(page, selector) {
       for (const width of [1024, 768]) {
         await page.setViewportSize({ width, height: 844 });
         await assertResponsiveText(page, width, route.path);
+
+        if (route.lang === 'ar') {
+          const headerAlignment = await page.evaluate(() => {
+            const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+            const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+            return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+          });
+          assert.ok(headerAlignment.logoCenter > width / 2, width + 'px Arabic logo should stay on the right: ' + JSON.stringify(headerAlignment));
+          assert.ok(headerAlignment.languageCenter < width / 2, width + 'px Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        }
       }
 
       for (const width of [390, 320]) {
@@ -114,6 +187,48 @@ async function visible(page, selector) {
         assert.ok(menuRect.left >= -1 && menuRect.right <= width + 1, width + 'px language menu should stay within viewport: ' + JSON.stringify(menuRect));
         await page.keyboard.press('Escape');
         assert.ok((await page.evaluate(() => document.documentElement.scrollWidth)) <= width + 1, width + 'px page should not overflow horizontally');
+      }
+
+
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('#reviewsViewport').hover();
+      await page.waitForTimeout(100);
+      const beforeNext = await reviewCarouselState(page);
+      const expectedNext = (Math.floor(beforeNext.offset / beforeNext.step) + 1) % 50 + 1;
+      await page.locator('#reviewsNext').click();
+      await page.waitForTimeout(500);
+      const afterNext = await reviewCarouselState(page);
+      assert.ok(afterNext.alignment <= 5, route.path + ' next arrow must align a card to the left edge: ' + JSON.stringify(afterNext));
+      assert.equal(afterNext.leftIndex, expectedNext, route.path + ' next arrow must advance exactly one review');
+      assert.ok(afterNext.visibleCards >= 2 && afterNext.nextCardPeek > 0, route.path + ' the next card edge should remain visible: ' + JSON.stringify(afterNext));
+
+      const expectedPrevious = ((Math.floor(afterNext.offset / afterNext.step) - 1) % 50 + 50) % 50 + 1;
+      await page.locator('#reviewsPrev').click();
+      await page.waitForTimeout(500);
+      const afterPrevious = await reviewCarouselState(page);
+      assert.ok(afterPrevious.alignment <= 5, route.path + ' previous arrow must align a card to the left edge: ' + JSON.stringify(afterPrevious));
+      assert.equal(afterPrevious.leftIndex, expectedPrevious, route.path + ' previous arrow must go back exactly one review');
+
+      const beforeLeftDrag = await reviewCarouselState(page);
+      const expectedAfterLeftDrag = (Math.floor(beforeLeftDrag.offset / beforeLeftDrag.step) + 1) % 50 + 1;
+      await dragReviews(page, 1, beforeLeftDrag.step);
+      const afterLeftDrag = await reviewCarouselState(page);
+      assert.ok(afterLeftDrag.alignment <= 5, route.path + ' left swipe must snap a review to the left edge: ' + JSON.stringify(afterLeftDrag));
+      assert.equal(afterLeftDrag.leftIndex, expectedAfterLeftDrag, route.path + ' left swipe should advance to the next review');
+
+      const beforeRightDrag = await reviewCarouselState(page);
+      const expectedAfterRightDrag = ((Math.floor(beforeRightDrag.offset / beforeRightDrag.step) - 1) % 50 + 50) % 50 + 1;
+      await dragReviews(page, -1, beforeRightDrag.step);
+      const afterRightDrag = await reviewCarouselState(page);
+      assert.ok(afterRightDrag.alignment <= 5, route.path + ' right swipe must snap a review to the left edge: ' + JSON.stringify(afterRightDrag));
+      assert.equal(afterRightDrag.leftIndex, expectedAfterRightDrag, route.path + ' right swipe should return to the previous review');
+
+      if (!afterRightDrag.reducedMotion) {
+        await page.waitForTimeout(2600);
+        const afterAutoplay = await reviewCarouselState(page);
+        const distance = Math.abs(afterAutoplay.offset - afterRightDrag.offset);
+        const circularDistance = Math.min(distance, Math.abs(distance - 50 * afterRightDrag.step), Math.abs(distance + 50 * afterRightDrag.step));
+        assert.ok(circularDistance > 5, route.path + ' carousel should resume automatic movement after interaction');
       }
 
       await page.evaluate(() => window.scrollTo(0, 360));
@@ -163,10 +278,10 @@ async function visible(page, selector) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         const metrics = await page.evaluate(() => {
           const hero = document.querySelector('main > .hero');
-          const header = document.querySelector('header.top');
+          const header = document.querySelector('header.nav');
           const tag = document.querySelector('main > .hero .tag');
-          const nav = document.querySelector('header.top nav.nav');
-          const headerItems = [...document.querySelectorAll('header.top nav.nav > a, header.top nav.nav summary')];
+          const nav = document.querySelector('header.nav');
+          const headerItems = [...document.querySelectorAll('header.nav > .logo, header.nav > .nav-right, header.nav .language-picker, header.nav .lang')];
           const rect = el => {
             const r = el.getBoundingClientRect();
             return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
