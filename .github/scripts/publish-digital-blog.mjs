@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const ROOT = process.cwd();
 const API_KEY = process.env.OPENAI_API_KEY;
-const SITE_URL = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
+const SITE_URL = (process.env.SITE_URL || 'https://rocketpendigital.com').trim().replace(/\/+$/, '');
 const MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 const TODAY = new Date().toISOString().slice(0, 10);
 const DAY = Math.floor(Date.now() / 86400000);
@@ -350,7 +350,7 @@ async function main(){
  for(const lang of LANGS)await renderIndex(lang,byLang[lang]);
  await updateSeoBlocks();
  await writeSitemap(all);
- const reportBase=SITE_URL||'https://rocketpendigital.qasimm2012.workers.dev';
+ const reportBase=SITE_URL||'https://rocketpendigital.com';
  const summaryPath=process.env.GITHUB_STEP_SUMMARY;
  if(summaryPath){
   const summary=['## Daily Digital Blog report — '+TODAY,'','Generated and quality-checked **'+newlyGenerated.length+' articles**: **'+newlyGenerated.filter(a=>a.lang==='en').length+' English**, **'+newlyGenerated.filter(a=>a.lang==='tr').length+' Turkish**, **'+newlyGenerated.filter(a=>a.lang==='ar').length+' Arabic**.','', '### English'];
