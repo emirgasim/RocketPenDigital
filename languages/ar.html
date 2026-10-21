@@ -493,20 +493,19 @@ function initReviewsCarousel(){
   const speed=38;
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
   const draw=()=>{track.style.transform='translate3d('+(-offset)+'px,0,0)';};
-  const bounded=value=>{
+  const wrapOffset=value=>{
     if(!period)return 0;
-    while(value<period)value+=period;
-    while(value>=period*2)value-=period;
-    return value;
+    const normalized=((value%period)+period)%period;
+    return period+normalized;
   };
+  const bounded=value=>wrapOffset(value);
   const clearSnap=()=>{
     if(snapTimer){clearTimeout(snapTimer);snapTimer=0;}
     track.classList.remove('is-snapping');
   };
   const settleAtEquivalentPosition=()=>{
     if(!period)return;
-    if(offset>=period*2-1)offset-=period;
-    else if(offset<period-1)offset+=period;
+    offset=wrapOffset(offset);
     clearSnap();
     draw();
   };
@@ -543,25 +542,19 @@ function initReviewsCarousel(){
   const snapToNearest=()=>{
     if(!period||!stepWidth)return;
     const index=Math.round(offset/stepWidth);
-    let target=index*stepWidth;
-    if(target<0)target+=period;
-    if(target>period*2)target-=period;
-    animateTo(target);
+    animateTo(wrapOffset(index*stepWidth));
   };
   const moveBy=direction=>{
     if(!period||!stepWidth)measure();
     if(!period||!stepWidth)return;
-    const currentIndex=Math.floor(offset/stepWidth);
-    let target=(currentIndex+direction)*stepWidth;
-    if(target<0)target+=period;
-    if(target>period*2)target-=period;
-    animateTo(target);
+    const currentIndex=Math.round(offset/stepWidth);
+    animateTo(wrapOffset((currentIndex+direction)*stepWidth));
   };
   const frame=time=>{
     if(lastTime&&!isDragging&&time>pausedUntil&&!document.hidden&&!reducedMotion.matches&&period>0&&!track.classList.contains('is-snapping')){
       const dt=Math.min(50,time-lastTime);
       offset+=speed*dt/1000;
-      if(offset>=period*2)offset-=period;
+      if(offset>=period*2)offset=wrapOffset(offset);
       draw();
     }
     lastTime=time;
