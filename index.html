@@ -299,7 +299,7 @@ header.nav .logo:before,footer .logo:before{
 .reviews-control:hover,.reviews-control:focus-visible{background:var(--yellow);border-color:var(--yellow);color:#08090b;outline:none}
 .reviews-view-all{display:inline-flex;align-items:center;gap:7px;color:#b9bec7;font-size:11px;letter-spacing:.35px;white-space:nowrap;text-decoration:none;transition:color .2s ease}
 .reviews-view-all:hover,.reviews-view-all:focus-visible{color:var(--yellow);outline:none}
-.reviews-viewport{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;position:relative;overflow-x:auto;overflow-y:hidden;cursor:grab;touch-action:pan-x pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.reviews-viewport{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box;position:relative;overflow-x:hidden;overflow-y:hidden;cursor:grab;touch-action:pan-y;overscroll-behavior-x:contain;direction:ltr;padding:4px 1px 17px;user-select:none;-webkit-user-select:none;scrollbar-width:none}
 .reviews-track{display:flex;gap:16px;width:max-content;direction:ltr;transform:none!important;will-change:auto;transition:none!important}
 .reviews-set{display:flex;gap:16px;flex:0 0 auto;width:max-content}
 .reviews-track>.reviews-card{scroll-snap-align:start}
@@ -556,12 +556,7 @@ function renderReviewCards(lang){
   reviewCarouselLang=lang;
   const count=reviewExamples.length;
   if(!reviewPreviewIndexes.length){
-    const shuffled=Array.from({length:count},(_,index)=>index);
-    for(let i=shuffled.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
-    }
-    reviewPreviewIndexes=shuffled.slice(0,Math.min(5,count));
+    reviewPreviewIndexes=Array.from({length:Math.min(5,count)},(_,index)=>index);
   }
   track.replaceChildren();
   for(const index of reviewPreviewIndexes){
@@ -599,13 +594,23 @@ function initReviewsCarousel(){
   viewport.dataset.carouselReady='true';
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
   const moveBy=direction=>{
-    const card=track.querySelector('.reviews-card');
-    if(!card)return;
-    const gap=parseFloat(getComputedStyle(track).columnGap)||16;
-    const step=card.getBoundingClientRect().width+gap;
-    const maxScroll=Math.max(0,viewport.scrollWidth-viewport.clientWidth);
-    viewport.scrollTo({left:Math.max(0,Math.min(maxScroll,viewport.scrollLeft+direction*step)),behavior:reducedMotion.matches?'auto':'smooth'});
+    const count=reviewExamples.length;
+    if(!count)return;
+    const current=reviewPreviewIndexes.length?reviewPreviewIndexes[0]:0;
+    const nextStart=(current+direction+count)%count;
+    reviewPreviewIndexes=Array.from({length:Math.min(5,count)},(_,offset)=>(nextStart+offset)%count);
+    renderReviewCards(reviewCarouselLang);
+    viewport.scrollLeft=0;
   };
+  let pointerStartX=null;
+  viewport.addEventListener('pointerdown',event=>{pointerStartX=event.clientX;});
+  viewport.addEventListener('pointerup',event=>{
+    if(pointerStartX===null)return;
+    const delta=event.clientX-pointerStartX;
+    pointerStartX=null;
+    if(Math.abs(delta)>35)moveBy(delta<0?1:-1);
+  });
+  viewport.addEventListener('pointercancel',()=>{pointerStartX=null;});
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
 }
