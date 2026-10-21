@@ -345,6 +345,11 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
 @media(min-width:761px){.arabic .reviews-heading .section-title{font-size:clamp(42px,6.3vw,78px);max-width:100%;line-height:1.18;letter-spacing:0;overflow-wrap:anywhere}}
 @media(prefers-reduced-motion:reduce){.reviews-card,.reviews-control{transition:none}}
 
+
+/* Keep the subtle white header-logo glow consistent with blog, article and reviews pages. */
+header.nav .logo-image {
+  filter: drop-shadow(0 0 5px rgba(255,255,255,.32)) drop-shadow(0 0 13px rgba(255,255,255,.16)) !important;
+}
 </style>
 <link rel="stylesheet" href="/asset/css/responsive-overrides.css">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
