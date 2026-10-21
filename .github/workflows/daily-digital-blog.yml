@@ -33,7 +33,7 @@ jobs:
         shell: bash
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.com' }}
         run: |
           TARGET=100
           en=$(find blog/data/en -maxdepth 1 -type f -name '*.json' | wc -l | tr -d ' ')
@@ -70,7 +70,7 @@ jobs:
         if: steps.readiness.outputs.ready == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.qasimm2012.workers.dev' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://rocketpendigital.com' }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
         run: node .github/scripts/publish-digital-blog.mjs
 
@@ -89,5 +89,5 @@ jobs:
           else
             git commit -m "Publish researched multilingual Digital Blog batch"
             git push
-            printf '%s\n' '' '## Publication status' '' 'The generated article pages, index pages and sitemap were committed and pushed successfully.' '' '[Open English Digital Blog](https://rocketpendigital.qasimm2012.workers.dev/blog/en/index.html) · [Türkçe](https://rocketpendigital.qasimm2012.workers.dev/blog/tr/index.html) · [العربية](https://rocketpendigital.qasimm2012.workers.dev/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
+            printf '%s\n' '' '## Publication status' '' 'The generated article pages, index pages and sitemap were committed and pushed successfully.' '' '[Open English Digital Blog](https://rocketpendigital.com/blog/en/index.html) · [Türkçe](https://rocketpendigital.com/blog/tr/index.html) · [العربية](https://rocketpendigital.com/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
           fi
