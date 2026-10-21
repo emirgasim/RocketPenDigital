@@ -122,5 +122,66 @@
     "blog/en/articles/ugc-content-strategy.html",
     "blog/en/articles/website-project-timeline.html"
   ],
-  "items": []
+  "items": [
+    {
+      "slug": "agency-operations-strategy-and-planning-framework.html",
+      "title": "Agency Operations: A Practical Operating Framework",
+      "description": "A practical agency operations guide to client intake, project scope, delivery handoffs, capacity planning and quality control."
+    },
+    {
+      "slug": "analytics-implementation-strategy-and-planning-guide.html",
+      "title": "Analytics Implementation: A Reliable Measurement Plan",
+      "description": "Plan analytics implementation with a measurement brief, event taxonomy, consent-aware data collection, quality assurance and decision-focused reporting."
+    },
+    {
+      "slug": "b2b-marketing-strategy-and-planning-framework.html",
+      "title": "B2B Marketing: Connect Demand, Sales and Revenue",
+      "description": "A practical B2B marketing framework for buying committees, demand generation, sales alignment, lead quality and revenue measurement."
+    },
+    {
+      "slug": "b2b-seo-strategy-and-planning-guide.html",
+      "title": "B2B SEO: Reach Buyers During Research and Evaluation",
+      "description": "A B2B SEO guide to buying-committee search intent, solution and comparison pages, technical foundations, internal links and qualified pipeline measurement."
+    },
+    {
+      "slug": "brand-messaging-strategy-and-planning-guide.html",
+      "title": "Brand Messaging: Make the Value Clear and Credible",
+      "description": "A practical brand messaging guide to customer language, value propositions, proof points, message hierarchy and consistent use across channels."
+    },
+    {
+      "slug": "brand-research-strategy-and-planning-guide.html",
+      "title": "Brand Research: Turn Customer Evidence into Decisions",
+      "description": "A brand research guide to customer interviews, competitor context, message testing, evidence synthesis and practical brand decisions."
+    },
+    {
+      "slug": "brand-strategy-strategy-and-planning-framework.html",
+      "title": "Brand Strategy: Positioning, Promise and Consistent Experience",
+      "description": "A practical brand strategy guide to target audiences, positioning, differentiation, brand architecture and aligning the customer experience with the promise."
+    },
+    {
+      "slug": "community-marketing-strategy-and-planning-guide.html",
+      "title": "Community Marketing: Build Participation Around Real Value",
+      "description": "A community marketing guide to purpose, member value, moderation, participation rituals and measuring healthy community growth."
+    },
+    {
+      "slug": "competitive-analysis-strategy-and-planning-guide.html",
+      "title": "Competitive Analysis: Find a Useful Point of Difference",
+      "description": "A competitive analysis guide to identifying real alternatives, comparing customer promises, mapping evidence and prioritising defensible opportunities."
+    },
+    {
+      "slug": "content-distribution-strategy-and-planning-guide.html",
+      "title": "Content Distribution: Match Each Asset to the Right Channel",
+      "description": "A content distribution guide to channel fit, repurposing, audience intent, owned and paid reach, and measuring useful engagement."
+    },
+    {
+      "slug": "content-localisation-strategy-and-planning-guide.html",
+      "title": "Content Localisation: Adapt Meaning, Not Just Words",
+      "description": "A content localisation guide to local search intent, terminology, cultural context, hreflang, editorial review and market-specific measurement."
+    },
+    {
+      "slug": "content-marketing-strategy-and-planning-framework.html",
+      "title": "Content Marketing: Help Buyers Make Better Decisions",
+      "description": "A content marketing guide to audience questions, useful formats, editorial planning, distribution and measuring business contribution."
+    }
+  ]
 }
