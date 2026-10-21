@@ -434,6 +434,18 @@ async function reviewCarouselState(page) {
       await context.close();
     }
 
+    // Blog indexes should show the guide list directly, without search/category controls.
+    for (const blogPath of ['/blog/en/index.html', '/blog/tr/index.html', '/blog/ar/index.html']) {
+      const blogPage = await browser.newPage({ viewport: { width: 390, height: 844 } });
+      const blogResponse = await blogPage.goto(BASE + blogPath, { waitUntil: 'domcontentloaded' });
+      assert.equal(blogResponse.status(), 200, blogPath + ' should load');
+      assert.equal(await blogPage.locator('#articleSearch').count(), 0, blogPath + ' should not show an article search field');
+      assert.equal(await blogPage.locator('#categoryFilter').count(), 0, blogPath + ' should not show a category filter');
+      assert.ok(await blogPage.locator('.latest .article-card').count() > 0, blogPath + ' should show guide cards without filters');
+      assert.ok((await blogPage.locator('.latest').innerText()).trim().length > 0, blogPath + ' guide list should not be empty');
+      await blogPage.close();
+    }
+
     const noJsContext = await browser.newContext({
       javaScriptEnabled: false,
       reducedMotion: 'reduce',
