@@ -162,6 +162,15 @@ async function dragReviews(page, direction, step) {
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
         await assertResponsiveText(page, width, route.path);
+        if (route.lang === 'ar') {
+          const headerAlignment = await page.evaluate(() => {
+            const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
+            const language = document.querySelector('header.nav .language-picker').getBoundingClientRect();
+            return { width: innerWidth, logoCenter: (logo.left + logo.right) / 2, languageCenter: (language.left + language.right) / 2 };
+          });
+          assert.ok(headerAlignment.logoCenter > width / 2, width + 'px Arabic logo should stay on the right: ' + JSON.stringify(headerAlignment));
+          assert.ok(headerAlignment.languageCenter < width / 2, width + 'px Arabic language control should stay on the left: ' + JSON.stringify(headerAlignment));
+        }
         assert.equal(await page.locator('#primaryNavigation').count(), 0, width + 'px mobile view must not include a navigation menu');
         assert.equal(await page.locator('#mobileNavToggle').count(), 0, width + 'px mobile view must not include hamburger markup');
         assert.equal(await page.locator('.hero-bottom').count(), 0, 'scroll hint and hero footer should be removed');
