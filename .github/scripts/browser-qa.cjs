@@ -366,6 +366,9 @@ async function dragReviews(page, direction, step) {
 
       await page.evaluate(() => window.scrollTo(0, 360));
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
+      // The nav enters with a 400ms keyframe animation; wait for that motion to finish
+      // before asserting its final fixed position, especially in WebKit.
+      await page.waitForTimeout(450);
       const stickyState = await page.locator('header.nav').evaluate(el => ({ position: getComputedStyle(el).position, top: el.getBoundingClientRect().top, zIndex: getComputedStyle(el).zIndex }));
       assert.equal(stickyState.position, 'fixed', 'mobile top bar should remain fixed during scroll: ' + JSON.stringify(stickyState));
       assert.ok(Math.abs(stickyState.top) <= 1, 'fixed top bar should stay aligned to the viewport top: ' + JSON.stringify(stickyState));
