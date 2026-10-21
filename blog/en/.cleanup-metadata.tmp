@@ -542,6 +542,66 @@
       "slug": "digital-project-brief.html",
       "title": "Digital Project Brief: Align the Team Before Design or Development",
       "description": "A digital project brief guide covering goals, audience, scope, deliverables, content, integrations, approvals, constraints and measurable acceptance criteria."
+    },
+    {
+      "slug": "marketing-channel-mix.html",
+      "title": "Marketing Channel Mix: Choose Channels by Role and Evidence",
+      "description": "A marketing channel mix guide to audience fit, channel roles, budget allocation, attribution limits and testing a balanced acquisition plan."
+    },
+    {
+      "slug": "digital-growth-roadmap.html",
+      "title": "Digital Growth Roadmap: Prioritise Improvements That Can Be Delivered",
+      "description": "A digital growth roadmap guide to setting measurable objectives, auditing the customer journey, prioritising initiatives, assigning owners and reviewing outcomes."
+    },
+    {
+      "slug": "agency-client-onboarding.html",
+      "title": "Agency Client Onboarding: Turn the Sale into a Clear Start",
+      "description": "An agency client onboarding guide to kickoff preparation, access and assets, scope confirmation, communication rules and first milestone delivery."
+    },
+    {
+      "slug": "b2b-demand-generation.html",
+      "title": "B2B Demand Generation: Create Useful Reasons to Engage",
+      "description": "A B2B demand generation guide to audience definition, educational content, channel coordination, sales feedback and measuring qualified pipeline."
+    },
+    {
+      "slug": "b2b-webinar-follow-up.html",
+      "title": "B2B Webinar Follow-Up: Turn Attendance into a Useful Next Step",
+      "description": "A B2B webinar follow-up guide to segmenting attendees and no-shows, sharing resources, routing questions, respecting consent and measuring qualified engagement."
+    },
+    {
+      "slug": "brand-architecture-guide.html",
+      "title": "Brand Architecture: Make Relationships Between Offers Clear",
+      "description": "A brand architecture guide to choosing branded-house, house-of-brands or hybrid structures, naming offers and clarifying customer expectations."
+    },
+    {
+      "slug": "brand-identity-redesign.html",
+      "title": "Brand Identity Redesign: Change with a Clear Reason",
+      "description": "A brand identity redesign guide to diagnosing the problem, preserving useful recognition, building a system, testing applications and planning rollout."
+    },
+    {
+      "slug": "brand-messaging-hierarchy.html",
+      "title": "Brand Messaging Hierarchy: Give Every Message a Clear Job",
+      "description": "A brand messaging hierarchy guide to core promise, supporting benefits, proof points, audience variations and consistent use across website and sales channels."
+    },
+    {
+      "slug": "brand-trust-communication.html",
+      "title": "Brand Trust Communication: Be Clear About What You Can Deliver",
+      "description": "A brand trust communication guide to transparent claims, consistent service expectations, honest updates, privacy-aware customer communication and accountable responses."
+    },
+    {
+      "slug": "case-study-distribution.html",
+      "title": "Case Study Distribution: Put Evidence Where Buyers Need It",
+      "description": "A case study distribution guide to matching proof to buyer questions, adapting formats, linking to relevant services and measuring qualified engagement."
+    },
+    {
+      "slug": "content-pruning-decisions.html",
+      "title": "Content Pruning: Decide What to Keep, Improve, Merge or Retire",
+      "description": "A content pruning guide to assessing usefulness, overlap, accuracy, traffic and business value before refreshing, merging or redirecting old pages."
+    },
+    {
+      "slug": "crm-marketing-integration.html",
+      "title": "CRM and Marketing Integration: Keep Handoffs and Data Consistent",
+      "description": "A CRM and marketing integration guide to field mapping, lead lifecycle definitions, consent, duplicate handling, sync failures and reporting consistency."
     }
   ]
 }
