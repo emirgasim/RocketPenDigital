@@ -4,4 +4,5 @@ compatibility_date = "2026-10-20"
 [assets]
 directory = "."
 binding = "ASSETS"
+run_worker_first = true
 not_found_handling = "404-page"
