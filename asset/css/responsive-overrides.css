@@ -987,3 +987,23 @@ body.arabic #languageMenu {
     transform-origin: top left !important;
   }
 }
+
+/* Final RTL brand lockup: size the header link to the image itself, not the
+   remaining header row, and keep the built-in rocket mark on the image's left
+   edge so its soft backlight remains attached to the artwork. */
+html[dir="rtl"] body header.nav > .logo,
+body.arabic header.nav > .logo {
+  width: max-content !important;
+  max-width: min(320px, calc(100vw - 112px)) !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+}
+html[dir="rtl"] body header.nav > .logo .logo-image,
+body.arabic header.nav > .logo .logo-image {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+}
+
