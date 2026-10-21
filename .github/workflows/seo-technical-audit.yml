@@ -1,0 +1,43 @@
+name: Automated SEO Technical Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blog/**"
+      - "sitemap.xml"
+      - "robots.txt"
+      - ".github/scripts/seo-technical-audit.mjs"
+      - ".github/workflows/seo-technical-audit.yml"
+  schedule:
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seo-technical-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run technical SEO audit
+        run: node .github/scripts/seo-technical-audit.mjs
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rocketpen-seo-technical-audit
+          path: |
+            reports/seo-technical-audit.md
+            reports/seo-technical-audit.json
+          if-no-files-found: warn
