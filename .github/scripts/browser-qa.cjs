@@ -20,7 +20,24 @@ async function assertResponsiveText(page, width, routePath) {
       const lineHeight = parseFloat(style.lineHeight);
       return Number.isFinite(fontSize) && Number.isFinite(lineHeight) && lineHeight < fontSize * 1.02;
     }).map(el => ({ text: (el.innerText || '').trim().slice(0, 70), fontSize: getComputedStyle(el).fontSize, lineHeight: getComputedStyle(el).lineHeight }));
-    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings };
+    const overflowers = [...document.querySelectorAll('body *')].map(el => {
+      const r = el.getBoundingClientRect();
+      const style = getComputedStyle(el);
+      return {
+        tag: el.tagName.toLowerCase(),
+        id: el.id || '',
+        className: typeof el.className === 'string' ? el.className.slice(0, 90) : '',
+        left: Math.round(r.left * 10) / 10,
+        right: Math.round(r.right * 10) / 10,
+        width: Math.round(r.width * 10) / 10,
+        display: style.display,
+        position: style.position,
+        text: (el.innerText || '').trim().slice(0, 48)
+      };
+    }).filter(el => el.width > 0 && (el.left < -1 || el.right > document.documentElement.clientWidth + 1))
+      .sort((a,b) => Math.max(0, b.right-document.documentElement.clientWidth, -b.left) - Math.max(0, a.right-document.documentElement.clientWidth, -a.left))
+      .slice(0, 12);
+    return { viewport: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth, tightHeadings, overflowers };
   });
   assert.ok(metrics.scrollWidth <= width + 1, routePath + ' must not horizontally overflow at ' + width + 'px: ' + JSON.stringify(metrics));
   assert.equal(metrics.tightHeadings.length, 0, routePath + ' headings must have non-overlapping line-height at ' + width + 'px: ' + JSON.stringify(metrics.tightHeadings));
