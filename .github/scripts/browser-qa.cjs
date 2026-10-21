@@ -349,6 +349,10 @@ async function reviewCarouselState(page) {
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' blog heading should be present');
       assert.equal(await page.locator('link[href="/asset/css/responsive-overrides.css"]').count(), 1, 'blog must load shared responsive overrides');
       assert.equal(await page.locator('link[href="/asset/css/site-global-ui.css"]').count(), 1, 'blog must load shared top-bar styles');
+      assert.equal(await page.locator('#articleSearch').count(), 0, route.path + ' blog should not show a search box');
+      assert.equal(await page.locator('#categoryFilter').count(), 0, route.path + ' blog should not show a topic category filter');
+      assert.equal(await page.locator('#archiveStatus').count(), 0, route.path + ' blog should not show archive filter status');
+      assert.ok(await page.locator('.latest .article-card').count() > 0, route.path + ' blog should show its guide list');
       if (route.lang === 'ar') {
         const headerAlignment = await page.evaluate(() => {
           const logo = document.querySelector('header.nav > .logo').getBoundingClientRect();
