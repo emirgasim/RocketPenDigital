@@ -381,8 +381,21 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePic
 setLang(pageLang);syncLanguageOptions();
 document.getElementById('year').textContent=new Date().getFullYear();
 const nav=document.querySelector('.nav'),progress=document.getElementById('scrollProgress');
-const updateScroll=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';nav.classList.toggle('is-scrolled',scrollY>40);const sections=[...document.querySelectorAll('main section[id]')];const active=sections.filter(section=>section.getBoundingClientRect().top<=innerHeight*.45).pop()||sections[0];document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',!!active&&a.getAttribute('href')==='#'+active.id))};
-addEventListener('scroll',updateScroll,{passive:true});addEventListener('resize',updateScroll);updateScroll();
+const updateScroll=()=>{
+ const root=document.documentElement;
+ const max=Math.max(0,root.scrollHeight-window.innerHeight);
+ const current=Math.max(0,window.scrollY||root.scrollTop||document.body.scrollTop||0);
+ if(progress)progress.style.width=(max>0?Math.min(100,Math.max(0,current/max*100)):0)+'%';
+ if(nav)nav.classList.toggle('is-scrolled',current>40);
+ const sections=[...document.querySelectorAll('main section[id]')];
+ const active=sections.filter(section=>section.getBoundingClientRect().top<=window.innerHeight*.45).pop()||sections[0];
+ document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active',!!active&&a.getAttribute('href')==='#'+active.id));
+};
+window.addEventListener('scroll',updateScroll,{passive:true});
+window.addEventListener('resize',updateScroll);
+window.addEventListener('load',updateScroll);
+if('ResizeObserver' in window){try{new ResizeObserver(updateScroll).observe(document.documentElement)}catch(error){}}
+updateScroll();
 if('IntersectionObserver' in window){
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1,rootMargin:'0px 0px -35px 0px'});
 document.querySelectorAll('.reveal,.services-intro,.service,.step,.contact-card').forEach((el,i)=>{el.style.transitionDelay=Math.min(i%6,5)*65+'ms';observer.observe(el)});
