@@ -182,6 +182,66 @@
       "slug": "content-marketing-strategy-and-planning-framework.html",
       "title": "Content Marketing: Help Buyers Make Better Decisions",
       "description": "A content marketing guide to audience questions, useful formats, editorial planning, distribution and measuring business contribution."
+    },
+    {
+      "slug": "content-strategy-strategy-and-planning-framework.html",
+      "title": "Content Strategy: Decide What to Publish and Why",
+      "description": "A content strategy framework for audience needs, search intent, editorial priorities, content ownership, governance and performance reviews."
+    },
+    {
+      "slug": "conversion-optimization-strategy-and-planning-framework.html",
+      "title": "Conversion Optimisation: Remove Friction Before Adding Tactics",
+      "description": "A conversion optimisation guide to journey analysis, testable hypotheses, form usability, experiment quality and meaningful conversion metrics."
+    },
+    {
+      "slug": "crm-strategy-strategy-and-planning-guide.html",
+      "title": "CRM Strategy: Keep Customer Data Useful and Actionable",
+      "description": "A CRM strategy guide to lifecycle stages, data quality, segmentation, workflow ownership, sales alignment and measurable customer outcomes."
+    },
+    {
+      "slug": "customer-experience-strategy-and-planning-framework.html",
+      "title": "Customer Experience: Find and Fix Journey Friction",
+      "description": "A customer experience framework for journey mapping, service handoffs, feedback loops, accessibility and outcome-based measurement."
+    },
+    {
+      "slug": "customer-onboarding-strategy-and-planning-guide.html",
+      "title": "Customer Onboarding: Help New Customers Reach First Value",
+      "description": "A customer onboarding guide to activation milestones, welcome sequences, setup checklists, support triggers and retention-aware measurement."
+    },
+    {
+      "slug": "customer-research-strategy-and-planning-guide.html",
+      "title": "Customer Research: Ask Better Questions and Use the Evidence",
+      "description": "A customer research guide to interview design, sampling, survey limits, behavioural evidence, synthesis and translating findings into product or marketing decisions."
+    },
+    {
+      "slug": "customer-retention-strategy-and-planning-framework.html",
+      "title": "Customer Retention: Understand Why Customers Stay or Leave",
+      "description": "A customer retention guide to churn reasons, cohort analysis, lifecycle engagement, service recovery and sustainable retention measurement."
+    },
+    {
+      "slug": "digital-analytics-strategy-and-planning-framework.html",
+      "title": "Digital Analytics: Turn Measurement into Better Decisions",
+      "description": "A digital analytics guide to decision-led KPIs, event definitions, trustworthy dashboards, data quality and responsible interpretation."
+    },
+    {
+      "slug": "digital-pr-strategy-and-planning-framework.html",
+      "title": "Digital PR: Earn Attention with Evidence Worth Sharing",
+      "description": "A digital PR guide to newsworthy angles, original evidence, journalist research, relevant outreach and evaluating links and brand visibility."
+    },
+    {
+      "slug": "digital-transformation-strategy-and-planning-guide.html",
+      "title": "Digital Transformation: Improve the Process Before Buying More Tools",
+      "description": "A digital transformation guide to process mapping, system integration, team adoption, governance and measurable operational improvements."
+    },
+    {
+      "slug": "ecommerce-seo-strategy-and-planning-framework.html",
+      "title": "Ecommerce SEO: Make Product and Category Pages More Useful",
+      "description": "An ecommerce SEO guide to category intent, product detail, faceted navigation, canonical URLs, structured data and organic revenue measurement."
+    },
+    {
+      "slug": "email-automation-strategy-and-planning-guide.html",
+      "title": "Email Automation: Trigger Helpful Messages at the Right Moment",
+      "description": "An email automation guide to lifecycle triggers, segmentation, suppression rules, deliverability, testing and measuring downstream actions."
     }
   ]
 }
