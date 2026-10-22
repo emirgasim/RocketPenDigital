@@ -45,7 +45,7 @@ function markdownToHtml(md) {
     if (!line) { flushPara(); closeList(); continue; }
     if (/^---+$/.test(line)) { flushPara(); closeList(); continue; }
     const h = line.match(/^(#{1,4})\s+(.+)$/);
-    if (h) { flushPara(); closeList(); const level = Math.min(h[1].length + 1, 4); out.push('<h' + level + '>' + inline(h[2]) + '</h' + level + '>'); continue; }
+    if (h) { flushPara(); closeList(); const level = Math.min(Math.max(h[1].length, 2), 4); out.push('<h' + level + '>' + inline(h[2]) + '</h' + level + '>'); continue; }
     const ol = line.match(/^\d+\.\s+(.+)$/);
     const ul = line.match(/^[-*+]\s+(.+)$/);
     if (ol || ul) {
