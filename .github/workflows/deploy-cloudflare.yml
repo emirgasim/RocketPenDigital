@@ -39,6 +39,8 @@ jobs:
           python-version: "3.12"
       - name: Build multilingual news archive from supplied ZIPs
         run: python scripts/build_news_archive.py
+      - name: QA archive data and unique story artwork
+        run: python scripts/qa_news_archive.py
       - name: Verify Cloudflare credentials
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
