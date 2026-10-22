@@ -22,10 +22,17 @@ for s in stories:
  fingerprints.add(fp)
  if not s.get("title") or not s.get("body") or not s.get("category"):errors.append(f"Missing story fields: {language}/{slug}")
  url=s.get("imageUrl","")
- if s.get("imageType")!="photograph":errors.append(f"Not a real photograph: {language}/{slug}")
- if not url.startswith("https://upload.wikimedia.org/"):errors.append(f"Missing Wikimedia-hosted photo: {language}/{slug} => {url}")
- if not s.get("imageSourceUrl") or not s.get("imageLicense") or not s.get("imageCredit"):errors.append(f"Missing photo source/license/credit metadata: {language}/{slug}")
- urls[url]=f"{language}/{slug}"
+ from datetime import date,timedelta
+ cutoff=(date.today()-timedelta(days=int(data.get("recentPhotoWindowDays",90)))).isoformat()
+ is_recent=bool(s.get("dateISO") and cutoff<=s["dateISO"]<=date.today().isoformat())
+ if is_recent:
+  if s.get("imageType")!="photograph":errors.append(f"Recent story has no verified real photograph: {language}/{slug}")
+  if not url.startswith("https://upload.wikimedia.org/"):errors.append(f"Missing Wikimedia-hosted photo for recent story: {language}/{slug} => {url}")
+  if not s.get("imageSourceUrl") or not s.get("imageLicense") or not s.get("imageCredit"):errors.append(f"Missing photo source/license/credit metadata for recent story: {language}/{slug}")
+ else:
+  if s.get("imageType")!="archive" or url:errors.append(f"Historical archive story must be text-only: {language}/{slug}")
+ if url:urls[url]=f"{language}/{slug}"
+
 for language in ("tr","en","ar"):
  page=(ROOT/f"news/{language}/index.html").read_text(encoding="utf-8")
  if page.count('id="news-home-slider"')!=1:errors.append(language+": slider section count is not one")
@@ -40,4 +47,4 @@ if errors:
  print("NEWS QA FAILED")
  for e in errors[:100]:print(" - "+e)
  print("Total issues:",len(errors));raise SystemExit(1)
-print(f"NEWS QA PASSED: {len(stories)} stories; licensed real-photo metadata validated; languages={dict(langs)}")
+print(f"NEWS QA PASSED: {len(stories)} stories; recent-photo policy and text-only archive validated; languages={dict(langs)}")
