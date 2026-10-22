@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "instructions": "Add only RSS/Atom feed URLs that you are authorized to fetch. Keep this list editorially curated. The workflow does not use an AI API and does not auto-publish stories.",
+  "feeds": []
+}
