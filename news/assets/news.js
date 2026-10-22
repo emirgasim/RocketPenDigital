@@ -20,7 +20,7 @@
   list.replaceChildren();
   if(!shown.length){const empty=document.createElement('div');empty.className='empty-list';empty.textContent=t.empty;list.append(empty)}
   for(const s of shown){
-   const card=document.createElement('article');card.className='archive-card';
+   const card=document.createElement('article');card.className='archive-card'+(shown.indexOf(s)===0&&p===1?' archive-card-featured':'');
    const cat=document.createElement('span');cat.className='category';cat.textContent=t.categories[s.category]||s.category;
    const h=document.createElement('h3'),a=document.createElement('a');a.href='/news/article.html?slug='+encodeURIComponent(s.slug)+'&lang='+lang;a.textContent=s.title;h.append(a);
    const summary=document.createElement('p');summary.className='archive-summary';summary.textContent=s.summary||'';
