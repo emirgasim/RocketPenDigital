@@ -10,6 +10,9 @@ on:
     paths:
       - ".github/workflows/update-tech-news.yml"
       - "scripts/update-tech-news.mjs"
+      - "news/assets/news.js"
+      - "news/tr/index.html"
+      - "news/article.html"
 
 permissions:
   contents: write
