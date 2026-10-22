@@ -124,6 +124,9 @@ for(let p=11;p<=totalPages;p++) {
   const cards=subset.map((a,i)=>card(a,150+start+i+1)).join('\n');
   html=html.replace(/<!-- POSTS_START -->[\s\S]*?<!-- POSTS_END -->/, '<!-- POSTS_START -->\n'+cards+'\n<!-- POSTS_END -->');
   html=html.replace(/<!-- PAGINATION_START -->[\s\S]*?<!-- PAGINATION_END -->/, '<!-- PAGINATION_START -->\n'+pagination(p,totalPages)+'\n<!-- PAGINATION_END -->');
+  html=html.replace(/<title>[\s\S]*?<\/title>/i, '<title>المدونة الرقمية — الصفحة '+p+' | RocketPen Digital Studio</title>');
+  html=html.replace(/<meta name="description" content="[^"]*">/i, '<meta name="description" content="أدلة عملية حول المواقع وSEO والمحتوى والنمو الرقمي — الصفحة '+p+' من '+totalPages+'.">');
+  if (!/<link rel="canonical"/i.test(html)) html=html.replace(/<meta name="robots"[^>]*>/i, '$&<link rel="canonical" href="https://rocketpendigital.com/blog/ar/page/'+p+'.html">');
   fs.writeFileSync('blog/ar/page/'+p+'.html',html);
 }
 let sitemap=fs.readFileSync('sitemap.xml','utf8');
