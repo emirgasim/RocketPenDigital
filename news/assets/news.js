@@ -18,43 +18,40 @@
   const target=$('#frontpage-content');if(!target)return new Set();
   target.replaceChildren();
   const published=stories.filter(s=>s.status==='published'&&s.approved!==false&&s.editorialApproved!==false&&s.editorialApproval!=='pending').sort(sort);
-  const lead=published.find(s=>s.featured===true||s.isFeatured===true)||published[0];
-  if(!lead){const m=document.createElement('p');m.className='empty-list';m.textContent=t.empty;target.append(m);return new Set()}
-  const excluded=new Set([lead.slug]);
-  const hero=document.createElement('article');hero.className='frontpage-lead';
-  const a=document.createElement('a');a.className='frontpage-lead-link';a.href=href(lead);a.setAttribute('aria-label',lead.title);
-  const media=document.createElement('div');media.className='frontpage-lead-media';
-  const image=imageFor(lead);
-  if(image){const im=document.createElement('img');im.className='frontpage-lead-image';im.src=image;im.alt=lead.imageAlt||lead.alt||lead.title;im.width=1600;im.height=900;im.fetchPriority='high';im.loading='eager';im.decoding='async';im.addEventListener('error',()=>{im.remove();media.classList.add('is-placeholder')},{once:true});media.append(im)}
-  else media.classList.add('is-placeholder');
-  if(lead.imageCredit){const credit=document.createElement('p');credit.className='frontpage-image-credit';credit.textContent='Görsel: '+lead.imageCredit;media.append(credit)}
-  const copy=document.createElement('div');copy.className='frontpage-lead-copy';
-  const category=document.createElement('span');category.className='category';category.textContent=catName(lead.category);
-  const h=document.createElement('h2');h.className='frontpage-lead-title';h.textContent=lead.title;
-  const summary=document.createElement('p');summary.className='frontpage-lead-summary';summary.textContent=lead.summary||'';
-  copy.append(category,h,summary);a.append(media,copy);hero.append(a);
-  const listSection=document.createElement('section');listSection.className='frontpage-headlines';listSection.setAttribute('aria-labelledby','frontpage-list-heading');
-  const listTitle=document.createElement('h3');listTitle.id='frontpage-list-heading';listTitle.textContent='Manşetler';
-  const list=document.createElement('ol');list.className='frontpage-headline-list';
-  const headlines=published.filter(s=>s.slug!==lead.slug).slice(0,10);
-  headlines.forEach((s,i)=>{excluded.add(s.slug);const li=document.createElement('li');li.className='frontpage-headline';
-   const num=document.createElement('span');num.className='frontpage-headline-number';num.textContent=String(i+1);
-   const body=document.createElement('div');body.className='frontpage-headline-body';
-   const cat=document.createElement('span');cat.className='category';cat.textContent=catName(s.category);
-   const link=document.createElement('a');link.className='frontpage-headline-link';link.href=href(s);link.textContent=s.title;
-   const meta=document.createElement('p');meta.className='frontpage-headline-meta';
-   const source=sourceName(s);const date=s.dateDisplay||s.dateISO||'';
-   meta.textContent=[source||'Kaynak belirtilmemiş',date].filter(Boolean).join(' · ');
-   body.append(cat,link,meta);li.append(num,body);list.append(li)
+  const slides=published.slice(0,10),excluded=new Set(slides.map(s=>s.slug));
+  if(!slides.length){const m=document.createElement('p');m.className='empty-list';m.textContent=t.empty;target.append(m);return excluded}
+  const dots=$('#hero-dots'),prev=$('#hero-prev'),next=$('#hero-next');if(dots)dots.replaceChildren();
+  const rendered=[];
+  slides.forEach((story,i)=>{
+   const hero=document.createElement('article');hero.className='news-hero-slide'+(i===0?' is-active':'');
+   const link=document.createElement('a');link.className='news-hero-link';link.href=href(story);link.setAttribute('aria-label',story.title);
+   const media=document.createElement('div');media.className='news-hero-media';
+   const image=imageFor(story);
+   if(image){const im=document.createElement('img');im.className='news-hero-image';im.src=image;im.alt=story.imageAlt||story.alt||story.title;im.width=1800;im.height=900;im.loading=i===0?'eager':'lazy';im.fetchPriority=i===0?'high':'auto';im.decoding='async';im.addEventListener('error',()=>{im.remove();media.classList.add('is-placeholder')},{once:true});media.append(im)}else media.classList.add('is-placeholder');
+   const shade=document.createElement('div');shade.className='news-hero-shade';
+   const copy=document.createElement('div');copy.className='news-hero-copy';
+   const cat=document.createElement('span');cat.className='category';cat.textContent=catName(story.category);
+   const title=document.createElement('h2');title.className='news-hero-title';title.textContent=story.title;
+   const summary=document.createElement('p');summary.className='news-hero-summary';summary.textContent=story.summary||'';
+   const meta=document.createElement('p');meta.className='news-hero-meta';meta.textContent=[sourceName(story)||t.noSource,story.dateDisplay||story.dateISO||''].filter(Boolean).join(' · ');
+   copy.append(cat,title,summary,meta);link.append(media,shade,copy);hero.append(link);target.append(hero);rendered.push(hero);
+   if(dots){const dot=document.createElement('button');dot.type='button';dot.className='news-hero-dot'+(i===0?' is-active':'');dot.setAttribute('aria-label',t.goTo+' '+(i+1));dot.setAttribute('aria-current',i===0?'true':'false');dot.addEventListener('click',()=>show(i));dots.append(dot)}
   });
-  if(!headlines.length){const empty=document.createElement('p');empty.className='empty-list';empty.textContent=t.empty;listSection.append(listTitle,empty)}else listSection.append(listTitle,list);
-  target.append(hero,listSection);
+  let active=0,timer=0,scrollTimer=0,hover=false,focus=false;
+  const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const sync=()=>{const x=target.scrollLeft;let best=0,dist=Infinity;rendered.forEach((s,i)=>{const d=Math.abs(s.offsetLeft-x);if(d<dist){dist=d;best=i}});active=best;rendered.forEach((s,i)=>s.classList.toggle('is-active',i===active));if(dots)Array.from(dots.children).forEach((d,i)=>{d.classList.toggle('is-active',i===active);d.setAttribute('aria-current',i===active?'true':'false')})};
+  const stop=()=>{if(timer){clearInterval(timer);timer=0}};
+  const show=i=>{active=(i+rendered.length)%rendered.length;target.scrollTo({left:rendered[active].offsetLeft,behavior:reduce?'auto':'smooth'});sync();start()};
+  const start=()=>{stop();if(rendered.length>1&&!reduce&&!hover&&!focus&&!document.hidden)timer=setInterval(()=>show(active+1),6000)};
+  if(prev){prev.disabled=rendered.length<2;prev.addEventListener('click',()=>show(active-1))}
+  if(next){next.disabled=rendered.length<2;next.addEventListener('click',()=>show(active+1))}
+  target.addEventListener('scroll',()=>{clearTimeout(scrollTimer);sync();scrollTimer=setTimeout(()=>{sync();start()},120)},{passive:true});
+  section.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;stop()}});
+  section.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hover=false;start()}});
+  section.addEventListener('focusin',()=>{focus=true;stop()});
+  section.addEventListener('focusout',()=>setTimeout(()=>{focus=section.contains(document.activeElement);start()},0));
+  document.addEventListener('visibilitychange',()=>document.hidden?stop():start());start();
   const oldSchema=$('#tr-frontpage-itemlist');if(oldSchema)oldSchema.remove();
-  if(headlines.length===10&&headlines.every(s=>s.slug&&/^\\d{4}-\\d{2}-\\d{2}$/.test(s.dateISO||''))){
-   const schema=document.createElement('script');schema.id='tr-frontpage-itemlist';schema.type='application/ld+json';
-   schema.textContent=JSON.stringify({'@context':'https://schema.org','@type':'ItemList','itemListElement':headlines.map((s,i)=>({'@type':'ListItem',position:i+1,url:new URL(href(s),location.origin).href,item:{'@type':'NewsArticle',headline:s.title,datePublished:s.dateISO,mainEntityOfPage:new URL(href(s),location.origin).href}}))});
-   document.head.append(schema)
-  }
   return excluded
  }
  function notice(parent,msg){const e=document.createElement('p');e.className='archive-notice';e.textContent=msg;parent.append(e)}
