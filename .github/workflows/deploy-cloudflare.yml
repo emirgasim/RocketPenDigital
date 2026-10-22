@@ -113,6 +113,7 @@ jobs:
           PY
           for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
             echo "Checking production host: $HOST"
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/news.json" -o /tmp/news-host.json
             curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/headlines.json" -o /tmp/headlines-host.json
             python - "$HOST" <<'PY'
           import json, sys
