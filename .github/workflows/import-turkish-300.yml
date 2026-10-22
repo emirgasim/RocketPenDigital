@@ -1,0 +1,36 @@
+name: Import 300 Turkish SEO articles
+on:
+  push:
+    paths:
+      - 'RocketPenDigital_300_Turkish_SEO_Articles.zip'
+      - '.github/workflows/import-turkish-300.yml'
+      - 'scripts/import-turkish-300.mjs'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: import-turkish-long-articles
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate importer
+        run: node --check scripts/import-turkish-300.mjs
+      - name: Import Turkish articles, pagination and sitemap
+        run: node scripts/import-turkish-300.mjs
+      - name: Commit generated Turkish blog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Import 300 Turkish SEO articles"
+            git push origin main
+          fi
