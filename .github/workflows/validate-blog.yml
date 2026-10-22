@@ -1,4 +1,5 @@
 name: Validate Digital Blog
+# Trigger validation for the revised multilingual article library.
 
 on:
   push:
