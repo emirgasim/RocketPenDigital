@@ -67,7 +67,7 @@ def illustration_svg(story):
  else:p.extend([f'<path d="M780 220 H1060 Q1090 220 1090 250 V365 Q1090 395 1060 395 H930 L870 445 V395 H780 Q750 395 750 365 V250 Q750 220 780 220Z" fill="{c1}" stroke="{accent}" stroke-width="8"/>',f'<circle cx="820" cy="307" r="11" fill="{accent}"/><circle cx="870" cy="307" r="11" fill="{glow}"/><circle cx="920" cy="307" r="11" fill="{accent}"/>'])
  p.extend([f'<path d="M70 70 H130" stroke="{accent}" stroke-width="6" stroke-linecap="round"/>',f'<text x="70" y="112" fill="{glow}" font-family="Arial,sans-serif" font-size="23" font-weight="800" letter-spacing="3">ROCKETPEN TECH</text>',f'<text x="70" y="154" fill="{accent}" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2">{label}</text>',f'<text x="70" y="606" fill="{glow}" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">ORIGINAL EDITORIAL ILLUSTRATION</text>',f'<text x="1125" y="606" text-anchor="end" fill="{accent}" font-family="Arial,sans-serif" font-size="16" font-weight="700">{html.escape(slug.upper())}</text>','</svg>']);return "".join(p)
 def main():
- today=datetime.date.today().isoformat();stories=[];counts={};seen=set();used=set();duplicates=0
+ today=datetime.date.today().isoformat();stories=[];counts={};seen_titles=set();seen_bodies=set();used=set();duplicates=0
  for lang,archive in ARCHIVES.items():
   if not archive.exists():raise SystemExit("Missing source archive: "+archive.name)
   count=0
@@ -81,13 +81,13 @@ def main():
      if not skipped and line.startswith("# "):skipped=True;continue
      if re.match(r"^\s*\*\*(?:Tarih|Date|التاريخ|Yazar|Author|الكاتب):\*\*",line):continue
      body.append(line)
-    body="\n".join(body).strip();norm=lambda v:re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",v.casefold())).strip();fp=(lang,norm(title.group(1))+"|"+norm(body))
-    if fp in seen:duplicates+=1;continue
-    seen.add(fp);summary=re.sub(r"^#{1,6}\s*","",body,flags=re.M);summary=re.sub(r"\*\*([^*]+)\*\*",r"\1",summary);summary=re.sub(r"\s+"," ",summary).strip()
+    body="\n".join(body).strip();norm=lambda v:re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",v.casefold())).strip();title_fp=(lang,norm(title.group(1)));body_fp=(lang,norm(body))
+    if title_fp in seen_titles or body_fp in seen_bodies:duplicates+=1;continue
+    seen_titles.add(title_fp);seen_bodies.add(body_fp);summary=re.sub(r"^#{1,6}\s*","",body,flags=re.M);summary=re.sub(r"\*\*([^*]+)\*\*",r"\1",summary);summary=re.sub(r"\s+"," ",summary).strip()
     if len(summary)>230:summary=summary[:230].rsplit(" ",1)[0]+"…"
     d,display=parse_date(date.group(1),lang);m=re.search(r"(\d+)",Path(name).stem);num=int(m.group(1)) if m else count+1;slug=f"{lang}-{num:03d}";suffix=2
     while slug in used:slug=f"{lang}-{num:03d}-v{suffix}";suffix+=1
-    used.add(slug);stories.append({"id":num,"slug":slug,"lang":lang,"title":title.group(1).strip(),"summary":summary,"dateISO":d,"dateDisplay":display,"author":author.group(1).strip() if author else "Gasim Piraliyev | RocketPen Tech","category":category(title.group(1),body),"body":body,"status":"scheduled" if d and d>today else "published","dateBasis":"provided-in-source-archive","sourceArchive":archive.name,"sources":[]});count+=1
+    used.add(slug);stories.append({"id":num,"slug":slug,"lang":lang,"title":title.group(1).strip(),"summary":summary,"dateISO":d,"dateDisplay":display,"author":"Gasim Piraliyev","category":category(title.group(1),body),"body":body,"status":"scheduled" if d and d>today else "published","dateBasis":"provided-in-source-archive","sourceArchive":archive.name,"sources":[]});count+=1
   counts[lang]=count
  def find_photo(story):
   cat_terms={"ai":"artificial intelligence technology","devices":"smartphone technology","apps":"software technology","gaming":"video game technology","science":"science space research","security":"cybersecurity computer","mobility":"electric vehicle transport","digital-culture":"digital technology"}
@@ -134,8 +134,8 @@ def main():
  if missing:
   print(f"Photo sourcing notice: {missing} recent stories could not be matched to a verified licensed photograph; those stories will remain text-only rather than use an unverified image.")
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
- OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Historical stories are text-only archive entries. Stories dated within the last 90 days require verified, licensed real photographs. Source dates are preserved.","recentPhotoWindowDays":90,"counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
- print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
+ OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Archive entries are deduplicated by normalized title and body within each language. Every story is credited to Gasim Piraliyev; original source-provided publication dates are preserved. Historical stories are text-only; recent photographs retain source and license metadata.","recentPhotoWindowDays":90,"counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
+ print(f"Indexed {len(stories)} stories: {counts}; duplicate-title/body source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
  status_counts={language:{status:sum(1 for story in stories if story["lang"]==language and story["status"]==status) for status in ("published","scheduled")} for language in ARCHIVES}
  topic_counts={topic:sum(1 for story in stories if story["visualTopic"]==topic) for topic in sorted({story["visualTopic"] for story in stories})}
  print(f"Publication status by language: {status_counts}")
