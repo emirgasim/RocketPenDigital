@@ -8,10 +8,14 @@ const pageSize = 24;
 const files = fs.readdirSync(root).filter(name => name.endsWith('.html')).sort();
 const esc = value => String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const strip = value => String(value || '').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&nbsp;/g,' ').replace(/&#39;|&apos;/g,"'").replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/\s+/g,' ').trim();
-const attr = (html, name) => {
-  const re = new RegExp('<meta\\b[^>]*(?:name|property)=["\\']'+name+'["\\'][^>]*content=["\\']([^"\\']*)["\\']|<meta\\b[^>]*content=["\\']([^"\\']*)["\\'][^>]*(?:name|property)=["\\']'+name+'["\\']','i');
-  const m = html.match(re); return m ? (m[1] || m[2] || '') : '';
-};
+function attr(html, name) {
+  const tags = html.match(/<meta\\b[^>]*>/gi) || [];
+  for (const tag of tags) {
+    const key = (tag.match(/\\b(?:name|property)=["']([^"']+)["']/i) || [])[1];
+    if (key === name) return (tag.match(/\\bcontent=["']([^"']*)["']/i) || [])[1] || '';
+  }
+  return '';
+}
 function category(slug) {
   if (/(brand|positioning|messag|identity|naming|voice)/.test(slug)) return 'brand strategy';
   if (/(seo|website|web-|websites|canonical|accessib|landing-page|conversion-rate|core-web-vitals|ecommerce)/.test(slug)) return 'web seo';
