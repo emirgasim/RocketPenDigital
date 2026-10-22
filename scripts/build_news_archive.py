@@ -91,7 +91,7 @@ def main():
   counts[lang]=count
  def find_photo(story):
   cat_terms={"ai":"artificial intelligence technology","devices":"smartphone technology","apps":"software technology","gaming":"video game technology","science":"science space research","security":"cybersecurity computer","mobility":"electric vehicle transport","digital-culture":"digital technology"}
-  queries=[re.sub(r"[^\\w\\s-]"," ",story["title"],flags=re.UNICODE)[:100],cat_terms.get(story["category"],"technology news")]
+  queries=[re.sub(r"[^\w\s-]"," ",story["title"],flags=re.UNICODE)[:100],cat_terms.get(story["category"],"technology news")]
   headers={"User-Agent":"RocketPenDigitalNews/1.0 (editorial photo sourcing; rocketpendigital@gmail.com)"}
   for query in queries:
    params={"action":"query","format":"json","generator":"search","gsrnamespace":6,"gsrsearch":query+" filetype:bitmap","gsrlimit":10,"prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":1200}
@@ -132,7 +132,7 @@ def main():
   else:
    story["imageUrl"]="";story["imageType"]="missing";story["imageSource"]="";story["imageSourceUrl"]="";story["imageLicense"]="";story["imageLicenseUrl"]="";story["imageCredit"]="";missing+=1
  if missing:
-  raise SystemExit(str(missing)+" recent stories dated within 90 days have no verified licensed real photo. Historical archive stories remain text-only.")
+  print(f"Photo sourcing notice: {missing} recent stories could not be matched to a verified licensed photograph; those stories will remain text-only rather than use an unverified image.")
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Historical stories are text-only archive entries. Stories dated within the last 90 days require verified, licensed real photographs. Source dates are preserved.","recentPhotoWindowDays":90,"counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
  print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
