@@ -1147,3 +1147,55 @@ body.arabic header.nav > .nav-right {
     letter-spacing: .045em !important;
   }
 }
+
+
+/* Final safeguard: on landscape/tablet-width canvases, keep every service
+   action in the content column. The earlier desktop grid leaves the link in
+   a narrow third column when zoom changes the effective viewport. */
+@media (max-width: 1600px), (max-height: 900px) and (orientation: landscape) {
+  html body .service {
+    display: grid !important;
+    grid-template-columns: 2.25rem minmax(0, 1fr) !important;
+    column-gap: clamp(10px, 2.2vw, 22px) !important;
+    row-gap: 12px !important;
+    align-items: start !important;
+  }
+  html body .service > .service-no {
+    grid-column: 1 !important;
+    grid-row: 1 / span 3 !important;
+  }
+  html body .service > h3 {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+  html body .service > p {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    min-width: 0 !important;
+    max-width: 62ch !important;
+  }
+  html body .service > .service-link {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+    justify-self: start !important;
+    align-self: start !important;
+    display: inline-flex !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    line-height: 1.6 !important;
+    margin: 2px 0 0 !important;
+  }
+  html body .service > .service-marker {
+    display: none !important;
+  }
+}
