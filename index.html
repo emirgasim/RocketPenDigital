@@ -599,10 +599,12 @@ function initReviewsCarousel(){
     if(autoplayTimer)clearTimeout(autoplayTimer);
     autoplayTimer=null;
     if(reducedMotion.matches||document.hidden)return;
+    const elapsedSinceInteraction=Date.now()-lastInteractionAt;
+    const delay=Math.max(1600,5000-elapsedSinceInteraction);
     autoplayTimer=setTimeout(()=>{
       autoplayTimer=null;
       moveBy(1,{automatic:true});
-    },1600);
+    },delay);
   };
   const moveBy=(direction,{automatic=false}={})=>{
     const count=reviewExamples.length;
