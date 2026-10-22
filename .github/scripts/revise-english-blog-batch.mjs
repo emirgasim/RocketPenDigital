@@ -85,7 +85,7 @@ async function askModel(file, html, main) {
   if (words(newMain) < Math.min(450, Math.floor(existingWords * 0.7))) {
     throw new Error('Output is suspiciously short for ' + file + '; refusing to write.');
   }
-  if (boilerplateScore(newMain) >= 3) throw new Error('Output still contains repeated template boilerplate for ' + file + '; refusing to write.');
+  if (parsed.decision === 'rewrite' && boilerplateScore(newMain) >= 3) throw new Error('Output still contains repeated template boilerplate for ' + file + '; refusing to write.');
   return { decision: parsed.decision, reason: parsed.reason, mainHtml: newMain, oldWords: existingWords, newWords: words(newMain) };
 }
 await fs.mkdir(REPORT_DIR, { recursive: true });
@@ -104,6 +104,7 @@ for (const file of batch) {
     if (!main || !/<article\b/i.test(main) || !/<h1\b/i.test(main)) {
       manifest.failures[rel] = 'No recognisable article main/H1; requires manual review.';
       report.push({ file: rel, status: 'needs-manual-review', reason: manifest.failures[rel] });
+      manifest.reviewed[rel] = { status: 'needs-manual-review', reviewedAt: new Date().toISOString(), reason: manifest.failures[rel] };
       continue;
     }
     const result = await askModel(rel, html, main);
@@ -120,6 +121,7 @@ for (const file of batch) {
   } catch (error) {
     manifest.failures[rel] = String(error?.message || error).slice(0, 700);
     report.push({ file: rel, status: 'failed-review', reason: manifest.failures[rel] });
+    manifest.reviewed[rel] = { status: 'failed-review', reviewedAt: new Date().toISOString(), reason: manifest.failures[rel] };
     console.error('Review failed:', rel, manifest.failures[rel]);
   }
 }
