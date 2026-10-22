@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/ar/articles blog/ar/index.html blog/ar/page sitemap.xml imports/RocketPenDigital_300_LongArticles_Complete.zip RocketPenDigital_300_LongArticles_Complete.zip
+          git add -A
           if ! git diff --cached --quiet; then
             git commit -m "Import 300 long Arabic blog articles"
             git push origin main
