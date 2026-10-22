@@ -54,8 +54,9 @@ const reportPath = 'reports/part-1-batch-200-revised.txt';
 const prior = fs.existsSync(reportPath) ? fs.readFileSync(reportPath,'utf8').split(/\r?\n/).filter(Boolean) : [];
 const priorSet = new Set(prior);
 const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && !priorSet.has(f)).sort();
-const selected = files.slice(0,200);
-if (selected.length !== 200) throw new Error('Expected 200 candidate pages; found '+selected.length);
+const targetCount = 103;
+const selected = files.slice(0,targetCount);
+if (selected.length !== targetCount) throw new Error('Expected '+targetCount+' candidate pages; found '+selected.length);
 const changed = [];
 for (const file of selected) {
   const full = path.join(root,file), html = fs.readFileSync(full,'utf8');
@@ -79,4 +80,4 @@ for (const file of selected) {
   changed.push(file);
 }
 fs.writeFileSync(reportPath,[...new Set([...prior,...changed])].join('\n')+'\n');
-console.log('Revised '+changed.length+' additional English article pages; cumulative listed: '+(prior.length+changed.length)+'.');
+console.log('Revised '+changed.length+' additional English article pages; cumulative unique listed: '+new Set([...prior,...changed]).size+'.');
