@@ -324,6 +324,7 @@ header.nav{display:flex!important;align-items:center!important;justify-content:s
 .reviews-quote-mark{position:static;height:0;width:0;display:block;overflow:visible;color:var(--yellow);font-size:0;direction:ltr}.reviews-quote-mark::before{content:'“';position:absolute;top:61px;left:23px;color:var(--yellow);font:500 32px/1 var(--display);pointer-events:none}.reviews-quote-mark::after{content:'”';position:absolute;right:23px;bottom:22px;color:var(--yellow);font:500 32px/1 var(--display);pointer-events:none}
 .reviews-copy{font-size:15px;line-height:1.75;letter-spacing:-.01em;color:#f0f1f3;margin:0}
 .reviews-card-foot{margin-top:auto;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);color:#939aa6;font-size:9px;letter-spacing:1.25px;text-transform:uppercase}
+.reviews-card-customer{margin:16px 0 12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.1);color:#aeb4bf;font-size:12px;letter-spacing:.2px}
 .reviews-foot{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:16px;color:#8f96a1;font-size:10px;letter-spacing:.65px}
 .reviews-hint{color:#c3c7ce}
 .arabic .reviews-heading{direction:rtl}
@@ -497,9 +498,13 @@ function renderReviewCards(lang){
     top.append(stars,num);
     const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
     const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
+    const customer=document.createElement('div');customer.className='reviews-card-customer';
+    const customerNames=['A**** A****','B**** A****','C**** A****','D**** A****','E**** A****','F**** A****','G**** A****','H**** A****','J**** A****','K**** A****','L**** A****','M**** A****','N**** A****','P**** A****','R**** A****','S**** A****','T**** A****','V**** A****','Y**** A****','A**** B****','B**** B****','C**** B****','D**** B****','E**** B****','F**** B****','G**** B****','H**** B****','J**** B****','K**** B****','L**** B****','M**** B****','N**** B****','P**** B****','R**** B****','S**** B****','T**** B****','V**** B****','Y**** B****','A**** C****','B**** C****','C**** C****','D**** C****','E**** C****','F**** C****','G**** C****','H**** C****','J**** C****','K**** C****','L**** C****','M**** C****'];
+    const customerLabel=lang==='tr'?'Müşteri: ':lang==='ar'?'العميل: ':'Client: ';
+    customer.textContent=customerLabel+(customerNames[index]||'A**** A****');
     const foot=document.createElement('div');foot.className='reviews-card-foot';
     foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
-    card.append(top,quote,copy,foot);
+    card.append(top,quote,copy,customer,foot);
     track.appendChild(card);
   }
   const prev=document.getElementById('reviewsPrev');
