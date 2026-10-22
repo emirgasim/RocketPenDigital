@@ -31,6 +31,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Validate news JavaScript and JSON
+        run: |
+          node --check news/assets/news.js
+          node --check scripts/update-tech-news.mjs
+          node -e "const d=require('./news/data/news.json'); if(!Array.isArray(d.stories)) process.exit(1); console.log('news data:',d.stories.length,'stories')"
       - name: Import recent Turkish technology headlines
         run: node scripts/update-tech-news.mjs
       - name: Commit changes when new headlines were found
