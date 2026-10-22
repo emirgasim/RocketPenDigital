@@ -107,6 +107,10 @@ for (const story of [...existing, ...fresh]) {
   if (!old || Date.parse(story.publishedAt || story.dateISO) > Date.parse(old.publishedAt || old.dateISO)) combined.set(key, story);
 }
 const stories = [...combined.values()].sort((a, b) => Date.parse(b.publishedAt || b.dateISO) - Date.parse(a.publishedAt || a.dateISO)).slice(0, 100);
+if (JSON.stringify(stories) === JSON.stringify(original.stories || [])) {
+  console.log("No new or changed headlines; leaving the data file untouched.");
+  process.exit(0);
+}
 await writeFile(DATA_PATH, JSON.stringify({
   schemaVersion: 1, lastUpdated: new Date(now).toISOString(),
   editorialNote: "RSS summaries retain source attribution. Security and other sensitive/high-impact items remain pending editorial review. Source image rights remain subject to publisher terms.",
