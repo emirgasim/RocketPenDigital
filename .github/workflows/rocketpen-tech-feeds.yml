@@ -23,6 +23,9 @@ jobs:
         with:
           ref: feature/rocketpen-tech-newsroom
 
+      - name: Test feed parser
+        run: python3 -m unittest discover -s tests -p 'test_rocketpen_tech_feeds.py'
+
       - name: Collect configured RSS and Atom feeds
         run: python3 news/scripts/collect_feeds.py
 
