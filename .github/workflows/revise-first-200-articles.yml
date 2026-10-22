@@ -2,6 +2,8 @@ name: Revise First 200 English Articles
 on:
   push:
     branches: [main]
+    paths:
+      - '.github/scripts/revise-first-200-articles.mjs'
   workflow_dispatch:
 permissions:
   contents: write
