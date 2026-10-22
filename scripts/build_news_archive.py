@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build multilingual news data and a unique original editorial illustration for every story."""
-import datetime,hashlib,html,json,random,re,shutil,zipfile
+import datetime,hashlib,html,json,random,re,shutil,zipfile,urllib.parse,urllib.request,concurrent.futures
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/"news/data/news.json";IMAGE_DIR=ROOT/"news/assets/generated"
 ARCHIVES={"tr":ROOT/"RocketPenTech_500_News_Gasim_Piraliyev.zip","ar":ROOT/"RocketPenTech_500_Arapca_Haber.zip","en":ROOT/"RocketPenTech_500_Ingilizce_Haber.zip"}
@@ -89,15 +89,44 @@ def main():
     while slug in used:slug=f"{lang}-{num:03d}-v{suffix}";suffix+=1
     used.add(slug);stories.append({"id":num,"slug":slug,"lang":lang,"title":title.group(1).strip(),"summary":summary,"dateISO":d,"dateDisplay":display,"author":author.group(1).strip() if author else "Gasim Piraliyev | RocketPen Tech","category":category(title.group(1),body),"body":body,"status":"scheduled" if d and d>today else "published","dateBasis":"provided-in-source-archive","sourceArchive":archive.name,"sources":[]});count+=1
   counts[lang]=count
- if IMAGE_DIR.exists():shutil.rmtree(IMAGE_DIR)
- IMAGE_DIR.mkdir(parents=True,exist_ok=True)
- for s in stories:
-  s["visualTopic"]=visual_topic(s);p=IMAGE_DIR/(s["slug"]+".svg");p.write_text(illustration_svg(s),encoding="utf-8");s["imageUrl"]="/news/assets/generated/"+p.name
+ def find_photo(story):
+  cat_terms={"ai":"artificial intelligence technology","devices":"smartphone technology","apps":"software technology","gaming":"video game technology","science":"science space research","security":"cybersecurity computer","mobility":"electric vehicle transport","digital-culture":"digital technology"}
+  queries=[re.sub(r"[^\\w\\s-]"," ",story["title"],flags=re.UNICODE)[:100],cat_terms.get(story["category"],"technology news")]
+  headers={"User-Agent":"RocketPenDigitalNews/1.0 (editorial photo sourcing; rocketpendigital@gmail.com)"}
+  for query in queries:
+   params={"action":"query","format":"json","generator":"search","gsrnamespace":6,"gsrsearch":query+" filetype:bitmap","gsrlimit":10,"prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":1200}
+   req=urllib.request.Request("https://commons.wikimedia.org/w/api.php?"+urllib.parse.urlencode(params),headers=headers)
+   try:
+    with urllib.request.urlopen(req,timeout=10) as response:data=json.load(response)
+    pages=(data.get("query",{}).get("pages",{}) or {}).values()
+    for page in pages:
+     info=(page.get("imageinfo") or [{}])[0];meta=info.get("extmetadata") or {}
+     image=info.get("thumburl") or info.get("url","");file=page.get("title","");mime=info.get("mime","")
+     license_name=re.sub(r"<[^>]+>","",meta.get("LicenseShortName",{}).get("value","")).strip()
+     license_url=re.sub(r"<[^>]+>","",meta.get("LicenseUrl",{}).get("value","")).strip()
+     artist=re.sub(r"<[^>]+>","",meta.get("Artist",{}).get("value","")).strip()
+     if not image.startswith("https://upload.wikimedia.org/") or not mime.startswith("image/") or not license_name:continue
+     if not (license_url or "public domain" in license_name.casefold() or "cc0" in license_name.casefold()):continue
+     return {"url":image,"file":file,"sourceUrl":"https://commons.wikimedia.org/wiki/"+urllib.parse.quote(file.replace(" ","_"),safe=":/"),"license":license_name,"licenseUrl":license_url,"credit":artist or "Wikimedia Commons"}
+   except Exception:
+    continue
+  return None
+ with concurrent.futures.ThreadPoolExecutor(max_workers=10) as pool:
+  photos=list(pool.map(find_photo,stories))
+ missing=0
+ for s,photo in zip(stories,photos):
+  s["visualTopic"]=visual_topic(s)
+  if photo:
+   s["imageUrl"]=photo["url"];s["imageType"]="photograph";s["imageSource"]="Wikimedia Commons";s["imageSourceUrl"]=photo["sourceUrl"];s["imageLicense"]=photo["license"];s["imageLicenseUrl"]=photo["licenseUrl"];s["imageCredit"]=photo["credit"]
+  else:
+   s["imageUrl"]="";s["imageType"]="missing";s["imageSource"]="";s["imageSourceUrl"]="";s["imageLicense"]="";s["imageLicenseUrl"]="";s["imageCredit"]="";missing+=1
+ if missing:
+  raise SystemExit(f"Deployment blocked: {missing} stories have no verified licensed real photo. No SVG fallback will be used.")
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Each retained story has its own original topic-themed SVG editorial illustration; these are illustrations, not documentary photographs. Source dates are preserved.","counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
- print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; unique illustrations generated: {len(stories)}")
+ print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
  status_counts={language:{status:sum(1 for story in stories if story["lang"]==language and story["status"]==status) for status in ("published","scheduled")} for language in ARCHIVES}
  topic_counts={topic:sum(1 for story in stories if story["visualTopic"]==topic) for topic in sorted({story["visualTopic"] for story in stories})}
  print(f"Publication status by language: {status_counts}")
- print(f"Unique cover illustration topics: {topic_counts}")
+ print(f"Verified licensed real photographs: {sum(1 for story in stories if story.get('imageType')=='photograph')}")
 if __name__=="__main__":main()
