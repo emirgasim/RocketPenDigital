@@ -251,3 +251,8 @@ html body .language-picker:not(.is-open):not([open]) .lang:hover .lang-chevron {
 @media (prefers-reduced-motion: reduce) {
   html body .language-picker .lang-chevron { transition: none !important; }
 }
+
+
+/* Site-wide fix: remove numbered category/index labels from every blog card, all languages and pagination pages. */
+html body .article-no,
+html body .article-card .article-no { display: none !important; }
