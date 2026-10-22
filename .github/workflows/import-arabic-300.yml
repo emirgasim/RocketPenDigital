@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Validate importer syntax
+        run: node --check scripts/import-arabic-300.mjs
       - name: Import articles, pagination and sitemap
         run: |
           node scripts/import-arabic-300.mjs
