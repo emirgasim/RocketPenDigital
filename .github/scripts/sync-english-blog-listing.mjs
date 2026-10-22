@@ -93,12 +93,12 @@ for(let page=totalPages+1;page<=100;page++) {
 fs.mkdirSync('reports',{recursive:true});
 const sitemapPath = 'sitemap.xml';
 const sitemap = fs.readFileSync(sitemapPath,'utf8');
-const locs = [...sitemap.matchAll(/<loc>([\\s\\S]*?)<\\/loc>/gi)].map(m=>m[1].trim());
+const locs = [...sitemap.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)].map(m=>m[1].trim());
 const urlSet = new Set(locs);
 for (const article of ordered) urlSet.add('https://rocketpendigital.com/blog/en/articles/'+article.slug+'.html');
 urlSet.add('https://rocketpendigital.com/blog/en/index.html');
 for (let page=2; page<=totalPages; page++) urlSet.add('https://rocketpendigital.com/blog/en/page/'+page+'.html');
-const sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n' + [...urlSet].map(url=>'  <url><loc>'+url.replace(/&/g,'&amp;')+'</loc></url>').join('\\n') + '\\n</urlset>\\n';
+const sitemapXml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + [...urlSet].map(url=>'  <url><loc>'+url.replace(/&/g,'&amp;')+'</loc></url>').join('\n') + '\n</urlset>\n';
 fs.writeFileSync(sitemapPath,sitemapXml);
 fs.writeFileSync('reports/english-blog-listing-sync.txt',ordered.map((a,i)=>String(i+1).padStart(3,'0')+' '+a.slug+' | '+a.title).join('\n')+'\n');
 if (ordered.length !== files.length) throw new Error('Listing mismatch: '+ordered.length+' listed vs '+files.length+' article files');
