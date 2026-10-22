@@ -594,12 +594,17 @@ function initReviewsCarousel(){
   viewport.dataset.carouselReady='true';
   const reducedMotion=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
   let autoplayTimer=null;
+  let lastInteractionAt=Date.now();
   const scheduleAutoplay=()=>{
     if(autoplayTimer)clearTimeout(autoplayTimer);
-    if(reducedMotion.matches)return;
-    autoplayTimer=setTimeout(()=>moveBy(1),2200);
+    autoplayTimer=null;
+    if(reducedMotion.matches||document.hidden)return;
+    autoplayTimer=setTimeout(()=>{
+      autoplayTimer=null;
+      moveBy(1,{automatic:true});
+    },1600);
   };
-  const moveBy=direction=>{
+  const moveBy=(direction,{automatic=false}={})=>{
     const count=reviewExamples.length;
     if(!count)return;
     const current=reviewPreviewIndexes.length?reviewPreviewIndexes[0]:0;
@@ -607,6 +612,7 @@ function initReviewsCarousel(){
     reviewPreviewIndexes=Array.from({length:Math.min(5,count)},(_,offset)=>(nextStart+offset)%count);
     renderReviewCards(reviewCarouselLang);
     viewport.scrollLeft=0;
+    if(!automatic)lastInteractionAt=Date.now();
     scheduleAutoplay();
   };
   let pointerStartX=null;
@@ -618,6 +624,9 @@ function initReviewsCarousel(){
     if(Math.abs(delta)>35)moveBy(delta<0?1:-1);
   });
   viewport.addEventListener('pointercancel',()=>{pointerStartX=null;});
+  viewport.addEventListener('mouseenter',()=>{if(autoplayTimer){clearTimeout(autoplayTimer);autoplayTimer=null;}});
+  viewport.addEventListener('mouseleave',scheduleAutoplay);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(autoplayTimer)clearTimeout(autoplayTimer);autoplayTimer=null;}else scheduleAutoplay();});
   document.getElementById('reviewsPrev')?.addEventListener('click',event=>{event.preventDefault();moveBy(-1);});
   document.getElementById('reviewsNext')?.addEventListener('click',event=>{event.preventDefault();moveBy(1);});
   scheduleAutoplay();
