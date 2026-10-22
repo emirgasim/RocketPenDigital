@@ -1,0 +1,1 @@
+(()=>{document.querySelectorAll('[data-year]').forEach(el=>el.textContent=String(new Date().getFullYear()));const lang=document.documentElement.lang||'en';document.querySelectorAll('[data-edition]').forEach(a=>{if(a.dataset.edition===lang)a.setAttribute('aria-current','page')});})();
