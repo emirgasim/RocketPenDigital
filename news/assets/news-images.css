@@ -4,3 +4,24 @@
 .home-slider-track{display:flex;direction:ltr;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:0 0 2px;overscroll-behavior-x:contain}.home-slider-track::-webkit-scrollbar{display:none}.home-slide{flex:0 0 100%;min-width:0;overflow:hidden;border:1px solid #e2e5e8;border-radius:12px;background:#f5f7f9;scroll-snap-align:start}.home-slide>a{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);height:100%;color:inherit}.home-slide .story-image{width:100%;height:100%;min-height:310px;aspect-ratio:16/9;object-fit:cover;background:#102033}.home-slide-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(20px,3vw,38px)}.home-slide .category{color:#078fbd;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.home-slide h3{font-size:clamp(24px,3.2vw,39px);font-weight:800;line-height:1.13;letter-spacing:-.035em;margin:10px 0 12px;color:#17191d}.home-slide p{color:#60676f;margin:0;font-size:15px;line-height:1.6}.home-slide .slide-meta{font-size:11px;margin-top:18px;color:#828890}
 .home-slider-controls{display:flex;align-items:center;justify-content:center;gap:14px;padding:14px 0 4px}.home-slider-controls button{font:inherit;cursor:pointer}.home-slider-arrow{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid #d7dde2;border-radius:50%;background:#fff;color:#252a30;font-size:21px;line-height:1}.home-slider-arrow:hover{border-color:#0ba7df;color:#078fbd}.home-slider-arrow:disabled{opacity:.35;cursor:default}.home-slider-dots{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}.home-slider-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#c5cbd1}.home-slider-dot[aria-current=true]{width:24px;border-radius:10px;background:#0ba7df}.archive-notice{font-size:13px;line-height:1.5;color:#5f6871;background:#f3f6f8;border-left:3px solid #0ba7df;padding:10px 12px;margin:12px 0 0}[dir=rtl] .home-slide-copy{direction:rtl;align-items:flex-start;text-align:right}[dir=rtl] .archive-notice{border-left:0;border-right:3px solid #0ba7df}
 @media(max-width:720px){.home-slider-head{align-items:flex-start;flex-direction:column;gap:4px}.home-slide>a{grid-template-columns:1fr}.home-slide .story-image{min-height:0;aspect-ratio:16/9}.home-slide-copy{padding:18px 18px 21px}.home-slide h3{font-size:clamp(22px,6vw,30px);margin:8px 0 10px}.home-slide p{font-size:14px}.home-slide .slide-meta{margin-top:12px}.home-slider-controls{padding:12px 0 0;gap:12px}}@media(prefers-reduced-motion:reduce){.home-slider-track{scroll-behavior:auto}}
+
+
+/* RocketPen Tech dark / yellow theme and robust touch carousel */
+.story-image{background:#151e2b}
+.archive-card{background:var(--panel)!important;border-color:var(--line)!important;color:var(--ink)}
+.archive-card .category{color:var(--accent)!important;background:transparent!important}
+.archive-card h3,.home-slider-head h2,.home-slide h3{color:var(--ink)!important}
+.archive-summary,.home-slider-head p,.home-slide p{color:var(--muted)!important}
+.archive-meta,.home-slide .slide-meta{color:#aab4c3!important}
+.home-slide{background:var(--panel)!important;border-color:var(--line)!important;color:var(--ink)}
+.home-slide .category{color:var(--accent)!important}
+.home-slide h3 a:hover,.archive-card h3 a:hover{color:var(--accent)}
+.home-slider-track{touch-action:pan-x;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-padding-inline:0;scrollbar-width:none}
+.home-slide{scroll-snap-stop:always}
+.home-slider-arrow{background:var(--panel)!important;border-color:var(--line)!important;color:var(--ink)!important}
+.home-slider-arrow:hover{border-color:var(--accent)!important;color:var(--accent)!important}
+.home-slider-dot{background:#586273!important;transition:width .16s ease,background-color .16s ease}
+.home-slider-dot[aria-current=true]{background:var(--accent)!important}
+.archive-notice{background:var(--panel2)!important;color:var(--ink)!important;border-color:var(--accent)!important}
+[dir=rtl] .archive-notice{border-right-color:var(--accent)!important}
+@media(prefers-reduced-motion:reduce){.home-slider-track{scroll-behavior:auto}.home-slider-dot{transition:none}}
