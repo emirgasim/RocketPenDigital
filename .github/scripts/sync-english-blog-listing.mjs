@@ -26,6 +26,9 @@ function category(slug) {
 function extractArticle(file) {
   const slug = file.replace(/\.html$/,'');
   const html = fs.readFileSync(path.join(root,file),'utf8');
+  const jsonLd = (html.match(/<script\\b[^>]*type=[\"']application\\/ld\\+json[\"'][^>]*>([\\s\\S]*?)<\\/script>/i) || [])[1] || '';
+  const dateModified = (jsonLd.match(/[\"']dateModified[\"']\\s*:\\s*[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || '';
+  const datePublished = (jsonLd.match(/[\"']datePublished[\"']\\s*:\\s*[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || (html.match(/<meta\\b[^>]*property=[\"']article:published_time[\"'][^>]*content=[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || '';
   const h1 = (html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1];
   const titleTag = (html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)||[])[1];
   const title = strip(h1 || titleTag || slug.replace(/-/g,' ')).replace(/\s*\|\s*RocketPen Digital Studio\s*$/i,'');
@@ -36,17 +39,19 @@ function extractArticle(file) {
   if (!description || description.length < 35) description = 'A practical guide to '+title.toLowerCase()+', with useful steps, quality checks and ways to evaluate progress.';
   if (description.length > 185) description = description.slice(0,182).replace(/\s+\S*$/,'')+'…';
   const cat = category(slug);
-  return {slug,title,description,cat};
+  return {slug,title,description,cat,dateModified,datePublished};
 }
 const articles = files.map(extractArticle);
 const seen = new Set();
 const unique = articles.filter(a => !seen.has(a.slug) && seen.add(a.slug));
+// Put the most recently updated articles first. Use publication date and title
+// as deterministic fallbacks so page order does not depend on stale HTML cards.
+const ordered = unique.sort((a,b) =>
+  (b.dateModified || b.datePublished || '').localeCompare(a.dateModified || a.datePublished || '') ||
+  a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }) ||
+  a.slug.localeCompare(b.slug)
+);
 const indexTemplate = fs.readFileSync(indexPath,'utf8');
-const oldOrder = [...indexTemplate.matchAll(/class="article-card" id="([^"]+)"/g)].map(m=>m[1]);
-const bySlug = new Map(unique.map(a=>[a.slug,a]));
-const ordered = [...oldOrder.map(slug=>bySlug.get(slug)).filter(Boolean)];
-const already = new Set(ordered.map(a=>a.slug));
-ordered.push(...unique.filter(a=>!already.has(a.slug)));
 const totalPages = Math.ceil(ordered.length/pageSize);
 function card(a,i) {
   const url = '/blog/en/articles/'+a.slug+'.html';
