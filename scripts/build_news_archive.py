@@ -11,17 +11,17 @@ AR={"يناير":1,"فبراير":2,"مارس":3,"أبريل":4,"ابريل":4,"
 EN={m.lower():i for i,m in enumerate(["","January","February","March","April","May","June","July","August","September","October","November","December"]) if m}
 
 def parse_date(raw,lang):
- s=re.sub(r"\\s+"," ",raw.strip())
+ s=re.sub(r"\s+"," ",raw.strip())
  try:
   if lang=="tr":
-   m=re.search(r"([^\\d]+)\\s+(\\d{4})",s)
+   m=re.search(r"([^\d]+)\s+(\d{4})",s)
    if m and m.group(1).strip().lower() in TR:return f"{int(m.group(2)):04d}-{TR[m.group(1).strip().lower()]:02d}-01",s
   if lang=="en":
    for fmt in ("%B %d, %Y","%b %d, %Y","%B %d %Y","%Y-%m-%d"):
     try:return datetime.datetime.strptime(s,fmt).date().isoformat(),s
     except ValueError:pass
   if lang=="ar":
-   m=re.search(r"(\\d{1,2})\\s+([^\\d]+?)\\s+(\\d{4})",s)
+   m=re.search(r"(\d{1,2})\s+([^\d]+?)\s+(\d{4})",s)
    if m and m.group(2).strip() in AR:return f"{int(m.group(3)):04d}-{AR[m.group(2).strip()]:02d}-{int(m.group(1)):02d}",s
  except (ValueError,KeyError):pass
  return None,s
@@ -42,22 +42,22 @@ def main():
    for name in z.namelist():
     if not name.lower().endswith(".md"):continue
     text=z.read(name).decode("utf-8-sig","replace")
-    title=re.search(r"^#\\s+(.+?)\\s*$",text,re.M)
-    date=re.search(r"^\\s*\\*\\*(?:Tarih|Date|التاريخ):\\*\\*\\s*(.+?)\\s*$",text,re.M)
-    author=re.search(r"^\\s*\\*\\*(?:Yazar|Author|الكاتب):\\*\\*\\s*(.+?)\\s*$",text,re.M)
+    title=re.search(r"^#\s+(.+?)\s*$",text,re.M)
+    date=re.search(r"^\s*\*\*(?:Tarih|Date|التاريخ):\*\*\s*(.+?)\s*$",text,re.M)
+    author=re.search(r"^\s*\*\*(?:Yazar|Author|الكاتب):\*\*\s*(.+?)\s*$",text,re.M)
     if not title or not date:print("Skip malformed:",name);continue
-    lines=text.replace("\\r\\n","\\n").split("\\n");body=[];skipped=False
+    lines=text.replace("\r\n","\n").split("\n");body=[];skipped=False
     for line in lines:
      if not skipped and line.startswith("# "):skipped=True;continue
-     if re.match(r"^\\s*\\*\\*(?:Tarih|Date|التاريخ|Yazar|Author|الكاتب):\\*\\*",line):continue
+     if re.match(r"^\s*\*\*(?:Tarih|Date|التاريخ|Yazar|Author|الكاتب):\*\*",line):continue
      body.append(line)
-    body="\\n".join(body).strip()
-    summary=re.sub(r"^#{1,6}\\s*","",body,flags=re.M)
-    summary=re.sub(r"\\*\\*([^*]+)\\*\\*",r"\\1",summary)
-    summary=re.sub(r"\\s+"," ",summary).strip()
+    body="\n".join(body).strip()
+    summary=re.sub(r"^#{1,6}\s*","",body,flags=re.M)
+    summary=re.sub(r"\*\*([^*]+)\*\*",r"\1",summary)
+    summary=re.sub(r"\s+"," ",summary).strip()
     if len(summary)>230:summary=summary[:230].rsplit(" ",1)[0]+"…"
     d,display=parse_date(date.group(1),lang)
-    m=re.search(r"(\\d+)",Path(name).stem);num=int(m.group(1)) if m else n+1
+    m=re.search(r"(\d+)",Path(name).stem);num=int(m.group(1)) if m else n+1
     stories.append({"id":num,"slug":f"{lang}-{num:03d}","lang":lang,"title":title.group(1).strip(),"summary":summary,"dateISO":d,"dateDisplay":display,"author":author.group(1).strip() if author else "Gasim Piraliyev | RocketPen Tech","category":category(title.group(1),body),"body":body,"status":"scheduled" if d and d>today else "published","dateBasis":"provided-in-source-archive","sourceArchive":archive.name,"sources":[]})
     n+=1
   counts[lang]=n
