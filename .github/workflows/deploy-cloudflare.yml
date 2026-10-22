@@ -41,12 +41,10 @@ jobs:
           python-version: "3.12"
       - name: Build multilingual news archive from supplied ZIPs
         run: python scripts/build_news_archive.py
-      - name: Set up Node.js for headline refresh
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-      - name: Refresh recent headlines without touching generated archive
-        run: node scripts/update-tech-news.mjs
+      - name: Validate original editorial headline data
+        run: |
+          node --check news/assets/news.js
+          node -e "const d=require('./news/data/headlines.json'); if(!Array.isArray(d.stories)||d.stories.length<1||d.stories.some(s=>s.editorialOriginal!==true||!Array.isArray(s.sources)||s.sources.length<1)) process.exit(1); console.log('Original editorial headlines:',d.stories.length)"
       - name: QA archive data and unique story artwork
         run: python scripts/qa_news_archive.py
       - name: Verify Cloudflare credentials
