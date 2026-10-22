@@ -194,3 +194,26 @@ body:has(.article-card) { counter-reset: blog-article; }
 }
 html[lang="en"] .article-card .article-no::before { content: counter(blog-article, decimal-leading-zero) " / ARTICLE"; }
 html[lang="ar"] .article-card .article-no::before { content: counter(blog-article, decimal-leading-zero) " / دليل"; }
+
+
+/* Override legacy inline blog styles with visible, real sequential numbers. */
+html body .article-card .article-no {
+  font-size: 0 !important;
+  color: transparent !important;
+  letter-spacing: 0 !important;
+}
+html body .article-card .article-no::before {
+  content: counter(blog-article, decimal-leading-zero) " / REHBER" !important;
+  display: inline-block !important;
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 2px !important;
+  color: #c30b1b !important;
+  visibility: visible !important;
+}
+html[lang="en"] body .article-card .article-no::before {
+  content: counter(blog-article, decimal-leading-zero) " / ARTICLE" !important;
+}
+html[lang="ar"] body .article-card .article-no::before {
+  content: counter(blog-article, decimal-leading-zero) " / دليل" !important;
+}
