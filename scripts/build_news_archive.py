@@ -111,30 +111,30 @@ def main():
    except Exception:
     continue
   return None
- # Wikimedia Commons can throttle thousands of near-simultaneous article searches.
- # Resolve one verified licensed photograph per topic first, then reuse it as a
- # safe fallback for articles whose title-specific lookup fails. Every story still
- # carries the actual file URL, source page, license, license URL and attribution.
- topic_photos={}
- for topic in sorted({story["category"] for story in stories}):
-  representative=next((story for story in stories if story["category"]==topic),None)
-  if representative:
-   topic_photos[topic]=find_photo(representative)
- # Use the verified category photograph as a deterministic fallback for each
- # article. This avoids thousands of concurrent Wikimedia API requests, which
- # were causing rate limits and blocking the entire site deployment.
- missing=0
+ # Historical archive entries remain text-only. Only stories dated within the
+ # last 90 days are treated as recent and receive verified, licensed photographs.
+ # Search each recent story by its own headline; category search is a fallback.
+ cutoff=(datetime.date.today()-datetime.timedelta(days=90)).isoformat()
+ recent=[s for s in stories if s.get("dateISO") and cutoff<=s["dateISO"]<=today]
+ photo_cache={};missing=0
  for story in stories:
   story["visualTopic"]=visual_topic(story)
-  photo=topic_photos.get(story["category"])
+  is_recent=story in recent;story["isArchive"]=not is_recent
+  if not is_recent:
+   story["imageUrl"]="";story["imageType"]="archive";story["imageSource"]="";story["imageSourceUrl"]="";story["imageLicense"]="";story["imageLicenseUrl"]="";story["imageCredit"]=""
+   continue
+  cache_key=story["title"].casefold();photo=photo_cache.get(cache_key)
+  if photo is None:
+   photo=find_photo(story)
+   if photo:photo_cache[cache_key]=photo
   if photo:
    story["imageUrl"]=photo["url"];story["imageType"]="photograph";story["imageSource"]="Wikimedia Commons";story["imageSourceUrl"]=photo["sourceUrl"];story["imageLicense"]=photo["license"];story["imageLicenseUrl"]=photo["licenseUrl"];story["imageCredit"]=photo["credit"]
   else:
    story["imageUrl"]="";story["imageType"]="missing";story["imageSource"]="";story["imageSourceUrl"]="";story["imageLicense"]="";story["imageLicenseUrl"]="";story["imageCredit"]="";missing+=1
  if missing:
-  raise SystemExit(f"Deployment blocked: {missing} stories have no verified licensed real photo, including topic fallbacks. No SVG fallback will be used.")
+  raise SystemExit(str(missing)+" recent stories dated within 90 days have no verified licensed real photo. Historical archive stories remain text-only.")
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
- OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Each retained story has its own original topic-themed SVG editorial illustration; these are illustrations, not documentary photographs. Source dates are preserved.","counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
+ OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Historical stories are text-only archive entries. Stories dated within the last 90 days require verified, licensed real photographs. Source dates are preserved.","recentPhotoWindowDays":90,"counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
  print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
  status_counts={language:{status:sum(1 for story in stories if story["lang"]==language and story["status"]==status) for status in ("published","scheduled")} for language in ARCHIVES}
  topic_counts={topic:sum(1 for story in stories if story["visualTopic"]==topic) for topic in sorted({story["visualTopic"] for story in stories})}
