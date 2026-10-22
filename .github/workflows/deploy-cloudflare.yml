@@ -12,6 +12,7 @@ on:
       - ".github/workflows/deploy-cloudflare.yml"
       - "RocketPenTech_500_*.zip"
       - "scripts/build_news_archive.py"
+      - "scripts/qa_news_archive.py"
       - "sitemap.xml"
       - "robots.txt"
       - "_redirects"
