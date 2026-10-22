@@ -26,4 +26,5 @@ jobs:
           git add blog/en/articles reports/part-1-batch-200-revised.txt
           git diff --cached --quiet && exit 0
           git commit -m "Revise 200 English SEO articles in batch 1"
+          git pull --rebase origin main
           git push origin main
