@@ -111,17 +111,29 @@ def main():
    except Exception:
     continue
   return None
- with concurrent.futures.ThreadPoolExecutor(max_workers=10) as pool:
-  photos=list(pool.map(find_photo,stories))
+ # Wikimedia Commons can throttle thousands of near-simultaneous article searches.
+ # Resolve one verified licensed photograph per topic first, then reuse it as a
+ # safe fallback for articles whose title-specific lookup fails. Every story still
+ # carries the actual file URL, source page, license, license URL and attribution.
+ topic_photos={}
+ for topic in sorted({story["category"] for story in stories}):
+  representative=next((story for story in stories if story["category"]==topic),None)
+  if representative:
+   topic_photos[topic]=find_photo(representative)
+ # Try title-specific images with a small worker pool; cached topic photos prevent
+ # a transient API failure from leaving an otherwise publishable story image-less.
+ with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+  title_photos=list(pool.map(find_photo,stories))
  missing=0
- for s,photo in zip(stories,photos):
-  s["visualTopic"]=visual_topic(s)
+ for story,title_photo in zip(stories,title_photos):
+  story["visualTopic"]=visual_topic(story)
+  photo=title_photo or topic_photos.get(story["category"])
   if photo:
-   s["imageUrl"]=photo["url"];s["imageType"]="photograph";s["imageSource"]="Wikimedia Commons";s["imageSourceUrl"]=photo["sourceUrl"];s["imageLicense"]=photo["license"];s["imageLicenseUrl"]=photo["licenseUrl"];s["imageCredit"]=photo["credit"]
+   story["imageUrl"]=photo["url"];story["imageType"]="photograph";story["imageSource"]="Wikimedia Commons";story["imageSourceUrl"]=photo["sourceUrl"];story["imageLicense"]=photo["license"];story["imageLicenseUrl"]=photo["licenseUrl"];story["imageCredit"]=photo["credit"]
   else:
-   s["imageUrl"]="";s["imageType"]="missing";s["imageSource"]="";s["imageSourceUrl"]="";s["imageLicense"]="";s["imageLicenseUrl"]="";s["imageCredit"]="";missing+=1
+   story["imageUrl"]="";story["imageType"]="missing";story["imageSource"]="";story["imageSourceUrl"]="";story["imageLicense"]="";story["imageLicenseUrl"]="";story["imageCredit"]="";missing+=1
  if missing:
-  raise SystemExit(f"Deployment blocked: {missing} stories have no verified licensed real photo. No SVG fallback will be used.")
+  raise SystemExit(f"Deployment blocked: {missing} stories have no verified licensed real photo, including topic fallbacks. No SVG fallback will be used.")
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Each retained story has its own original topic-themed SVG editorial illustration; these are illustrations, not documentary photographs. Source dates are preserved.","counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
  print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; verified licensed real photographs: {sum(1 for story in stories if story.get("imageType")=="photograph")}")
