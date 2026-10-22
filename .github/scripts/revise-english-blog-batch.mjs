@@ -92,11 +92,11 @@ await fs.mkdir(REPORT_DIR, { recursive: true });
 let manifest = { version: 1, startedAt: new Date().toISOString(), reviewed: {}, failures: {} };
 try { manifest = { ...manifest, ...JSON.parse(await fs.readFile(MANIFEST, 'utf8')) }; } catch {}
 const files = (await walk(ARTICLE_DIR)).sort();
-const pending = files.filter(file => !manifest.reviewed[path.relative(ROOT, file).split(path.sep).join('/')]);
+const pending = files.filter(file => { const key = path.relative(ROOT, file).split(path.sep).join('/'); const state = manifest.reviewed[key]; return !state || state.status === 'failed-review' && /insufficient_quota|credit_balance_exhausted/i.test(state.reason || ''); });
 const batch = pending.slice(0, BATCH_SIZE);
 const report = [];
 console.log('English article files:', files.length, '| already reviewed:', Object.keys(manifest.reviewed).length, '| this batch:', batch.length, '| model:', MODEL);
-for (const file of batch) {
+let quotaBlocked = false;\nfor (const file of batch) {
   const rel = path.relative(ROOT, file).split(path.sep).join('/');
   try {
     const html = await fs.readFile(file, 'utf8');
@@ -128,7 +128,7 @@ for (const file of batch) {
 manifest.lastRunAt = new Date().toISOString();
 manifest.totalArticleFiles = files.length;
 manifest.lastBatch = report;
-manifest.completed = files.every(file => manifest.reviewed[path.relative(ROOT, file).split(path.sep).join('/')]);
+manifest.completed = files.every(file => { const state = manifest.reviewed[path.relative(ROOT, file).split(path.sep).join('/')]; return state && !['failed-review','needs-manual-review'].includes(state.status); });
 await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
 const rewritten = report.filter(x => x.status === 'rewritten').length;
 const reviewed = report.filter(x => x.status === 'rewritten' || x.status === 'reviewed-no-change').length;
@@ -152,5 +152,5 @@ const summary = [
   'Only article <main> blocks are eligible for editing. Files that fail structural or quality checks are not committed as rewritten. URL paths, metadata outside <main>, sitemap, redirects and non-English pages are left unchanged.'
 ];
 await fs.writeFile(path.join(REPORT_DIR, 'english-content-review-latest.md'), summary.join('\n') + '\n');
-console.log(JSON.stringify({ total: files.length, reviewed: Object.keys(manifest.reviewed).length, batch: batch.length, rewritten, failed, completed: manifest.completed }, null, 2));
+console.log(JSON.stringify({ total: files.length, reviewed: Object.values(manifest.reviewed).filter(x => !['failed-review','needs-manual-review'].includes(x.status)).length, batch: batch.length, rewritten, failed, quotaBlocked, completed: manifest.completed }, null, 2));
 // Per-file failures are recorded for manual review; preserve the report and continue the batch.
