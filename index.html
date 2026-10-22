@@ -752,7 +752,7 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePic
  const categoryNames={en:['Brand & Identity','Web & Digital','Campaign & Content','Motion & Social'],tr:['Marka ve Kimlik','Web ve Dijital','Kampanya ve İçerik','Hareket ve Sosyal Medya'],ar:['العلامة والهوية','الويب والرقمنة','الحملات والمحتوى','الحركة والتواصل الاجتماعي']};
  const categoryOrder=['brand','web','campaign','motion'];
  function language(){return document.documentElement.lang||'en'}
- function updateCardLabels(){const lang=language();cards.forEach(card=>{const label=card.querySelector('.portfolio-card-category');label.textContent=label.dataset['cat'+lang.toUpperCase()]||label.dataset.catEn})}
+ function updateCardLabels(){const lang=language();cards.forEach(card=>{const label=card.querySelector('.portfolio-card-category');label.textContent=label.dataset['cat'+lang.charAt(0).toUpperCase()+lang.slice(1)]||label.dataset.catEn})}
  function applyFilter(filter){
    filters.forEach(button=>{const active=button.dataset.filter===filter;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active))});
    cards.forEach(card=>{card.hidden=filter!=='all'&&card.dataset.category!==filter});
