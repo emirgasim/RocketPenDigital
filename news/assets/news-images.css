@@ -25,3 +25,5 @@
 .archive-notice{background:var(--panel2)!important;color:var(--ink)!important;border-color:var(--accent)!important}
 [dir=rtl] .archive-notice{border-right-color:var(--accent)!important}
 @media(prefers-reduced-motion:reduce){.home-slider-track{scroll-behavior:auto}.home-slider-dot{transition:none}}
+
+.article-hero figcaption,.article-inline-figure figcaption{color:var(--muted)!important}
