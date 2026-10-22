@@ -50,7 +50,10 @@ const variants = {
  'tools-and-workflow-guide':['Tools and workflow','Map inputs, steps, handoffs and exceptions before choosing software. Compare usability, integration, accessibility, permissions and cost; define data ownership, pilot realistic cases and review adoption and reliability.']
 };
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && suffixes.some(s => f.slice(0,-5).endsWith(s))).sort();
+const reportPath = 'reports/part-1-batch-200-revised.txt';
+const prior = fs.existsSync(reportPath) ? fs.readFileSync(reportPath,'utf8').split(/\\r?\\n/).filter(Boolean) : [];
+const priorSet = new Set(prior);
+const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && !priorSet.has(f) && suffixes.some(s => f.slice(0,-5).endsWith(s))).sort();
 const selected = files.slice(0,200);
 if (selected.length !== 200) throw new Error('Expected 200 candidate pages; found '+selected.length);
 const changed = [];
