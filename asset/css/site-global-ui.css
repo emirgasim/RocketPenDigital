@@ -251,3 +251,12 @@ html body .language-picker:not(.is-open):not([open]) .lang:hover .lang-chevron {
 @media (prefers-reduced-motion: reduce) {
   html body .language-picker .lang-chevron { transition: none !important; }
 }
+
+
+/* 2026-10: remove confusing article-order labels from every localized blog listing. Keep pagination controls. */
+html body .article-card .article-no,
+html body .article-card .article-no::before {
+  display: none !important;
+  content: none !important;
+  counter-increment: none !important;
+}
