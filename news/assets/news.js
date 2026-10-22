@@ -42,8 +42,8 @@
   const reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const sync=()=>{const x=target.scrollLeft;let best=0,dist=Infinity;rendered.forEach((s,i)=>{const d=Math.abs(s.offsetLeft-x);if(d<dist){dist=d;best=i}});active=best;rendered.forEach((s,i)=>s.classList.toggle('is-active',i===active));if(dots)Array.from(dots.children).forEach((d,i)=>{d.classList.toggle('is-active',i===active);d.setAttribute('aria-current',i===active?'true':'false')})};
   const stop=()=>{if(timer){clearInterval(timer);timer=0}};
-  const start=()=>{stop();if(rendered.length>1&&!reduce&&!hover&&!focus&&!document.hidden)timer=setInterval(()=>show(active+1),6000)};
   const show=i=>{active=(i+rendered.length)%rendered.length;target.scrollTo({left:rendered[active].offsetLeft,behavior:reduce?'auto':'smooth'});sync();start()};
+  const start=()=>{stop();if(rendered.length>1&&!reduce&&!hover&&!focus&&!document.hidden)timer=setInterval(()=>show(active+1),6000)};
   if(prev){prev.disabled=rendered.length<2;prev.addEventListener('click',()=>show(active-1))}
   if(next){next.disabled=rendered.length<2;next.addEventListener('click',()=>show(active+1))}
   target.addEventListener('scroll',()=>{clearTimeout(scrollTimer);sync();scrollTimer=setTimeout(()=>{sync();start()},120)},{passive:true});
@@ -59,6 +59,7 @@
  function pagination(pager,p,pages){if(!pager)return;pager.replaceChildren();if(pages<=1)return;const add=(label,n,disabled,rel)=>{const e=document.createElement(disabled?'span':'a');e.className='pagination-link'+(disabled?' is-disabled':'');e.textContent=label;if(!disabled){const q=new URLSearchParams(location.search);q.set('page',String(n));e.href=location.pathname+'?'+q.toString();if(rel)e.rel=rel}pager.append(e)};add(t.prev,p-1,p<=1,'prev');for(let n=1;n<=pages;n++){if(n===1||n===pages||Math.abs(n-p)<=2){const e=document.createElement(n===p?'span':'a');e.className='pagination-link'+(n===p?' is-current':'');e.textContent=String(n);if(n!==p){const q=new URLSearchParams(location.search);q.set('page',String(n));e.href=location.pathname+'?'+q.toString()}pager.append(e)}else if(Math.abs(n-p)===3){const e=document.createElement('span');e.className='pagination-ellipsis';e.textContent='…';pager.append(e)}}add(t.next,p+1,p>=pages,'next')}
  if(!list&&!section)return;
  Promise.all([
+  Promise.all([
   fetch('/news/data/news.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('archive unavailable');return r.json()}),
   fetch('/news/data/headlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}))
  ]).then(([data,headlineData])=>{
