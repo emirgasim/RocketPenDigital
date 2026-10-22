@@ -106,7 +106,7 @@ for language in ("tr","en","ar"):
         errors.append(f"{language}: news JS cache version is stale")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
-for token in ("published","Yayın tarihi","Gasim Piraliyev","featured.has(s.slug)"):
+for token in ("published","Yayın tarihi","Gasim Piraliyev","shown=pageItems"):
     if token not in js:
         errors.append("News listing missing expected metadata/dedup logic: "+token)
 article=(ROOT/"news/article.html").read_text(encoding="utf-8")
