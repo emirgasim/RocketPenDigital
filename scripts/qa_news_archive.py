@@ -7,8 +7,10 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/"scripts"));
 data=json.loads((ROOT/"news/data/news.json").read_text(encoding="utf-8"));stories=data.get("stories",[]);errors=[]
 if not stories:errors.append("Archive is empty.")
 langs=Counter(s.get("lang") for s in stories)
+published=Counter(s.get("lang") for s in stories if s.get("status")=="published")
 for language in ("tr","en","ar"):
  if langs[language]<1:errors.append("No stories generated for "+language)
+ if published[language]<10:errors.append(f"Fewer than 10 published stories available for {language} slider: {published[language]}")
 if dict(langs)!=data.get("counts",{}):errors.append(f"Language count mismatch: {dict(langs)} vs {data.get('counts')}")
 slugs=set();urls={};hashes={};fingerprints=set()
 for s in stories:

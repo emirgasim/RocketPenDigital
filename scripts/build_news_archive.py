@@ -24,16 +24,19 @@ def parse_date(raw,lang):
  except (ValueError,KeyError):pass
  return None,s
 def category(title,body):
- s=(title+" "+body[:1800]).casefold()
+ title=title.casefold();s=(title+" "+body[:1800]).casefold()
  rules=[("ai",["artificial intelligence","yapay zek","الذكاء الاصطناعي","machine learning","deepmind","anthropic","openai","chatgpt","gemini","llm","neural network","robotics"]),("gaming",["gaming","game","oyun","playstation","xbox","nintendo","epic games","unity","steam","esports"]),("security",["cybersecurity","siber güven","siber guven","güvenlik","guvenlik","الأمن السيبراني","privacy","hack","malware","ransomware","data breach"]),("science",["space","science","uzay","bilim","فضاء","nasa","research","satellite","mars","moon","telescope"]),("mobility",["electric vehicle","mobility","transport","otomotiv","ulaşım","ulasim","سيارات","النقل","ev charging","autonomous driving"]),("devices",["phone","smartphone","device","laptop","tablet","chip","telefon","cihaz","هاتف","أجهزة","samsung","apple","nvidia","amd","iphone","pixel"]),("apps",["app","software","platform","application","uygulama","yazılım","yazilim","تطبيق","برمجيات","windows","android","ios","browser"])]
+ for key,terms in rules:
+  if any(term in title for term in terms):return key
  for key,terms in rules:
   if any(term in s for term in terms):return key
  return "digital-culture"
 def visual_topic(story):
- s=(story.get("title","")+" "+story.get("body","")[:2000]).casefold()
- checks=[("robotics",["robot","robotics","robotik","humanoid"]),("ai-network",["artificial intelligence","yapay zek","الذكاء الاصطناعي","machine learning","neural","openai","chatgpt","gemini","llm"]),("smartphone",["iphone","smartphone","phone","pixel","galaxy","samsung","telefon","هاتف"]),("laptop",["laptop","notebook","macbook","chromebook","bilgisayar","لابتوب"]),("game-console",["gaming","playstation","xbox","nintendo","steam","oyun","esports"]),("orbital-science",["space","nasa","mars","moon","satellite","telescope","uzay","bilim","فضاء"]),("shield-security",["security","cyber","malware","hack","ransomware","privacy","siber","güvenlik","guvenlik","الأمن السيبراني"]),("electric-mobility",["electric vehicle","ev charging","automotive","mobility","transport","otomobil","araç","arac","ulasim","ulaşım","سيارات"]),("software-ui",["software","application","browser","windows","android","ios","app","uygulama","yazılım","yazilim","تطبيق","برمجيات"]),("digital-network",["social media","tiktok","instagram","creator","influencer","sosyal medya","dijital kültür","digital culture"])]
- for key,terms in checks:
-  if any(term in s for term in terms):return key
+ title=story.get("title","").casefold();body=story.get("body","")[:2000].casefold()
+ checks=[("smartphone",["iphone","smartphone","phone","pixel","galaxy","samsung","telefon","هاتف"]),("laptop",["laptop","notebook","macbook","chromebook","bilgisayar","لابتوب"]),("game-console",["gaming","playstation","xbox","nintendo","steam","oyun","esports"]),("orbital-science",["space","nasa","mars","moon","satellite","telescope","uzay","bilim","فضاء"]),("shield-security",["security","cyber","malware","hack","ransomware","privacy","siber","güvenlik","guvenlik","الأمن السيبراني"]),("electric-mobility",["electric vehicle","ev charging","automotive","mobility","transport","otomobil","araç","arac","ulasim","ulaşım","سيارات"]),("software-ui",["software","application","browser","windows","android","ios","app","uygulama","yazılım","yazilim","تطبيق","برمجيات"]),("robotics",["robot","robotics","robotik","humanoid"]),("ai-network",["artificial intelligence","yapay zek","الذكاء الاصطناعي","machine learning","neural","openai","chatgpt","gemini","llm"]),("digital-network",["social media","tiktok","instagram","creator","influencer","sosyal medya","dijital kültür","digital culture"])]
+ for text in (title,body):
+  for key,terms in checks:
+   if any(term in text for term in terms):return key
  return {"ai":"ai-network","devices":"hardware-lab","apps":"software-ui","gaming":"game-console","science":"orbital-science","security":"shield-security","mobility":"electric-mobility","digital-culture":"digital-network"}.get(story.get("category"),"digital-network")
 def illustration_svg(story):
  slug=story["slug"];topic=story["visualTopic"];cat=story["category"];digest=hashlib.sha256((slug+"|"+story["title"]+"|"+topic+"|"+story["body"][:180]).encode()).digest();r=random.Random(int.from_bytes(digest[:8],"big"));c1,c2,accent,glow=PALETTES.get(cat,PALETTES["digital-culture"]);label=html.escape(LABELS.get(story["lang"],LABELS["en"]).get(cat,cat.upper()));gid="g-"+re.sub(r"[^a-zA-Z0-9_-]","-",slug)
@@ -93,4 +96,8 @@ def main():
  stories.sort(key=lambda x:(x["dateISO"] or "0000-00-00",x["id"]),reverse=True);OUT.parent.mkdir(parents=True,exist_ok=True)
  OUT.write_text(json.dumps({"schemaVersion":3,"generatedAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"sourceNote":"Each retained story has its own original topic-themed SVG editorial illustration; these are illustrations, not documentary photographs. Source dates are preserved.","counts":counts,"duplicateSourceItemsRemoved":duplicates,"stories":stories},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
  print(f"Indexed {len(stories)} stories: {counts}; exact duplicate source entries removed: {duplicates}; unique illustrations generated: {len(stories)}")
+ status_counts={language:{status:sum(1 for story in stories if story["lang"]==language and story["status"]==status) for status in ("published","scheduled")} for language in ARCHIVES}
+ topic_counts={topic:sum(1 for story in stories if story["visualTopic"]==topic) for topic in sorted({story["visualTopic"] for story in stories})}
+ print(f"Publication status by language: {status_counts}")
+ print(f"Unique cover illustration topics: {topic_counts}")
 if __name__=="__main__":main()
