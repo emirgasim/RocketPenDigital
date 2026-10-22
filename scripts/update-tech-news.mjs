@@ -5,9 +5,9 @@ const DATA_PATH = "news/data/news.json";
 const now = Date.now();
 const cutoff = now - 48 * 60 * 60 * 1000;
 const feeds = [
-  { name: "ShiftDelete.Net", url: "https://shiftdelete.net/sdn-feed" },
+  { name: "ShiftDelete.Net", url: "https://shiftdelete.net/feed" },
   { name: "Webtekno", url: "https://www.webtekno.com/rss.xml" },
-  { name: "Technopat", url: "https://www.technopat.net/feed/" }
+  { name: "CHIP Online", url: "https://www.chip.com.tr/rss" }
 ];
 function decodeXml(s = "") {
   return s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/&amp;/g, "&").replace(/&quot;/g, '"')
