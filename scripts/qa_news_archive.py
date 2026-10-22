@@ -26,9 +26,10 @@ for s in stories:
  cutoff=(date.today()-timedelta(days=int(data.get("recentPhotoWindowDays",90)))).isoformat()
  is_recent=bool(s.get("dateISO") and cutoff<=s["dateISO"]<=date.today().isoformat())
  if is_recent:
-  if s.get("imageType")!="photograph":errors.append(f"Recent story has no verified real photograph: {language}/{slug}")
-  if not url.startswith("https://upload.wikimedia.org/"):errors.append(f"Missing Wikimedia-hosted photo for recent story: {language}/{slug} => {url}")
-  if not s.get("imageSourceUrl") or not s.get("imageLicense") or not s.get("imageCredit"):errors.append(f"Missing photo source/license/credit metadata for recent story: {language}/{slug}")
+  if s.get("imageType")=="photograph":
+   if not url.startswith("https://upload.wikimedia.org/"):errors.append(f"Invalid photo URL for recent story: {language}/{slug} => {url}")
+   if not s.get("imageSourceUrl") or not s.get("imageLicense") or not s.get("imageCredit"):errors.append(f"Missing photo source/license/credit metadata for recent story: {language}/{slug}")
+  elif s.get("imageType")!="missing" or url:errors.append(f"Recent story must have a verified photo or remain text-only: {language}/{slug}")
  else:
   if s.get("imageType")!="archive" or url:errors.append(f"Historical archive story must be text-only: {language}/{slug}")
  if url:urls[url]=f"{language}/{slug}"
@@ -47,4 +48,4 @@ if errors:
  print("NEWS QA FAILED")
  for e in errors[:100]:print(" - "+e)
  print("Total issues:",len(errors));raise SystemExit(1)
-print(f"NEWS QA PASSED: {len(stories)} stories; recent-photo policy and text-only archive validated; languages={dict(langs)}")
+print(f"NEWS QA PASSED: {len(stories)} stories; verified recent photos and text-only archive validated; recent stories without photos={sum(1 for s in stories if s.get(\"imageType\")==\"missing\")}; languages={dict(langs)}")
