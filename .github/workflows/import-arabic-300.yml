@@ -1,0 +1,34 @@
+name: Import 300 Arabic long articles
+on:
+  push:
+    paths:
+      - 'imports/RocketPenDigital_300_LongArticles_Complete.zip'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: import-arabic-long-articles
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Import articles, pagination and sitemap
+        run: |
+          node scripts/import-arabic-300.mjs
+          rm -f imports/RocketPenDigital_300_LongArticles_Complete.zip
+      - name: Commit generated Arabic blog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/ar/articles blog/ar/index.html blog/ar/page sitemap.xml imports/RocketPenDigital_300_LongArticles_Complete.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Import 300 long Arabic blog articles"
+            git push origin main
+          fi
