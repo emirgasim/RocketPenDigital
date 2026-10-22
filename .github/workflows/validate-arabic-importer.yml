@@ -1,0 +1,17 @@
+name: Validate Arabic article importer
+on:
+  push:
+    paths:
+      - 'scripts/import-arabic-300.mjs'
+      - '.github/workflows/import-arabic-300.yml'
+      - '.github/workflows/validate-arabic-importer.yml'
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check importer JavaScript syntax
+        run: node --check scripts/import-arabic-300.mjs
