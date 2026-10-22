@@ -78,5 +78,5 @@ for (const file of selected) {
   fs.writeFileSync(full,html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,main));
   changed.push(file);
 }
-fs.writeFileSync(reportPath,[...prior,...changed].join('\n')+'\n');
+fs.writeFileSync(reportPath,[...new Set([...prior,...changed])].join('\n')+'\n');
 console.log('Revised '+changed.length+' additional English article pages; cumulative listed: '+(prior.length+changed.length)+'.');
