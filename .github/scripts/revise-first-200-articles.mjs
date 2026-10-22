@@ -53,7 +53,7 @@ const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;
 const reportPath = 'reports/part-1-batch-200-revised.txt';
 const prior = fs.existsSync(reportPath) ? fs.readFileSync(reportPath,'utf8').split(/\\r?\\n/).filter(Boolean) : [];
 const priorSet = new Set(prior);
-const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && !priorSet.has(f) && suffixes.some(s => f.slice(0,-5).endsWith(s))).sort();
+const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && !priorSet.has(f)).sort();
 const selected = files.slice(0,200);
 if (selected.length !== 200) throw new Error('Expected 200 candidate pages; found '+selected.length);
 const changed = [];
@@ -61,11 +61,11 @@ for (const file of selected) {
   const full = path.join(root,file), html = fs.readFileSync(full,'utf8');
   const match = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/i);
   if (!match) throw new Error('Missing main: '+file);
-  const fn = file.slice(0,-5), suffix = suffixes.find(s => fn.endsWith(s));
+  const fn = file.slice(0,-5), suffix = suffixes.find(s => fn.endsWith(s)) || '';
   const title = (match[0].match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1]?.replace(/<[^>]*>/g,'').trim();
-  if (!suffix || !title) throw new Error('Could not identify title/variant: '+file);
-  const topic = fn.slice(0,-suffix.length).replace(/-/g,' ').replace(/\bseo\b/gi,'SEO').replace(/\bb2b\b/gi,'B2B').replace(/\bai\b/gi,'AI').replace(/\b\w/g,c=>c.toUpperCase());
-  const [variant,detail] = variants[suffix.slice(1)];
+  if (!title) throw new Error('Could not identify title: '+file);
+  const topic = fn.slice(0,suffix ? -suffix.length : undefined).replace(/-/g,' ').replace(/\bseo\b/gi,'SEO').replace(/\bb2b\b/gi,'B2B').replace(/\bai\b/gi,'AI').replace(/\b\w/g,c=>c.toUpperCase());
+  const [variant,detail] = suffix ? variants[suffix.slice(1)] : ['Topic-specific framework','Define the audience, use case and intended outcome for '+topic.toLowerCase()+'. Review existing evidence, identify gaps and prioritise improvements by user impact, confidence, effort and risk. Document ownership and review criteria so the approach can be maintained.'];
   const intro = 'A practical, evidence-led guide to '+topic.toLowerCase()+'. Improve decisions, execution and measurement without relying on unsupported promises.';
   const sections = [
     [variant,detail.replace(/\bthe topic\b/gi,topic.toLowerCase())],
