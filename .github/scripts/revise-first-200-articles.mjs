@@ -78,5 +78,5 @@ for (const file of selected) {
   fs.writeFileSync(full,html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,main));
   changed.push(file);
 }
-fs.writeFileSync('reports/part-1-batch-200-revised.txt',changed.join('\n')+'\n');
-console.log('Revised '+changed.length+' English article pages.');
+fs.writeFileSync(reportPath,[...prior,...changed].join('\n')+'\n');
+console.log('Revised '+changed.length+' additional English article pages; cumulative listed: '+(prior.length+changed.length)+'.');
