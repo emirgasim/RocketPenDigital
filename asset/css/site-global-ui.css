@@ -109,3 +109,67 @@ header.nav .brand-link img.logo,
 header .logo-image {
   filter: drop-shadow(0 0 5px rgba(255,255,255,.32)) drop-shadow(0 0 13px rgba(255,255,255,.16)) !important;
 }
+
+
+/* Global language dropdown hardening: keep the menu anchored under its own button,
+   closed by default, animated on open, and show a check only for the active language. */
+header.nav .language-picker,
+body .language-picker { position: relative !important; }
+header.nav .language-picker > .language-menu,
+body .language-picker > .language-menu {
+  display: block !important;
+  position: absolute !important;
+  top: calc(100% + 10px) !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: 0 !important;
+  z-index: 2000 !important;
+  min-width: 190px;
+  max-width: min(86vw, 280px);
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-8px) scale(.97) !important;
+  transform-origin: top right !important;
+  transition: opacity .22s ease, transform .26s cubic-bezier(.2,.8,.2,1), visibility .22s ease !important;
+}
+header.nav .language-picker.is-open > .language-menu,
+body .language-picker.is-open > .language-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+}
+header.nav .language-picker > .lang .lang-chevron,
+body .language-picker > .lang .lang-chevron {
+  transform: rotate(45deg) translateY(-2px) !important;
+  transition: transform .26s cubic-bezier(.2,.8,.2,1) !important;
+}
+header.nav .language-picker.is-open > .lang .lang-chevron,
+body .language-picker.is-open > .lang .lang-chevron {
+  transform: rotate(225deg) translate(-2px,-1px) !important;
+}
+header.nav .language-menu .language-option .language-check,
+body .language-menu .language-option .language-check {
+  opacity: 0 !important;
+  transform: scale(.6) !important;
+}
+header.nav .language-menu .language-option[aria-current="page"] .language-check,
+body .language-menu .language-option[aria-current="page"] .language-check {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+@media (max-width: 760px) {
+  header.nav .language-picker > .language-menu,
+  body .language-picker > .language-menu {
+    top: calc(100% + 8px) !important;
+    min-width: 180px;
+    max-width: min(86vw, 250px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  header.nav .language-picker > .language-menu,
+  header.nav .language-picker > .lang .lang-chevron,
+  body .language-picker > .language-menu,
+  body .language-picker > .lang .lang-chevron { transition: none !important; }
+}
