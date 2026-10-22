@@ -4,6 +4,7 @@ on:
     paths:
       - 'RocketPenDigital_300_LongArticles_Complete.zip'
       - 'imports/RocketPenDigital_300_LongArticles_Complete.zip'
+      - '.github/workflows/import-arabic-300.yml'
   workflow_dispatch:
 permissions:
   contents: write
