@@ -83,12 +83,28 @@ jobs:
               if published[lang] < 10:
                   raise SystemExit(f"Smoke test failed: {lang} has only {published[lang]} published stories.")
           PY
-          for LANG in tr en ar; do
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/$LANG/" -o "/tmp/news-$LANG.html"
-            grep -q 'news.js?v=20261022-5' "/tmp/news-$LANG.html" || { echo "Smoke test failed: $LANG page did not serve the current JavaScript version."; exit 1; }
-            grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "Smoke test failed: $LANG page has no headline slider."; exit 1; }
-            grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "Smoke test failed: $LANG page has no archive list."; exit 1; }
+          for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
+            echo "Checking production host: $HOST"
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/news.json" -o /tmp/news-host.json
+            python - "$HOST" <<'PY'
+          import json, sys
+          from collections import Counter
+          host=sys.argv[1]
+          with open("/tmp/news-host.json", encoding="utf-8") as f:
+              data=json.load(f)
+          stories=data.get("stories", [])
+          published=Counter(s.get("lang") for s in stories if s.get("status")=="published")
+          print(f"{host}: total={len(stories)} published={dict(published)}")
+          if not stories or any(published[lang] < 10 for lang in ("tr","en","ar")):
+              raise SystemExit("Live host has missing or insufficient published news.")
+          PY
+            for LANG in tr en ar; do
+              curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/" -o "/tmp/news-$LANG.html"
+              grep -q 'news.js?v=20261022-5' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261022-5."; exit 1; }
+              grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no headline slider."; exit 1; }
+              grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no archive list."; exit 1; }
+            done
           done
           curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261022-5" -o /tmp/news.js
           node --check /tmp/news.js
-          echo "Smoke test passed: live JSON, all three editions, slider, archive list, and JS syntax."
+          echo "Smoke test passed: worker and custom domain JSON, all three editions, current HTML, slider, archive list, and JS syntax."
