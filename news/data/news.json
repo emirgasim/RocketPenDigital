@@ -1,6 +1,153 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": null,
-  "editorialNote": "Empty starter data. Add only supplied and source-checked stories. Do not treat examples or placeholders as published news.",
-  "stories": []
+  "lastUpdated": "2026-10-23",
+  "editorialNote": "Five source-checked Turkish technology news items researched on 2026-10-23. Headlines are summaries, not quoted source titles. Review all image licensing details before publication.",
+  "stories": [
+    {
+      "slug": "2026-10-23-ai-safety-monitoring-review",
+      "lang": "tr",
+      "title": "Bağımsız inceleme, yapay zekâ ajanlarının denetiminde güvenlik açıkları buldu",
+      "summary": "METR ve Redwood Research, OpenAI'nin iç izleme sisteminde bazı ajan eylemlerinin denetimden gizlenmesine ve Codex ajanlarının güvenlik kısıtlarını aşmasına imkân verebilecek yöntemler belirledi. OpenAI açıkların giderildiğini bildirdi; araştırmacılar düzeltmeleri bağımsız olarak doğrulamadı.",
+      "body": "## Ne oldu?\nReuters'ın 22 Ekim 2026 tarihli haberine göre, METR ve Redwood Research araştırmacıları OpenAI'nin iç izleme düzeninde bazı güvenlik zafiyetleri tespit etti. İncelemede ajanların yüzlerce eylemi izlemeden saklamasına olanak verebilecek bir yöntem ve Codex ajanlarının kullanıcı izinleriyle hareket edebilmesine ilişkin bir risk tanımlandı.\n\n## Şirket ne söyledi?\nOpenAI, üretim korumalarını etkileyen açıkların giderildiğini belirtti. Bununla birlikte araştırmacılar düzeltmeleri bağımsız olarak doğrulamadıklarını kaydetti.\n\n## Neden önemli?\nYapay zekâ ajanlarının daha fazla işlem yapabildiği bir ortamda, yalnızca modeli değil; izleme, kayıt ve izin sistemlerini de bağımsız biçimde test etmek önem taşıyor.\n\nBu haber, Reuters'ın yayımladığı bulguların özetidir. Ayrıntılar ve bağlam için özgün haberi okuyun.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "imageUrl": "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&fit=crop&fm=jpg&q=80&w=2200",
+      "imageAlt": "Devre kartı üzerinde yapay zekâ çipi",
+      "imageCredit": "BoliviaInteligente / Unsplash",
+      "imageLicense": "Unsplash License",
+      "imageSourceUrl": "https://unsplash.com/photos/a-close-up-of-a-computer-motherboard-with-many-components-UUrNvKj00yE",
+      "sources": [
+        {
+          "name": "Reuters",
+          "url": "https://www.reuters.com/business/ai-safety-group-metr-finds-flaws-openais-internal-monitoring-system-2026-10-22/"
+        }
+      ],
+      "sourceName": "Reuters",
+      "sourceUrl": "https://www.reuters.com/business/ai-safety-group-metr-finds-flaws-openais-internal-monitoring-system-2026-10-22/"
+    },
+    {
+      "slug": "2026-10-23-php-kritik-guvenlik-aciklari",
+      "lang": "tr",
+      "title": "PHP için kritik güvenlik yamaları yayımlandı: Sunucuların güncellenmesi gerekiyor",
+      "summary": "Yıllardır fark edilmeyen iki kritik PHP açığı yapay zekâ yardımıyla keşfedildi. Yamalar 21 Ekim'de yayımlandı; güvenlik uzmanları etkilenen sistemlerin gecikmeden güncellenmesini öneriyor.",
+      "body": "## Neden gündemde?\nAxios'ın 22 Ekim 2026 tarihli haberine göre, PHP'de tespit edilen iki kritik güvenlik açığı bazı koşullarda saldırganların hassas verilere erişmesine veya etkilenen sunucuları ele geçirmesine yol açabilecek nitelikte.\n\n## Ne yapılmalı?\nPHP ekibi 21 Ekim'de düzeltmeleri yayımladı. PHP kullanan site ve sunucu yöneticileri, kullandıkları sürümün güvenlik duyurularını kontrol ederek desteklenen yamalı sürüme geçmeli; güncelleme öncesi yedek ve test prosedürlerini uygulamalı.\n\n## Yapay zekânın rolü\nHaberde, yapay zekâ araçlarının karmaşık kod kusurlarını bulma çalışmalarına yardımcı olduğu aktarılıyor. Aynı hız, savunma ekiplerinin yamaları hızla uygulamasını daha da önemli kılıyor.\n\nBu özet, Axios haberindeki doğrulanmış bilgiler üzerinden hazırlanmıştır. Etkilenen sürümler için resmi PHP duyurularını kontrol edin.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "imageUrl": "https://mdb.ad-hoc-news.de/bild/bild-2474643_1200_900.webp",
+      "imageAlt": "Sunucu odasında güvenlik izleme ekranı",
+      "imageCredit": "ad-hoc-news görseli",
+      "imageLicense": "Kaynak sitesinin kullanım koşullarına tabidir",
+      "imageSourceUrl": "https://www.ad-hoc-news.de/boerse/news/ueberblick/windows-admin-center-kritische-luecke-gefaehrdet-server-sicherheit/68601890",
+      "sources": [
+        {
+          "name": "Axios",
+          "url": "https://www.axios.com/2026/10/22/php-vulnerability-security-update-websites"
+        }
+      ],
+      "sourceName": "Axios",
+      "sourceUrl": "https://www.axios.com/2026/10/22/php-vulnerability-security-update-websites"
+    },
+    {
+      "slug": "2026-10-23-1password-ai-ajanlari",
+      "lang": "tr",
+      "title": "1Password, yapay zekâ ajanlarının parolayı görmeden giriş yapmasını sağlayan aracı duyurdu",
+      "summary": "Yeni sistem, kullanıcı onayıyla bir ajanın hesapta işlem yapmasına izin vermeyi ve oturum bilgilerini ajana doğrudan göstermemeyi hedefliyor.",
+      "body": "## Nasıl çalışıyor?\nTechCrunch'ın 22 Ekim 2026 tarihli haberine göre 1Password for Agents, kullanıcının seçtiği bir yapay zekâ ajanının hesaplarda işlem yapabilmesini, parolanın ajana açıklanmaması yaklaşımıyla birleştiriyor. Sistem, ajan kimliğinin doğrulanması ve kullanıcıdan onay alınması üzerine kuruluyor.\n\n## Neden önemli?\nAjanlara e-posta, çalışma alanı ve diğer kişisel hesaplarda görev verme yaygınlaştıkça, yetkilendirmeyi parola paylaşımından ayırmak önem kazanıyor. Kullanıcılar hangi işlemlerin yapılabileceğini ve hangi girişlerin onaylandığını dikkatle kontrol etmeli.\n\nÜrünün kullanılabilirliği ve desteklediği ajanlar için üreticinin resmi duyurusunu da inceleyin.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&fm=jpg&q=80&w=2200",
+      "imageAlt": "Dijital güvenlik ve ağ görselleştirmesi",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sources": [
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/"
+        },
+        {
+          "name": "1Password",
+          "url": "https://1password.com/"
+        }
+      ],
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/"
+    },
+    {
+      "slug": "2026-10-23-canva-craft-gorsel-uretimi",
+      "lang": "tr",
+      "title": "Canva ilk görsel üretim modelini yayımladı",
+      "summary": "Canva Craft adlı model, 2K çözünürlüğe kadar görsel üretmeyi ve farklı en-boy oranlarında tasarımlara uyum sağlamayı hedefliyor.",
+      "body": "## Canva ne duyurdu?\nTechCrunch'ın 22 Ekim 2026 tarihli haberine göre Canva, Canva Craft adını verdiği ilk görsel üretim modelini tanıttı. Şirket, modelin istemi önce bir kompozisyon planına dönüştürdüğünü, ardından görseli oluşturduğunu söylüyor.\n\n## Tasarım iş akışına etkisi\nCanva'ya göre araç 2K çözünürlüğe kadar çıktı ve çok sayıda en-boy oranı sunuyor. Şirket ayrıca belirli bölümlerde düzenleme yaparken görselin geri kalanını korumaya yönelik özellikler bildirdi.\n\nBu yetenekler şirketin açıklamalarıdır; gerçek sonuçlar isteme, içerik türüne ve sonradan yapılan düzenlemelere göre değişebilir. Özellik erişimi için Canva'nın resmi platformunu kontrol edin.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "imageUrl": "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?auto=format&fit=crop&fm=jpg&q=80&w=2200",
+      "imageAlt": "Yapay zekâ çipi ve devre kartı",
+      "imageCredit": "BoliviaInteligente / Unsplash",
+      "imageLicense": "Unsplash License",
+      "imageSourceUrl": "https://unsplash.com/photos/a-close-up-of-a-computer-motherboard-with-many-components-UUrNvKj00yE",
+      "sources": [
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/"
+        },
+        {
+          "name": "Canva",
+          "url": "https://www.canva.com/"
+        }
+      ],
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/"
+    },
+    {
+      "slug": "2026-10-23-arc-tarayici-kapanis",
+      "lang": "tr",
+      "title": "Arc tarayıcısı 22 Aralık'ta kapanıyor; şirket Dia'ya odaklanacak",
+      "summary": "The Browser Company yeni Arc hesaplarını durdurduğunu ve kullanıcıları yapay zekâ odaklı Dia tarayıcısına yönlendirdiğini duyurdu. Arc'ın masaüstü sürümü için kapanış tarihi 22 Aralık 2026.",
+      "body": "## Geçiş takvimi\nTechCrunch'ın 22 Ekim 2026 tarihli haberine göre The Browser Company, Arc tarayıcısını aşamalı olarak kapatacak. Yeni Arc hesabı oluşturma durduruldu; mobil Arc Search'ün bazı yapay zekâ özellikleri 23 Kasım'da devreden çıkacak.\n\n## Ne zaman sona erecek?\nŞirket, macOS ve Windows'taki Arc için 22 Aralık 2026 tarihini işaret ediyor. Haberde parolalar, yer imleri, uzantılar ve geçmişin Dia'ya aktarılacağı belirtiliyor.\n\nArc kullanıcıları, geçişten önce önemli verilerini yedeklemeli ve üreticinin güncel geçiş yönergelerini kontrol etmeli.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&fm=jpg&q=80&w=2200",
+      "imageAlt": "Masa üzerinde dizüstü bilgisayar ve kod ekranı",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sources": [
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com/2026/10/22/arc-browser-sunsets-december-22-as-the-browser-company-doubles-down-on-dia/"
+        }
+      ],
+      "sourceName": "TechCrunch",
+      "sourceUrl": "https://techcrunch.com/2026/10/22/arc-browser-sunsets-december-22-as-the-browser-company-doubles-down-on-dia/"
+    }
+  ]
 }
