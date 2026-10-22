@@ -78,15 +78,15 @@ for origin,s in all_stories:
     if origin=="archive":
         is_recent=bool(s.get("dateISO") and (date.today()-timedelta(days=int(data.get("recentPhotoWindowDays",90)))).isoformat()<=s["dateISO"]<=date.today().isoformat())
         if is_recent and s.get("imageType")=="photograph":
-            if not url.startswith("https://upload.wikimedia.org/"):
+            if not url.startswith("https://images.unsplash.com/"):
                 errors.append(f"Invalid photo URL for recent story: {language}/{slug} => {url}")
-            if not s.get("imageSourceUrl") or not s.get("imageLicense") or not s.get("imageCredit"):
+            if s.get("imageSource")!="Unsplash" or not s.get("imageSourceUrl","").startswith("https://unsplash.com/") or s.get("imageLicense")!="Unsplash License" or not s.get("imageLicenseUrl","").startswith("https://unsplash.com/license") or not s.get("imageCredit"):
                 errors.append(f"Missing photo source/license/credit metadata for recent story: {language}/{slug}")
-        elif is_recent:
-            if s.get("imageType")!="missing" or url:
-                errors.append(f"Recent story must have a verified photo or remain text-only: {language}/{slug}")
-        elif s.get("imageType")!="archive" or url:
-            errors.append(f"Historical archive story must be text-only: {language}/{slug}")
+        else:
+            if s.get("imageType")!="photograph" or not url.startswith("https://images.unsplash.com/"):
+                errors.append(f"Story must have a real Unsplash photograph: {language}/{slug}")
+            if s.get("imageSource")!="Unsplash" or not s.get("imageLicenseUrl","").startswith("https://unsplash.com/license"):
+                errors.append(f"Missing Unsplash source/license metadata: {language}/{slug}")
 
 for s in headline_stories:
     if s.get("editorialOriginal") is not True:
@@ -122,4 +122,4 @@ if errors:
         print(" - "+error)
     print("Total issues:",len(errors))
     raise SystemExit(1)
-print(f"NEWS QA PASSED: archive={len(stories)} headlines={len(headline_stories)} language_counts={dict(langs)}; exact normalized duplicate title/body check passed; every story has publication date and author Gasim Piraliyev; image source/license metadata retained.")
+print(f"NEWS QA PASSED: archive={len(stories)} headlines={len(headline_stories)} language_counts={dict(langs)}; exact normalized duplicate title/body check passed; every story has publication date and author Gasim Piraliyev; a topic-assigned Unsplash photograph with license metadata.")
