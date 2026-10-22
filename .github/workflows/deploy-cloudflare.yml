@@ -91,9 +91,40 @@ jobs:
               if published[lang] < 10:
                   raise SystemExit(f"Smoke test failed: {lang} has only {published[lang]} published stories.")
           PY
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/data/headlines.json" -o /tmp/headlines.json
+          python - <<'PY'
+          import json, datetime
+          with open("/tmp/headlines.json", encoding="utf-8") as f:
+              data = json.load(f)
+          stories = data.get("stories", [])
+          now = datetime.datetime.now(datetime.timezone.utc)
+          cutoff = now - datetime.timedelta(hours=48)
+          published = [s for s in stories if s.get("lang") == "tr" and s.get("status") == "published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval") != "pending"]
+          fresh = []
+          for story in published:
+              stamp = story.get("publishedAt") or story.get("dateISO") or ""
+              try:
+                  d = datetime.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+                  if d.tzinfo is None: d = d.replace(tzinfo=datetime.timezone.utc)
+                  if cutoff <= d <= now + datetime.timedelta(hours=2): fresh.append(story)
+              except ValueError:
+                  pass
+          print(f"Live headline response: {len(stories)} items; {len(fresh)} published Turkish items within 48 hours.")
+          if not fresh:
+              raise SystemExit("Smoke test failed: no current Turkish headline is available.")
+          PY
           for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
             echo "Checking production host: $HOST"
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/news.json" -o /tmp/news-host.json
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/headlines.json" -o /tmp/headlines-host.json
+            python - "$HOST" <<'PY'
+          import json, sys
+          with open("/tmp/headlines-host.json", encoding="utf-8") as f:
+              headlines=json.load(f).get("stories", [])
+          fresh=[s for s in headlines if s.get("lang")=="tr" and s.get("status")=="published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval")!="pending"]
+          print(f"{sys.argv[1]}: headline-items={len(headlines)} published-tr={len(fresh)}")
+          if not fresh:
+              raise SystemExit("Live host has no published Turkish headlines.")
+          PY
             python - "$HOST" <<'PY'
           import json, sys
           from collections import Counter
