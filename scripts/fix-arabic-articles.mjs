@@ -26,7 +26,6 @@ for (const item of data) {
     '@media(max-width:600px){.article-site-header{padding:12px 16px;gap:10px;flex-wrap:wrap}.article-site-header .logo-image{width:clamp(155px,48vw,210px);max-height:48px}.article-site-header .navlinks{gap:12px;font-size:11px}}'
   ].join('\n');
   const sharedHeaderCss = [
-  if (!html.includes('Standard Arabic article header v2: match the Arabic blog top bar')) html = html.replace(/<\/style>/i, sharedHeaderCss + '</style>');
     '.article-site-header{direction:rtl;position:sticky!important;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px var(--pad,clamp(22px,5.5vw,88px));background:rgba(7,9,13,.94);color:#fff;border-bottom:1px solid rgba(255,255,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}',
     '.article-site-header .brand-link{display:flex;align-items:center;min-width:0;line-height:0;text-decoration:none}',
     '.article-site-header .logo-image{display:block;width:clamp(210px,24vw,320px);max-width:100%;max-height:52px;height:auto;object-fit:contain;filter:drop-shadow(0 0 5px rgba(255,255,255,.32)) drop-shadow(0 0 13px rgba(255,255,255,.16))}',
@@ -47,6 +46,7 @@ for (const item of data) {
     '@media(max-width:760px){.article-site-header{padding:12px 20px;gap:12px}.article-site-header .logo-image{width:clamp(175px,54vw,235px);max-height:48px}.article-site-header .language-picker summary{padding:9px 11px;gap:7px}.article-site-header .lang-label{display:none}}',
     '@media(max-width:380px){.article-site-header{padding:12px 14px}.article-site-header .logo-image{width:clamp(145px,46vw,175px)}.article-site-header .language-picker summary{padding:8px}}'
   ].join('\\n');
+  if (!html.includes('Standard Arabic article header v2: match the Arabic blog top bar')) html = html.replace(/<\/style>/i, sharedHeaderCss + '</style>');
   if (!html.includes('Standard Arabic article header v2: match the Arabic blog top bar')) html = html.replace(/<\/style>/i, sharedHeaderCss + '</style>');
   if (!/<link\s+rel=["']canonical["']/i.test(html)) html = html.replace(/<meta\s+name=["']robots["'][^>]*>/i, m => m + '<link rel="canonical" href="https://rocketpendigital.com/blog/ar/articles/' + item.file + '">');
   const related = data.filter(x => x.file !== item.file).map(x => ({...x, score:x.tokens.reduce((s,t)=>s+(item.tokens.includes(t)?1:0),0)})).sort((a,b)=>b.score-a.score || a.file.localeCompare(b.file)).slice(0,3);
