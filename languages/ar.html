@@ -676,5 +676,13 @@ if(video){
 }
 document.documentElement.classList.add('js-ready');
 </script>
+<script>
+(function(){
+ const section=document.querySelector('.portfolio-section'); if(!section)return;
+ const filters=[...section.querySelectorAll('.portfolio-filter')],cards=[...section.querySelectorAll('.portfolio-card')];
+ filters.forEach(button=>button.addEventListener('click',()=>{const value=button.dataset.filter||'all';filters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});cards.forEach(card=>{card.hidden=value!=='all'&&card.dataset.category!==value;});}));
+ cards.forEach(card=>card.addEventListener('click',()=>{const img=card.querySelector('img');if(!img)return;const overlay=document.createElement('div');overlay.className='portfolio-lightbox';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.innerHTML='<button class="portfolio-lightbox-close" type="button" aria-label="Close image">×</button><figure class="portfolio-lightbox-figure"><img src="'+img.src+'" alt="'+(img.alt||'').replace(/"/g,'&quot;')+'"><figcaption>'+card.querySelector('.portfolio-card-category').textContent+'</figcaption></figure>';document.body.appendChild(overlay);const close=()=>overlay.remove();overlay.querySelector('button').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close();});const esc=e=>{if(e.key==='Escape'){close();document.removeEventListener('keydown',esc);}};document.addEventListener('keydown',esc);}));
+})();
+</script>
 </body>
 </html>
