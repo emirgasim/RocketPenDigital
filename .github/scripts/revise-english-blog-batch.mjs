@@ -153,4 +153,4 @@ const summary = [
 ];
 await fs.writeFile(path.join(REPORT_DIR, 'english-content-review-latest.md'), summary.join('\n') + '\n');
 console.log(JSON.stringify({ total: files.length, reviewed: Object.keys(manifest.reviewed).length, batch: batch.length, rewritten, failed, completed: manifest.completed }, null, 2));
-if (failed) process.exitCode = 1;
+// Per-file failures are recorded for manual review; preserve the report and continue the batch.
