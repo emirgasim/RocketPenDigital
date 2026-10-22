@@ -48,4 +48,5 @@ if errors:
  print("NEWS QA FAILED")
  for e in errors[:100]:print(" - "+e)
  print("Total issues:",len(errors));raise SystemExit(1)
-print(f"NEWS QA PASSED: {len(stories)} stories; verified recent photos and text-only archive validated; recent stories without photos={sum(1 for s in stories if s.get(\"imageType\")==\"missing\")}; languages={dict(langs)}")
+missing_recent=sum(1 for s in stories if s.get("imageType")=="missing")
+print(f"NEWS QA PASSED: {len(stories)} stories; recent photos and text-only archive validated; recent stories without photos={missing_recent}; languages={dict(langs)}")
