@@ -15,14 +15,14 @@
   if(!section)return new Set();
   if(selectedCategory){section.hidden=true;return new Set()}
   section.hidden=false;
-  const target=$('#frontpage-content');if(!target)return new Set();
+  const target=$('#home-slider-track');if(!target)return new Set();
   target.replaceChildren();
   const cutoffDate=new Date();cutoffDate.setUTCHours(0,0,0,0);cutoffDate.setUTCDate(cutoffDate.getUTCDate()-2);
   const cutoff=cutoffDate.toISOString().slice(0,10);
   const published=stories.filter(s=>s.editorialOriginal===true&&s.status==='published'&&s.approved!==false&&s.editorialApproved!==false&&s.editorialApproval!=='pending'&&(s.dateISO||(s.publishedAt||'').slice(0,10))>=cutoff).sort(sort);
   const slides=published.slice(0,10),excluded=new Set(slides.map(s=>s.slug));
   if(!slides.length){const m=document.createElement('p');m.className='empty-list';m.textContent=t.empty;target.append(m);return excluded}
-  const dots=$('#hero-dots'),prev=$('#hero-prev'),next=$('#hero-next');if(dots)dots.replaceChildren();
+  const dots=$('#home-slider-dots'),prev=$('#home-slider-prev'),next=$('#home-slider-next');if(dots)dots.replaceChildren();
   const rendered=[];
   slides.forEach((story,i)=>{
    const hero=document.createElement('article');hero.className='news-hero-slide'+(i===0?' is-active':'');hero.dataset.index=String(i);
