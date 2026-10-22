@@ -30,7 +30,7 @@
 
 
 /* Full-width RocketPen Tech headline slider */
-.news-hero-slider{margin:0 0 38px;position:relative;background:#080b12;color:#fff;overflow:hidden}
+.news-hero-slider{width:100vw;margin:0 calc(50% - 50vw) 38px;position:relative;background:#080b12;color:#fff;overflow:hidden}
 .news-hero-stage{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .news-hero-stage::-webkit-scrollbar{display:none}
 .news-hero-slide{position:relative;flex:0 0 100%;min-width:100%;height:clamp(330px,55vw,650px);scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;background:#111722}
