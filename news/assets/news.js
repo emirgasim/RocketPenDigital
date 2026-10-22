@@ -59,7 +59,6 @@
  function pagination(pager,p,pages){if(!pager)return;pager.replaceChildren();if(pages<=1)return;const add=(label,n,disabled,rel)=>{const e=document.createElement(disabled?'span':'a');e.className='pagination-link'+(disabled?' is-disabled':'');e.textContent=label;if(!disabled){const q=new URLSearchParams(location.search);q.set('page',String(n));e.href=location.pathname+'?'+q.toString();if(rel)e.rel=rel}pager.append(e)};add(t.prev,p-1,p<=1,'prev');for(let n=1;n<=pages;n++){if(n===1||n===pages||Math.abs(n-p)<=2){const e=document.createElement(n===p?'span':'a');e.className='pagination-link'+(n===p?' is-current':'');e.textContent=String(n);if(n!==p){const q=new URLSearchParams(location.search);q.set('page',String(n));e.href=location.pathname+'?'+q.toString()}pager.append(e)}else if(Math.abs(n-p)===3){const e=document.createElement('span');e.className='pagination-ellipsis';e.textContent='…';pager.append(e)}}add(t.next,p+1,p>=pages,'next')}
  if(!list&&!section)return;
  Promise.all([
-  Promise.all([
   fetch('/news/data/news.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('archive unavailable');return r.json()}),
   fetch('/news/data/headlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}))
  ]).then(([data,headlineData])=>{
