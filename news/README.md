@@ -1,6 +1,6 @@
 # RocketPen Tech — staged newsroom rollout
 
-Status: **scaffold only; not live/deployed**.
+Status: **scaffold and API-free feed intake are in the draft PR; not live/deployed**.
 
 ## Editions
 - `/news/en/` — international English edition
@@ -8,22 +8,22 @@ Status: **scaffold only; not live/deployed**.
 - `/news/ar/` — Modern Standard Arabic, RTL
 - `/news/` — edition selector
 
-## Current scope
-This commit adds only a separate static landing-page scaffold. It does not collect feeds, generate AI stories, publish articles, modify the main navigation, or change the existing sitemap and redirects.
+## API-free automation now included
+- `.github/workflows/rocketpen-tech-feeds.yml` runs every six hours or manually.
+- `news/sources.json` is the curated RSS/Atom source list. It starts empty intentionally; no feed sources are silently assumed.
+- `news/scripts/collect_feeds.py` uses Python's standard library only; no AI provider, API key, paid service, or third-party Python package is needed.
+- Items are deduplicated by URL and stored in `news/queue/items.json` with source URL, original link, publication time when available, retrieval time, language, and review status.
+- The workflow opens/updates a pull request for queue changes rather than publishing content directly.
 
-## Automation design (next stage)
-1. Ingest permitted RSS feeds and official newsroom releases into an editorial queue.
-2. Deduplicate by canonical source URL and normalized title.
-3. Preserve source URLs, original publication time, retrieval time and language.
-4. Use AI to draft original, source-grounded articles in each relevant edition; never merely spin a source article.
-5. Apply risk gates. Only clearly low-risk stories with sufficient independent confirmation may be eligible for automatic publishing. Breaking, health, financial, legal, security, casualty, disputed or unverified claims require human approval.
-6. Keep pending stories as drafts. Store article provenance and checks.
-7. Validate metadata, canonical URL, hreflang only for true equivalents, Article/NewsArticle and BreadcrumbList schema, image rights and sitemap inclusion.
-8. Deploy only after tests pass.
+## Important limitations
+The collector gathers feed metadata and summaries for editorial triage; it does not write finished news articles, translate them, verify factual claims, fetch images, or publish anything. All entries remain `needs_editor_review`. Configure and review licensed/authorized HTTPS feed URLs in `news/sources.json` before expecting feed items.
 
-## Required secrets/configuration before AI automation
-- `OPENAI_API_KEY` (GitHub Actions secret) or a deliberately selected provider key.
-- `CLOUDFLARE_API_TOKEN` (GitHub Actions secret) and `CLOUDFLARE_ACCOUNT_ID` (GitHub Actions variable) are currently required by the existing production deploy workflow; the latest inspected run failed at credential verification.
-- Feed list and licensing/source policy must be reviewed before enabling automatic ingestion.
+## Editorial and publishing safeguards
+1. Preserve source URLs, original publication time, retrieval time and language.
+2. Write original, source-grounded articles; do not spin or republish source text verbatim.
+3. Breaking, health, financial, legal, security, casualty, disputed or unverified claims require human approval.
+4. Before any future publishing automation, validate facts, metadata, canonical URL, hreflang only for true equivalents, Article/NewsArticle and BreadcrumbList schema, image rights and sitemap inclusion.
+5. No story is auto-published by the current workflow.
 
-Never put API keys in source files or chat. This scaffold intentionally has no scheduled publishing workflow and cannot publish live news yet.
+## Deployment
+The existing Cloudflare deploy workflow still needs valid repository configuration: `CLOUDFLARE_API_TOKEN` as a GitHub Actions secret and `CLOUDFLARE_ACCOUNT_ID` as a GitHub Actions variable. A previously inspected run failed at credential verification. Never put secrets in source files or chat.
