@@ -51,7 +51,7 @@ const variants = {
 };
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const reportPath = 'reports/part-1-batch-200-revised.txt';
-const prior = fs.existsSync(reportPath) ? fs.readFileSync(reportPath,'utf8').split(/\\r?\\n/).filter(Boolean) : [];
+const prior = fs.existsSync(reportPath) ? fs.readFileSync(reportPath,'utf8').split(/\r?\n/).filter(Boolean) : [];
 const priorSet = new Set(prior);
 const files = fs.readdirSync(root).filter(f => f.endsWith('.html') && !excluded.has(f) && !priorSet.has(f)).sort();
 const selected = files.slice(0,200);
