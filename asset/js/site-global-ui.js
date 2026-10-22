@@ -1,6 +1,14 @@
 /* Shared language dropdown and reading progress for static content pages. */
 (function(){
   'use strict';
+  /* Keep article numbering continuous across paginated blog listings.
+     Listing pages contain 15 articles each: page 2 starts at 16, page 3 at 31, etc. */
+  if(document.body && document.querySelector('.article-card')){
+    var pageMatch=window.location.pathname.match(/\/page\/(\d+)\.html$/);
+    var pageNumber=pageMatch?parseInt(pageMatch[1],10):1;
+    if(!Number.isFinite(pageNumber)||pageNumber<1)pageNumber=1;
+    document.body.style.counterReset='blog-article '+((pageNumber-1)*15);
+  }
   var picker=document.getElementById('languagePicker');
   var button=document.getElementById('lang');
   var menu=document.getElementById('languageMenu');
