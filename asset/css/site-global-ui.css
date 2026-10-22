@@ -227,3 +227,27 @@ html[lang="en"] body .article-card .article-no::before,
 html[lang="ar"] body .article-card .article-no::before {
   color: #e50920 !important;
 }
+
+
+/* One consistent language-chevron animation for the homepage and every localized page. */
+html body .language-picker .lang-chevron {
+  display: inline-block !important;
+  transform: rotate(45deg) translateY(-2px) !important;
+  transform-origin: center !important;
+  transition: transform .32s cubic-bezier(.2,.8,.2,1) !important;
+  will-change: transform;
+}
+/* Rotate down when the menu is open; return up when it closes.
+   Support both custom .is-open menus and native <details open> menus. */
+html body .language-picker.is-open .lang-chevron,
+html body .language-picker[open] .lang-chevron,
+html body .language-picker:has(> .language-menu[aria-hidden="false"]) .lang-chevron {
+  transform: rotate(225deg) translate(-2px,-1px) !important;
+}
+/* Hover alone must not rotate the arrow: only the actual open state does. */
+html body .language-picker:not(.is-open):not([open]) .lang:hover .lang-chevron {
+  transform: rotate(45deg) translateY(-2px) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html body .language-picker .lang-chevron { transition: none !important; }
+}
