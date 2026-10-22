@@ -1,8 +1,849 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": "2026-10-23",
-  "editorialNote": "Five source-checked Turkish technology news items researched on 2026-10-23. Headlines are summaries, not quoted source titles. Review all image licensing details before publication.",
+  "lastUpdated": "2026-10-22T21:57:42.330Z",
+  "editorialNote": "RSS summaries retain source attribution. Security and other sensitive/high-impact items remain pending editorial review. Source image rights remain subject to publisher terms.",
   "stories": [
+    {
+      "slug": "rss-dbbf63254136",
+      "lang": "tr",
+      "title": "Apple’ın Katlanabilir Telefonu iPhone Duo Yok Sattı, Üretim Hedefi Uçtu!",
+      "summary": "Apple’ın ilk katlanabilir telefonu iPhone Duo’ya gösterilen yoğun ilgi, şirketin üretim hedefini 9,7 milyondan 14 milyona çıkardı.",
+      "body": "## Haber özeti\nApple’ın ilk katlanabilir telefonu iPhone Duo’ya gösterilen yoğun ilgi, şirketin üretim hedefini 9,7 milyondan 14 milyona çıkardı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T14:38:18.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/apple-iphone-duo-yok-satti-uretim-hedefi-uctu-h227747.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/apple-iphone-duo-yok-satti-uretim-hedefi-uctu-h227747.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694334/694334-640xauto.jpg",
+      "imageAlt": "Apple’ın Katlanabilir Telefonu iPhone Duo Yok Sattı, Üretim Hedefi Uçtu! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/apple-iphone-duo-yok-satti-uretim-hedefi-uctu-h227747.html"
+    },
+    {
+      "slug": "rss-6d23e1061b78",
+      "lang": "tr",
+      "title": "Marquess Brownlee, iPhone Duo İncelemesini Yayımladı: “Sakın Almayın!”",
+      "summary": "Dünyanın en büyük teknoloji içeriği üreticilerinden biri olan Marquess Brownlee, katlanabilir iPhone modeli iPhone Duo’nun incelemesini paylaştı.",
+      "body": "## Haber özeti\nDünyanın en büyük teknoloji içeriği üreticilerinden biri olan Marquess Brownlee, katlanabilir iPhone modeli iPhone Duo’nun incelemesini paylaştı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T14:38:11.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/marquess-brownlee-iphone-duo-incelemesi-h227683.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/marquess-brownlee-iphone-duo-incelemesi-h227683.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694201/694201-640xauto.jpg",
+      "imageAlt": "Marquess Brownlee, iPhone Duo İncelemesini Yayımladı: “Sakın Almayın!” — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/marquess-brownlee-iphone-duo-incelemesi-h227683.html"
+    },
+    {
+      "slug": "rss-7f344dc92af7",
+      "lang": "tr",
+      "title": "HONOR Watch Fit 6 Duyuruldu",
+      "summary": "Honor, yeni akıllı saat modeli Honor Watch Fit 6’yı duyurdu. Cihazın Apple Watch Ultra benzerliği dikkat çekiyor.",
+      "body": "## Haber özeti\nHonor, yeni akıllı saat modeli Honor Watch Fit 6’yı duyurdu. Cihazın Apple Watch Ultra benzerliği dikkat çekiyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T14:38:04.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/honor-watch-fit-6-duyuruldu-h227734.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/honor-watch-fit-6-duyuruldu-h227734.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694297/694297-640xauto.jpg",
+      "imageAlt": "HONOR Watch Fit 6 Duyuruldu — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/honor-watch-fit-6-duyuruldu-h227734.html"
+    },
+    {
+      "slug": "rss-f31b4eaf53ad",
+      "lang": "tr",
+      "title": "Bijon Sayısı Her Otomobilde Neden Farklı?",
+      "summary": "Otomobillerdeki bijon sayıları neden modelden modele değişir? Bu değişikliğin altında yatan mühendisliği açıklıyoruz.",
+      "body": "## Haber özeti\nOtomobillerdeki bijon sayıları neden modelden modele değişir? Bu değişikliğin altında yatan mühendisliği açıklıyoruz.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "mobility",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T13:35:37.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/bijon-sayisi-neden-farkli-h227722.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/bijon-sayisi-neden-farkli-h227722.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694285/694285-640xauto.jpg",
+      "imageAlt": "Bijon Sayısı Her Otomobilde Neden Farklı? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/bijon-sayisi-neden-farkli-h227722.html"
+    },
+    {
+      "slug": "rss-208e500a2f75",
+      "lang": "tr",
+      "title": "Apple, Mesajlar Uygulamasındaki Sinir Bozucu Sorunu Sonunda Çözüyor!",
+      "summary": "Apple, Mesajlar uygulamasında sessize alınan sohbetlerin okunmamış bildirim sayısını artırmasına neden olan sorunu çözmeye hazırlanıyor.",
+      "body": "## Haber özeti\nApple, Mesajlar uygulamasında sessize alınan sohbetlerin okunmamış bildirim sayısını artırmasına neden olan sorunu çözmeye hazırlanıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T13:35:34.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/apple-mesajlar-sessize-alinan-sohbetler-bildirim-rozeti-h227744.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/apple-mesajlar-sessize-alinan-sohbetler-bildirim-rozeti-h227744.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694330/694330-640xauto.jpg",
+      "imageAlt": "Apple, Mesajlar Uygulamasındaki Sinir Bozucu Sorunu Sonunda Çözüyor! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/apple-mesajlar-sessize-alinan-sohbetler-bildirim-rozeti-h227744.html"
+    },
+    {
+      "slug": "rss-8098e7e89e72",
+      "lang": "tr",
+      "title": "Caviar, 4,4 Milyon TL Değerinde Altın Kaplamalı iPhone Duo Koleksiyonu Tanıttı",
+      "summary": "Caviar, iPhone Duo’yu içeren servet değerindeki malzemelere sahip “World Treasures” koleksiyonunu tanıttı.",
+      "body": "## Haber özeti\nCaviar, iPhone Duo’yu içeren servet değerindeki malzemelere sahip “World Treasures” koleksiyonunu tanıttı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T13:35:23.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/caviar-4-4-milyon-tl-degerinde-iphone-duo-h227719.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/caviar-4-4-milyon-tl-degerinde-iphone-duo-h227719.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694258/694258-640xauto.jpg",
+      "imageAlt": "Caviar, 4,4 Milyon TL Değerinde Altın Kaplamalı iPhone Duo Koleksiyonu Tanıttı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/caviar-4-4-milyon-tl-degerinde-iphone-duo-h227719.html"
+    },
+    {
+      "slug": "rss-cf4a049350c0",
+      "lang": "tr",
+      "title": "Yapay Zekâ 64 Saatte Akrep Zehrine Karşı Protein Tasarladı: Peki, Bu Gerçekten Bir İlaç mı?",
+      "summary": "Anthropic’in yapay zekâ modeli Claude, yalnızca 64 saatte akrep zehrine karşı 318 binden fazla protein tasarladı. Laboratuvar testlerinde umut veren sonuçlar elde edilse de bu tasarımların gerçek bir panzehire dönüşmesi için daha gidilmesi gereken uzun bir yol var.",
+      "body": "## Haber özeti\nAnthropic’in yapay zekâ modeli Claude, yalnızca 64 saatte akrep zehrine karşı 318 binden fazla protein tasarladı. Laboratuvar testlerinde umut veren sonuçlar elde edilse de bu tasarımların gerçek bir panzehire dönüşmesi için daha gidilmesi gereken uzun bir yol var.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "ai",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T13:35:16.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/yapay-zeka-64-saatte-akrep-zehrine-karsi-protein-tasarladi-ilac-mi-h227749.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/yapay-zeka-64-saatte-akrep-zehrine-karsi-protein-tasarladi-ilac-mi-h227749.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694336/694336-640xauto.jpg",
+      "imageAlt": "Yapay Zekâ 64 Saatte Akrep Zehrine Karşı Protein Tasarladı: Peki, Bu Gerçekten Bir İlaç mı? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/yapay-zeka-64-saatte-akrep-zehrine-karsi-protein-tasarladi-ilac-mi-h227749.html"
+    },
+    {
+      "slug": "rss-1e72e2ac0cf4",
+      "lang": "tr",
+      "title": "Xbox'ın Yeni Bulut Oyun Hizmetinin Fiyatı Açıklandı",
+      "summary": "Xbox, Türkiye’de bulunmayan bulut oyun hizmetini Game Pass’ten ayırıyor. “Kullandıkça öde” mantığına sahip olacak bu hizmetin fiyatları açıklandı.",
+      "body": "## Haber özeti\nXbox, Türkiye’de bulunmayan bulut oyun hizmetini Game Pass’ten ayırıyor. “Kullandıkça öde” mantığına sahip olacak bu hizmetin fiyatları açıklandı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "gaming",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T12:23:18.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/xbox-bulut-oyun-game-passten-ayriliyor-h227686.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/xbox-bulut-oyun-game-passten-ayriliyor-h227686.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694204/694204-640xauto.jpg",
+      "imageAlt": "Xbox'ın Yeni Bulut Oyun Hizmetinin Fiyatı Açıklandı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/xbox-bulut-oyun-game-passten-ayriliyor-h227686.html"
+    },
+    {
+      "slug": "rss-6fde4d3ca856",
+      "lang": "tr",
+      "title": "iPhone Duo, 32 Bin Kez Katlanarak Test Edildi",
+      "summary": "Apple’ın katlanabilir telefonu iPhone Duo, 32 bin kez katlanarak teste sokuldu. Peki sonuçlar nasıl?",
+      "body": "## Haber özeti\nApple’ın katlanabilir telefonu iPhone Duo, 32 bin kez katlanarak teste sokuldu. Peki sonuçlar nasıl?\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T12:22:32.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/iphone-duo-32-bin-kez-katlandi-h227741.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/iphone-duo-32-bin-kez-katlandi-h227741.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694321/694321-640xauto.jpg",
+      "imageAlt": "iPhone Duo, 32 Bin Kez Katlanarak Test Edildi — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/iphone-duo-32-bin-kez-katlandi-h227741.html"
+    },
+    {
+      "slug": "rss-cd197525d19f",
+      "lang": "tr",
+      "title": "Tesla, Tamamen Otonom Cybercab’i Ne Zaman Satışa Çıkaracağını Açıkladı",
+      "summary": "Tesla, otonom ve pedalsız robotaksisi Cybercab’i ne zaman satışa çıkaracağını açıkladı.",
+      "body": "## Haber özeti\nTesla, otonom ve pedalsız robotaksisi Cybercab’i ne zaman satışa çıkaracağını açıkladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "mobility",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T12:22:31.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/tesla-cybercab-satisa-cikis-tarihi-h227740.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/tesla-cybercab-satisa-cikis-tarihi-h227740.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694306/694306-640xauto.jpg",
+      "imageAlt": "Tesla, Tamamen Otonom Cybercab’i Ne Zaman Satışa Çıkaracağını Açıkladı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/tesla-cybercab-satisa-cikis-tarihi-h227740.html"
+    },
+    {
+      "slug": "rss-5df160f29474",
+      "lang": "tr",
+      "title": "Meta'ya Tarihi Tokat: Cambridge Analytica Davasında 25 Milyar Dolarlık İnanılmaz Ceza",
+      "summary": "Meta, Cambridge Analytica davasında 25 milyar dolarlık cezayla karşı karşıya. New Mexico’da verilen kararın ardından cezanın tamamının eyaletteki okulların inşası için kullanılması planlanıyor.",
+      "body": "## Haber özeti\nMeta, Cambridge Analytica davasında 25 milyar dolarlık cezayla karşı karşıya. New Mexico’da verilen kararın ardından cezanın tamamının eyaletteki okulların inşası için kullanılması planlanıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T12:21:58.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/meta-cambridge-analytica-25-milyar-dolarlik-ceza-h227731.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/meta-cambridge-analytica-25-milyar-dolarlik-ceza-h227731.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694292/694292-640xauto.jpg",
+      "imageAlt": "Meta'ya Tarihi Tokat: Cambridge Analytica Davasında 25 Milyar Dolarlık İnanılmaz Ceza — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/meta-cambridge-analytica-25-milyar-dolarlik-ceza-h227731.html"
+    },
+    {
+      "slug": "rss-e79d90a00cac",
+      "lang": "tr",
+      "title": "Samsung’un En Sevilen Uygun Fiyatlı 2 Modeline AirDrop Desteği Geldi: İşte O Telefonlar",
+      "summary": "Samsung, şimdiye kadar amiral gemisi modellerinde olan AirDrop desteğini sevilen 2 A serisi modeline getirdi.",
+      "body": "## Haber özeti\nSamsung, şimdiye kadar amiral gemisi modellerinde olan AirDrop desteğini sevilen 2 A serisi modeline getirdi.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T12:21:38.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/samsung-galaxy-a57-a56-airdrop-geldi-h227728.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/samsung-galaxy-a57-a56-airdrop-geldi-h227728.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694291/694291-640xauto.jpg",
+      "imageAlt": "Samsung’un En Sevilen Uygun Fiyatlı 2 Modeline AirDrop Desteği Geldi: İşte O Telefonlar — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/samsung-galaxy-a57-a56-airdrop-geldi-h227728.html"
+    },
+    {
+      "slug": "rss-45dab0a6245a",
+      "lang": "tr",
+      "title": "Audi, Spotify İçin Telefon Bağlama Zorunluluğunu Ortadan Kaldırıyor",
+      "summary": "Audi ve Spotify, telefon bağlantısına ihtiyaç duymadan çalışan yeni araç içi uygulamasını duyurdu.",
+      "body": "## Haber özeti\nAudi ve Spotify, telefon bağlantısına ihtiyaç duymadan çalışan yeni araç içi uygulamasını duyurdu.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T10:56:30.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/audi-spotify-icin-telefon-baglama-zorunlulugunu-ortadan-kaldiriyor-h227716.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/audi-spotify-icin-telefon-baglama-zorunlulugunu-ortadan-kaldiriyor-h227716.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694249/694249-640xauto.jpg",
+      "imageAlt": "Audi, Spotify İçin Telefon Bağlama Zorunluluğunu Ortadan Kaldırıyor — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/audi-spotify-icin-telefon-baglama-zorunlulugunu-ortadan-kaldiriyor-h227716.html"
+    },
+    {
+      "slug": "rss-b0d5652c9386",
+      "lang": "tr",
+      "title": "Dünyanın En Büyük Bataryalı Telefonları HONOR Win RT 2 ve Win Turbo 2 Tanıtıldı!",
+      "summary": "Ana akım telefonlar arasında rekor kıran 12.070 mAh’lik bataryaya sahip HONOR Win RT 2 ve Win Turbo 2 tanıtıldı.",
+      "body": "## Haber özeti\nAna akım telefonlar arasında rekor kıran 12.070 mAh’lik bataryaya sahip HONOR Win RT 2 ve Win Turbo 2 tanıtıldı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T10:55:15.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/honor-win-rt-2-ve-win-turbo-2-tanitildi-h227725.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/honor-win-rt-2-ve-win-turbo-2-tanitildi-h227725.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694276/694276-640xauto.jpg",
+      "imageAlt": "Dünyanın En Büyük Bataryalı Telefonları HONOR Win RT 2 ve Win Turbo 2 Tanıtıldı! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/honor-win-rt-2-ve-win-turbo-2-tanitildi-h227725.html"
+    },
+    {
+      "slug": "rss-8e9fd8ec5ac6",
+      "lang": "tr",
+      "title": "Recep İvedik 8'den İlk Fragman Yayımlandı [Video]",
+      "summary": "Disney+, Şahan Gökbakar'ın başrolünde yer aldığı efsane serinin yeni filmi “Recep İvedik 8 | Bölüm 1: Veresiye” için ilk tanıtım fragmanı paylaştı.",
+      "body": "## Haber özeti\nDisney+, Şahan Gökbakar'ın başrolünde yer aldığı efsane serinin yeni filmi “Recep İvedik 8 | Bölüm 1: Veresiye” için ilk tanıtım fragmanı paylaştı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T10:54:56.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/recep-ivedik-8-ilk-fragman-h227717.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/recep-ivedik-8-ilk-fragman-h227717.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694246/694246-640xauto.jpg",
+      "imageAlt": "Recep İvedik 8'den İlk Fragman Yayımlandı [Video] — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/recep-ivedik-8-ilk-fragman-h227717.html"
+    },
+    {
+      "slug": "rss-ee86d80f28e9",
+      "lang": "tr",
+      "title": "Bütçe Dostu Olması Beklenen Samsung Galaxy A08 5G İçin Geri Sayım Başladı",
+      "summary": "Uygun fiyatlı bir telefon arayanların radarına girmeye aday Samsung Galaxy A08 5G, 6.000 mAh bataryasıyla IMEI veritabanında ortaya çıktı. Bu kayıt, cihazın geliştirme ve piyasaya hazırlık sürecinde olduğuna dair önemli bir işaret.",
+      "body": "## Haber özeti\nUygun fiyatlı bir telefon arayanların radarına girmeye aday Samsung Galaxy A08 5G, 6.000 mAh bataryasıyla IMEI veritabanında ortaya çıktı. Bu kayıt, cihazın geliştirme ve piyasaya hazırlık sürecinde olduğuna dair önemli bir işaret.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T09:28:57.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/samsung-galaxy-a08-5g-icin-geri-sayim-basladi-h227713.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/samsung-galaxy-a08-5g-icin-geri-sayim-basladi-h227713.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694244/694244-640xauto.jpg",
+      "imageAlt": "Bütçe Dostu Olması Beklenen Samsung Galaxy A08 5G İçin Geri Sayım Başladı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/samsung-galaxy-a08-5g-icin-geri-sayim-basladi-h227713.html"
+    },
+    {
+      "slug": "rss-eb20179eb0ff",
+      "lang": "tr",
+      "title": "Gemini, Apple CarPlay’in Google Maps Uygulamasına Geldi!",
+      "summary": "Google, Gemini sesli asistanını Apple CarPlay’de Google Maps üzerinden sürücülerine sunmaya başladı.",
+      "body": "## Haber özeti\nGoogle, Gemini sesli asistanını Apple CarPlay’de Google Maps üzerinden sürücülerine sunmaya başladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "ai",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T09:28:38.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/gemini-apple-carplay-maps-geldi-h227710.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/gemini-apple-carplay-maps-geldi-h227710.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694234/694234-640xauto.jpg",
+      "imageAlt": "Gemini, Apple CarPlay’in Google Maps Uygulamasına Geldi! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/gemini-apple-carplay-maps-geldi-h227710.html"
+    },
+    {
+      "slug": "rss-403f4ce5094e",
+      "lang": "tr",
+      "title": "Yeni PS5 Kulaklığı PlayStation Pulse’un Çıkış Tarihi ve Fiyatı Açıklandı",
+      "summary": "Sony, eylülde tanıttığı yeni PlayStation Pulse kulaklığının fiyatını ve çıkış tarihini paylaştı.",
+      "body": "## Haber özeti\nSony, eylülde tanıttığı yeni PlayStation Pulse kulaklığının fiyatını ve çıkış tarihini paylaştı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "gaming",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T09:28:30.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/playstation-pulse-cikis-tarihi-fiyati-aciklandi-h227704.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/playstation-pulse-cikis-tarihi-fiyati-aciklandi-h227704.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694229/694229-640xauto.jpg",
+      "imageAlt": "Yeni PS5 Kulaklığı PlayStation Pulse’un Çıkış Tarihi ve Fiyatı Açıklandı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/playstation-pulse-cikis-tarihi-fiyati-aciklandi-h227704.html"
+    },
+    {
+      "slug": "rss-12010df0e6e4",
+      "lang": "tr",
+      "title": "Apple’dan Türkiye Dahil Birçok Ülkede Kritik iPhone Duo Satışı Kararı",
+      "summary": "iPhone Duo, 23 Ekim’de resmen satışa sunulacak. Ancak Apple’ın açıklamasına göre Türkiye dahil tüm dünyada telefon mağazalarda sınırlı sayıda olacak.",
+      "body": "## Haber özeti\niPhone Duo, 23 Ekim’de resmen satışa sunulacak. Ancak Apple’ın açıklamasına göre Türkiye dahil tüm dünyada telefon mağazalarda sınırlı sayıda olacak.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T07:55:25.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/apple-iphone-duo-magazalarda-sinirli-satilacak-h227701.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/apple-iphone-duo-magazalarda-sinirli-satilacak-h227701.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694225/694225-640xauto.jpg",
+      "imageAlt": "Apple’dan Türkiye Dahil Birçok Ülkede Kritik iPhone Duo Satışı Kararı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/apple-iphone-duo-magazalarda-sinirli-satilacak-h227701.html"
+    },
+    {
+      "slug": "rss-d960a3b8976a",
+      "lang": "tr",
+      "title": "Anthropic’in Arka Planda Kendi Başına Çalışabilen Yeni Yapay Zekâ Ajanı Claude Duet Tanıtıldı",
+      "summary": "Anthropic, Meta Muse ve OpenAI Dots’a rakip olarak yeni yapay zekâ asistanı Claude Duet’i duyurdu. Bağlı uygulamalardaki işleri takip edip tamamlayabilen asistan, siz bilgisayarınızın başında değilken de çalışmayı sürdürebiliyor.",
+      "body": "## Haber özeti\nAnthropic, Meta Muse ve OpenAI Dots’a rakip olarak yeni yapay zekâ asistanı Claude Duet’i duyurdu. Bağlı uygulamalardaki işleri takip edip tamamlayabilen asistan, siz bilgisayarınızın başında değilken de çalışmayı sürdürebiliyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "ai",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T07:55:09.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/anthropic-claude-duet-yapay-zeka-asistani-h227698.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/anthropic-claude-duet-yapay-zeka-asistani-h227698.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694219/694219-640xauto.jpg",
+      "imageAlt": "Anthropic’in Arka Planda Kendi Başına Çalışabilen Yeni Yapay Zekâ Ajanı Claude Duet Tanıtıldı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/anthropic-claude-duet-yapay-zeka-asistani-h227698.html"
+    },
+    {
+      "slug": "rss-f428eb9bdf66",
+      "lang": "tr",
+      "title": "İzmir Büyükşehir Belediyesi'nde Veri İhlali Yaşandı",
+      "summary": "KVKK, İzmir Büyükşehir Belediyesi'nde veri ihlali yaşandığını açıkladı. İşte detaylar.",
+      "body": "## Haber özeti\nKVKK, İzmir Büyükşehir Belediyesi'nde veri ihlali yaşandığını açıkladı. İşte detaylar.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T07:54:21.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/izmir-buyuksehir-belediyesi-veri-ihlali-h227695.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/izmir-buyuksehir-belediyesi-veri-ihlali-h227695.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694216/694216-640xauto.jpg",
+      "imageAlt": "İzmir Büyükşehir Belediyesi'nde Veri İhlali Yaşandı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/izmir-buyuksehir-belediyesi-veri-ihlali-h227695.html"
+    },
+    {
+      "slug": "rss-c6e3105934c5",
+      "lang": "tr",
+      "title": "Casper Excalibur G870, AAA Oyunları Oynatır mı?",
+      "summary": "Casper Excalibur G870'in RTX 50 serisi seçenekleri, 165 Hz ekranı, yükseltme alanı ve kullanıcı yorumlarıyla ağır oyunlarda ne sunduğunu birlikte bakıyoruz.",
+      "body": "## Haber özeti\nCasper Excalibur G870'in RTX 50 serisi seçenekleri, 165 Hz ekranı, yükseltme alanı ve kullanıcı yorumlarıyla ağır oyunlarda ne sunduğunu birlikte bakıyoruz.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "gaming",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T07:18:59.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/casper-excalibur-g870-aaa-oyunlari-oynatir-mi-h227659.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/casper-excalibur-g870-aaa-oyunlari-oynatir-mi-h227659.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/691270/691270-640xauto.jpg",
+      "imageAlt": "Casper Excalibur G870, AAA Oyunları Oynatır mı? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/casper-excalibur-g870-aaa-oyunlari-oynatir-mi-h227659.html"
+    },
+    {
+      "slug": "rss-4325b317ed4c",
+      "lang": "tr",
+      "title": "Elektronik Ürün Alımında Taksitlerde Değişikliğe Gidildiği İddia Edildi",
+      "summary": "Tablet, televizyon, bilgisayar ve beyaz eşya gibi ürünlerin taksitli alışverişlerinde değişiklik yapıldığı öne sürüldü.",
+      "body": "## Haber özeti\nTablet, televizyon, bilgisayar ve beyaz eşya gibi ürünlerin taksitli alışverişlerinde değişiklik yapıldığı öne sürüldü.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T07:02:19.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/elektronik-urunler-taksit-degisiklik-yapildi-h227692.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/elektronik-urunler-taksit-degisiklik-yapildi-h227692.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694208/694208-640xauto.jpg",
+      "imageAlt": "Elektronik Ürün Alımında Taksitlerde Değişikliğe Gidildiği İddia Edildi — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/elektronik-urunler-taksit-degisiklik-yapildi-h227692.html"
+    },
+    {
+      "slug": "rss-d65937074142",
+      "lang": "tr",
+      "title": "PHP Nedir? Güvenlik Açıkları Neden Büyük Tehlike Oluşturuyor?",
+      "summary": "Tüm dünya yaygın proglamlama dili PHP'de keşfedilen güvenlik açığıyla çalkalanıyor. Peki nedir bu PHP?",
+      "body": "## Haber özeti\nTüm dünya yaygın proglamlama dili PHP'de keşfedilen güvenlik açığıyla çalkalanıyor. Peki nedir bu PHP?\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T05:15:45.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/php-nedir-h227680.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/php-nedir-h227680.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694198/694198-640xauto.jpg",
+      "imageAlt": "PHP Nedir? Güvenlik Açıkları Neden Büyük Tehlike Oluşturuyor? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/php-nedir-h227680.html"
+    },
+    {
+      "slug": "rss-54154f06fc7b",
+      "lang": "tr",
+      "title": "PHP Güvenlik Açıkları Nedeniyle Dünya Çapında Çok Sayıda Site Geçici Olarak Kapatıldı",
+      "summary": "PHP güvenlik açıkları, dünya çapında hükümet, kamu ve medya sitelerinin önlem olarak kapatılmasına yol açtı.",
+      "body": "## Haber özeti\nPHP güvenlik açıkları, dünya çapında hükümet, kamu ve medya sitelerinin önlem olarak kapatılmasına yol açtı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T04:57:28.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/php-guvenlik-acigi-nedeniyle-siteler-kapandi-h227677.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/php-guvenlik-acigi-nedeniyle-siteler-kapandi-h227677.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694186/694186-640xauto.jpg",
+      "imageAlt": "PHP Güvenlik Açıkları Nedeniyle Dünya Çapında Çok Sayıda Site Geçici Olarak Kapatıldı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/php-guvenlik-acigi-nedeniyle-siteler-kapandi-h227677.html"
+    },
+    {
+      "slug": "rss-c9bb1ede3a8c",
+      "lang": "tr",
+      "title": "Siber Güvenlik Başkanlığı, PHP Güvenlik Açıklarıyla İlgili Uyarıda Bulundu",
+      "summary": "Siber Güvenlik Başkanlığı, PHP'de keşfedilen güvenlik açıklarının ardından uyarı yayımladı.",
+      "body": "## Haber özeti\nSiber Güvenlik Başkanlığı, PHP'de keşfedilen güvenlik açıklarının ardından uyarı yayımladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T04:14:25.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/siber-guvenlik-baskanligi-php-uyari-h227674.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/siber-guvenlik-baskanligi-php-uyari-h227674.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694183/694183-640xauto.jpg",
+      "imageAlt": "Siber Güvenlik Başkanlığı, PHP Güvenlik Açıklarıyla İlgili Uyarıda Bulundu — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/siber-guvenlik-baskanligi-php-uyari-h227674.html"
+    },
+    {
+      "slug": "rss-5c5175b22bec",
+      "lang": "tr",
+      "title": "Efsane Oyun Şirketi BioWare Kapanıyor!",
+      "summary": "Electronic Arts , Mass Effect ile Dragon Age gibi ikonik serilere imza atan efsanevi geliştirici BioWare'i kapatma kararı aldı.",
+      "body": "## Haber özeti\nElectronic Arts , Mass Effect ile Dragon Age gibi ikonik serilere imza atan efsanevi geliştirici BioWare'i kapatma kararı aldı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "gaming",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T04:05:58.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/bioware-kapaniyor-h227671.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/bioware-kapaniyor-h227671.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694181/694181-640xauto.jpg",
+      "imageAlt": "Efsane Oyun Şirketi BioWare Kapanıyor! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/bioware-kapaniyor-h227671.html"
+    },
+    {
+      "slug": "rss-7d0458876386",
+      "lang": "tr",
+      "title": "Apple Music Logosu Değişti: İşte Yeni Logo!",
+      "summary": "Apple Music, yeniden markalaşmaya gitti. Bu kapsamda logo da değişti.",
+      "body": "## Haber özeti\nApple Music, yeniden markalaşmaya gitti. Bu kapsamda logo da değişti.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T03:56:07.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/apple-music-yeni-logo-h227669.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/apple-music-yeni-logo-h227669.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694178/694178-640xauto.jpg",
+      "imageAlt": "Apple Music Logosu Değişti: İşte Yeni Logo! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/apple-music-yeni-logo-h227669.html"
+    },
+    {
+      "slug": "rss-8cb1b4e86232",
+      "lang": "tr",
+      "title": "İnternetin Omurgası PHP'de 2 Kritik Güvenlik Açığı",
+      "summary": "İnternet altyapısının temel taşlarından PHP'de iki kritik güvenlik açığı tespit edildi ve dünya genelinde milyonlarca sunucu alarma geçti.",
+      "body": "## Haber özeti\nİnternet altyapısının temel taşlarından PHP'de iki kritik güvenlik açığı tespit edildi ve dünya genelinde milyonlarca sunucu alarma geçti.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-22",
+      "dateDisplay": "22 Ekim 2026",
+      "publishedAt": "2026-10-22T03:40:05.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/php-guvenlik-acigi-h227668.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/php-guvenlik-acigi-h227668.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694174/694174-640xauto.jpg",
+      "imageAlt": "İnternetin Omurgası PHP'de 2 Kritik Güvenlik Açığı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/php-guvenlik-acigi-h227668.html"
+    },
     {
       "slug": "2026-10-23-ai-safety-monitoring-review",
       "lang": "tr",
@@ -147,6 +988,615 @@
       ],
       "sourceName": "TechCrunch",
       "sourceUrl": "https://techcrunch.com/2026/10/22/arc-browser-sunsets-december-22-as-the-browser-company-doubles-down-on-dia/"
+    },
+    {
+      "slug": "rss-0d6c9b1b72b6",
+      "lang": "tr",
+      "title": "Range Rover'da Neden Genelde Motor Arızası Görülüyor?",
+      "summary": "Range Rover motor arızalarının arkasındaki nedenleri, Ingenium ve TDV6 gibi sorunlu motorları Webtekno'da inceliyoruz.",
+      "body": "## Haber özeti\nRange Rover motor arızalarının arkasındaki nedenleri, Ingenium ve TDV6 gibi sorunlu motorları Webtekno'da inceliyoruz.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:07:06.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/range-rover-neden-motor-arizasiyla-aniliyor-h227608.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/range-rover-neden-motor-arizasiyla-aniliyor-h227608.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694072/694072-640xauto.jpg",
+      "imageAlt": "Range Rover'da Neden Genelde Motor Arızası Görülüyor? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/range-rover-neden-motor-arizasiyla-aniliyor-h227608.html"
+    },
+    {
+      "slug": "rss-81ebc902a67a",
+      "lang": "tr",
+      "title": "Football Manager 27, 5 Gün Boyunca Ücretsiz Oynanabilecek: İşte Bilmeniz Gerekenler!",
+      "summary": "Football Manager 27, 29 Ekim - 3 Kasım tarihleri arasında PC ve Mac kullanıcıları için tüm modlarıyla 5 gün boyunca ücretsiz oynanabilecek.",
+      "body": "## Haber özeti\nFootball Manager 27, 29 Ekim - 3 Kasım tarihleri arasında PC ve Mac kullanıcıları için tüm modlarıyla 5 gün boyunca ücretsiz oynanabilecek.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "gaming",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:05:44.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/football-manager-27-5-gun-boyunca-ucretsiz-oynanabilecek-h227662.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/football-manager-27-5-gun-boyunca-ucretsiz-oynanabilecek-h227662.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694162/694162-640xauto.jpg",
+      "imageAlt": "Football Manager 27, 5 Gün Boyunca Ücretsiz Oynanabilecek: İşte Bilmeniz Gerekenler! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/football-manager-27-5-gun-boyunca-ucretsiz-oynanabilecek-h227662.html"
+    },
+    {
+      "slug": "rss-dcf31ffeed13",
+      "lang": "tr",
+      "title": "Boeing’in Yıllardır Beklenen Uçağına Onay Çıktı: Teslimatlar Başlıyor",
+      "summary": "Yıllarca süren sıkı güvenlik testlerinden sonra Boeing 737 MAX 10 sonunda FAA'dan beklenen onayı aldı. Serinin en büyüğü olan bu uçak, kalabalık yolcu kapasitesi ve hataya pek yer bırakmayan akıllı güvenlik sistemleriyle uçuş deneyimini baştan yazmaya hazırlanıyor.",
+      "body": "## Haber özeti\nYıllarca süren sıkı güvenlik testlerinden sonra Boeing 737 MAX 10 sonunda FAA'dan beklenen onayı aldı. Serinin en büyüğü olan bu uçak, kalabalık yolcu kapasitesi ve hataya pek yer bırakmayan akıllı güvenlik sistemleriyle uçuş deneyimini baştan yazmaya hazırlanıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:05:36.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/boeing-737-max-10-faa-onayi-teslimatlar-basliyor-h227656.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/boeing-737-max-10-faa-onayi-teslimatlar-basliyor-h227656.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694156/694156-640xauto.jpg",
+      "imageAlt": "Boeing’in Yıllardır Beklenen Uçağına Onay Çıktı: Teslimatlar Başlıyor — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/boeing-737-max-10-faa-onayi-teslimatlar-basliyor-h227656.html"
+    },
+    {
+      "slug": "rss-fe01f181de6a",
+      "lang": "tr",
+      "title": "Mercedes'ten Ciddi Ciddi Küçük 'G' Serisi Geliyor: Tarih Belli Oldu!",
+      "summary": "Mercedes, yeni kompakt \"Küçük G\" modelinin hem benzinli hem elektrikli seçeneklerle geleceğini doğruladı.",
+      "body": "## Haber özeti\nMercedes, yeni kompakt \"Küçük G\" modelinin hem benzinli hem elektrikli seçeneklerle geleceğini doğruladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:05:26.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/mercedes-kucuk-g-serisi-geliyor-h227653.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/mercedes-kucuk-g-serisi-geliyor-h227653.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694150/694150-640xauto.jpg",
+      "imageAlt": "Mercedes'ten Ciddi Ciddi Küçük 'G' Serisi Geliyor: Tarih Belli Oldu! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/mercedes-kucuk-g-serisi-geliyor-h227653.html"
+    },
+    {
+      "slug": "rss-5099a389ac48",
+      "lang": "tr",
+      "title": "Ay’a Süper Bilgisayar Gönderiliyor: İşte Bilgisayarın Tüm Özellikleri",
+      "summary": "Uzay ve kurumsal bilişim teknolojileri alanında faaliyet gösteren Hewlett Packard Enterprise (HPE), Ay’a kompakt bir süper bilgisayar göndermeye hazırlanıyor.",
+      "body": "## Haber özeti\nUzay ve kurumsal bilişim teknolojileri alanında faaliyet gösteren Hewlett Packard Enterprise (HPE), Ay’a kompakt bir süper bilgisayar göndermeye hazırlanıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "science",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:05:16.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/aya-super-bilgisayar-gonderiliyor-iste-bilgisayarin-tum-ozellikleri-h227647.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/aya-super-bilgisayar-gonderiliyor-iste-bilgisayarin-tum-ozellikleri-h227647.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694147/694147-640xauto.jpg",
+      "imageAlt": "Ay’a Süper Bilgisayar Gönderiliyor: İşte Bilgisayarın Tüm Özellikleri — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/aya-super-bilgisayar-gonderiliyor-iste-bilgisayarin-tum-ozellikleri-h227647.html"
+    },
+    {
+      "slug": "rss-e18cd0fa0a66",
+      "lang": "tr",
+      "title": "Lille-Galatasaray Maçı TRT 1 Şifreli Kanal Sinyal Yok Sorunu Çözüm",
+      "summary": "Lille-Galatasaray maçı canlı izlemek isteyenlerin yaşayabildiği 'TRT 1 şifreli oldu' ya da 'TRT 1 sinyal yok' sorunlarının çözümü içeriğimizde.",
+      "body": "## Haber özeti\nLille-Galatasaray maçı canlı izlemek isteyenlerin yaşayabildiği 'TRT 1 şifreli oldu' ya da 'TRT 1 sinyal yok' sorunlarının çözümü içeriğimizde.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T15:04:59.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/lille-galatasaray-maci-sifreli-kanal-sinyal-yok-cozumu-h227665.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/lille-galatasaray-maci-sifreli-kanal-sinyal-yok-cozumu-h227665.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694165/694165-640xauto.jpg",
+      "imageAlt": "Lille-Galatasaray Maçı TRT 1 Şifreli Kanal Sinyal Yok Sorunu Çözüm — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/lille-galatasaray-maci-sifreli-kanal-sinyal-yok-cozumu-h227665.html"
+    },
+    {
+      "slug": "rss-b4c7558c5708",
+      "lang": "tr",
+      "title": "Subaru, Avrupa’da Benzinli Motorlara Veda Ediyor: 2028’de Yeni Dönem Başlıyor!",
+      "summary": "Subaru, katı AB regülasyonları nedeniyle boxer motorlara veda ederek 2027 sonuna kadar Avrupa'da tamamen elektrikli bir ürün gamına geçiyor.",
+      "body": "## Haber özeti\nSubaru, katı AB regülasyonları nedeniyle boxer motorlara veda ederek 2027 sonuna kadar Avrupa'da tamamen elektrikli bir ürün gamına geçiyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T14:46:37.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/subaru-avrupa-benzinli-motorlara-veda-ediyor-h227650.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/subaru-avrupa-benzinli-motorlara-veda-ediyor-h227650.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694132/694132-640xauto.jpg",
+      "imageAlt": "Subaru, Avrupa’da Benzinli Motorlara Veda Ediyor: 2028’de Yeni Dönem Başlıyor! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/subaru-avrupa-benzinli-motorlara-veda-ediyor-h227650.html"
+    },
+    {
+      "slug": "rss-f7380d9f51bb",
+      "lang": "tr",
+      "title": "Sony’nin Ses Teknolojileri Boğaziçi Bilişim ve Dağıtım Güvencesiyle Türkiye’de",
+      "summary": "Boğaziçi Bilişim ve Dağıtım, Sony ile stratejik bir iş birliğine imza attı.",
+      "body": "## Haber özeti\nBoğaziçi Bilişim ve Dağıtım, Sony ile stratejik bir iş birliğine imza attı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T14:05:58.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/sony-ses-teknolojileri-bogazici-bilisim-ve-dagitim-guvencesiyle-turkiyede-h227644.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/sony-ses-teknolojileri-bogazici-bilisim-ve-dagitim-guvencesiyle-turkiyede-h227644.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694129/694129-640xauto.jpg",
+      "imageAlt": "Sony’nin Ses Teknolojileri Boğaziçi Bilişim ve Dağıtım Güvencesiyle Türkiye’de — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/sony-ses-teknolojileri-bogazici-bilisim-ve-dagitim-guvencesiyle-turkiyede-h227644.html"
+    },
+    {
+      "slug": "rss-ca5a2c4ca6e6",
+      "lang": "tr",
+      "title": "OpenAI’ın Yapay Zekâ Ajanları Kendi Güvenlik Sistemlerini Devre Dışı Bıraktı",
+      "summary": "OpenAI’ın yapay zekâ ajanları, kendilerine verilen işleri yaparken onları denetleyen güvenlik sistemlerini de devre dışı bıraktı.",
+      "body": "## Haber özeti\nOpenAI’ın yapay zekâ ajanları, kendilerine verilen işleri yaparken onları denetleyen güvenlik sistemlerini de devre dışı bıraktı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T13:50:10.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/openai-ajanlari-guvenlik-sistemlerini-devre-disi-birakti-h227642.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/openai-ajanlari-guvenlik-sistemlerini-devre-disi-birakti-h227642.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694108/694108-640xauto.jpg",
+      "imageAlt": "OpenAI’ın Yapay Zekâ Ajanları Kendi Güvenlik Sistemlerini Devre Dışı Bıraktı — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/openai-ajanlari-guvenlik-sistemlerini-devre-disi-birakti-h227642.html"
+    },
+    {
+      "slug": "rss-e53b233f0815",
+      "lang": "tr",
+      "title": "GTA 6 Çıkışına Sayılı Günler Kala PS5'e Kritik Bir Güncelleme Geldi",
+      "summary": "Sony, GTA 6 çıkışı öncesinde hızlanan jailbreak girişimlerine karşı PS5 için yeni bir sistem yazılımı güncellemesi yayımladı.",
+      "body": "## Haber özeti\nSony, GTA 6 çıkışı öncesinde hızlanan jailbreak girişimlerine karşı PS5 için yeni bir sistem yazılımı güncellemesi yayımladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T13:36:53.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/gta-6-cikisina-sayili-gunler-kala-ps5-kritik-bir-guncelleme-geldi-h227641.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/gta-6-cikisina-sayili-gunler-kala-ps5-kritik-bir-guncelleme-geldi-h227641.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694111/694111-640xauto.jpg",
+      "imageAlt": "GTA 6 Çıkışına Sayılı Günler Kala PS5'e Kritik Bir Güncelleme Geldi — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/gta-6-cikisina-sayili-gunler-kala-ps5-kritik-bir-guncelleme-geldi-h227641.html"
+    },
+    {
+      "slug": "rss-767126b7b3d0",
+      "lang": "tr",
+      "title": "TikTok, Çocukların İstismar Edildiği Yayınlardan Gelir Elde Etmekle Suçlanıyor",
+      "summary": "TikTok, çocukların cinsel istismara maruz kaldığı canlı yayınlardan gelir elde etmek ve şirket içindeki güvenlik uyarılarını görmezden gelmekle suçlanıyor.",
+      "body": "## Haber özeti\nTikTok, çocukların cinsel istismara maruz kaldığı canlı yayınlardan gelir elde etmek ve şirket içindeki güvenlik uyarılarını görmezden gelmekle suçlanıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T13:36:43.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/tiktok-cocuk-istismari-videolari-gelir-iddiasi-h227635.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/tiktok-cocuk-istismari-videolari-gelir-iddiasi-h227635.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694090/694090-640xauto.jpg",
+      "imageAlt": "TikTok, Çocukların İstismar Edildiği Yayınlardan Gelir Elde Etmekle Suçlanıyor — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/tiktok-cocuk-istismari-videolari-gelir-iddiasi-h227635.html"
+    },
+    {
+      "slug": "rss-f9f231c3d13e",
+      "lang": "tr",
+      "title": "BMW’nin Station Wagon Tipindeki İlk Elektrikli 3 Serisi i3 Touring Görüntülendi",
+      "summary": "BMW’nin station wagon tipindeki ilk elektrikli 3 serisi modeli olacak i3 Touring, yollarda test edilirken görüntülendi.",
+      "body": "## Haber özeti\nBMW’nin station wagon tipindeki ilk elektrikli 3 serisi modeli olacak i3 Touring, yollarda test edilirken görüntülendi.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T13:36:24.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/bmw-ilk-station-wagon-elektrikli-3-serisi-i3-touring-goruntulendi-h227632.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/bmw-ilk-station-wagon-elektrikli-3-serisi-i3-touring-goruntulendi-h227632.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694081/694081-640xauto.jpg",
+      "imageAlt": "BMW’nin Station Wagon Tipindeki İlk Elektrikli 3 Serisi i3 Touring Görüntülendi — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/bmw-ilk-station-wagon-elektrikli-3-serisi-i3-touring-goruntulendi-h227632.html"
+    },
+    {
+      "slug": "rss-a2d16517ae04",
+      "lang": "tr",
+      "title": "Samsung’un Akıllı Gözlükleri Henüz Piyasaya Çıkmadan Bir Sorunla Karşı Karşıya",
+      "summary": "Samsung'un Android XR akıllı gözlükleri, teknik özellikleriyle iddialı görünse de tasarımıyla soru işaretleri yaratıyor.",
+      "body": "## Haber özeti\nSamsung'un Android XR akıllı gözlükleri, teknik özellikleriyle iddialı görünse de tasarımıyla soru işaretleri yaratıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T13:36:15.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/samsung-akilli-gozlukler-piyasaya-cikmadan-bir-sorunla-karsi-karsiya-h227629.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/samsung-akilli-gozlukler-piyasaya-cikmadan-bir-sorunla-karsi-karsiya-h227629.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694063/694063-640xauto.jpg",
+      "imageAlt": "Samsung’un Akıllı Gözlükleri Henüz Piyasaya Çıkmadan Bir Sorunla Karşı Karşıya — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/samsung-akilli-gozlukler-piyasaya-cikmadan-bir-sorunla-karsi-karsiya-h227629.html"
+    },
+    {
+      "slug": "rss-3ff96d2b0807",
+      "lang": "tr",
+      "title": "Apple, iPhone ve Apple Watch Yüzünden Milyarca Dolar Ödemek Zorunda Kalabilir!",
+      "summary": "Taction Technology isimli şirket, Apple'a karşı kazandığı 5,7 milyar dolarlık dev patent davasının ardından ek ücret talep etmeye başladı.",
+      "body": "## Haber özeti\nTaction Technology isimli şirket, Apple'a karşı kazandığı 5,7 milyar dolarlık dev patent davasının ardından ek ücret talep etmeye başladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:51:30.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/apple-milyarlarca-dolar-odemek-zorunda-kalabilir-h227627.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/apple-milyarlarca-dolar-odemek-zorunda-kalabilir-h227627.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694051/694051-640xauto.jpg",
+      "imageAlt": "Apple, iPhone ve Apple Watch Yüzünden Milyarca Dolar Ödemek Zorunda Kalabilir! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/apple-milyarlarca-dolar-odemek-zorunda-kalabilir-h227627.html"
+    },
+    {
+      "slug": "rss-9d9a22b51fc8",
+      "lang": "tr",
+      "title": "Elon Musk'ın 3,5 Trilyon Dolarlık Planı: Tesla ve SpaceX Birleşiyor mu?",
+      "summary": "Elon Musk, teknoloji devleri SpaceX ve Tesla'yı tek çatı altında birleştirme ihtimalini doğruladı.",
+      "body": "## Haber özeti\nElon Musk, teknoloji devleri SpaceX ve Tesla'yı tek çatı altında birleştirme ihtimalini doğruladı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "mobility",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:31:58.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/elon-musk-3-5-trilyon-dolarlik-plan-tesla-ve-spacex-birlesiyor-mu-h227614.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/elon-musk-3-5-trilyon-dolarlik-plan-tesla-ve-spacex-birlesiyor-mu-h227614.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694006/694006-640xauto.jpg",
+      "imageAlt": "Elon Musk'ın 3,5 Trilyon Dolarlık Planı: Tesla ve SpaceX Birleşiyor mu? — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/elon-musk-3-5-trilyon-dolarlik-plan-tesla-ve-spacex-birlesiyor-mu-h227614.html"
+    },
+    {
+      "slug": "rss-1c00e7ec76b7",
+      "lang": "tr",
+      "title": "YouTube’dan Tartışma Yaratacak Değişiklik",
+      "summary": "YouTube, yeni bir güncellemeyle beğenmeme butonunu üç noktalı menünün arkasına taşıyor.",
+      "body": "## Haber özeti\nYouTube, yeni bir güncellemeyle beğenmeme butonunu üç noktalı menünün arkasına taşıyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:31:23.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/youtube-tartisma-yaratacak-degisiklik-h227590.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/youtube-tartisma-yaratacak-degisiklik-h227590.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/693952/693952-640xauto.jpg",
+      "imageAlt": "YouTube’dan Tartışma Yaratacak Değişiklik — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/youtube-tartisma-yaratacak-degisiklik-h227590.html"
+    },
+    {
+      "slug": "rss-8725a05aab95",
+      "lang": "tr",
+      "title": "Zoom, Toplantılarda İşinizi Çok Kolaylaştıracak Yeni Yapay Zekâ Özelliklerini Duyurdu",
+      "summary": "Zoom kendi ses tonunuzla anlık çeviri yapan Translate Me ve işleri otomatik takip eden yeni yapay zekâ özelliklerini duyurdu.",
+      "body": "## Haber özeti\nZoom kendi ses tonunuzla anlık çeviri yapan Translate Me ve işleri otomatik takip eden yeni yapay zekâ özelliklerini duyurdu.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "ai",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:30:36.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/zoom-yeni-yapay-zeka-ozelliklerini-duyurdu-h227587.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/zoom-yeni-yapay-zeka-ozelliklerini-duyurdu-h227587.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/693946/693946-640xauto.jpg",
+      "imageAlt": "Zoom, Toplantılarda İşinizi Çok Kolaylaştıracak Yeni Yapay Zekâ Özelliklerini Duyurdu — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/zoom-yeni-yapay-zeka-ozelliklerini-duyurdu-h227587.html"
+    },
+    {
+      "slug": "rss-56103235091b",
+      "lang": "tr",
+      "title": "Google Gemini, Arabanızda Tam Bir Kişisel Asistana Dönüşüyor",
+      "summary": "Google, araç içi yapay zekâ deneyimini tamamen kişiselleştiren \"Gemini ile Kişisel Zeka\" özelliğini duyurdu.",
+      "body": "## Haber özeti\nGoogle, araç içi yapay zekâ deneyimini tamamen kişiselleştiren \"Gemini ile Kişisel Zeka\" özelliğini duyurdu.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "ai",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:20:44.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/google-gemini-araba-kisisel-asistan-h227623.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/google-gemini-araba-kisisel-asistan-h227623.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694039/694039-640xauto.jpg",
+      "imageAlt": "Google Gemini, Arabanızda Tam Bir Kişisel Asistana Dönüşüyor — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/google-gemini-araba-kisisel-asistan-h227623.html"
+    },
+    {
+      "slug": "rss-29707f20bbdb",
+      "lang": "tr",
+      "title": "ABD Ordusu, İnanması Güç Bir Yapay Zeka Özelliğini Kullanacak: Çok Tartışma Yaratabilir...",
+      "summary": "ABD Ordusu, düşman ağlarına sızıp hedeflerini kendi başına bulabilen ve yok edebilen otonom siber yapay zekâ ajanları geliştiriyor. ECHOTRIBBLE kod adlı proje, uzmanların sistemin kontrolden çıkma ihtimali konusunda yaptığı uyarılarla birlikte ciddi güvenlik endişelerini de beraberinde getiriyor.",
+      "body": "## Haber özeti\nABD Ordusu, düşman ağlarına sızıp hedeflerini kendi başına bulabilen ve yok edebilen otonom siber yapay zekâ ajanları geliştiriyor. ECHOTRIBBLE kod adlı proje, uzmanların sistemin kontrolden çıkma ihtimali konusunda yaptığı uyarılarla birlikte ciddi güvenlik endişelerini de beraberinde getiriyor.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:20:29.000Z",
+      "author": "Webtekno",
+      "status": "pending",
+      "approved": false,
+      "editorialApproved": false,
+      "editorialApproval": "pending",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/abd-ordusu-inanmasi-guc-bir-yapay-zeka-ozelligini-kullanacak-cok-tartisma-yaratabilir-h227602.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/abd-ordusu-inanmasi-guc-bir-yapay-zeka-ozelligini-kullanacak-cok-tartisma-yaratabilir-h227602.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694000/694000-640xauto.jpg",
+      "imageAlt": "ABD Ordusu, İnanması Güç Bir Yapay Zeka Özelliğini Kullanacak: Çok Tartışma Yaratabilir... — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/abd-ordusu-inanmasi-guc-bir-yapay-zeka-ozelligini-kullanacak-cok-tartisma-yaratabilir-h227602.html"
+    },
+    {
+      "slug": "rss-76a1ab58c931",
+      "lang": "tr",
+      "title": "Güçlü İşlemci, Dev Batarya: POCO X8s Duyuruldu",
+      "summary": "Xiaomi bünyesindeki POCO, orta-üst segmentte konumlanan yeni telefonu X8s’i duyurdu.",
+      "body": "## Haber özeti\nXiaomi bünyesindeki POCO, orta-üst segmentte konumlanan yeni telefonu X8s’i duyurdu.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "devices",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:20:26.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/poco-x8s-duyuruldu-h227611.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/poco-x8s-duyuruldu-h227611.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/694007/694007-640xauto.jpg",
+      "imageAlt": "Güçlü İşlemci, Dev Batarya: POCO X8s Duyuruldu — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/poco-x8s-duyuruldu-h227611.html"
+    },
+    {
+      "slug": "rss-2be9f2b9219a",
+      "lang": "tr",
+      "title": "BMW, Çalışanlara İşten Ayrılmaları İçin Para Teklif Ediyor!",
+      "summary": "BMW, 2027 sonuna kadar hedeflediği 8.000 kişilik iş gücü azaltımı kapsamında gönüllü işten ayrılma programı başlattı.",
+      "body": "## Haber özeti\nBMW, 2027 sonuna kadar hedeflediği 8.000 kişilik iş gücü azaltımı kapsamında gönüllü işten ayrılma programı başlattı.\n\nBu kısa özet, Webtekno RSS kaydındaki başlık ve açıklamaya dayanır. Ayrıntılar, güncellemeler ve bağlam için özgün kaynağı okuyun. RocketPen Tech, kaynakta yer alan iddiaları bağımsız doğruladığını ileri sürmez.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "publishedAt": "2026-10-21T12:20:06.000Z",
+      "author": "Webtekno",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "sourceName": "Webtekno",
+      "sourceUrl": "https://www.webtekno.com/bmw-calisanlara-isten-ayrilmalari-icin-para-teklif-ediyor-h227599.html",
+      "sources": [
+        {
+          "name": "Webtekno",
+          "url": "https://www.webtekno.com/bmw-calisanlara-isten-ayrilmalari-icin-para-teklif-ediyor-h227599.html"
+        }
+      ],
+      "imageUrl": "https://imgrosetta.webtekno.com/file/693988/693988-640xauto.jpg",
+      "imageAlt": "BMW, Çalışanlara İşten Ayrılmaları İçin Para Teklif Ediyor! — kaynak görseli",
+      "imageCredit": "Webtekno RSS",
+      "imageLicense": "Kaynağın görsel kullanım koşulları geçerlidir.",
+      "imageSourceUrl": "https://www.webtekno.com/bmw-calisanlara-isten-ayrilmalari-icin-para-teklif-ediyor-h227599.html"
     }
   ]
 }
