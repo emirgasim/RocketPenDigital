@@ -4,6 +4,10 @@ on:
     branches: [main]
     paths:
       - "blog/**"
+      - "news/**"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "_redirects"
       - "index.html"
       - "languages/**"
       - "assets/**"
