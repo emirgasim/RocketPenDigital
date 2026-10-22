@@ -600,7 +600,7 @@ function initReviewsCarousel(){
     autoplayTimer=null;
     if(reducedMotion.matches||document.hidden)return;
     const elapsedSinceInteraction=Date.now()-lastInteractionAt;
-    const delay=Math.max(1600,5000-elapsedSinceInteraction);
+    const delay=Math.max(1600,2400-elapsedSinceInteraction);
     autoplayTimer=setTimeout(()=>{
       autoplayTimer=null;
       moveBy(1,{automatic:true});
