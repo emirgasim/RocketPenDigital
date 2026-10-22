@@ -26,9 +26,9 @@ function category(slug) {
 function extractArticle(file) {
   const slug = file.replace(/\.html$/,'');
   const html = fs.readFileSync(path.join(root,file),'utf8');
-  const jsonLd = (html.match(/<script\\b[^>]*type=[\"']application\\/ld\\+json[\"'][^>]*>([\\s\\S]*?)<\\/script>/i) || [])[1] || '';
-  const dateModified = (jsonLd.match(/[\"']dateModified[\"']\\s*:\\s*[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || '';
-  const datePublished = (jsonLd.match(/[\"']datePublished[\"']\\s*:\\s*[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || (html.match(/<meta\\b[^>]*property=[\"']article:published_time[\"'][^>]*content=[\"'](\\d{4}-\\d{2}-\\d{2})[\"']/i) || [])[1] || '';
+  const jsonLd = (html.match(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i) || [])[1] || '';
+  const dateModified = (jsonLd.match(/["']dateModified["']\s*:\s*["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '';
+  const datePublished = (jsonLd.match(/["']datePublished["']\s*:\s*["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || (html.match(/<meta\b[^>]*property=["']article:published_time["'][^>]*content=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '';
   const h1 = (html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1];
   const titleTag = (html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)||[])[1];
   const title = strip(h1 || titleTag || slug.replace(/-/g,' ')).replace(/\s*\|\s*RocketPen Digital Studio\s*$/i,'');
@@ -86,7 +86,7 @@ for(let page=2;page<=totalPages;page++) {
   template = template.replace(/<title>[\s\S]*?<\/title>/i,'<title>The Digital Blog — Page '+page+' | RocketPen Digital Studio</title>');
   template = template.replace(/<meta name="description" content="[^"]*">/i,'<meta name="description" content="Browse practical digital marketing, SEO, website and brand strategy guides — page '+page+' of '+totalPages+'.">');
   const start=(page-1)*pageSize;
-  const cards=ordered.slice(start,start+pageSize).map(card).join('\n');
+  const cards=ordered.slice(start,start+pageSize).map((article,i)=>card(article,start+i)).join('\n');
   template=replaceBlock(template,'<!-- POSTS_START -->','<!-- POSTS_END -->',cards);
   template=replaceBlock(template,'<!-- PAGINATION_START -->','<!-- PAGINATION_END -->',pagination(page));
   fs.writeFileSync(filePath,template);
