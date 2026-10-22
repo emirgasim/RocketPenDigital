@@ -173,3 +173,24 @@ body .language-menu .language-option[aria-current="page"] .language-check {
   body .language-picker > .language-menu,
   body .language-picker > .lang .lang-chevron { transition: none !important; }
 }
+
+
+/* Consistent sequential article numbering across English, Turkish and Arabic blog listings. */
+body:has(.article-card) { counter-reset: blog-article; }
+.article-card { counter-increment: blog-article; }
+.article-card .article-no {
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap;
+}
+.article-card .article-no::before {
+  content: counter(blog-article, decimal-leading-zero) " / REHBER";
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 1.4px;
+  font-weight: 600;
+  color: var(--yellow, #ffeb00);
+}
+html[lang="en"] .article-card .article-no::before { content: counter(blog-article, decimal-leading-zero) " / ARTICLE"; }
+html[lang="ar"] .article-card .article-no::before { content: counter(blog-article, decimal-leading-zero) " / دليل"; }
