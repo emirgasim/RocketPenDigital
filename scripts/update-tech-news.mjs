@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 
-const DATA_PATH = "news/data/news.json";
+const DATA_PATH = "news/data/headlines.json";
 const now = Date.now();
 const cutoff = now - 48 * 60 * 60 * 1000;
 const feeds = [
