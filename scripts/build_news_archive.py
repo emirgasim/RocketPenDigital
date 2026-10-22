@@ -120,14 +120,13 @@ def main():
   representative=next((story for story in stories if story["category"]==topic),None)
   if representative:
    topic_photos[topic]=find_photo(representative)
- # Try title-specific images with a small worker pool; cached topic photos prevent
- # a transient API failure from leaving an otherwise publishable story image-less.
- with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
-  title_photos=list(pool.map(find_photo,stories))
+ # Use the verified category photograph as a deterministic fallback for each
+ # article. This avoids thousands of concurrent Wikimedia API requests, which
+ # were causing rate limits and blocking the entire site deployment.
  missing=0
- for story,title_photo in zip(stories,title_photos):
+ for story in stories:
   story["visualTopic"]=visual_topic(story)
-  photo=title_photo or topic_photos.get(story["category"])
+  photo=topic_photos.get(story["category"])
   if photo:
    story["imageUrl"]=photo["url"];story["imageType"]="photograph";story["imageSource"]="Wikimedia Commons";story["imageSourceUrl"]=photo["sourceUrl"];story["imageLicense"]=photo["license"];story["imageLicenseUrl"]=photo["licenseUrl"];story["imageCredit"]=photo["credit"]
   else:
