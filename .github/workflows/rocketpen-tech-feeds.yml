@@ -1,0 +1,46 @@
+name: RocketPen Tech - API-free feed collection
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: rocketpen-tech-feed-collection
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out newsroom branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/rocketpen-tech-newsroom
+
+      - name: Collect configured RSS and Atom feeds
+        run: python3 news/scripts/collect_feeds.py
+
+      - name: Open or update review-queue pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/rocketpen-tech-feed-queue
+          base: feature/rocketpen-tech-newsroom
+          delete-branch: false
+          title: "Automated feed queue update"
+          commit-message: "chore(news): refresh API-free editorial feed queue"
+          body: |
+            Automated RSS/Atom intake update.
+            - No AI or paid API used.
+            - Feed items are source-linked metadata only.
+            - No story is published automatically.
+            - Editors must verify claims, dates, originality and image rights before publication.
+          add-paths: |
+            news/queue/items.json
+            news/queue/latest-run.md
