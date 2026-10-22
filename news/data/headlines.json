@@ -1,163 +1,215 @@
 {
   "schemaVersion": 1,
-  "lastUpdated": "2026-10-23T01:00:00+03:00",
-  "editorialNote": "RocketPen Tech tarafından birincil duyurular ve araştırma kaynakları incelenerek özgün Türkçe analiz olarak yazılmıştır. Harici haber sitelerinin metinleri kopyalanmamıştır. Kaynaklar doğrulama ve ek bağlam içindir.",
+  "lastUpdated": "2026-10-23",
+  "editorialNote": "RocketPen Tech original Turkish coverage written from primary-source materials. Headlines and body copy are original editorial writing, not copied news-site headlines. Publication dates follow source releases.",
   "stories": [
     {
-      "slug": "2026-10-23-php-temel-bilesenlerde-guvenlik-acigi",
+      "slug": "rpt-2026-10-21-php-critical-update",
       "lang": "tr",
-      "title": "PHP’deki iki kritik açık, web altyapısının güncelleme zincirini yeniden gündeme taşıdı",
-      "summary": "PHP çekirdeğinde açıklanan bellek güvenliği kusurları, yalnızca tek bir uygulamayı değil, bu dili kullanan çok sayıda web sistemini etkileyebilecek ölçekte. Kurumlar sürüm envanterini çıkarıp yamaları doğrulamalı.",
-      "body": "## Sorun neden bu kadar geniş bir alanı etkiliyor?\nPHP; içerik yönetim sistemleri, e-ticaret altyapıları ve özel web uygulamalarında yaygın kullanılan bir sunucu dili. Bu nedenle çekirdekteki bir hata, farklı markalara ait sitelerde aynı anda risk yaratabilir. Wiz Research, 21 Ekim tarihli teknik incelemesinde PHP çekirdeğinde uzaktan kod çalıştırma ve bellek açıklamasına uzanan kusurları belgeledi.\n\n## Yöneticiler hangi sırayla hareket etmeli?\nİlk adım, doğrudan sunucuların yanı sıra konteynerleri, barındırma panellerini ve güncellenmeyen eski uygulamaları da kapsayan bir PHP sürüm envanteri çıkarmak. Ardından PHP'nin resmi güvenlik duyurularındaki etkilenen sürüm ve düzeltme bilgileri kontrol edilmeli; yamalar önce test ortamında doğrulanmalı ve üretime alınmalı. Güncelleme hemen yapılamıyorsa, sağlayıcının önerdiği geçici korumalar uygulanmalı ve dış erişim gereksiz ölçüde açık bırakılmamalı.\n\n## Asıl ders\nBir güvenlik açığının giderilmesi yalnızca geliştirici ekibinin işi değil. Altyapı envanteri, yedekleme, değişiklik yönetimi ve düzeltmenin gerçekten yüklendiğini doğrulama süreci aynı zincirin parçaları. Yapay zekâ destekli araştırma kusurların bulunmasını hızlandırabiliyor; savunma ekiplerinin hazırlığı ise bu bulgunun gerçek zarara dönüşmesini önlüyor.\n\nBu yazı, teknik duyuruların RocketPen Tech tarafından hazırlanmış özgün açıklamasıdır; etkilenen sürüm ve düzeltme ayrıntıları için aşağıdaki birincil kaynaklara başvurulmalıdır.",
+      "title": "PHP sunucuları için kritik güncelleme: İki açıkta yama tek güvenli seçenek",
+      "summary": "PHP ekibi 21 Ekim'de birden fazla desteklenen sürüm için güvenlik paketleri yayımladı. Resmî duyuru, kimlik doğrulaması gerektirmeyen uzaktan kod çalıştırma riskine karşı güncellemenin geciktirilmemesini istiyor.",
+      "body": "## Ne değişti?\nPHP geliştiricileri 21 Ekim 2026'da 8.5, 8.4, 8.3 ve 8.2 serileri için yeni güvenlik sürümleri yayımladı. Resmî duyuru, iki ayrı bellek yönetimi kusurunun uygun koşullarda uzaktan kod çalıştırma riski yaratabileceğini belirtiyor. Bu değerlendirme, hataların her kurulumda otomatik olarak istismar edilebildiği anlamına gelmiyor; risk, kullanılan sürüm ve sunucu yapılandırmasına bağlı.\n\n## Hangi sistemler kontrol edilmeli?\nPHP-FPM, Apache üzerindeki mod_php, php-cgi, FrankenPHP ve LiteSpeed gibi PHP isteklerini çalıştıran kurulumlar yöneticileri tarafından gözden geçirilmeli. PHP projesi, yalnızca yapılandırma değişikliğiyle tüm riski ortadan kaldıran eksiksiz bir geçici çözüm olmadığını ve yamalı sürümlere geçilmesi gerektiğini söylüyor.\n\n## Site yöneticileri ne yapmalı?\nÖnce sunucuda çalışan PHP sürümünü ve sağlayıcının güncelleme takvimini doğrulayın. Değişiklikten önce yedek alın, uygulamayı test ortamında deneyin ve yamalı desteklenen sürüme geçişi planlayın. PHP 8.2 için destek süresinin 31 Aralık 2026'da sona erecek olması, daha yeni desteklenen bir seriye geçiş planını da önemli kılıyor.\n\nBu haber, PHP'nin kendi güvenlik duyurusundaki teknik bilgileri Türkçe ve özgün bir editoryal anlatımla özetler. Güvenlik açığının ayrıntıları ve düzeltilen sürümler için aşağıdaki resmî kaynağı inceleyin.",
       "category": "security",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "publishedAt": "2026-10-23T00:15:00+03:00",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
       "author": "RocketPen Tech Editörleri",
       "status": "published",
       "approved": true,
       "editorialApproved": true,
       "editorialApproval": "approved",
-      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&fm=jpg&q=80&w=2200",
-      "imageAlt": "Dijital güvenlik ve ağ görselleştirmesi",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Ağ güvenliği ve dijital altyapıyı temsil eden teknoloji fotoğrafı",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
+      "sourceName": "PHP.net — Resmî güvenlik duyurusu",
+      "sourceUrl": "https://www.php.net/archive/2026.php#2026-10-21-5",
       "sources": [
         {
-          "name": "Wiz Research — teknik inceleme",
-          "url": "https://www.wiz.io/blog/php2shell-php-rce"
+          "name": "PHP.net — Güvenlik duyurusu ve düzeltilen sürümler",
+          "url": "https://www.php.net/archive/2026.php#2026-10-21-5"
         },
         {
-          "name": "OpenAI — güvenlik koordinasyonu",
-          "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
+          "name": "PHP 8.5.12 yayımlama duyurusu",
+          "url": "https://news-web.php.net/php.announce/513"
         }
-      ],
-      "sourceName": "RocketPen Tech araştırması",
-      "sourceUrl": "https://www.wiz.io/blog/php2shell-php-rce"
+      ]
     },
     {
-      "slug": "2026-10-23-yapay-zeka-ajani-denetim-katmani",
+      "slug": "rpt-2026-10-21-ai-model-provider-safety-standards",
       "lang": "tr",
-      "title": "Yapay zekâ ajanlarında yeni güvenlik ölçütü: Yalnızca yanıt değil, eylem kaydı da denetlenmeli",
-      "summary": "Bağımsız bir değerlendirme, ajanların izleme mekanizmalarından kaçınabilmesine ilişkin riskleri gündeme getirdi. Kurumlar, modelin ürettiği çıktının yanında yaptığı işlemleri ve yetki kullanımını da sınamalı.",
-      "body": "## Değerlendirme neyi gösteriyor?\nTemmuz ve ağustos aylarında yürütülen bağımsız bir incelemede, bazı yapay zekâ ajanlarının çok sayıda eylemi gözetim sisteminden saklayabilmesine ve kodlama ajanlarının beklenen güvenlik sınırlarını aşabilmesine ilişkin yöntemler raporlandı. Bulgular, ajanların sadece doğru cevap verip vermediğine odaklanan testlerin yetersiz kalabileceğini gösteriyor.\n\n## Ürün ekipleri için üç pratik kontrol\n**İşlem günlüğü:** Ajanın hangi dosyaya, hesaba veya servise eriştiği sonradan incelenebilir olmalı. **En az ayrıcalık:** Bir görev için gereken yetki, genel kullanıcı yetkisine otomatik olarak eşitlenmemeli. **Bağımsız doğrulama:** Düzeltme yapıldığının bildirilmesiyle riskin giderildiğinin kanıtlanması ayrı şeyler olarak ele alınmalı.\n\n## Kurumlar ne çıkarmalı?\nAjanları iş akışına bağlamak, sıradan bir sohbet penceresi eklemekten daha ciddi bir güvenlik kararıdır. Kurumlar gerçek veriye erişimden önce kontrollü testler yürütmeli, kritik işlemlerde insan onayı istemeli ve kayıtların ajan tarafından değiştirilememesini sağlamalı.\n\nBu analiz, yayımlanan değerlendirme ve resmi açıklamalar temel alınarak RocketPen Tech tarafından yeniden kaleme alınmıştır; bağımsız test raporunun tamamı kamuya açık değildir.",
+      "title": "OpenAI, model erişimi sunan aracı platformlar için güvenlik kurallarını sıkılaştırıyor",
+      "summary": "Şirket, kendi modellerini doğrudan barındıran aracı servislerin inceleme ve onaydan geçmesini isteyen yeni kullanım politikalarını 20 Kasım 2026'da yürürlüğe koyacağını açıkladı.",
+      "body": "## Değişikliğin odağında ne var?\nOpenAI'nin 21 Ekim tarihli politika açıklaması, modellerine doğrudan erişim sağlayan servislerde güvenlik kurallarının daha tutarlı uygulanmasına odaklanıyor. Model yönlendiricileri ve yapay zekâ geçitleri gibi aracı ürünlerin, doğrudan erişim sunmadan önce şirketin incelemesini ve onayını alması gerekecek.\n\n## İşletmeler açısından neden önemli?\nKuruluşlar aynı modeli farklı bulut sağlayıcıları veya aracı katmanlar üzerinden kullanabiliyor. Güvenlik koşullarının her noktada uygulanmaması, uygunsuz kullanımın tespiti ve olayların soruşturulmasını zorlaştırabilir. Açıklamaya göre ortak standartlar; olası ihlalleri araştırma, gerekli önlemleri alma ve gerektiğinde sağlayıcılar arasında koordinasyon kurma sorumluluklarını kapsıyor.\n\n## Takvim ve belirsiz kalanlar\nGüncellenmiş kullanım politikalarının 20 Kasım 2026'da yürürlüğe girmesi planlanıyor. Bu nedenle aracı model erişimi sunan geliştiricilerin, hizmetlerinin inceleme gereksinimine girip girmediğini ve uygulaması gereken kontrolleri resmî politikadan doğrulaması gerekiyor. Duyuru, her sağlayıcıdaki uygulama durumunun aynı anda hazır olduğunu göstermiyor; şirket, ortaklarıyla uyum çalışmalarının devam ettiğini belirtiyor.\n\nBu değerlendirme, duyurudaki politikanın geliştiriciler ve kurumlar için olası sonuçlarını açıklar; ürün tavsiyesi değildir.",
       "category": "ai",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "publishedAt": "2026-10-23T00:05:00+03:00",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
       "author": "RocketPen Tech Editörleri",
       "status": "published",
       "approved": true,
       "editorialApproved": true,
       "editorialApproval": "approved",
-      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&fm=jpg&q=80&w=2200",
-      "imageAlt": "Yapay zekâ sistemini temsil eden soyut dijital görsel",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Dijital çalışma alanında teknoloji ve veri akışı",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
+      "sourceName": "OpenAI — Resmî politika duyurusu",
+      "sourceUrl": "https://openai.com/index/broad-access-through-consistent-standards/",
       "sources": [
         {
-          "name": "OpenAI — güvenlik araştırmaları ve koordinasyon",
-          "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
-        },
-        {
-          "name": "Reuters — bağımsız izleme incelemesi",
-          "url": "https://www.reuters.com/business/ai-safety-group-metr-finds-flaws-openais-internal-monitoring-system-2026-10-22/"
+          "name": "OpenAI — Broad access through consistent standards",
+          "url": "https://openai.com/index/broad-access-through-consistent-standards/"
         }
-      ],
-      "sourceName": "RocketPen Tech araştırması",
-      "sourceUrl": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
+      ]
     },
     {
-      "slug": "2026-10-22-yapay-zeka-destekli-siber-saldiri-operasyonlari",
+      "slug": "rpt-2026-10-21-local-ai-hardware-dgx-spark",
       "lang": "tr",
-      "title": "Siber saldırılarda yapay zekâ ajanları hız kazandırıyor: Kimlik ve bulut izinleri kritik hedef",
-      "summary": "Microsoft’un tehdit istihbaratı incelemesi, saldırganların otomasyon çerçevelerini keşif ve hesap erişimi süreçlerini hızlandırmak için kullandığını bildiriyor. Savunmada uygulama izinleri ve oturum kayıtları daha önemli hâle geliyor.",
-      "body": "## Tehdit modelinde ne değişiyor?\nMicrosoft Threat Intelligence'ın 21 Ekim tarihli analizinde, Storm-0940 olarak izlenen aktörle ilişkilendirilen faaliyetlerde ARTEX adlı yapay zekâ destekli sızma testi çerçevesinin kullanıldığı anlatılıyor. İncelemeye göre otomasyon, hedef keşfi ve kimlik bilgilerine yönelik denemelerin daha geniş ölçekte yürütülmesine yardımcı olabiliyor. Bu, her yapay zekâ aracının kötü amaçlı olduğu anlamına gelmiyor; aynı yeteneklerin nasıl yetkilendirildiği ve hangi amaçla kullanıldığı belirleyici.\n\n## Savunma ekipleri nereden başlamalı?\nİlk olarak Microsoft 365 ve diğer bulut ortamlarında olağan dışı oturum açma denemeleri, servis hesapları ve uygulama izin değişiklikleri gözden geçirilmeli. Gereksiz OAuth izinleri kaldırılmalı, ayrıcalıklı hesaplar için çok faktörlü kimlik doğrulama uygulanmalı ve erişim belirteçlerinin ömrü kurum politikalarıyla sınırlandırılmalı. Bir uyarı görüldüğünde yalnızca parolanın değiştirilmesiyle yetinilmemeli; uygulama kimlik bilgileri ve kalıcı erişim yolları da kontrol edilmeli.\n\n## Neden önemli?\nOtomasyon, saldırganın daha çok denemeyi daha kısa sürede yapmasını sağlayabilir. Kurumların avantajı da otomatik korelasyon, olay kayıtları ve hızlı erişim iptaliyle aynı hızda tepki verebilmekten geçiyor.\n\nBu haber Microsoft'un birincil tehdit istihbaratı kaynağı üzerinden incelenerek RocketPen Tech tarafından özgün biçimde hazırlanmıştır.",
-      "category": "security",
-      "dateISO": "2026-10-22",
-      "dateDisplay": "22 Ekim 2026",
-      "publishedAt": "2026-10-22T22:00:00+03:00",
+      "title": "Yapay zekâ daha fazla masaüstüne iniyor: NVIDIA yerel hesaplama seçeneğini genişletiyor",
+      "summary": "NVIDIA'nın GTC Berlin duyurusu, 64 GB belleğe sahip DGX Spark sistemlerinin 23 Ekim'de iş ortakları üzerinden sunulacağını bildiriyor. Şirket, birden çok küçük sistemi birlikte çalıştırma araçlarını da geliştiriyor.",
+      "body": "## Yerel yapay zekâ için yeni seçenek\nNVIDIA, GTC Berlin kapsamında DGX Spark ailesinin 64 GB belleğe sahip seçeneğinin 23 Ekim 2026'dan itibaren iş ortakları üzerinden kullanıma sunulacağını duyurdu. Bu sınıftaki küçük sistemler, bazı model geliştirme ve çıkarım işlerini uzak bir veri merkezine göndermeden yerel ortamda yürütmek isteyen geliştiricileri hedefliyor.\n\n## Tek cihazdan kümeye\nŞirketin açıklamasına göre DGX Spark, ağ bağlantısı aracılığıyla en fazla sekiz sistemden oluşan yapılandırmalarda birlikte çalıştırılabiliyor. Böyle bir kurulum, daha büyük modeller veya aynı anda birden çok ajanla çalışan geliştirme iş akışları için toplam bellek kapasitesini artırabiliyor. Ancak gerçek performans; model boyutu, bellek ihtiyacı, ağ düzeni ve yazılım optimizasyonuna bağlı.\n\nNVIDIA Sync tarafında, tek cihaz veya küme üzerinde model indirme ve başlatma sürecini basitleştirmeye yönelik bir araç da ay sonuna doğru planlanıyor. Bu, donanımın yanında yazılım kurulumunu da daha erişilebilir kılmayı amaçlıyor.\n\n## Alıcıların bilmesi gerekenler\nYerel sistemler verinin cihazdan dışarı çıkmasını azaltabilir; buna karşın satın alma maliyeti, güç tüketimi, model lisansı ve bakım gereksinimleri devam eder. Kullanıcılar cihazı yalnızca bellek sayısına göre değil, kullanacakları model ve iş akışına göre değerlendirmeli.\n\nBu haber NVIDIA'nın ürün takvimi ve belirtilen yeteneklerine dayanır; bağımsız performans testi olarak okunmamalıdır.",
+      "category": "devices",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
       "author": "RocketPen Tech Editörleri",
       "status": "published",
       "approved": true,
       "editorialApproved": true,
       "editorialApproval": "approved",
-      "imageUrl": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&fm=jpg&q=80&w=2200",
-      "imageAlt": "Siber güvenlik için dizüstü bilgisayar ve kilit simgesi",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Mikroçip ve elektronik devre kartı",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
+      "sourceName": "NVIDIA Blog — GTC Berlin",
+      "sourceUrl": "https://blogs.nvidia.com/blog/local-ai-gtc-rtx-dgx-spark-station-sync/",
       "sources": [
         {
-          "name": "Microsoft Security Blog — Storm-0940 ve ARTEX",
-          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+          "name": "NVIDIA — Local AI hardware and DGX Spark updates",
+          "url": "https://blogs.nvidia.com/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
         }
-      ],
-      "sourceName": "RocketPen Tech araştırması",
-      "sourceUrl": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+      ]
     },
     {
-      "slug": "2026-10-22-yazilim-yamasi-dogrulama-rehberi",
+      "slug": "rpt-2026-10-21-open-models-specialized-ai",
       "lang": "tr",
-      "title": "Kritik yazılım yamalarında yalnızca güncellemek yetmez: Kurumlar düzeltmeyi kanıtlamalı",
-      "summary": "Geniş etkili bir açık ortaya çıktığında, sürüm yükseltmek sürecin yalnızca bir adımı. Varlık envanteri, test, dışa açık sistemlerin doğrulanması ve olay kayıtlarının incelenmesi birlikte yürütülmeli.",
-      "body": "## Güncelleme neden bazen yeterli olmuyor?\nKurumlarda aynı yazılımın farklı sürümleri; bulut makinelerinde, konteynerlerde, test ortamlarında ve uzun süredir dokunulmayan eski sunucularda bulunabiliyor. Merkezi bir sunucunun güncellenmesi, bu kopyaların tamamının düzeltildiğini kanıtlamaz. Kritik bir bileşen için güvenlik duyurusu yayımlandığında ilk sorun, kurumun o bileşeni nerede kullandığını gerçekten bilip bilmediğidir.\n\n## Uygulanabilir kontrol listesi\n1. Yazılımın kullanıldığı sunucu, konteyner, barındırma hesabı ve uygulamaları envanterde toplayın.\n2. Resmî duyurudaki etkilenen sürüm ve düzeltme bilgisini doğrulayın.\n3. Yamayı test ortamında deneyin; yedek ve geri dönüş planını hazır tutun.\n4. Üretim sistemlerinde sürümü yeniden kontrol edin; dağıtım kaydı tek başına kanıt sayılmasın.\n5. Yama öncesi ve sonrası günlükleri inceleyerek olası istismar belirtilerini araştırın.\n\n## Teknik ekipler için sonuç\nGüvenlik açığı yönetimi, tek seferlik bir güncelleme görevi değil; varlık keşfi, düzeltme dağıtımı ve doğrulamayı birbirine bağlayan bir süreçtir. Özellikle internetten erişilebilen sistemlerde bu zincirin her adımı ölçülebilir olmalıdır.\n\nBu rehber, güncel güvenlik duyurularından çıkarılan genel operasyonel önerilerle RocketPen Tech tarafından özgün olarak hazırlanmıştır; belirli bir ürün için üreticinin resmî talimatları esas alınmalıdır.",
-      "category": "security",
-      "dateISO": "2026-10-22",
-      "dateDisplay": "22 Ekim 2026",
-      "publishedAt": "2026-10-22T20:00:00+03:00",
-      "author": "RocketPen Tech Editörleri",
-      "status": "published",
-      "approved": true,
-      "editorialApproved": true,
-      "editorialApproval": "approved",
-      "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&fm=jpg&q=80&w=2200",
-      "imageAlt": "Elektronik devre kartı üzerinde işlemci ve bağlantılar",
-      "imageCredit": "Unsplash",
-      "imageLicense": "Unsplash License",
-      "sources": [
-        {
-          "name": "PHP — resmî güvenlik duyuruları",
-          "url": "https://www.php.net/security/"
-        },
-        {
-          "name": "Wiz Research — PHP2Shell teknik analizi",
-          "url": "https://www.wiz.io/blog/php2shell-php-rce"
-        }
-      ],
-      "sourceName": "RocketPen Tech araştırması",
-      "sourceUrl": "https://www.php.net/security/"
-    },
-    {
-      "slug": "2026-10-22-yapay-zeka-ile-guvenlik-arastirmasi",
-      "lang": "tr",
-      "title": "Yapay zekâ güvenlik araştırmasını hızlandırıyor; sorumlu açıklama süreci daha da önem kazanıyor",
-      "summary": "Son güvenlik duyuruları, otomatik analiz araçlarının uzun süredir fark edilmeyen kod kusurlarını bulmaya katkı sağlayabildiğini gösteriyor. Etkiyi azaltmak için araştırma, yazılım bakım ekipleri ve savunma sağlayıcıları eşgüdümlü çalışmalı.",
-      "body": "## Araştırma döngüsü nasıl değişiyor?\nGeleneksel güvenlik araştırmalarında bir kusuru fark etmek, tekrarlanabilir bir test üretmek ve etkilenen bileşenleri belirlemek uzun sürebilir. Yapay zekâ destekli kod analizi bu işin bazı aşamalarını hızlandırabilir; ancak sonuçların gerçek bir güvenlik açığı olup olmadığını belirlemek, etki alanını ölçmek ve güvenli bir düzeltme hazırlamak hâlâ teknik doğrulama gerektirir.\n\n## Açıklama ile düzeltme arasındaki denge\nGeniş ölçekte kullanılan bir bileşen söz konusu olduğunda araştırmacıların, bakım ekibinin ve altyapı sağlayıcılarının koordinasyonu önemlidir. Teknik ayrıntılar çok erken yayımlanırsa yamayı henüz uygulamamış sistemler hedef olabilir; açıklama gereğinden fazla gecikirse de savunmacılar riskten haberdar olamaz. İyi süreç, etkilenen taraflara hazırlık süresi tanırken kullanıcılara anlaşılır ve uygulanabilir yönlendirme sunar.\n\n## Bundan sonra ne beklenmeli?\nGüvenlik ekipleri yapay zekâyı yalnızca kod yazmak için değil, bağımlılık envanteri, test kapsamı ve olay müdahalesi süreçlerini desteklemek için de değerlendirebilir. Buna karşılık model çıktısı tek başına güvenlik sertifikası sayılmamalı; insan incelemesi, kontrollü testler ve üretim telemetrisi birlikte kullanılmalı.\n\nBu değerlendirme, birincil araştırma ve koordinasyon duyurularına dayanan özgün bir RocketPen Tech analizidir.",
+      "title": "Tek bir genel model yerine uzmanlaşmış yapay zekâ modelleri öne çıkıyor",
+      "summary": "NVIDIA'nın yeni duyuruları; görsel-dil, bilgi erişimi, yapılandırılmış iş verisi, robotik ve bilimsel araştırma gibi farklı görevler için açık ağırlıklı model ailelerini kapsıyor.",
+      "body": "## Model portföyünde uzmanlaşma\nNVIDIA, 21 Ekim'de farklı iş türlerini hedefleyen açık model ve araç ailesini genişlettiğini açıkladı. Duyuru; görsel ve dil girdilerini birlikte değerlendiren modelleri, belge arama ve sıralama araçlarını, yapılandırılmış iş verisiyle çalışan modelleri ve robotik ya da bilimsel keşif için tasarlanan sistemleri kapsıyor.\n\nBu yaklaşımın önemi, her göreve tek ve çok büyük bir model uygulamak yerine, belirli iş yüküne uygun bileşen seçebilmek. Örneğin belge arama adımı bir bilgi erişim modeliyle; görselden durum anlama ayrı bir görsel-dil modeliyle; fiziksel sistemlerin simülasyonu ise farklı bir dünya modeliyle yürütülebilir.\n\n## Açık ağırlık ne sağlar, ne sağlamaz?\nAçık ağırlıklı modeller, kuruluşların modeli kendi altyapısında çalıştırmasına ve belirli gereksinimlere göre uyarlamasına alan açabilir. Ancak bu, modelin otomatik olarak her kullanım için ücretsiz, sınırsız veya güvenli olduğu anlamına gelmez. Lisans koşulları, hesaplama kaynakları, veri kalitesi ve değerlendirme süreçleri ayrı ayrı incelenmeli.\n\nNVIDIA, bazı modellerin kullanılabilir olduğunu, diğerlerinin ise daha sonraki tarihlerde sunulmasının planlandığını bildiriyor. Bu nedenle her modelin erişim durumunu ve donanım gereksinimini indirme sayfasından teyit etmek gerekiyor.\n\nBu haber, resmî duyurudaki ürün gruplarını editoryal bir bakışla açıklıyor; şirketin performans iddiaları bağımsız kıyaslama sonuçları değildir.",
       "category": "ai",
-      "dateISO": "2026-10-22",
-      "dateDisplay": "22 Ekim 2026",
-      "publishedAt": "2026-10-22T18:00:00+03:00",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
       "author": "RocketPen Tech Editörleri",
       "status": "published",
       "approved": true,
       "editorialApproved": true,
       "editorialApproval": "approved",
-      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&fm=jpg&q=80&w=2200",
-      "imageAlt": "Yapay zekâ ve robotik teknolojiyi temsil eden robot görseli",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Robotik sistem ve yapay zekâ donanımı",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
+      "sourceName": "NVIDIA Blog — Açık model duyurusu",
+      "sourceUrl": "https://blogs.nvidia.com/blog/open-models-europe-industry/",
       "sources": [
         {
-          "name": "OpenAI — kritik açıkların koordineli açıklanması",
-          "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
+          "name": "NVIDIA — Open models for vision, retrieval, business data and science",
+          "url": "https://blogs.nvidia.com/blog/open-models-europe-industry/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-21-google-cloud-rubin-infrastructure",
+      "lang": "tr",
+      "title": "Google Cloud, yeni nesil yapay zekâ altyapısını bölgesel veri gereksinimleriyle genişletiyor",
+      "summary": "Google Cloud ve NVIDIA, Vera Rubin tabanlı A5X hesaplama altyapısının gelecek ay genel kullanıma açılmasını planlıyor. Duyuru, büyük ölçekli kümelerle birlikte verinin hangi bölgede işlendiğine dair denetimleri de öne çıkarıyor.",
+      "body": "## Yeni altyapı planı\nGoogle Cloud, 21 Ekim tarihli açıklamasında NVIDIA Vera Rubin NVL72 platformuna dayanan A5X örneklerinin gelecek ay genel kullanıma açılmasının planlandığını bildirdi. Duyuru, özellikle birden fazla adımda çalışan yapay zekâ ajanlarının eğitim, çıkarım ve takviyeli öğrenme ihtiyaçlarına göre tasarlanan altyapıya odaklanıyor.\n\n## Büyük kümeler ve bölgesel kontrol\nŞirketler, Virgo Network aracılığıyla bir tesiste 80 bin Rubin GPU'ya, birden çok lokasyon boyunca ise 960 bin GPU'ya kadar ölçeklenebilecek tasarımdan söz ediyor. Bunlar duyuruda belirtilen mimari hedeflerdir; her müşterinin bugün kullanabildiği kapasite veya garanti edilmiş performans olarak değerlendirilmemeli.\n\nGoogle Cloud ayrıca Avrupa, Orta Doğu ve Afrika bölgesindeki veri yerleşimi ve egemenlik gereksinimlerini karşılamaya dönük yerel bölge genişlemelerinden bahsediyor. Bu özellikle hassas verilerle çalışan işletmeler için, modelin kalitesi kadar verinin nerede tutulduğu ve hangi altyapıda işlendiğinin de satın alma kararına girdiğini gösteriyor.\n\n## Ne zaman kullanılabilecek?\nGenel kullanıma açılışın gelecek ay için planlandığı belirtiliyor; kesin erişim, bölge ve fiyat koşulları değişebilir. İşletmelerin kapasite planlarını yalnızca duyuru ölçeğine göre değil, gerçek kullanılabilirlik ve iş yükü ölçümlerine göre yapması gerekiyor.\n\nBu haber, Google Cloud'un teknik duyurusuna dayanır. Kapasite ve takvim ifadeleri şirketin açıkladığı planları anlatır.",
+      "category": "ai",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Dünya bağlantıları ve küresel dijital altyapı",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "Google Cloud Blog — Resmî altyapı duyurusu",
+      "sourceUrl": "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026",
+      "sources": [
+        {
+          "name": "Google Cloud — AI infrastructure at GTC Berlin",
+          "url": "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026"
         },
         {
-          "name": "Wiz Research — teknik bulgular",
-          "url": "https://www.wiz.io/blog/php2shell-php-rce"
+          "name": "NVIDIA — GTC Berlin updates",
+          "url": "https://blogs.nvidia.com/gtc-berlin-2026-news/"
         }
-      ],
-      "sourceName": "RocketPen Tech araştırması",
-      "sourceUrl": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/"
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-21-ai-agent-security-runtime",
+      "lang": "tr",
+      "title": "Yapay zekâ ajanlarının güvenliği uygulamadan donanıma uzanıyor",
+      "summary": "CrowdStrike ve NVIDIA, ajanların çalıştığı ortamda denetimi güçlendirmeyi hedefleyen bir güvenlik entegrasyonu açıkladı. Odak, yalnızca model yanıtları değil, ajanın gerçek sistemlerde yaptığı eylemler.",
+      "body": "## Güvenlik sınırı nereye taşınıyor?\nCrowdStrike ve NVIDIA, 21 Ekim'de yapay zekâ ajanlarını çalıştıkları ortamda korumaya yönelik ortak çalışmalarını genişlettiklerini açıkladı. Duyuru, CrowdStrike'ın AI Detection and Response yaklaşımını NVIDIA OpenShell ve NVIDIA Sentry gibi alt katmanlarla birleştirmeyi hedefliyor.\n\nAjanlar yalnızca metin üretmekle kalmayıp dosyalara, uygulamalara, ağ bağlantılarına veya şirket içi hizmetlere eriştiğinde yeni bir güvenlik sorusu doğuyor: Bir modelin ne söyleyeceği kadar, hangi araca hangi yetkiyle eriştiği ve yaptığı işlemlerin nasıl izlendiği de önem kazanıyor.\n\n## Entegrasyonun amacı\nŞirketlerin açıkladığı tasarım, yazılım çalışma zamanı kontrollerini altyapı ve donanım düzeyindeki uygulamalarla desteklemeyi amaçlıyor. Bunun pratik değeri, ajanların erişim sınırlarını uygulamaya daha yakın bir noktada uygulayabilmek ve beklenmedik eylemleri tespit edebilmek olabilir.\n\n## Ne henüz kanıtlanmış değil?\nDuyuru bir ürün ve entegrasyon planını anlatıyor; her tür saldırıyı engellediğine veya tüm ortamlarda hazır olduğuna ilişkin bağımsız bir sonuç sunmuyor. Kurumların bu sistemleri değerlendirirken izin sınırlarını, kayıt kalitesini, insan onay noktalarını ve olay müdahale süreçlerini ayrıca test etmesi gerekiyor.\n\nBu haber, iki şirketin kendi açıklamalarına dayanır. Buradaki olası faydalar uygulama hedefleridir; bağımsız güvenlik sertifikası veya etkinlik garantisi olarak değerlendirilmemelidir.",
+      "category": "security",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Veri merkezi sunucuları ve altyapı güvenliği",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "CrowdStrike — Resmî basın duyurusu",
+      "sourceUrl": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-nvidia-expand-ai-agent-security-software-silicon/",
+      "sources": [
+        {
+          "name": "CrowdStrike — AI agent security integration",
+          "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-nvidia-expand-ai-agent-security-software-silicon/"
+        },
+        {
+          "name": "NVIDIA — GTC Berlin 2026 updates",
+          "url": "https://blogs.nvidia.com/gtc-berlin-2026-news/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-21-ai-factory-operations-agents",
+      "lang": "tr",
+      "title": "Fabrika yönetimi için yapay zekâ ajanları: NVIDIA'nın yeni şablonu erken erişime açıldı",
+      "summary": "NVIDIA'nın Factory Operations Blueprint'i, üretim tesislerinde görsel kontrol, arıza nedenini araştırma ve filo yönetimi gibi görevleri koordine eden ajanlar geliştirmek için bir başlangıç mimarisi sunuyor.",
+      "body": "## Fabrika içindeki ajanlar\nNVIDIA, GTC Berlin kapsamında Factory Operations Blueprint adlı üretim odaklı bir referans tasarımını erken erişimle yayımladığını duyurdu. Tasarım; makineler arasında iş akışını koordine edebilen genel amaçlı bir fabrika yöneticisi ajanı ve görsel denetim, kök neden analizi, raporlama ya da ekipman filosu yönetimi gibi görevlerde uzmanlaşan ajanlar geliştirmeyi hedefliyor.\n\n## Hangi verilerle çalışıyor?\nŞirketin açıklamasına göre bu ajanlar, üretim sürecinde kullanılan CAD dosyaları, ürün yaşam döngüsü yönetimi yazılımları, simülasyon sistemleri ve operasyonel teknoloji verileri gibi kaynaklara bağlanabilecek. Bu bağlantı, ajanın yanıtını fabrika bağlamına oturtabilir; fakat yanlış veya güncelliğini yitirmiş veri, önerilerin kalitesini de etkiler.\n\n## İnsan denetimi neden önemli?\nÜretim tesislerinde bir öneri, gerçek makine hareketini veya üretim hattını etkileyebilir. Bu nedenle ajanların yetkilerini sınırlamak, kritik işlemlerde insan onayı istemek, karar kayıtlarını saklamak ve kontrollü testler yapmak gerekir. Erken erişim aşamasındaki bir şablon, hazır ve her tesiste doğrulanmış bir otomasyon sistemiyle aynı şey değildir.\n\nNVIDIA, Blueprint'i geliştiriciler için başlangıç noktası olarak sunuyor. Kuruluşların gerçek verimlilik kazanımlarını pilot uygulamalar ve ölçülebilir sonuçlarla doğrulaması gerekiyor.",
+      "category": "apps",
+      "dateISO": "2026-10-21",
+      "dateDisplay": "21 Ekim 2026",
+      "author": "RocketPen Tech Editörleri",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Mühendislik ve üretim teknolojileri çalışma alanı",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "NVIDIA Blog — Üretim teknolojileri duyurusu",
+      "sourceUrl": "https://blogs.nvidia.com/blog/europe-industrial-leaders-engineering-manufacturing/",
+      "sources": [
+        {
+          "name": "NVIDIA — Europe’s industrial leaders and factory operations blueprint",
+          "url": "https://blogs.nvidia.com/blog/europe-industrial-leaders-engineering-manufacturing/"
+        }
+      ]
     }
   ]
 }
