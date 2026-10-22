@@ -20,3 +20,6 @@ Cloudflare Pages/Workers deployment must include `news/**` in the workflow path 
 
 ## Adding supplied stories
 Each story should have a stable slug, localized title/summary/body, edition, category, publication date and time zone, author/editor credit, original source URLs, image source and licence/permission, canonical URL, SEO title/description, and editorial review status. Verify facts and links before publication.
+
+## Historical archive import
+The three root-level RocketPen Tech ZIP files are indexed at build time by `scripts/build_news_archive.py`. The generated `news/data/news.json` contains all Markdown articles with their language, original date string, normalized sortable date, author, category and full body. The Turkish files provide month/year only; their sortable date uses the first day of the month while the visible label preserves the original month/year. Future-dated articles remain scheduled until their supplied date. Source links are never invented; articles without source URLs disclose that none were supplied in the archive.
