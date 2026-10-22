@@ -313,6 +313,7 @@ header.nav .logo:before,footer .logo:before{
 .reviews-card-index{font-size:9px;letter-spacing:1.4px;color:#a6abb5;text-transform:uppercase}
 .reviews-quote-mark{position:static;height:0;width:0;display:block;overflow:visible;color:var(--yellow);font-size:0;direction:ltr}.reviews-quote-mark::before{content:'“';position:absolute;top:61px;left:23px;color:var(--yellow);font:500 32px/1 var(--display);pointer-events:none}.reviews-quote-mark::after{content:'”';position:absolute;right:23px;bottom:22px;color:var(--yellow);font:500 32px/1 var(--display);pointer-events:none}
 .reviews-copy{font-size:15px;line-height:1.75;letter-spacing:-.01em;color:#f0f1f3;margin:0}
+.reviews-card-author{font-size:12px;font-weight:600;letter-spacing:.2px;color:#f7f7f5;margin-top:auto;padding-top:8px}
 .reviews-card-foot{margin-top:auto;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);color:#939aa6;font-size:9px;letter-spacing:1.25px;text-transform:uppercase}
 .reviews-foot{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:16px;color:#8f96a1;font-size:10px;letter-spacing:.65px}
 .reviews-hint{color:#c3c7ce}
@@ -575,9 +576,11 @@ function renderReviewCards(lang){
     top.append(stars,num);
     const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
     const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
+    const author=document.createElement('div');author.className='reviews-card-author';
+    author.textContent=lang==='tr'?'Anonim müşteri':lang==='ar'?'عميل مجهول':'Anonymous client';
     const foot=document.createElement('div');foot.className='reviews-card-foot';
     foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
-    card.append(top,quote,copy,foot);
+    card.append(top,quote,copy,author,foot);
     track.appendChild(card);
   }
   const prev=document.getElementById('reviewsPrev');
