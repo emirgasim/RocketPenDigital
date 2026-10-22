@@ -1,3 +1,4 @@
+// Trigger generation after workflow installation.
 (async function generateArabicArticles() {
   const fs = await import("node:fs");
   const path = await import("node:path");
