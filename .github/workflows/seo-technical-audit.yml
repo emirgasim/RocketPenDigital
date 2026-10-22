@@ -1,4 +1,5 @@
 name: Automated SEO Technical Audit
+# Audit the latest bulk-updated English article set.
 
 on:
   push:
