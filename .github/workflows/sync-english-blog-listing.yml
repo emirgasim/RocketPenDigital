@@ -1,0 +1,35 @@
+name: Sync English Blog Listing
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/sync-english-blog-listing.mjs"
+      - ".github/workflows/sync-english-blog-listing.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sync-english-blog-listing
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: \${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Generate the complete paginated English blog archive
+        run: node .github/scripts/sync-english-blog-listing.mjs
+      - name: Commit listing updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/en/index.html blog/en/page reports/english-blog-listing-sync.txt
+          git diff --cached --quiet && exit 0
+          git commit -m "Show all English articles in the blog archive"
+          git pull --rebase origin main
+          git push origin main
