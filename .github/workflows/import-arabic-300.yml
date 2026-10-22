@@ -2,6 +2,7 @@ name: Import 300 Arabic long articles
 on:
   push:
     paths:
+      - 'RocketPenDigital_300_LongArticles_Complete.zip'
       - 'imports/RocketPenDigital_300_LongArticles_Complete.zip'
   workflow_dispatch:
 permissions:
@@ -16,6 +17,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Locate uploaded archive
+        run: |
+          mkdir -p imports
+          if [ -f RocketPenDigital_300_LongArticles_Complete.zip ]; then
+            cp RocketPenDigital_300_LongArticles_Complete.zip imports/RocketPenDigital_300_LongArticles_Complete.zip
+          fi
+          test -f imports/RocketPenDigital_300_LongArticles_Complete.zip
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -25,11 +33,12 @@ jobs:
         run: |
           node scripts/import-arabic-300.mjs
           rm -f imports/RocketPenDigital_300_LongArticles_Complete.zip
+          rm -f RocketPenDigital_300_LongArticles_Complete.zip
       - name: Commit generated Arabic blog
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/ar/articles blog/ar/index.html blog/ar/page sitemap.xml imports/RocketPenDigital_300_LongArticles_Complete.zip
+          git add blog/ar/articles blog/ar/index.html blog/ar/page sitemap.xml imports/RocketPenDigital_300_LongArticles_Complete.zip RocketPenDigital_300_LongArticles_Complete.zip
           if ! git diff --cached --quiet; then
             git commit -m "Import 300 long Arabic blog articles"
             git push origin main
