@@ -8,6 +8,10 @@ on:
       - "languages/**"
       - "assets/**"
       - "asset/**"
+      - "news/**"
+      - "sitemap.xml"
+      - "robots.txt"
+      - "_redirects"
       - "wrangler.toml"
   workflow_dispatch:
   workflow_run:
