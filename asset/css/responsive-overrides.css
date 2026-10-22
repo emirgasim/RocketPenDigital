@@ -1199,3 +1199,24 @@ body.arabic header.nav > .nav-right {
     display: none !important;
   }
 }
+
+
+/* Mobile process cards: use the available width instead of the desktop 220px text cap. */
+@media (max-width: 760px) {
+  .process-grid {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .process-grid .step {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 0;
+  }
+
+  .process-grid .step p {
+    max-width: 100% !important;
+    width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
