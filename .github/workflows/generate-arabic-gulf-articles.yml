@@ -1,0 +1,39 @@
+name: Generate Arabic Gulf SEO Articles
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/generate-arabic-gulf-articles.mjs"
+      - ".github/workflows/generate-arabic-gulf-articles.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: generate-arabic-gulf-articles
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generate Arabic articles, index and sitemap
+        run: node .github/scripts/generate-arabic-gulf-articles.mjs
+      - name: Validate generated article count and metadata
+        run: |
+          node --input-type=module -e "import fs from 'node:fs'; const files=fs.readdirSync('blog/ar/articles').filter(x=>x.endsWith('.html')); if(files.length < 150) { console.error('Expected at least 150 Arabic articles, found '+files.length); process.exit(1); } const bad=files.filter(f=>{const s=fs.readFileSync('blog/ar/articles/'+f,'utf8');return !s.includes('name=\"description\"') || !s.includes('application/ld+json') || !s.includes('lang=\"ar\" dir=\"rtl\"');}); if(bad.length){console.error('Metadata validation failed: '+bad.join(', '));process.exit(1)} console.log('Validated '+files.length+' Arabic articles.');"
+      - name: Commit generated Arabic content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/ar/articles blog/ar/index.html sitemap.xml
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish Arabic Gulf SEO article collection"
+          git pull --rebase origin main
+          git push origin main

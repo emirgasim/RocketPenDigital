@@ -11,7 +11,7 @@ on:
       - "wrangler.toml"
   workflow_dispatch:
   workflow_run:
-    workflows: ["Revise First 200 English Articles"]
+    workflows: ["Revise First 200 English Articles", "Generate Arabic Gulf SEO Articles"]
     types: [completed]
     branches: [main]
 permissions:
