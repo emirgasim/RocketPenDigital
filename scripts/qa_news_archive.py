@@ -104,7 +104,7 @@ for language in ("tr","en","ar"):
     for ident in ("home-slider-track","home-slider-prev","home-slider-next","home-slider-dots","news-list","news-pagination"):
         if html.count(f'id="{ident}"')!=1:
             errors.append(f"{language}: element #{ident} count is not one")
-    if "news.js?v=20261023-14" not in html:
+    if "news.js?v=20261023-15" not in html:
         errors.append(f"{language}: news JS cache version is stale")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
