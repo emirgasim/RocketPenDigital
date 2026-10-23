@@ -19,9 +19,8 @@
   section.hidden=false;
   const target=$('#home-slider-track');if(!target)return new Set();
   target.replaceChildren();
-  const cutoffDate=new Date();cutoffDate.setUTCHours(0,0,0,0);cutoffDate.setUTCDate(cutoffDate.getUTCDate()-2);
-  const cutoff=cutoffDate.toISOString().slice(0,10);
-  const published=stories.filter(s=>s.editorialOriginal===true&&s.status==='published'&&s.approved!==false&&s.editorialApproved!==false&&s.editorialApproval!=='pending'&&(s.dateISO||(s.publishedAt||'').slice(0,10))>=cutoff).sort(sort);
+  // Include older published stories too; the homepage slider must not hide the archive just because a story is more than two days old.
+  const published=stories.filter(s=>s.editorialOriginal===true&&s.status==='published'&&s.approved!==false&&s.editorialApproved!==false&&s.editorialApproval!=='pending').sort(sort);
   const slides=published.slice(0,10),excluded=new Set(slides.map(s=>s.slug));
   if(!slides.length){const m=document.createElement('p');m.className='empty-list';m.textContent=t.empty;target.append(m);return excluded}
   const dots=$('#home-slider-dots'),prev=$('#home-slider-prev'),next=$('#home-slider-next');if(dots)dots.replaceChildren();
