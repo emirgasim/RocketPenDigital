@@ -845,5 +845,60 @@ if(video){
 }
 document.documentElement.classList.add('js-ready');
 </script>
+<script>
+/* RocketPen portfolio lightbox click reliability fix */
+(function(){
+  const section=document.getElementById('portfolio');
+  const modal=document.getElementById('portfolioLightbox');
+  if(!section||!modal||modal.dataset.clickFixReady==='true')return;
+  modal.dataset.clickFixReady='true';
+  const cards=Array.from(section.querySelectorAll('.portfolio-card'));
+  const image=modal.querySelector('#portfolioLightboxImage');
+  const count=modal.querySelector('#portfolioLightboxCount');
+  const category=modal.querySelector('#portfolioLightboxCategory');
+  const closeBtn=modal.querySelector('[data-lightbox-close]');
+  let active=0,lastFocus=null;
+  function show(index){
+    const visible=cards.filter(card=>!card.hidden);
+    if(!visible.length)return;
+    const card=visible[(index+visible.length)%visible.length];
+    active=cards.indexOf(card);
+    const img=card.querySelector('img');
+    const label=card.querySelector('.portfolio-card-category');
+    image.src=img.currentSrc||img.src;
+    image.alt=img.alt||'RocketPen portfolio concept';
+    count.textContent=String(active+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');
+    category.textContent=label?label.textContent:'';
+  }
+  function open(card){
+    lastFocus=card;
+    show(cards.indexOf(card));
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(closeBtn)closeBtn.focus({preventScroll:true});
+  }
+  function close(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});
+  }
+  document.addEventListener('click',function(event){
+    const card=event.target.closest&&event.target.closest('#portfolio .portfolio-card');
+    if(card){event.preventDefault();event.stopImmediatePropagation();open(card);return;}
+  },true);
+  modal.querySelector('[data-lightbox-prev]')?.addEventListener('click',function(){show(active-1)});
+  modal.querySelector('[data-lightbox-next]')?.addEventListener('click',function(){show(active+1)});
+  if(closeBtn)closeBtn.addEventListener('click',close);
+  modal.addEventListener('click',function(event){if(event.target===modal)close()});
+  document.addEventListener('keydown',function(event){
+    if(!modal.classList.contains('is-open'))return;
+    if(event.key==='Escape'){event.preventDefault();close()}
+    if(event.key==='ArrowLeft'){event.preventDefault();show(active+(document.documentElement.dir==='rtl'?1:-1))}
+    if(event.key==='ArrowRight'){event.preventDefault();show(active+(document.documentElement.dir==='rtl'?-1:1))}
+  });
+})();
+</script>
 </body>
 </html>
