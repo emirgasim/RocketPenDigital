@@ -69,15 +69,13 @@
   const combined=[...(headlineData.stories||[]).map(s=>({...s,_headline:true})),...(data.stories||[])];
   // The archive contains 1,452 existing articles, including future-dated records marked scheduled.
   // Keep publication/approval filtering for live headlines only; never hide archive records from the listing.
-  const all=combined.filter(s=>s.lang===lang)
+  const all=combined.filter(s=>s.lang===lang&&s.status!=='scheduled'&&s.status!=='draft'&&s.status!=='pending')
    .filter(s=>{const key=lang+'|'+String(s.title||'').trim().toLocaleLowerCase(lang==='tr'?'tr-TR':undefined);if(seen.has(key))return false;seen.add(key);return true}).sort(sort);
   const featured=section&&section.classList.contains('news-hero-slider')?makeFrontPage(all):makeSlider(all);
   if(emptyState)emptyState.hidden=featured.size>0;if(!list)return;
   const heading=$('#latest .section-head h2'),head=$('#latest .section-head');let stories=all;
   if(selectedCategory){const filtered=all.filter(s=>s.category===selectedCategory);if(filtered.length)stories=filtered;else{stories=all.slice();if(heading)heading.textContent=t.all;if(head)notice(head,t.noCategory)}}else {
-   // Exclude a featured story from the archive only when that same slug exists in the persistent archive dataset.
-   // If the generated archive JSON is temporarily empty/unavailable during a deployment, never hide every headline.
-   const archiveSlugs=new Set((data.stories||[]).filter(s=>s.lang===lang).map(s=>s.slug));
+   // Keep the full published archive visible; only the ten active slider stories are omitted below.
    stories=all.filter(s=>!featured.has(s.slug));
   }
   if(heading&&!(head&&head.querySelector('.archive-notice')))heading.textContent=catName(selectedCategory)||t.all;
