@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
   "lastUpdated": "2026-10-23",
-  "editorialNote": "RocketPen Tech original Turkish editorial coverage researched from primary-source materials. Article titles and prose are independently written; source links support verification. Every published item is credited to Gasim Piraliyev.",
+  "editorialNote": "Original Turkish technology headlines written for RocketPen Digital from cited primary sources and reputable reporting. The featured headlines are displayed in the hero slider and intentionally excluded from the lower archive list.",
   "stories": [
     {
-      "slug": "rpt-2026-10-21-php-critical-update",
+      "slug": "rpt-2026-10-23-ai-discovered-software-vulnerabilities",
       "lang": "tr",
-      "title": "PHP sunucuları için kritik güncelleme: İki açıkta yama tek güvenli seçenek",
-      "summary": "PHP ekibi 21 Ekim'de birden fazla desteklenen sürüm için güvenlik paketleri yayımladı. Resmî duyuru, kimlik doğrulaması gerektirmeyen uzaktan kod çalıştırma riskine karşı güncellemenin geciktirilmemesini istiyor.",
-      "body": "## Ne değişti?\nPHP geliştiricileri 21 Ekim 2026'da 8.5, 8.4, 8.3 ve 8.2 serileri için yeni güvenlik sürümleri yayımladı. Resmî duyuru, iki ayrı bellek yönetimi kusurunun uygun koşullarda uzaktan kod çalıştırma riski yaratabileceğini belirtiyor. Bu değerlendirme, hataların her kurulumda otomatik olarak istismar edilebildiği anlamına gelmiyor; risk, kullanılan sürüm ve sunucu yapılandırmasına bağlı.\n\n## Hangi sistemler kontrol edilmeli?\nPHP-FPM, Apache üzerindeki mod_php, php-cgi, FrankenPHP ve LiteSpeed gibi PHP isteklerini çalıştıran kurulumlar yöneticileri tarafından gözden geçirilmeli. PHP projesi, yalnızca yapılandırma değişikliğiyle tüm riski ortadan kaldıran eksiksiz bir geçici çözüm olmadığını ve yamalı sürümlere geçilmesi gerektiğini söylüyor.\n\n## Site yöneticileri ne yapmalı?\nÖnce sunucuda çalışan PHP sürümünü ve sağlayıcının güncelleme takvimini doğrulayın. Değişiklikten önce yedek alın, uygulamayı test ortamında deneyin ve yamalı desteklenen sürüme geçişi planlayın. PHP 8.2 için destek süresinin 31 Aralık 2026'da sona erecek olması, daha yeni desteklenen bir seriye geçiş planını da önemli kılıyor.\n\nBu haber, PHP'nin kendi güvenlik duyurusundaki teknik bilgileri Türkçe ve özgün bir editoryal anlatımla özetler. Güvenlik açığının ayrıntıları ve düzeltilen sürümler için aşağıdaki resmî kaynağı inceleyin.",
+      "title": "Yapay zekâ yazılımlardaki eski açıkları hızla buluyor: İnternet altyapısında yama yarışı",
+      "summary": "Güvenlik uzmanları, yapay zekânın yazılım hatalarını bulma süresini kısalttığına dikkat çekiyor. Kurumlar için artık yalnızca açıkları tespit etmek değil, yamaları saldırganlardan önce uygulamak da kritik.",
+      "body": "## Güvenlikte zaman daralıyor\nReuters’ın 23 Ekim tarihli haberine göre güvenlik uzmanları, yapay zekâ destekli analizlerin yıllardır fark edilmemiş yazılım açıklarını daha hızlı ortaya çıkarabildiği konusunda uyarıyor. PHP ve Node.js gibi yaygın teknolojilerdeki açıklara ilişkin son gelişmeler, eski kod tabanlarının internetin önemli bir risk yüzeyi olmaya devam ettiğini gösteriyor.\n\n## Savunma ve saldırı aynı hızda mı?\nYapay zekâ kodu taramayı ve olası hata yollarını incelemeyi hızlandırabilir. Aynı yetenek, bir açık kamuya açıklandıktan sonra saldırı hazırlığını da hızlandırabilir. Bununla birlikte, bulunan her açığın gerçek ortamda kolayca istismar edilebildiği söylenemez; risk, açığın niteliğine ve sistemin yapılandırmasına göre değişir.\n\n## Kurumlar ne yapmalı?\nİşletmeler kullandıkları sunucu ve kütüphanelerin sürümlerini envanterlemeli, üretici güvenlik duyurularını takip etmeli, yamaları test ederek gecikmeden uygulamalı ve internete açık hizmetlerde gereksiz erişimleri kapatmalı. Yapay zekâ güvenlik ekiplerine yardımcı olabilir; güncelleme ve olay müdahalesi sorumluluğunu ortadan kaldırmaz.\n\nBu haber Reuters’ın güvenlik uzmanlarıyla yaptığı görüşmelere dayanmaktadır. Tehdit düzeyi her sistem için aynı değildir.",
       "category": "security",
       "dateISO": "2026-10-23",
       "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:55:00Z",
       "author": "Gasim Piraliyev",
       "status": "published",
       "approved": true,
@@ -19,59 +20,28 @@
       "editorialApproval": "approved",
       "editorialOriginal": true,
       "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Ağ güvenliği ve dijital altyapıyı temsil eden teknoloji fotoğrafı",
+      "imageAlt": "Siber güvenlik ve dijital ağlar",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
-      "sourceName": "PHP.net — Resmî güvenlik duyurusu",
-      "sourceUrl": "https://www.php.net/archive/2026.php#2026-10-21-5",
+      "sourceName": "Reuters",
+      "sourceUrl": "https://www.reuters.com/legal/litigation/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2026-10-23/",
       "sources": [
         {
-          "name": "PHP.net — Güvenlik duyurusu ve düzeltilen sürümler",
-          "url": "https://www.php.net/archive/2026.php#2026-10-21-5"
-        },
-        {
-          "name": "PHP 8.5.12 yayımlama duyurusu",
-          "url": "https://news-web.php.net/php.announce/513"
+          "name": "Reuters — AI-discovered bugs may soon trigger fresh disruptions",
+          "url": "https://www.reuters.com/legal/litigation/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2026-10-23/"
         }
       ]
     },
     {
-      "slug": "rpt-2026-10-21-ai-model-provider-safety-standards",
+      "slug": "rpt-2026-10-23-nvidia-local-ai-hardware",
       "lang": "tr",
-      "title": "OpenAI, model erişimi sunan aracı platformlar için güvenlik kurallarını sıkılaştırıyor",
-      "summary": "Şirket, kendi modellerini doğrudan barındıran aracı servislerin inceleme ve onaydan geçmesini isteyen yeni kullanım politikalarını 20 Kasım 2026'da yürürlüğe koyacağını açıkladı.",
-      "body": "## Değişikliğin odağında ne var?\nOpenAI'nin 21 Ekim tarihli politika açıklaması, modellerine doğrudan erişim sağlayan servislerde güvenlik kurallarının daha tutarlı uygulanmasına odaklanıyor. Model yönlendiricileri ve yapay zekâ geçitleri gibi aracı ürünlerin, doğrudan erişim sunmadan önce şirketin incelemesini ve onayını alması gerekecek.\n\n## İşletmeler açısından neden önemli?\nKuruluşlar aynı modeli farklı bulut sağlayıcıları veya aracı katmanlar üzerinden kullanabiliyor. Güvenlik koşullarının her noktada uygulanmaması, uygunsuz kullanımın tespiti ve olayların soruşturulmasını zorlaştırabilir. Açıklamaya göre ortak standartlar; olası ihlalleri araştırma, gerekli önlemleri alma ve gerektiğinde sağlayıcılar arasında koordinasyon kurma sorumluluklarını kapsıyor.\n\n## Takvim ve belirsiz kalanlar\nGüncellenmiş kullanım politikalarının 20 Kasım 2026'da yürürlüğe girmesi planlanıyor. Bu nedenle aracı model erişimi sunan geliştiricilerin, hizmetlerinin inceleme gereksinimine girip girmediğini ve uygulaması gereken kontrolleri resmî politikadan doğrulaması gerekiyor. Duyuru, her sağlayıcıdaki uygulama durumunun aynı anda hazır olduğunu göstermiyor; şirket, ortaklarıyla uyum çalışmalarının devam ettiğini belirtiyor.\n\nBu değerlendirme, duyurudaki politikanın geliştiriciler ve kurumlar için olası sonuçlarını açıklar; ürün tavsiyesi değildir.",
-      "category": "ai",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "author": "Gasim Piraliyev",
-      "status": "published",
-      "approved": true,
-      "editorialApproved": true,
-      "editorialApproval": "approved",
-      "editorialOriginal": true,
-      "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Dijital çalışma alanında teknoloji ve veri akışı",
-      "imageCredit": "Unsplash",
-      "imageLicense": "Unsplash License",
-      "sourceName": "OpenAI — Resmî politika duyurusu",
-      "sourceUrl": "https://openai.com/index/broad-access-through-consistent-standards/",
-      "sources": [
-        {
-          "name": "OpenAI — Broad access through consistent standards",
-          "url": "https://openai.com/index/broad-access-through-consistent-standards/"
-        }
-      ]
-    },
-    {
-      "slug": "rpt-2026-10-21-local-ai-hardware-dgx-spark",
-      "lang": "tr",
-      "title": "Yapay zekâ daha fazla masaüstüne iniyor: NVIDIA yerel hesaplama seçeneğini genişletiyor",
-      "summary": "NVIDIA'nın GTC Berlin duyurusu, 64 GB belleğe sahip DGX Spark sistemlerinin 23 Ekim'de iş ortakları üzerinden sunulacağını bildiriyor. Şirket, birden çok küçük sistemi birlikte çalıştırma araçlarını da geliştiriyor.",
-      "body": "## Yerel yapay zekâ için yeni seçenek\nNVIDIA, GTC Berlin kapsamında DGX Spark ailesinin 64 GB belleğe sahip seçeneğinin 23 Ekim 2026'dan itibaren iş ortakları üzerinden kullanıma sunulacağını duyurdu. Bu sınıftaki küçük sistemler, bazı model geliştirme ve çıkarım işlerini uzak bir veri merkezine göndermeden yerel ortamda yürütmek isteyen geliştiricileri hedefliyor.\n\n## Tek cihazdan kümeye\nŞirketin açıklamasına göre DGX Spark, ağ bağlantısı aracılığıyla en fazla sekiz sistemden oluşan yapılandırmalarda birlikte çalıştırılabiliyor. Böyle bir kurulum, daha büyük modeller veya aynı anda birden çok ajanla çalışan geliştirme iş akışları için toplam bellek kapasitesini artırabiliyor. Ancak gerçek performans; model boyutu, bellek ihtiyacı, ağ düzeni ve yazılım optimizasyonuna bağlı.\n\nNVIDIA Sync tarafında, tek cihaz veya küme üzerinde model indirme ve başlatma sürecini basitleştirmeye yönelik bir araç da ay sonuna doğru planlanıyor. Bu, donanımın yanında yazılım kurulumunu da daha erişilebilir kılmayı amaçlıyor.\n\n## Alıcıların bilmesi gerekenler\nYerel sistemler verinin cihazdan dışarı çıkmasını azaltabilir; buna karşın satın alma maliyeti, güç tüketimi, model lisansı ve bakım gereksinimleri devam eder. Kullanıcılar cihazı yalnızca bellek sayısına göre değil, kullanacakları model ve iş akışına göre değerlendirmeli.\n\nBu haber NVIDIA'nın ürün takvimi ve belirtilen yeteneklerine dayanır; bağımsız performans testi olarak okunmamalıdır.",
+      "title": "Yapay zekâ buluttan masaüstüne yaklaşıyor: NVIDIA yerel sistemlerini genişletiyor",
+      "summary": "NVIDIA, DGX Spark ve RTX Spark çevresindeki yerel yapay zekâ ekosistemine yeni modeller ve iş akışları ekliyor. Amaç, bazı geliştirme ve ajan görevlerini doğrudan kullanıcının donanımına taşımak.",
+      "body": "## Yerel yapay zekâya yeni seçenekler\nNVIDIA, GTC Berlin kapsamında RTX Spark, DGX Spark ve DGX Station sistemleri için yeni yazılım, model desteği ve geliştirici iş akışları duyurdu. Şirketin açıklamasına göre DGX Spark’ın 64 GB yapılandırmaları 23 Ekim’den itibaren iş ortakları üzerinden sunulmaya başlıyor.\n\n## Neden önemli?\nYerel çalıştırma; hassas verilerin cihazdan dışarı çıkmasını azaltma, internet bağlantısına bağımlılığı düşürme ve model denemelerini kendi altyapısında yürütme açısından yararlı olabilir. Ancak performans, kullanılabilir bellek, enerji tüketimi ve toplam maliyet seçilen modele ve donanıma bağlıdır.\n\nNVIDIA ayrıca yerel donanımlarda çalışan kodlama modelleri ve farklı açık ağırlıklı modeller için destekten söz ediyor. Bu, her modelin her cihazda sorunsuz çalışacağı anlamına gelmiyor; geliştiricilerin uyumluluk ve lisans koşullarını kontrol etmesi gerekiyor.\n\nBu haber NVIDIA’nın GTC Berlin duyurusunu temel alır; performans ve kullanılabilirlik ifadeleri üreticinin açıklamalarıdır.",
       "category": "devices",
       "dateISO": "2026-10-23",
       "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:45:00Z",
       "author": "Gasim Piraliyev",
       "status": "published",
       "approved": true,
@@ -79,119 +49,57 @@
       "editorialApproval": "approved",
       "editorialOriginal": true,
       "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Mikroçip ve elektronik devre kartı",
+      "imageAlt": "Bilgisayar donanımı ve yerel yapay zekâ",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
-      "sourceName": "NVIDIA Blog — GTC Berlin",
+      "sourceName": "NVIDIA Blog",
       "sourceUrl": "https://blogs.nvidia.com/blog/local-ai-gtc-rtx-dgx-spark-station-sync/",
       "sources": [
         {
-          "name": "NVIDIA — Local AI hardware and DGX Spark updates",
+          "name": "NVIDIA — Local AI hardware at GTC Berlin",
           "url": "https://blogs.nvidia.com/blog/local-ai-gtc-rtx-dgx-spark-station-sync/"
         }
       ]
     },
     {
-      "slug": "rpt-2026-10-21-open-models-specialized-ai",
+      "slug": "rpt-2026-10-23-ai-weather-earth2-europe",
       "lang": "tr",
-      "title": "Tek bir genel model yerine uzmanlaşmış yapay zekâ modelleri öne çıkıyor",
-      "summary": "NVIDIA'nın yeni duyuruları; görsel-dil, bilgi erişimi, yapılandırılmış iş verisi, robotik ve bilimsel araştırma gibi farklı görevler için açık ağırlıklı model ailelerini kapsıyor.",
-      "body": "## Model portföyünde uzmanlaşma\nNVIDIA, 21 Ekim'de farklı iş türlerini hedefleyen açık model ve araç ailesini genişlettiğini açıkladı. Duyuru; görsel ve dil girdilerini birlikte değerlendiren modelleri, belge arama ve sıralama araçlarını, yapılandırılmış iş verisiyle çalışan modelleri ve robotik ya da bilimsel keşif için tasarlanan sistemleri kapsıyor.\n\nBu yaklaşımın önemi, her göreve tek ve çok büyük bir model uygulamak yerine, belirli iş yüküne uygun bileşen seçebilmek. Örneğin belge arama adımı bir bilgi erişim modeliyle; görselden durum anlama ayrı bir görsel-dil modeliyle; fiziksel sistemlerin simülasyonu ise farklı bir dünya modeliyle yürütülebilir.\n\n## Açık ağırlık ne sağlar, ne sağlamaz?\nAçık ağırlıklı modeller, kuruluşların modeli kendi altyapısında çalıştırmasına ve belirli gereksinimlere göre uyarlamasına alan açabilir. Ancak bu, modelin otomatik olarak her kullanım için ücretsiz, sınırsız veya güvenli olduğu anlamına gelmez. Lisans koşulları, hesaplama kaynakları, veri kalitesi ve değerlendirme süreçleri ayrı ayrı incelenmeli.\n\nNVIDIA, bazı modellerin kullanılabilir olduğunu, diğerlerinin ise daha sonraki tarihlerde sunulmasının planlandığını bildiriyor. Bu nedenle her modelin erişim durumunu ve donanım gereksinimini indirme sayfasından teyit etmek gerekiyor.\n\nBu haber, resmî duyurudaki ürün gruplarını editoryal bir bakışla açıklıyor; şirketin performans iddiaları bağımsız kıyaslama sonuçları değildir.",
-      "category": "ai",
+      "title": "Hava tahmininde yapay zekâ: Avrupa’da yeni açık modeller gerçek verilerle sınanıyor",
+      "summary": "NVIDIA, Earth-2 model ailesinin Avrupa’daki araştırmacılar ve kurumlar tarafından hava ve iklim tahmini çalışmalarında kullanılmasını öne çıkarıyor. Modellerin yerel verilerle uyarlanması hedefleniyor.",
+      "body": "## Tahmin modellerinde yeni yaklaşım\nNVIDIA, Avrupa’daki araştırmacı ve kurumların hava durumu ile iklim tahmini için Earth-2 açık model ailesini kullanmaya başladığını duyurdu. Bu yaklaşım, büyük hesaplama kaynakları gerektiren tahmin süreçlerinde yapay zekâ modellerini klasik fizik tabanlı sistemlerle birlikte değerlendirme eğiliminin bir parçası.\n\n## Açık modeller ne sağlar?\nAraştırmacılar modelleri kendi veri kümelerine göre uyarlayabilir ve farklı senaryolarda sınayabilir. Bununla birlikte, tahmin kalitesi veri kalitesine, bölgesel koşullara ve değerlendirme yöntemine bağlıdır. Bir modelin belirli bir testte iyi sonuç vermesi, her bölgede veya her hava olayında aynı başarıyı garanti etmez.\n\n## Bundan sonra ne izlenmeli?\nBu tür araçların operasyonel kullanımı için tahmin doğruluğunun bağımsız biçimde ölçülmesi, belirsizliğin açıkça raporlanması ve mevcut meteoroloji altyapısıyla karşılaştırılması önem taşıyor.\n\nHaber, NVIDIA’nın duyurusuna dayanır; açıklanan kullanım alanları bağımsız performans garantisi değildir.",
+      "category": "science",
       "dateISO": "2026-10-23",
       "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:35:00Z",
       "author": "Gasim Piraliyev",
       "status": "published",
       "approved": true,
       "editorialApproved": true,
       "editorialApproval": "approved",
       "editorialOriginal": true,
-      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Robotik sistem ve yapay zekâ donanımı",
+      "imageUrl": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Bulutlar ve hava durumu araştırması",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
-      "sourceName": "NVIDIA Blog — Açık model duyurusu",
-      "sourceUrl": "https://blogs.nvidia.com/blog/open-models-europe-industry/",
+      "sourceName": "NVIDIA Blog",
+      "sourceUrl": "https://blogs.nvidia.com/blog/europe-earth-2-open-models-weather-climate-prediction/",
       "sources": [
         {
-          "name": "NVIDIA — Open models for vision, retrieval, business data and science",
-          "url": "https://blogs.nvidia.com/blog/open-models-europe-industry/"
+          "name": "NVIDIA — Earth-2 open models for weather and climate prediction",
+          "url": "https://blogs.nvidia.com/blog/europe-earth-2-open-models-weather-climate-prediction/"
         }
       ]
     },
     {
-      "slug": "rpt-2026-10-21-google-cloud-rubin-infrastructure",
+      "slug": "rpt-2026-10-23-industrial-ai-engineering",
       "lang": "tr",
-      "title": "Google Cloud, yeni nesil yapay zekâ altyapısını bölgesel veri gereksinimleriyle genişletiyor",
-      "summary": "Google Cloud ve NVIDIA, Vera Rubin tabanlı A5X hesaplama altyapısının gelecek ay genel kullanıma açılmasını planlıyor. Duyuru, büyük ölçekli kümelerle birlikte verinin hangi bölgede işlendiğine dair denetimleri de öne çıkarıyor.",
-      "body": "## Yeni altyapı planı\nGoogle Cloud, 21 Ekim tarihli açıklamasında NVIDIA Vera Rubin NVL72 platformuna dayanan A5X örneklerinin gelecek ay genel kullanıma açılmasının planlandığını bildirdi. Duyuru, özellikle birden fazla adımda çalışan yapay zekâ ajanlarının eğitim, çıkarım ve takviyeli öğrenme ihtiyaçlarına göre tasarlanan altyapıya odaklanıyor.\n\n## Büyük kümeler ve bölgesel kontrol\nŞirketler, Virgo Network aracılığıyla bir tesiste 80 bin Rubin GPU'ya, birden çok lokasyon boyunca ise 960 bin GPU'ya kadar ölçeklenebilecek tasarımdan söz ediyor. Bunlar duyuruda belirtilen mimari hedeflerdir; her müşterinin bugün kullanabildiği kapasite veya garanti edilmiş performans olarak değerlendirilmemeli.\n\nGoogle Cloud ayrıca Avrupa, Orta Doğu ve Afrika bölgesindeki veri yerleşimi ve egemenlik gereksinimlerini karşılamaya dönük yerel bölge genişlemelerinden bahsediyor. Bu özellikle hassas verilerle çalışan işletmeler için, modelin kalitesi kadar verinin nerede tutulduğu ve hangi altyapıda işlendiğinin de satın alma kararına girdiğini gösteriyor.\n\n## Ne zaman kullanılabilecek?\nGenel kullanıma açılışın gelecek ay için planlandığı belirtiliyor; kesin erişim, bölge ve fiyat koşulları değişebilir. İşletmelerin kapasite planlarını yalnızca duyuru ölçeğine göre değil, gerçek kullanılabilirlik ve iş yükü ölçümlerine göre yapması gerekiyor.\n\nBu haber, Google Cloud'un teknik duyurusuna dayanır. Kapasite ve takvim ifadeleri şirketin açıkladığı planları anlatır.",
-      "category": "ai",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "author": "Gasim Piraliyev",
-      "status": "published",
-      "approved": true,
-      "editorialApproved": true,
-      "editorialApproval": "approved",
-      "editorialOriginal": true,
-      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Dünya bağlantıları ve küresel dijital altyapı",
-      "imageCredit": "Unsplash",
-      "imageLicense": "Unsplash License",
-      "sourceName": "Google Cloud Blog — Resmî altyapı duyurusu",
-      "sourceUrl": "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026",
-      "sources": [
-        {
-          "name": "Google Cloud — AI infrastructure at GTC Berlin",
-          "url": "https://cloud.google.com/blog/topics/ai-infrastructure/google-cloud-infrastructure-at-nvidia-gtc-berlin-2026"
-        },
-        {
-          "name": "NVIDIA — GTC Berlin updates",
-          "url": "https://blogs.nvidia.com/gtc-berlin-2026-news/"
-        }
-      ]
-    },
-    {
-      "slug": "rpt-2026-10-21-ai-agent-security-runtime",
-      "lang": "tr",
-      "title": "Yapay zekâ ajanlarının güvenliği uygulamadan donanıma uzanıyor",
-      "summary": "CrowdStrike ve NVIDIA, ajanların çalıştığı ortamda denetimi güçlendirmeyi hedefleyen bir güvenlik entegrasyonu açıkladı. Odak, yalnızca model yanıtları değil, ajanın gerçek sistemlerde yaptığı eylemler.",
-      "body": "## Güvenlik sınırı nereye taşınıyor?\nCrowdStrike ve NVIDIA, 21 Ekim'de yapay zekâ ajanlarını çalıştıkları ortamda korumaya yönelik ortak çalışmalarını genişlettiklerini açıkladı. Duyuru, CrowdStrike'ın AI Detection and Response yaklaşımını NVIDIA OpenShell ve NVIDIA Sentry gibi alt katmanlarla birleştirmeyi hedefliyor.\n\nAjanlar yalnızca metin üretmekle kalmayıp dosyalara, uygulamalara, ağ bağlantılarına veya şirket içi hizmetlere eriştiğinde yeni bir güvenlik sorusu doğuyor: Bir modelin ne söyleyeceği kadar, hangi araca hangi yetkiyle eriştiği ve yaptığı işlemlerin nasıl izlendiği de önem kazanıyor.\n\n## Entegrasyonun amacı\nŞirketlerin açıkladığı tasarım, yazılım çalışma zamanı kontrollerini altyapı ve donanım düzeyindeki uygulamalarla desteklemeyi amaçlıyor. Bunun pratik değeri, ajanların erişim sınırlarını uygulamaya daha yakın bir noktada uygulayabilmek ve beklenmedik eylemleri tespit edebilmek olabilir.\n\n## Ne henüz kanıtlanmış değil?\nDuyuru bir ürün ve entegrasyon planını anlatıyor; her tür saldırıyı engellediğine veya tüm ortamlarda hazır olduğuna ilişkin bağımsız bir sonuç sunmuyor. Kurumların bu sistemleri değerlendirirken izin sınırlarını, kayıt kalitesini, insan onay noktalarını ve olay müdahale süreçlerini ayrıca test etmesi gerekiyor.\n\nBu haber, iki şirketin kendi açıklamalarına dayanır. Buradaki olası faydalar uygulama hedefleridir; bağımsız güvenlik sertifikası veya etkinlik garantisi olarak değerlendirilmemelidir.",
-      "category": "security",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "author": "Gasim Piraliyev",
-      "status": "published",
-      "approved": true,
-      "editorialApproved": true,
-      "editorialApproval": "approved",
-      "editorialOriginal": true,
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Veri merkezi sunucuları ve altyapı güvenliği",
-      "imageCredit": "Unsplash",
-      "imageLicense": "Unsplash License",
-      "sourceName": "CrowdStrike — Resmî basın duyurusu",
-      "sourceUrl": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-nvidia-expand-ai-agent-security-software-silicon/",
-      "sources": [
-        {
-          "name": "CrowdStrike — AI agent security integration",
-          "url": "https://www.crowdstrike.com/en-us/press-releases/crowdstrike-nvidia-expand-ai-agent-security-software-silicon/"
-        },
-        {
-          "name": "NVIDIA — GTC Berlin 2026 updates",
-          "url": "https://blogs.nvidia.com/gtc-berlin-2026-news/"
-        }
-      ]
-    },
-    {
-      "slug": "rpt-2026-10-21-ai-factory-operations-agents",
-      "lang": "tr",
-      "title": "Fabrika yönetimi için yapay zekâ ajanları: NVIDIA'nın yeni şablonu erken erişime açıldı",
-      "summary": "NVIDIA'nın Factory Operations Blueprint'i, üretim tesislerinde görsel kontrol, arıza nedenini araştırma ve filo yönetimi gibi görevleri koordine eden ajanlar geliştirmek için bir başlangıç mimarisi sunuyor.",
-      "body": "## Fabrika içindeki ajanlar\nNVIDIA, GTC Berlin kapsamında Factory Operations Blueprint adlı üretim odaklı bir referans tasarımını erken erişimle yayımladığını duyurdu. Tasarım; makineler arasında iş akışını koordine edebilen genel amaçlı bir fabrika yöneticisi ajanı ve görsel denetim, kök neden analizi, raporlama ya da ekipman filosu yönetimi gibi görevlerde uzmanlaşan ajanlar geliştirmeyi hedefliyor.\n\n## Hangi verilerle çalışıyor?\nŞirketin açıklamasına göre bu ajanlar, üretim sürecinde kullanılan CAD dosyaları, ürün yaşam döngüsü yönetimi yazılımları, simülasyon sistemleri ve operasyonel teknoloji verileri gibi kaynaklara bağlanabilecek. Bu bağlantı, ajanın yanıtını fabrika bağlamına oturtabilir; fakat yanlış veya güncelliğini yitirmiş veri, önerilerin kalitesini de etkiler.\n\n## İnsan denetimi neden önemli?\nÜretim tesislerinde bir öneri, gerçek makine hareketini veya üretim hattını etkileyebilir. Bu nedenle ajanların yetkilerini sınırlamak, kritik işlemlerde insan onayı istemek, karar kayıtlarını saklamak ve kontrollü testler yapmak gerekir. Erken erişim aşamasındaki bir şablon, hazır ve her tesiste doğrulanmış bir otomasyon sistemiyle aynı şey değildir.\n\nNVIDIA, Blueprint'i geliştiriciler için başlangıç noktası olarak sunuyor. Kuruluşların gerçek verimlilik kazanımlarını pilot uygulamalar ve ölçülebilir sonuçlarla doğrulaması gerekiyor.",
+      "title": "Avrupa sanayisi yapay zekâya yöneliyor: Tasarım ve üretimde yeni iş akışları",
+      "summary": "NVIDIA’nın GTC Berlin duyuruları, mühendislik, simülasyon ve üretim süreçlerinde yapay zekâ kullanımına odaklanıyor. Asıl sınav, demo aşamasındaki araçların ölçülebilir üretim faydası sağlaması olacak.",
+      "body": "## Fabrika ve mühendislik süreçlerinde yapay zekâ\nNVIDIA, Avrupa’daki sanayi şirketlerinin mühendislik ve üretim alanlarında yapay zekâdan yararlanmasına ilişkin yeni iş birliklerini ve araçlarını tanıttı. Duyurularda simülasyon, tasarım verileri ve üretim operasyonları arasında daha sıkı bağlantılar kurulması öne çıkıyor.\n\n## Olası kazanımlar\nBu sistemler, tekrarlanan analizleri hızlandırabilir, tasarım alternatiflerini daha hızlı değerlendirmeye ve üretim verilerindeki örüntüleri görünür kılmaya yardımcı olabilir. Ancak sonuçlar kullanılan veriye, mevcut otomasyon altyapısına ve çalışanların süreçlere katılımına bağlıdır.\n\n## Pilot uygulama şart\nÜretim tesislerinde hatalı öneriler zaman ve maliyet kaybına yol açabileceği için sistemler kontrollü pilotlarla değerlendirilmeli. Şirketlerin uygulama öncesi ve sonrası hata oranı, çevrim süresi ve bakım maliyeti gibi ölçümleri karşılaştırması gerekiyor.\n\nBu haber NVIDIA’nın sanayi odaklı duyurusunun editoryal özetidir; bildirilen hedefler garanti edilmiş sonuçlar değildir.",
       "category": "apps",
       "dateISO": "2026-10-23",
       "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:25:00Z",
       "author": "Gasim Piraliyev",
       "status": "published",
       "approved": true,
@@ -199,15 +107,218 @@
       "editorialApproval": "approved",
       "editorialOriginal": true,
       "imageUrl": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Mühendislik ve üretim teknolojileri çalışma alanı",
+      "imageAlt": "Endüstriyel mühendislik ve üretim teknolojileri",
       "imageCredit": "Unsplash",
       "imageLicense": "Unsplash License",
-      "sourceName": "NVIDIA Blog — Üretim teknolojileri duyurusu",
+      "sourceName": "NVIDIA Blog",
       "sourceUrl": "https://blogs.nvidia.com/blog/europe-industrial-leaders-engineering-manufacturing/",
       "sources": [
         {
-          "name": "NVIDIA — Europe’s industrial leaders and factory operations blueprint",
+          "name": "NVIDIA — Europe’s industrial leaders and manufacturing",
           "url": "https://blogs.nvidia.com/blog/europe-industrial-leaders-engineering-manufacturing/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-ai-retail-robotics",
+      "lang": "tr",
+      "title": "Mağazalarda yapay zekâ ve robotik: Perakende otomasyonu fiziksel dünyaya taşınıyor",
+      "summary": "NVIDIA, perakende sektöründe ürün keşfinden mağaza operasyonlarına kadar farklı süreçlerde açık yapay zekâ modelleri ve robotik uygulamaların kullanıldığını aktarıyor.",
+      "body": "## Dijital öneriden fiziksel operasyona\nNVIDIA’nın 22 Ekim tarihli yazısı, Avrupa’daki perakendecilerin müşteri ürün keşfi, mağaza operasyonları ve robotik alanlarında yapay zekâ sistemlerini değerlendirdiğini anlatıyor. Bu uygulamalar, çevrim içi deneyim ile fiziksel mağaza süreçleri arasındaki sınırın giderek azaldığını gösteriyor.\n\n## Otomasyon nerede işe yarayabilir?\nYapay zekâ destekli arama, stok ve ürün verilerini daha iyi eşleştirmeye yardımcı olabilir; robotik sistemler de belirli tekrarlı görevleri üstlenebilir. Ancak mağaza düzeni, müşteri mahremiyeti, güvenlik ve bakım maliyeti gibi gerçek dünya koşulları uygulamaların başarısını belirler.\n\nŞirketlerin bir çözümü yaygınlaştırmadan önce dar kapsamlı denemeler yapması, insan denetimini koruması ve müşteri verilerinin nasıl işlendiğini açıklaması gerekir. Duyuru, sektörün yönünü gösteriyor; her kullanım senaryosunun ticari açıdan başarılı olduğunu kanıtlamıyor.",
+      "category": "digital-culture",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:15:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Mağaza ve dijital ödeme teknolojileri",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "NVIDIA Blog",
+      "sourceUrl": "https://blogs.nvidia.com/blog/european-retail-open-models-robotics/",
+      "sources": [
+        {
+          "name": "NVIDIA — AI models and robotics in European retail",
+          "url": "https://blogs.nvidia.com/blog/european-retail-open-models-robotics/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-gemini-4-argon-developers",
+      "lang": "tr",
+      "title": "Gemini 4 Argon geliştiricilere açıldı: Kodlama ve güvenlik iş akışları öne çıkıyor",
+      "summary": "Google, Gemini 4 Argon modelini geliştiriciler ve kurumsal kullanıcılar için duyurdu. Modelin karmaşık yazılım ve siber güvenlik görevlerinde nasıl performans gösterdiği gerçek projelerde ayrıca değerlendirilmek zorunda.",
+      "body": "## Geliştiricilere yönelik model erişimi\nGoogle, Gemini 4 Argon’u geliştiriciler, işletmeler ve araştırmacılar için kullanıma sunduğunu belirtiyor. Şirket, modeli karmaşık görevler ve yazılım geliştirme iş akışları için konumlandırıyor.\n\n## Model duyurusu nasıl okunmalı?\nYeni bir modelin tanıtımında benchmark sonuçları ve şirketin örnekleri fikir verebilir; fakat gerçek performans, görev türüne, istem tasarımına, kullanılan araçlara ve maliyete göre değişir. Özellikle güvenlik alanında otomatik analiz sonuçları uzman incelemesi olmadan nihai karar olarak kabul edilmemeli.\n\nGeliştiricilerin erişim koşullarını, API fiyatlandırmasını, veri kullanım politikasını ve mevcut uygulamalarla uyumluluğu kontrol etmesi gerekiyor. Haber Google’ın resmi duyurusuna dayanır; bağımsız karşılaştırma sonuçları yerine ürünün duyurulan kapsamını aktarır.",
+      "category": "ai",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T18:05:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Yapay zekâ model geliştirme",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "Google Blog",
+      "sourceUrl": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "sources": [
+        {
+          "name": "Google — Introducing Gemini 4 Argon",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-embeddinggemma-2-on-device",
+      "lang": "tr",
+      "title": "Metin, görsel ve sesi cihaz üzerinde eşleştiren EmbeddingGemma 2 tanıtıldı",
+      "summary": "Google’ın yeni gömme modeli, farklı medya türlerini ortak bir temsil alanında eşleştirmeye odaklanıyor. Küçük modellerin cihaz üzerinde çalışması arama ve sınıflandırma uygulamalarını daha erişilebilir kılabilir.",
+      "body": "## Cihaz üzerinde çok kipli arama\nGoogle, EmbeddingGemma 2 adlı hafif gömme modelini metin, görüntü ve ses gibi farklı veri türlerini birlikte temsil etmek için tanıttı. Bu tür modeller, bir uygulamanın içeriklerin anlamına göre arama yapmasına veya benzer öğeleri bulmasına yardımcı olur.\n\n## Nerelerde kullanılabilir?\nGeliştiriciler, modelin uygun olduğu cihazlarda özel veri kümeleri üzerinde arama, içerik düzenleme ve sınıflandırma deneyimleri oluşturabilir. Cihaz üzerinde işlem yapmak bazı senaryolarda gecikmeyi ve dış hizmete veri gönderme ihtiyacını azaltabilir.\n\nBununla birlikte modelin boyutu, donanım gereksinimleri, dil desteği ve gerçek görevlerdeki doğruluğu önemlidir. Uygulama ekipleri lisans koşullarını ve kendi veri kümeleri üzerindeki sonuçları incelemelidir. Bu haber Google’ın geliştirici duyurusunu temel alır.",
+      "category": "apps",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T17:55:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Makine öğrenmesi ve veri analizi",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "Google Developers Blog",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "sources": [
+        {
+          "name": "Google — EmbeddingGemma 2",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-gemini-agent-work",
+      "lang": "tr",
+      "title": "Google Workspace iş akışlarına Gemini ajanını ekliyor: Otomasyonun sınırları gündemde",
+      "summary": "Google Cloud’un Gemini at Work duyurusu, yapay zekâ ajanlarını kurumsal görevlerle birleştirmeye odaklanıyor. Şirketler için asıl mesele, otomasyonun yetkilerini ve insan onayını doğru tanımlamak.",
+      "body": "## Kurumsal görevlerde ajan yaklaşımı\nGoogle Cloud, Gemini at Work etkinliği kapsamında işletmelerin iş süreçlerinde kullanabileceği Gemini ajanı ve ilgili araçları duyurdu. Ajan yaklaşımı, tek bir soruya yanıt vermekten ziyade birden fazla adımdan oluşan iş akışlarını tamamlamaya odaklanıyor.\n\n## Fayda kadar yetki de önemli\nBir ajan dokümanları arayabilir, bilgileri özetleyebilir veya bağlı uygulamalarda işlem başlatabilir. Bu yetenekler verimlilik sağlayabilir; ancak erişim izinleri geniş tutulursa yanlış işlem, veri sızıntısı veya izlenebilirlik sorunu doğurabilir.\n\nKurumların ajanları önce düşük riskli görevlerde denemesi, hangi veriye erişebildiğini sınırlaması, kritik eylemlerde insan onayı istemesi ve işlem kayıtlarını tutması gerekiyor. Duyuru, ürünün hedeflenen kullanımını açıklıyor; her kurumda otomatik verimlilik kazanımı garantisi sunmuyor.",
+      "category": "ai",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T17:45:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Kurumsal dijital iş akışları",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "Google Cloud Blog",
+      "sourceUrl": "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026",
+      "sources": [
+        {
+          "name": "Google Cloud — Welcome to Gemini at Work 2026",
+          "url": "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-google-playground-custom-games",
+      "lang": "tr",
+      "title": "Google Playground metin komutlarıyla oynanabilir mini oyunlar oluşturmayı deniyor",
+      "summary": "Google’ın deneysel Playground platformu, kullanıcıların doğal dil komutlarıyla özel oyun deneyimleri kurmasını amaçlıyor. Araç, oyun üretiminde kodlama eşiğini düşürürken kalite ve özgünlük sorularını da gündeme getiriyor.",
+      "body": "## Metinden etkileşimli deneyime\nGoogle, Playground adlı deneysel platformunu kullanıcıların basit metin komutlarıyla kendi oynanabilir deneyimlerini oluşturabileceği bir alan olarak tanıttı. Fikir, bir oyun fikrini açıklamayı çalışan bir prototipe dönüştürme sürecini kolaylaştırmak.\n\n## Bu, oyun geliştirmeyi nasıl etkileyebilir?\nBöyle araçlar oyun tasarımcılarının fikir denemelerini hızlandırabilir ve kodlama deneyimi az olan kişilerin etkileşimli prototipler oluşturmasına yardımcı olabilir. Ancak üretilen bir deneyimin dengeli, erişilebilir, güvenli ve farklı cihazlarda tutarlı çalışması ayrıca test gerektirir.\n\nDeneysel platformların özellikleri ve erişimi zamanla değişebilir. Bu nedenle Playground’u profesyonel oyun motorlarının tam yerine geçen bir araç olarak değil, hızlı fikir üretimi ve deneme alanı olarak değerlendirmek daha doğru.",
+      "category": "gaming",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T17:35:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Dijital oyun ve etkileşimli teknoloji",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "Google Blog",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/ai/playground-experimental-gaming-platform/",
+      "sources": [
+        {
+          "name": "Google — Playground: Create and play custom games",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/playground-experimental-gaming-platform/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-oppo-find-x10-launch",
+      "lang": "tr",
+      "title": "OPPO Find X10 serisi gündemde: Kamera donanımı kadar bölgesel farklar da önemli",
+      "summary": "Find X10 serisine ilişkin yeni haberler yüksek çözünürlüklü kamera donanımını öne çıkarıyor. Satın alma kararında ise fiyat, bölgesel model farkları, pil ve yapay zekâ özelliklerinin erişilebilirliği belirleyici olacak.",
+      "body": "## Yeni amiral gemisi telefonlar\nTechRepublic’in 22 Ekim tarihli incelemesi, OPPO Find X10 serisinin kamera özelliklerini ve farklı pazarlardaki ürün ayrımlarını ele alıyor. Yüksek çözünürlüklü sensörler pazarlama mesajının merkezinde olsa da fotoğraf kalitesini yalnızca megapiksel sayısı belirlemiyor.\n\n## Alıcılar neye bakmalı?\nGerçek kamera performansı görüntü işleme, optik sistem, düşük ışık davranışı ve yazılım desteğiyle birlikte değerlendirilmelidir. Ayrıca aynı ürün ailesinin pil kapasitesi, şarj özellikleri veya yapay zekâ işlevleri bölgelere göre değişebilir.\n\nSatın almadan önce üreticinin yerel teknik özelliklerini, garanti kapsamını, güncelleme politikasını ve bağımsız incelemeleri karşılaştırmak gerekir. Haberdeki bilgiler küresel lansman kapsamına ilişkindir; yerel fiyat ve stok durumu pazara göre değişebilir.",
+      "category": "devices",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T17:25:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Akıllı telefon ve mobil teknoloji",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "TechRepublic",
+      "sourceUrl": "https://www.techrepublic.com/article/news-oppo-find-x10-series-global-launch/",
+      "sources": [
+        {
+          "name": "TechRepublic — OPPO Find X10 Series launches globally",
+          "url": "https://www.techrepublic.com/article/news-oppo-find-x10-series-global-launch/"
+        }
+      ]
+    },
+    {
+      "slug": "rpt-2026-10-23-canva-craft-image-model",
+      "lang": "tr",
+      "title": "Canva Craft görsel modelini duyurdu: Tasarım şablonları üretimin merkezinde",
+      "summary": "Canva’nın Craft modeli, görsel üretiminde tasarım şablonları ve düzenlenebilir çıktılara odaklanıyor. Tasarımcılar için önemli soru, oluşturulan görselin yalnızca etkileyici görünmesi değil, düzenlenebilir bir iş akışına ne kadar uyduğu.",
+      "body": "## Tasarım odaklı görsel üretimi\nCanva’nın yeni Craft görsel modeli, insan tasarımcıların hazırladığı şablonlardan ve kompozisyon ilkelerinden yararlanarak görsel üretmeyi hedefliyor. Bu yaklaşım, tek başına bir görsel üretmekten ziyade tasarım düzeni ve sonradan düzenleme ihtiyacına odaklanıyor.\n\n## Tasarımcılar için ne değişebilir?\nŞablon tabanlı üretim, sosyal medya gönderileri, sunumlar ve pazarlama materyallerinde ilk taslağı hızlandırabilir. Ancak marka tutarlılığı, metin doğruluğu, lisans koşulları ve düzenlenebilir öğelerin gerçekten kullanılabilir olması yine kontrol gerektirir.\n\nModelin tüm özellikleri ve üçüncü taraf araçlarla bağlantıları aynı anda sunulmayabilir. Ekipler, üretim sürecine eklemeden önce kullanım koşullarını ve çıktının ticari kullanıma uygunluğunu incelemelidir. Haber, Canva duyurusuna ilişkin güncel teknoloji haberlerinden derlenmiştir.",
+      "category": "apps",
+      "dateISO": "2026-10-23",
+      "dateDisplay": "23 Ekim 2026",
+      "publishedAt": "2026-10-23T17:15:00Z",
+      "author": "Gasim Piraliyev",
+      "status": "published",
+      "approved": true,
+      "editorialApproved": true,
+      "editorialApproval": "approved",
+      "editorialOriginal": true,
+      "imageUrl": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=2200&q=85",
+      "imageAlt": "Dijital tasarım arayüzü ve yaratıcı çalışma",
+      "imageCredit": "Unsplash",
+      "imageLicense": "Unsplash License",
+      "sourceName": "TechCrunch / Canva",
+      "sourceUrl": "https://techcrunch.com/",
+      "sources": [
+        {
+          "name": "Tech news roundup — Canva Craft image model launch",
+          "url": "https://aidr.today/date/2026-10-23?lang=en"
         }
       ]
     }
