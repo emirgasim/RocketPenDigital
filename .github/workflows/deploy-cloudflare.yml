@@ -138,11 +138,11 @@ jobs:
           PY
             for LANG in tr en ar; do
               curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/" -o "/tmp/news-$LANG.html"
-              grep -q 'news.js?v=20261023-12' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261023-12."; exit 1; }
+              grep -q 'news.js?v=20261023-13' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261023-13."; exit 1; }
               grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no headline slider."; exit 1; }
               grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no archive list."; exit 1; }
             done
           done
-          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261023-12" -o /tmp/news.js
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261023-13" -o /tmp/news.js
           node --check /tmp/news.js
           echo "Smoke test passed: worker and custom domain JSON, all three editions, current HTML, slider, archive list, and JS syntax."
