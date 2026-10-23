@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build multilingual news data and a unique original editorial illustration for every story."""
 import datetime,difflib,hashlib,html,json,random,re,shutil,zipfile,urllib.parse,urllib.request,concurrent.futures
+from functools import lru_cache
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/"news/data/news.json";IMAGE_DIR=ROOT/"news/assets/generated"
 ARCHIVES={"tr":ROOT/"RocketPenTech_500_News_Gasim_Piraliyev.zip","ar":ROOT/"RocketPenTech_500_Arapca_Haber.zip","en":ROOT/"RocketPenTech_500_Ingilizce_Haber.zip"}
@@ -67,12 +68,16 @@ def illustration_svg(story):
  else:p.extend([f'<path d="M780 220 H1060 Q1090 220 1090 250 V365 Q1090 395 1060 395 H930 L870 445 V395 H780 Q750 395 750 365 V250 Q750 220 780 220Z" fill="{c1}" stroke="{accent}" stroke-width="8"/>',f'<circle cx="820" cy="307" r="11" fill="{accent}"/><circle cx="870" cy="307" r="11" fill="{glow}"/><circle cx="920" cy="307" r="11" fill="{accent}"/>'])
  p.extend([f'<path d="M70 70 H130" stroke="{accent}" stroke-width="6" stroke-linecap="round"/>',f'<text x="70" y="112" fill="{glow}" font-family="Arial,sans-serif" font-size="23" font-weight="800" letter-spacing="3">ROCKETPEN TECH</text>',f'<text x="70" y="154" fill="{accent}" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2">{label}</text>',f'<text x="70" y="606" fill="{glow}" font-family="Arial,sans-serif" font-size="15" letter-spacing="3">ORIGINAL EDITORIAL ILLUSTRATION</text>',f'<text x="1125" y="606" text-anchor="end" fill="{accent}" font-family="Arial,sans-serif" font-size="16" font-weight="700">{html.escape(slug.upper())}</text>','</svg>']);return "".join(p)
 
+@lru_cache(maxsize=20000)
 def normalized_title(value):
  return re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",value.casefold(),flags=re.UNICODE)).strip()
+@lru_cache(maxsize=20000)
+def title_word_set(value):
+ return frozenset(normalized_title(value).split())
 def title_is_similar(left,right):
  a,b=normalized_title(left),normalized_title(right)
  if not a or not b:return False
- wa,wb=set(a.split()),set(b.split())
+ wa,wb=title_word_set(left),title_word_set(right)
  if min(len(wa),len(wb))>=4 and len(wa&wb)/max(1,len(wa|wb))>=0.72:return True
  if a.split()[:2]==b.split()[:2] and abs(len(a)-len(b))<=max(8,int(min(len(a),len(b))*0.18)) and difflib.SequenceMatcher(None,a,b).ratio()>=0.84:return True
  return False
