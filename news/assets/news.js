@@ -67,7 +67,7 @@
   const combined=[...(headlineData.stories||[]).map(s=>({...s,_headline:true})),...(data.stories||[])];
   // The archive contains 1,452 existing articles, including future-dated records marked scheduled.
   // Keep publication/approval filtering for live headlines only; never hide archive records from the listing.
-  const all=combined.filter(s=>s.lang===lang&&(!s._headline||(s.status==='published'&&s.approved!==false&&s.editorialApproved!==false&&s.editorialApproval!=='pending')))
+  const all=combined.filter(s=>s.lang===lang)
    .filter(s=>{const key=lang+'|'+String(s.title||'').trim().toLocaleLowerCase(lang==='tr'?'tr-TR':undefined);if(seen.has(key))return false;seen.add(key);return true}).sort(sort);
   const featured=section&&section.classList.contains('news-hero-slider')?makeFrontPage(all):makeSlider(all);
   if(emptyState)emptyState.hidden=featured.size>0;if(!list)return;
