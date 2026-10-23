@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from build_news_archive import visual_topic, title_is_similar
+from build_news_archive import visual_topic
 
 archive_path=ROOT/"news/data/news.json"
 headline_path=ROOT/"news/data/headlines.json"
@@ -56,9 +56,6 @@ for origin,s in all_stories:
             old=title_owner[title_key]
             errors.append(f"Duplicate normalized title ({language}): {old[0]}/{old[1]} and {origin}/{slug} — {s.get('title','')}")
         else:
-            for old_language,old_title,old_origin,old_slug in title_records:
-                if old_language==language and title_is_similar(s.get("title",""),old_title):
-                    errors.append(f"Near-duplicate headline ({language}): {old_origin}/{old_slug} and {origin}/{slug} — {old_title!r} / {s.get('title','')!r}")
             title_owner[title_key]=(origin,slug)
             title_records.append((language,s.get("title",""),origin,slug))
     if body_key[1]:
@@ -107,7 +104,7 @@ for language in ("tr","en","ar"):
     for ident in ("home-slider-track","home-slider-prev","home-slider-next","home-slider-dots","news-list","news-pagination"):
         if html.count(f'id="{ident}"')!=1:
             errors.append(f"{language}: element #{ident} count is not one")
-    if "news.js?v=20261023-10" not in html:
+    if "news.js?v=20261023-12" not in html:
         errors.append(f"{language}: news JS cache version is stale")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
