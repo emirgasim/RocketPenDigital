@@ -72,9 +72,10 @@ def normalized_title(value):
 def title_is_similar(left,right):
  a,b=normalized_title(left),normalized_title(right)
  if not a or not b:return False
- if difflib.SequenceMatcher(None,a,b).ratio()>=0.84:return True
  wa,wb=set(a.split()),set(b.split())
- return min(len(wa),len(wb))>=4 and len(wa&wb)/max(1,min(len(wa),len(wb)))>=0.78
+ if min(len(wa),len(wb))>=4 and len(wa&wb)/max(1,len(wa|wb))>=0.72:return True
+ if abs(len(a)-len(b))<=max(8,int(min(len(a),len(b))*0.18)) and difflib.SequenceMatcher(None,a,b).ratio()>=0.84:return True
+ return False
 TITLE_STOPWORDS={
  "en":set("the a an and or but for to of in on at by with from as is are was were be been being this that these those how why what when where new latest after before over under into about can could will would may might its their they it".split()),
  "tr":set("ve veya ama için ile bir bu şu o da de olarak olan daha en nasıl neden ne yeni son göre arasında üzerine altında hakkında tarafından mı mi mu mü".split()),
