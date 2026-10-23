@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from build_news_archive import visual_topic
+from build_news_archive import visual_topic, title_is_similar
 
 archive_path=ROOT/"news/data/news.json"
 headline_path=ROOT/"news/data/headlines.json"
@@ -38,6 +38,7 @@ if dict(langs)!=data.get("counts",{}):
 # The language is part of each key so legitimate translations are not compared as duplicates.
 all_stories=[("archive",s) for s in stories]+[("headlines",s) for s in headline_stories]
 title_owner={}
+title_records=[]
 body_owner={}
 slugs=set()
 image_urls={}
@@ -55,7 +56,11 @@ for origin,s in all_stories:
             old=title_owner[title_key]
             errors.append(f"Duplicate normalized title ({language}): {old[0]}/{old[1]} and {origin}/{slug} — {s.get('title','')}")
         else:
+            for old_language,old_title,old_origin,old_slug in title_records:
+                if old_language==language and title_is_similar(s.get("title",""),old_title):
+                    errors.append(f"Near-duplicate headline ({language}): {old_origin}/{old_slug} and {origin}/{slug} — {old_title!r} / {s.get('title','')!r}")
             title_owner[title_key]=(origin,slug)
+            title_records.append((language,s.get("title",""),origin,slug))
     if body_key[1]:
         if body_key in body_owner:
             old=body_owner[body_key]
