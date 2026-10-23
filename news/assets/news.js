@@ -74,7 +74,12 @@
   const featured=section&&section.classList.contains('news-hero-slider')?makeFrontPage(all):makeSlider(all);
   if(emptyState)emptyState.hidden=featured.size>0;if(!list)return;
   const heading=$('#latest .section-head h2'),head=$('#latest .section-head');let stories=all;
-  if(selectedCategory){const filtered=all.filter(s=>s.category===selectedCategory);if(filtered.length)stories=filtered;else{stories=all.slice();if(heading)heading.textContent=t.all;if(head)notice(head,t.noCategory)}}else stories=all.filter(s=>!featured.has(s.slug));
+  if(selectedCategory){const filtered=all.filter(s=>s.category===selectedCategory);if(filtered.length)stories=filtered;else{stories=all.slice();if(heading)heading.textContent=t.all;if(head)notice(head,t.noCategory)}}else {
+   // Exclude a featured story from the archive only when that same slug exists in the persistent archive dataset.
+   // If the generated archive JSON is temporarily empty/unavailable during a deployment, never hide every headline.
+   const archiveSlugs=new Set((data.stories||[]).filter(s=>s.lang===lang).map(s=>s.slug));
+   stories=all.filter(s=>!featured.has(s.slug)||!archiveSlugs.has(s.slug));
+  }
   if(heading&&!(head&&head.querySelector('.archive-notice')))heading.textContent=catName(selectedCategory)||t.all;
   const pages=Math.max(1,Math.ceil(stories.length/pageSize)),p=Math.min(page,pages),pageStart=(p-1)*pageSize,pageItems=stories.slice(pageStart,page*pageSize),shown=pageItems;list.replaceChildren();
   if(!shown.length){const e=document.createElement('div');e.className='empty-list';e.textContent=featured.size?t.noArchive:t.empty;list.append(e)}
