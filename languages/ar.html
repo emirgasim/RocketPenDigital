@@ -419,7 +419,35 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 </style>
 <link rel="stylesheet" href="/asset/css/responsive-overrides.css">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
-<meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"></head>
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"><style>
+/* Freelance contact form and floating WhatsApp */
+.freelance-note{display:inline-flex;align-items:center;gap:9px;margin:17px 0 0;padding:9px 13px;border:1px solid rgba(255,235,0,.28);border-radius:999px;background:rgba(255,235,0,.055);color:rgba(255,255,255,.88);font-size:10px;font-weight:700;letter-spacing:.1em;line-height:1.5}
+.freelance-note:before{content:"";width:6px;height:6px;flex:0 0 6px;border-radius:50%;background:#ffeb00;box-shadow:0 0 12px rgba(255,235,0,.7)}
+.contact-grid{align-items:start}
+.contact-card{width:100%}
+.contact-location{margin:24px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.13)}
+.contact-location h3{margin:0 0 8px;color:#ffeb00;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.contact-location p{margin:0;color:rgba(255,255,255,.7);font-size:13px;line-height:1.8}
+.contact-email{display:inline-block;margin-top:12px;color:#ffeb00;text-decoration:none;overflow-wrap:anywhere}
+.contact-form{display:grid;gap:13px;margin-top:20px}
+.contact-form label{display:grid;gap:7px;color:rgba(255,255,255,.8);font-size:11px;font-weight:600;letter-spacing:.04em}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-width:0;border:1px solid rgba(255,255,255,.17);border-radius:12px;background:rgba(255,255,255,.045);color:#fff;padding:13px 14px;font:inherit;font-size:13px;outline:none;transition:border-color .2s,background .2s}
+.contact-form select option{background:#101114;color:#fff}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#ffeb00;background:rgba(255,255,255,.075)}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form .contact-submit{width:100%;justify-content:center;border:0;cursor:pointer}
+.contact-form .contact-submit:disabled{opacity:.65;cursor:wait}
+.contact-form .contact-privacy{display:block;margin:0;color:rgba(255,255,255,.5);font-size:10px;line-height:1.6}
+.contact-form-status{min-height:20px;margin:0;font-size:12px;line-height:1.6}
+.contact-form-status.success{color:#b7f7c2}.contact-form-status.error{color:#ffaaa7}
+.whatsapp-float{position:fixed;right:22px;top:50%;z-index:9999;width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:#25D366;color:#fff;box-shadow:0 8px 30px rgba(0,0,0,.32),0 0 0 5px rgba(37,211,102,.12);text-decoration:none;transform:translateY(-50%);transition:transform .2s,box-shadow .2s}
+.whatsapp-float:hover{transform:translateY(-50%) scale(1.07);box-shadow:0 10px 36px rgba(0,0,0,.4),0 0 0 7px rgba(37,211,102,.16)}
+.whatsapp-float svg{width:29px;height:29px;display:block}
+.whatsapp-float:focus-visible{outline:3px solid #ffeb00;outline-offset:4px}
+@media(max-width:680px){.freelance-note{font-size:9px;letter-spacing:.07em;max-width:100%}.whatsapp-float{right:14px;width:53px;height:53px}.contact-form{gap:11px}}
+@media(prefers-reduced-motion:reduce){.whatsapp-float,.contact-form input,.contact-form select,.contact-form textarea{transition:none}}
+</style>
+</head>
 <body class="arabic"><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 <div class="wrap">
 <header class="nav">
@@ -432,7 +460,7 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 <div class="hero-inner">
 <div class="eyebrow" data-i="eyebrow">استوديو إبداعي ورقمي مستقل</div>
 <h1><span data-i="heroLine1">مرحباً</span><span class="line2" data-i="heroLine2">يا أهل الأرض.</span></h1>
-<p class="hero-sub" data-i="heroSub">نحوّل الأفكار الطموحة إلى علامات تجارية متميزة وتجارب رقمية مؤثرة وزخم يدفع الأعمال إلى الأمام.</p>
+<p class="hero-sub" data-i="heroSub">نحوّل الأفكار الطموحة إلى علامات تجارية متميزة وتجارب رقمية مؤثرة وزخم يدفع الأعمال إلى الأمام.</p><div class="freelance-note">استوديو مستقل للعمل الحر · خدمات عن بُعد حول العالم</div>
 <div class="hero-actions"><a class="btn" href="#contact"><span data-i="heroCta">لنبنِ شيئاً استثنائياً</span></a><a class="text-link" href="#story"><span data-i="discover">اكتشف روكيت بن</span></a></div>
 </div>
 <div class="hero-bottom-copy">
@@ -502,7 +530,33 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
   </div>
 </section>
 
-<section class="contact" id="contact"><div class="section-inner contact-grid"><div class="reveal"><div class="kicker" data-i="contactKicker">فصلك القادم يبدأ من هنا</div><h2 data-i="contactTitle">لديك فكرة كبيرة؟<br><span>فلنطلقها معاً.</span></h2><p class="contact-desc" data-i="contactDesc">نعمل مع الشركات في تركيا والإمارات العربية المتحدة وقطر، مع تكييف الاستراتيجية الرقمية والمواقع والمحتوى بما يناسب كل سوق.</p></div><div class="contact-card reveal"><div class="kicker" data-i="contactCardKicker">لنجعلها حقيقة</div><p data-i="contactCardText">شاركنا نبذة عن مشروعك ودعنا نبدأ من هناك.</p><a class="btn" href="https://www.instagram.com/rocketpendigital/" target="_blank" rel="noopener"><span data-i="contactCta">ابدأ المحادثة</span></a><div class="contact-links"><a href="https://www.instagram.com/rocketpendigital/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/RocketPenDigital" target="_blank" rel="noopener">Facebook</a></div></div></div></section>
+<section class="contact" id="contact"><div class="section-inner contact-grid">
+  <div class="reveal">
+    <div class="kicker" data-i="contactKicker">فصلك القادم يبدأ من هنا</div>
+    <h2 data-i="contactTitle">لديك فكرة كبيرة؟<br><span>فلنطلقها معاً.</span></h2>
+    <p class="contact-desc">نحن استوديو مستقل للعمل الحر ونقدم خدماتنا عن بُعد. موقعنا؟ جئنا من الفضاء، ونحن حيثما يتوفر الإنترنت وجهاز متصل به.</p>
+    <div class="freelance-note">استوديو مستقل للعمل الحر · خدمات عن بُعد حول العالم</div>
+    <div class="contact-location"><h3>موقعنا</h3><p>جئنا من الفضاء، لكننا عملياً موجودون حيثما يتوفر الإنترنت وجهاز متصل به. نعمل عن بُعد مع عملاء من جميع أنحاء العالم.</p><a class="contact-email" href="mailto:rocketpendigital@gmail.com">rocketpendigital@gmail.com</a></div>
+  </div>
+  <div class="contact-card reveal">
+    <div class="kicker">لنجعلها حقيقة</div>
+    <h3 style="margin:8px 0 0;font-size:clamp(20px,2vw,27px);line-height:1.25">أخبرنا عن مشروعك</h3>
+    <p>املأ النموذج وستُرسل رسالتك إلى rocketpendigital@gmail.com.</p>
+    <form class="contact-form" data-contact-form>
+      <input type="hidden" name="_subject" value="New RocketPen Digital website enquiry">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:1px;width:1px">
+      <label>الاسم<input name="name" autocomplete="name" required maxlength="100" placeholder="الاسم"></label>
+      <label>البريد الإلكتروني<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="البريد الإلكتروني"></label>
+      <label>ما الخدمة التي تحتاجها؟<select name="service" required><option value="" disabled selected>اختر خدمة</option><option value="branding">العلامة التجارية والهوية</option><option value="web">المواقع والتجارب الرقمية</option><option value="design">التصميم الجرافيكي</option><option value="video">الفيديو والموشن</option><option value="social">التواصل الاجتماعي والمحتوى</option><option value="seo">تحسين محركات البحث والنمو الرقمي</option><option value="other">خدمة أخرى</option></select></label>
+      <label>تفاصيل المشروع<textarea name="message" required minlength="10" maxlength="5000" placeholder="أخبرنا باختصار عن فكرتك وأهدافك والجدول الزمني…"></textarea></label>
+      <button class="btn contact-submit" type="submit">إرسال الرسالة</button>
+      <p class="contact-privacy">بإرسال النموذج، توافق على استخدام بياناتك للرد على استفسارك.</p>
+      <p class="contact-form-status" aria-live="polite" role="status"></p>
+    </form>
+    <div class="contact-links"><a href="https://www.instagram.com/rocketpendigital/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/RocketPenDigital" target="_blank" rel="noopener">Facebook</a></div>
+  </div>
+</div></section>
 <section class="portfolio-section" id="portfolio" aria-labelledby="portfolioTitle"><div class="section-inner">
   <div class="portfolio-header reveal"><div><div class="kicker" data-i="portfolioKicker">نماذج مختارة</div><h2 class="section-title" id="portfolioTitle" data-i="portfolioTitle">أفكار تصبح <em>مرئية.</em></em></h2></div><p data-i="portfolioIntro">استكشف التوجهات الإبداعية والتجارب الرقمية ومفاهيم العلامات التجارية من استوديو RocketPen.</p></div>
   <div class="portfolio-filters reveal" role="group" aria-label="تصفية نماذج الأعمال">
@@ -739,6 +793,37 @@ document.documentElement.classList.add('js-ready');
     if(event.key==='ArrowLeft'){event.preventDefault();show(active+(document.documentElement.dir==='rtl'?1:-1))}
     if(event.key==='ArrowRight'){event.preventDefault();show(active+(document.documentElement.dir==='rtl'?-1:1))}
   });
+})();
+</script>
+<a class="whatsapp-float" href="https://wa.me/905050796577" target="_blank" rel="noopener noreferrer" aria-label="تواصل مع RocketPen عبر واتساب" title="تواصل مع RocketPen عبر واتساب">
+<svg viewBox="0 0 32 32" aria-hidden="true" fill="none"><path d="M16 3.2A12.35 12.35 0 0 0 5.4 21.9L3.7 28.3l6.55-1.72A12.4 12.4 0 1 0 16 3.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12.1 10.1c-.35-.8-.72-.82-1.05-.84h-.9c-.3 0-.8.11-1.22.58-.42.46-1.6 1.56-1.6 3.8s1.64 4.42 1.87 4.73c.23.3 3.17 5.08 7.83 6.92 3.87 1.53 4.66 1.23 5.5 1.15.84-.08 2.7-1.1 3.08-2.17.38-1.07.38-1.98.27-2.17-.11-.19-.42-.3-.88-.53-.46-.23-2.7-1.33-3.12-1.48-.42-.15-.73-.23-1.04.23-.31.46-1.19 1.48-1.46 1.79-.27.31-.54.35-1 .12-.46-.23-1.94-.71-3.7-2.26-1.37-1.22-2.3-2.73-2.57-3.19-.27-.46-.03-.71.2-.94.2-.2.46-.54.69-.81.23-.27.3-.46.46-.77.15-.31.08-.58-.04-.81-.11-.23-1.03-2.48-1.42-3.38Z" fill="currentColor" transform="translate(2 0) scale(.82)"/></svg></a>
+<script>
+(function(){
+ const form=document.querySelector('[data-contact-form]');
+ if(!form||form.dataset.ready==='true')return;
+ form.dataset.ready='true';
+ const button=form.querySelector('button[type="submit"]');
+ const status=form.querySelector('.contact-form-status');
+ const initialLabel=button.textContent;
+ form.addEventListener('submit',async function(event){
+   event.preventDefault();
+   if(!form.reportValidity())return;
+   const data=Object.fromEntries(new FormData(form).entries());
+   if(data._honey){status.textContent="شكراً لك! تم إرسال رسالتك. سنعود إليك قريباً.";status.className='contact-form-status success';form.reset();return;}
+   button.disabled=true;button.textContent="جارٍ الإرسال…";
+   status.textContent='';status.className='contact-form-status';
+   try{
+     const response=await fetch('https://formsubmit.co/ajax/rocketpendigital@gmail.com',{
+       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+       body:JSON.stringify(data)
+     });
+     const result=await response.json().catch(()=>({}));
+     if(!response.ok||result.success===false)throw new Error('Submission failed');
+     status.textContent="شكراً لك! تم إرسال رسالتك. سنعود إليك قريباً.";status.className='contact-form-status success';form.reset();
+   }catch(error){
+     status.textContent="تعذر إرسال الرسالة الآن. حاول مرة أخرى أو راسل rocketpendigital@gmail.com مباشرةً.";status.className='contact-form-status error';
+   }finally{button.disabled=false;button.textContent=initialLabel;}
+ });
 })();
 </script>
 </body>
