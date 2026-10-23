@@ -292,35 +292,6 @@
           "url": "https://www.techrepublic.com/article/news-oppo-find-x10-series-global-launch/"
         }
       ]
-    },
-    {
-      "slug": "rpt-2026-10-23-canva-craft-image-model",
-      "lang": "tr",
-      "title": "Canva Craft görsel modelini duyurdu: Tasarım şablonları üretimin merkezinde",
-      "summary": "Canva’nın Craft modeli, görsel üretiminde tasarım şablonları ve düzenlenebilir çıktılara odaklanıyor. Tasarımcılar için önemli soru, oluşturulan görselin yalnızca etkileyici görünmesi değil, düzenlenebilir bir iş akışına ne kadar uyduğu.",
-      "body": "## Tasarım odaklı görsel üretimi\nCanva’nın yeni Craft görsel modeli, insan tasarımcıların hazırladığı şablonlardan ve kompozisyon ilkelerinden yararlanarak görsel üretmeyi hedefliyor. Bu yaklaşım, tek başına bir görsel üretmekten ziyade tasarım düzeni ve sonradan düzenleme ihtiyacına odaklanıyor.\n\n## Tasarımcılar için ne değişebilir?\nŞablon tabanlı üretim, sosyal medya gönderileri, sunumlar ve pazarlama materyallerinde ilk taslağı hızlandırabilir. Ancak marka tutarlılığı, metin doğruluğu, lisans koşulları ve düzenlenebilir öğelerin gerçekten kullanılabilir olması yine kontrol gerektirir.\n\nModelin tüm özellikleri ve üçüncü taraf araçlarla bağlantıları aynı anda sunulmayabilir. Ekipler, üretim sürecine eklemeden önce kullanım koşullarını ve çıktının ticari kullanıma uygunluğunu incelemelidir. Haber, Canva duyurusuna ilişkin güncel teknoloji haberlerinden derlenmiştir.",
-      "category": "apps",
-      "dateISO": "2026-10-23",
-      "dateDisplay": "23 Ekim 2026",
-      "publishedAt": "2026-10-23T17:15:00Z",
-      "author": "Gasim Piraliyev",
-      "status": "published",
-      "approved": true,
-      "editorialApproved": true,
-      "editorialApproval": "approved",
-      "editorialOriginal": true,
-      "imageUrl": "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&fit=crop&w=2200&q=85",
-      "imageAlt": "Dijital tasarım arayüzü ve yaratıcı çalışma",
-      "imageCredit": "Unsplash",
-      "imageLicense": "Unsplash License",
-      "sourceName": "TechCrunch / Canva",
-      "sourceUrl": "https://techcrunch.com/",
-      "sources": [
-        {
-          "name": "Tech news roundup — Canva Craft image model launch",
-          "url": "https://aidr.today/date/2026-10-23?lang=en"
-        }
-      ]
     }
   ]
 }
