@@ -78,7 +78,7 @@
    // Exclude a featured story from the archive only when that same slug exists in the persistent archive dataset.
    // If the generated archive JSON is temporarily empty/unavailable during a deployment, never hide every headline.
    const archiveSlugs=new Set((data.stories||[]).filter(s=>s.lang===lang).map(s=>s.slug));
-   stories=all.filter(s=>!featured.has(s.slug)||!archiveSlugs.has(s.slug));
+   stories=all.filter(s=>!featured.has(s.slug));
   }
   if(heading&&!(head&&head.querySelector('.archive-notice')))heading.textContent=catName(selectedCategory)||t.all;
   const pages=Math.max(1,Math.ceil(stories.length/pageSize)),p=Math.min(page,pages),pageStart=(p-1)*pageSize,pageItems=stories.slice(pageStart,page*pageSize),shown=pageItems;list.replaceChildren();
