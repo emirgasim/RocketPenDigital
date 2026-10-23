@@ -118,7 +118,23 @@ footer{max-width:1600px;margin:0 auto;padding:24px var(--pad);border-top:1px sol
 }
 
 .review-list-customer{margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);color:#a6abb5;font-size:12px;letter-spacing:.25px}.review-list-customer span{color:#f0f1f3;font-weight:600;letter-spacing:1px}
-\n.review-contact{margin:76px auto 0;padding:clamp(28px,5vw,64px);max-width:1500px;border:1px solid rgba(255,235,0,.24);background:radial-gradient(ellipse at 8% 0,rgba(255,235,0,.09),transparent 38%),linear-gradient(135deg,#11141a,#090b10)}.review-contact-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.review-contact-copy h2{max-width:700px;margin:0 0 18px;font:600 clamp(34px,5vw,64px)/1.02 var(--display);letter-spacing:-.055em}.review-contact-copy p{max-width:600px;color:#b8bec8;font-size:15px;line-height:1.8;margin:0}.review-contact-actions{display:grid;gap:10px}.review-contact-link{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 17px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.025);color:#f3f4f6;font-size:13px;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}.review-contact-link:hover{border-color:rgba(255,235,0,.55);background:rgba(255,235,0,.06);transform:translateY(-2px)}.review-contact-link.primary{background:var(--yellow);color:#08090d;border-color:var(--yellow);font-weight:700}.review-contact-link.primary:hover{background:#fff;color:#08090d}.review-contact-email{margin:5px 0 0;color:#aeb4be;font-size:12px;overflow-wrap:anywhere}\n@media(max-width:760px){.review-contact{margin-top:48px;padding:25px 20px}.review-contact-inner{grid-template-columns:1fr;gap:25px}.review-contact-copy h2{font-size:clamp(32px,9vw,46px)}.review-contact-copy p{font-size:14px}.review-contact-link{font-size:12px}.review-list{grid-template-columns:1fr}}\n</style>
+
+.review-contact{margin:76px auto 0;padding:clamp(28px,5vw,64px);max-width:1500px;border:1px solid rgba(255,235,0,.24);background:radial-gradient(ellipse at 8% 0,rgba(255,235,0,.09),transparent 38%),linear-gradient(135deg,#11141a,#090b10)}.review-contact-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.review-contact-copy h2{max-width:700px;margin:0 0 18px;font:600 clamp(34px,5vw,64px)/1.02 var(--display);letter-spacing:-.055em}.review-contact-copy p{max-width:600px;color:#b8bec8;font-size:15px;line-height:1.8;margin:0}.review-contact-actions{display:grid;gap:10px}.review-contact-link{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 17px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.025);color:#f3f4f6;font-size:13px;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}.review-contact-link:hover{border-color:rgba(255,235,0,.55);background:rgba(255,235,0,.06);transform:translateY(-2px)}.review-contact-link.primary{background:var(--yellow);color:#08090d;border-color:var(--yellow);font-weight:700}.review-contact-link.primary:hover{background:#fff;color:#08090d}.review-contact-email{margin:5px 0 0;color:#aeb4be;font-size:12px;overflow-wrap:anywhere}
+@media(max-width:760px){.review-contact{margin-top:48px;padding:25px 20px}.review-contact-inner{grid-template-columns:1fr;gap:25px}.review-contact-copy h2{font-size:clamp(32px,9vw,46px)}.review-contact-copy p{font-size:14px}.review-contact-link{font-size:12px}.review-list{grid-template-columns:1fr}}\n
+/* Final responsive repair: never squeeze review cards into five columns on phones. */
+.review-list{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (min-width:761px) and (max-width:1100px){.review-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){
+  main{padding-left:20px;padding-right:20px}
+  .review-list{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:14px!important;width:100%;max-width:100%}
+  .review-list-card{width:100%;min-width:0;min-height:0;padding:22px 20px}
+  .review-list-copy{font-size:14px;line-height:1.75;overflow-wrap:anywhere}
+  .review-list-category{font-size:9px;letter-spacing:.7px;overflow-wrap:anywhere}
+  .review-contact{margin-top:42px;padding:24px 20px}
+  .review-contact-inner{grid-template-columns:minmax(0,1fr);gap:22px}
+}
+
+</style>
 </head>
 <body class="arabic">
 <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
