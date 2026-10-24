@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: daily-digital-blog
+  group: daily-digital-blog-v2
   cancel-in-progress: true
 
 jobs:
