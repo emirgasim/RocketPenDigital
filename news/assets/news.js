@@ -65,22 +65,23 @@
   fetch('/news/data/news.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('archive unavailable');return r.json()}),
   fetch('/news/data/headlines.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}))
  ]).then(([data,headlineData])=>{
-  const seen=new Set();
-  const combined=[...(headlineData.stories||[]).map(s=>({...s,_headline:true})),...(data.stories||[])];
-  // Apply publication-state filtering only to the live headline feed. Preserve the full historical
-  // archive (including older bulk-imported stories) so every eligible archive item remains paginated below.
-  const all=combined.filter(s=>s.lang===lang&&(!s._headline||(s.status!=='scheduled'&&s.status!=='draft'&&s.status!=='pending')))
-   .filter(s=>{const key=lang+'|'+String(s.title||'').trim().toLocaleLowerCase(lang==='tr'?'tr-TR':undefined);if(seen.has(key))return false;seen.add(key);return true}).sort(sort);
-  const featured=section&&section.classList.contains('news-hero-slider')?makeFrontPage(all):makeSlider(all);
+  // Keep the current headline feed and the historical bulk archive in separate pagination ranges:
+  // page 1 = current feed (excluding the ten stories already shown in the slider);
+  // page 2 onward = the older archive, 20 stories per page.
+  const unique=(items)=>{const seen=new Set();return items.filter(s=>{const key=lang+'|'+String(s.title||'').trim().toLocaleLowerCase(lang==='tr'?'tr-TR':undefined);if(seen.has(key))return false;seen.add(key);return true}).sort(sort)};
+  const current=unique((headlineData.stories||[]).filter(s=>s.lang===lang&&s.status!=='scheduled'&&s.status!=='draft'&&s.status!=='pending').map(s=>({...s,_headline:true})));
+  const archive=unique((data.stories||[]).filter(s=>s.lang===lang).map(s=>({...s,_archive:true})));
+  const featured=section&&section.classList.contains('news-hero-slider')?makeFrontPage(current):makeSlider(current);
   if(emptyState)emptyState.hidden=featured.size>0;if(!list)return;
-  const heading=$('#latest .section-head h2'),head=$('#latest .section-head');let stories=all;
-  if(selectedCategory){const filtered=all.filter(s=>s.category===selectedCategory);if(filtered.length)stories=filtered;else{stories=all.slice();if(heading)heading.textContent=t.all;if(head)notice(head,t.noCategory)}}else {
-   // Keep the full published archive visible; only the ten active slider stories are omitted below.
-   stories=all.filter(s=>!featured.has(s.slug));
-  }
-  if(heading&&!(head&&head.querySelector('.archive-notice')))heading.textContent=catName(selectedCategory)||t.all;
-  const pages=Math.max(1,Math.ceil(stories.length/pageSize)),p=Math.min(page,pages),pageStart=(p-1)*pageSize,pageItems=stories.slice(pageStart,page*pageSize),shown=pageItems;list.replaceChildren();
-  if(!shown.length){const e=document.createElement('div');e.className='empty-list';e.textContent=featured.size?t.noArchive:t.empty;list.append(e)}
+  const heading=$('#latest .section-head h2'),head=$('#latest .section-head');
+  let currentFeed=current.filter(s=>!featured.has(s.slug)),oldArchive=archive;
+  if(selectedCategory){currentFeed=currentFeed.filter(s=>s.category===selectedCategory);oldArchive=oldArchive.filter(s=>s.category===selectedCategory)}
+  if(heading)heading.textContent=selectedCategory?(catName(selectedCategory)||t.all):t.all;
+  if(selectedCategory&&!currentFeed.length&&!oldArchive.length&&head)notice(head,t.noCategory);
+  const archivePages=Math.ceil(oldArchive.length/pageSize),pages=Math.max(1,1+archivePages),p=Math.min(page,pages);
+  const shown=p===1?currentFeed:oldArchive.slice((p-2)*pageSize,(p-1)*pageSize);
+  list.replaceChildren();
+  if(!shown.length){const e=document.createElement('div');e.className='empty-list';e.textContent=p===1?(featured.size?t.noArchive:t.empty):t.empty;list.append(e)}
   shown.forEach((s,i)=>{const card=document.createElement('article');card.className='archive-card'+(i===0&&p===1?' archive-card-featured':'');card.dataset.storySlug=s.slug;const img=makeImage(s);if(img)card.append(img);const cat=document.createElement('span');cat.className='category';cat.textContent=catName(s.category);const h=document.createElement('h3'),a=document.createElement('a');a.href=href(s);a.textContent=s.title;h.append(a);const summary=document.createElement('p');summary.className='archive-summary';summary.textContent=s.summary||'';const meta=document.createElement('p');meta.className='archive-meta';meta.textContent=[t.date+': '+(s.dateDisplay||s.dateISO||''),s.author||'Gasim Piraliyev'].filter(Boolean).join(' · ');const read=document.createElement('a');read.className='archive-read';read.href=a.href;read.textContent=t.read;card.append(cat,h,summary,meta,read);list.append(card)});pagination($('#news-pagination'),p,pages)
 }).catch(()=>{if(emptyState)emptyState.hidden=false;for(const target of [track,$('#frontpage-content'),list])if(target){target.replaceChildren();const e=document.createElement(target===track?'p':'div');e.className='empty-list';e.textContent=t.empty;target.append(e)}});
 })();
