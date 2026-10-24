@@ -209,7 +209,7 @@ jobs:
           else: raise SystemExit("No published story for "+lang)
           PY
           )
-            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$SEO_BASE/news/$LANG/articles/$SLUG.html" -o "/tmp/story-$LANG.html"
+            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$SEO_BASE/news/$LANG/articles/$SLUG" -o "/tmp/story-$LANG.html"
             grep -q 'rel="canonical"' "/tmp/story-$LANG.html" || { echo "Missing canonical on $SEO_BASE/news/$LANG/articles/$SLUG.html; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
             grep -q 'application/ld+json' "/tmp/story-$LANG.html" || { echo "Missing NewsArticle structured data on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
             grep -q 'name="description"' "/tmp/story-$LANG.html" || { echo "Missing description on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }

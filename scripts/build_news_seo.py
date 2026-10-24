@@ -76,7 +76,7 @@ def desc(story):
  return text[:157].rstrip()+("…" if len(text)>157 else "")
 
 def url_of(story):
- return BASE+"/news/"+story["lang"]+"/articles/"+story["slug"]+".html"
+ return BASE+"/news/"+story["lang"]+"/articles/"+story["slug"]
 
 def family(story):
  m=re.fullmatch(r"(rpt-.+)-(tr|en|ar)",story["slug"])
