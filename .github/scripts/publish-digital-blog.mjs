@@ -21,6 +21,17 @@ const L = {
 };
 const TOPICS = {
  en:[
+  ['premium-website-agency','How to choose a premium website design agency for a high-value business','web-seo','buyer-intent'],
+  ['website-not-generating-leads','Why a business website gets visits but few qualified enquiries—and how to fix it','digital-growth','buyer-intent'],
+  ['international-client-website','How to build a multilingual website that converts international clients','web-seo','buyer-intent'],
+  ['luxury-brand-digital-presence','How luxury and premium brands can create a digital presence that earns trust','brand-strategy','buyer-intent'],
+  ['digital-agency-selection','Questions to ask before hiring a digital marketing agency','digital-growth','buyer-intent'],
+  ['wasted-ad-spend-audit','What to check when paid ads spend money without bringing qualified leads','digital-growth','buyer-intent'],
+  ['real-estate-qualified-leads','How premium real estate firms can attract more qualified property enquiries online','industry-guides','buyer-intent'],
+  ['b2b-lead-generation-website','How B2B companies can turn their website into a more reliable lead channel','digital-growth','buyer-intent'],
+  ['brand-repositioning-business','When a growing company should invest in brand repositioning and a website refresh','brand-strategy','buyer-intent'],
+  ['uae-gulf-digital-agency','How to prepare a digital presence for reaching premium clients in the UAE and Gulf','digital-growth','buyer-intent'],
+
  ['brand-positioning','Brand positioning for growing service businesses','brand-strategy'],
  ['brand-message','Writing a brand message customers understand quickly','brand-strategy'],
  ['visual-identity','Creating a flexible visual identity system','brand-strategy'],
@@ -53,6 +64,17 @@ const TOPICS = {
  ['professional-services','Explaining complex professional services simply online','industry-guides']
  ],
  tr:[
+  ['premium-web-tasarim-ajansi-secimi','Premium web tasarım ajansı nasıl seçilir? İşletmeler için karar rehberi','web-seo','buyer-intent'],
+  ['site-var-musteri-yok','Web sitesi ziyaretçi alıyor ama müşteri getirmiyorsa ne yapılmalı?','digital-growth','buyer-intent'],
+  ['yabanci-musteri-cok-dilli-site','Yurt dışından müşteri kazanmak için çok dilli web sitesi nasıl planlanır?','web-seo','buyer-intent'],
+  ['ust-segment-marka-dijital-guven','Üst segment markalar internette nasıl güven veren bir görünüm oluşturur?','brand-strategy','buyer-intent'],
+  ['dijital-ajans-secim-sorulari','Dijital ajans seçmeden önce sorulması gereken sorular','digital-growth','buyer-intent'],
+  ['reklam-butcesi-verimsiz','Reklam bütçesi harcanıyor ama nitelikli müşteri gelmiyorsa kontrol listesi','digital-growth','buyer-intent'],
+  ['gayrimenkul-nitelikli-talep','Gayrimenkul firmaları internetten nitelikli müşteri taleplerini nasıl artırabilir?','industry-guides','buyer-intent'],
+  ['b2b-musteri-adayi-web','B2B işletmeler web sitesinden daha fazla müşteri adayı nasıl kazanabilir?','digital-growth','buyer-intent'],
+  ['marka-yenileme-zamani','Bir işletme marka kimliğini ve web sitesini ne zaman yenilemeli?','brand-strategy','buyer-intent'],
+  ['dubai-korfez-musteri-kazanimi','Dubai ve Körfez bölgesinden müşteri hedefleyen işletmeler için dijital hazırlık','digital-growth','buyer-intent'],
+
  ['marka-konumlandirma','Büyüyen işletmeler için marka konumlandırma rehberi','brand-strategy'],
  ['marka-mesaji','Müşterinin hızlıca anlayacağı marka mesajı oluşturmak','brand-strategy'],
  ['gorsel-kimlik','Tutarlı ve esnek bir görsel kimlik sistemi kurmak','brand-strategy'],
@@ -85,6 +107,17 @@ const TOPICS = {
  ['profesyonel-hizmet','Karmaşık profesyonel hizmetleri internette sade anlatmak','industry-guides']
  ],
  ar:[
+  ['premium-website-agency-gulf','كيف تختار شركة تصميم مواقع احترافية تناسب نشاطك التجاري في الخليج؟','web-seo','buyer-intent'],
+  ['website-no-qualified-leads-ar','لماذا يجذب موقع الشركة زيارات دون استفسارات جادة؟ خطوات عملية للتحسين','digital-growth','buyer-intent'],
+  ['multilingual-site-international-ar','كيف تبني موقعاً متعدد اللغات يجذب العملاء الدوليين ويخدم احتياجاتهم؟','web-seo','buyer-intent'],
+  ['premium-brand-digital-trust-ar','كيف تبني العلامات التجارية الفاخرة حضوراً رقمياً يعزز الثقة؟','brand-strategy','buyer-intent'],
+  ['choose-digital-agency-gulf','ما الأسئلة التي ينبغي طرحها قبل التعاقد مع وكالة تسويق رقمي؟','digital-growth','buyer-intent'],
+  ['ads-spend-no-leads-gulf','ماذا تفعل عندما تنفق الإعلانات ميزانيتك دون استفسارات مؤهلة؟','digital-growth','buyer-intent'],
+  ['luxury-real-estate-leads-gulf','كيف تجذب شركات العقارات الفاخرة استفسارات أكثر جدية عبر الإنترنت؟','industry-guides','buyer-intent'],
+  ['b2b-lead-generation-ar','كيف يمكن لشركات الأعمال جذب عملاء محتملين من خلال الموقع الإلكتروني؟','digital-growth','buyer-intent'],
+  ['brand-refresh-business-ar','متى تحتاج الشركة إلى تحديث هويتها التجارية وموقعها الإلكتروني؟','brand-strategy','buyer-intent'],
+  ['premium-clients-uae-qatar-ar','كيف تستعد الشركات لاستهداف العملاء ذوي القيمة العالية في الإمارات وقطر؟','digital-growth','buyer-intent'],
+
  ['gulf-brand-positioning','استراتيجية تموضع العلامة للشركات الخدمية في الإمارات وقطر','brand-strategy'],
  ['arabic-brand-message','صياغة رسالة علامة تجارية واضحة للجمهور العربي','brand-strategy'],
  ['arabic-visual-identity','بناء هوية بصرية مرنة ومتسقة للعلامة التجارية','brand-strategy'],
@@ -135,7 +168,7 @@ function words(a){return [a.title,a.description,a.excerpt,a.intro,a.answerSummar
 function validSlug(s){return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)&&s.length<=90}
 async function requestArticle(t,existingTitles,existingSlugs){
  const locale=L[t.lang];
- const instructions='You are the senior research editor for RocketPen Digital Studio. Use the built-in web_search tool before drafting and consult 3-5 trustworthy sources that directly support the article. Create original, people-first, non-commodity content with a distinct angle; never mass-produce near-duplicate pages. First research and infer the primary query/search intent (informational, commercial-investigation, transactional or navigational); do not invent search volume, keyword difficulty, market statistics, case studies, testimonials or first-hand experience. Use the primary keyword naturally in a descriptive title, introduction and relevant headings where appropriate, with related terms and concrete questions instead of keyword stuffing. Provide an answer-first summary (roughly 40-80 words) that directly answers the core query, then explain practical steps, decision criteria, examples, trade-offs, limitations and market-specific considerations. Use natural '+locale.name+' for this market: '+t.market+'. The article should be genuinely useful even if the reader never contacts us. Where relevant, explain what a customer should compare or prepare before hiring a studio. Build an ethical conversion path: the conversionBridge must connect the reader’s problem to a useful next step with RocketPen Digital Studio; the conversionLabel should be a concise, natural CTA in the article language, without pressure, false urgency or guaranteed outcomes. Write approximately 900-1,300 visible words, at least 6 substantive sections, two or more developed paragraphs per section, useful bullets, 4 specific FAQs and 3-5 HTTPS sources. Do not make rankings, traffic, revenue or legal/compliance promises. Return only the requested JSON schema; slugs must be unique ASCII kebab-case.';
+ const instructions='You are the senior research editor for RocketPen Digital Studio. Use the built-in web_search tool before drafting and consult 3-5 trustworthy sources that directly support the article. Create original, people-first, non-commodity content with a distinct angle; never mass-produce near-duplicate pages. First research and infer the primary query/search intent (informational, commercial-investigation, transactional or navigational); do not invent search volume, keyword difficulty, market statistics, case studies, testimonials or first-hand experience. Use the primary keyword naturally in a descriptive title, introduction and relevant headings where appropriate, with related terms and concrete questions instead of keyword stuffing. Provide an answer-first summary (roughly 40-80 words) that directly answers the core query, then explain practical steps, decision criteria, examples, trade-offs, limitations and market-specific considerations. Use natural '+locale.name+' for this market: '+t.market+'. The article should be genuinely useful even if the reader never contacts us. Where relevant, explain what a customer should compare or prepare before hiring a studio. For CUSTOMER-INTENT topics, prioritize commercial investigation or transactional search intent: buyer questions, provider-selection criteria, common failure diagnosis, budget factors (never invented prices), red flags, decision checklists, and a practical path to solving the reader's problem. These must be distinct from broad sector/educational articles; never imply guaranteed results. Build an ethical conversion path: the conversionBridge must connect the reader’s problem to a useful next step with RocketPen Digital Studio; the conversionLabel should be a concise, natural CTA in the article language, without pressure, false urgency or guaranteed outcomes. Write approximately 900-1,300 visible words, at least 6 substantive sections, two or more developed paragraphs per section, useful bullets, 4 specific FAQs and 3-5 HTTPS sources. Do not make rankings, traffic, revenue or legal/compliance promises. Return only the requested JSON schema; slugs must be unique ASCII kebab-case.';
  const prompt='Create one publish-ready long-form article for RocketPen Digital Studio.\nLanguage: '+locale.name+' ('+t.lang+')\nTarget market: '+t.market+'\nTopic seed: '+t.topic+'\nEditorial topic ID: '+t.topicId+'\nCategory: '+t.category+'\nAllowed categories: '+CATS.join(', ')+'\nExisting titles to avoid: \n'+existingTitles.slice(-100).map(x=>'- '+x).join('\n')+'\nExisting slugs to avoid: '+existingSlugs.slice(-100).join(', ')+'\nThe article must be original for this locale, not a shallow translation of another page. Explain the reader problem, give a clear framework and checklist, note trade-offs, use specific hypothetical examples only when labelled hypothetical, and cite sources with exact URLs. Do not fabricate market statistics.';
  for(let attempt=0;attempt<2;attempt++){
   const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'required',instructions:instructions,input:prompt+(attempt?'\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
@@ -321,11 +354,14 @@ async function main(){
    if(count>=counts[lang])break;
    for(const variant of variants){
     if(count>=counts[lang])break;
-    const topicId=item[0]+'-'+variantId(variant);
+    const isBuyerIntent=item[3]==='buyer-intent';
+    const angle=isBuyerIntent?'buyer-intent-solution-guide':variant;
+    const topicId=item[0]+'-'+variantId(angle);
     if(used.has(topicId))continue;
     used.add(topicId);
     const market=markets[lang][(byLang[lang].length+count)%markets[lang].length];
-    tasks.push({lang,topic:item[1]+'. Editorial angle: '+variant+'. Market emphasis: '+market+'. Research actual query language and intent before drafting.',topicId,category:item[2],market});
+    const buyerBrief=isBuyerIntent?' This is a CUSTOMER-INTENT article, not a general sector explainer. Prioritize the real phrases a prospective buyer might search when deciding whether to hire, compare providers, fix a failing result, qualify a premium service, or reach a new market. Give practical diagnosis, selection criteria, budget drivers without inventing prices, red flags, an actionable checklist, and a non-pushy next step. Distinguish commercial investigation from purely informational intent.':'';
+    tasks.push({lang,topic:item[1]+'. Editorial angle: '+angle+'. Market emphasis: '+market+'. Research actual query language and intent before drafting.'+buyerBrief,topicId,category:item[2],market});
     count++;
    }
   }
