@@ -42,12 +42,12 @@ jobs:
           }
           for filename, (locale, routes) in pages.items():
               text = Path(filename).read_text(encoding="utf-8")
-          scripts = re.findall(r"<script\b[^>]*>([\s\S]*?)</script>", text)
-          js = next((script for script in scripts if re.search(r"(?m)^\s*" + re.escape(locale) + r":\s*\{", script)), None)
+              scripts = re.findall(r"<script\b[^>]*>([\s\S]*?)</script>", text)
+              js = next((script for script in scripts if re.search(r"(?m)^\s*" + re.escape(locale) + r":\s*\{", script)), None)
               if js is None:
                   raise SystemExit(f"{filename}: inline application script or locale block missing")
               Path(f"/tmp/rocketpen-{locale}.js").write_text(js, encoding="utf-8")
-          locale_match = re.search(r"(?m)^\s*" + re.escape(locale) + r":\s*\{", js)
+              locale_match = re.search(r"(?m)^\s*" + re.escape(locale) + r":\s*\{", js)
               start = locale_match.start()
               if filename != "index.html":
                   next_locale = {"en": "tr", "tr": "ar"}.get(locale)
