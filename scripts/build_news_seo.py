@@ -23,6 +23,10 @@ LABELS={
 def ok(story):
  return story.get("status")=="published" and story.get("approved") is not False and story.get("editorialApproved") is not False and story.get("editorialApproval")!="pending"
 
+def visible(story):
+ # Existing archive UI can display scheduled items; generate their pages for working links, but noindex them.
+ return story.get("status") not in ("draft", "pending")
+
 def slug_of(story):
  slug=str(story.get("slug",""))
  if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*",slug): raise ValueError("Unsafe or missing news slug: "+repr(slug))
@@ -85,6 +89,7 @@ def build_html(s,alts):
  date_display=s.get("dateDisplay") or s.get("dateISO") or "";published=s.get("publishedAt") or s.get("dateISO") or ""
  author=s.get("author") or "Gasim Piraliyev"
  locale={"en":"en_US","tr":"tr_TR","ar":"ar_AE"}[lang]
+ robots="index,follow,max-image-preview:large" if ok(s) else "noindex,follow"
  alternate=[]
  for alt_lang,alt_url in sorted(alts.items()): alternate.append(f'<link rel="alternate" hreflang="{alt_lang}" href="{e(alt_url)}">')
  if alts: alternate.append(f'<link rel="alternate" hreflang="x-default" href="{e(alts.get("en") or canonical)}">')
@@ -106,7 +111,7 @@ def build_html(s,alts):
 <html lang="{lang}" dir="{direction}" data-generated-news-seo="true">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow,max-image-preview:large"><meta name="description" content="{e(description)}"><meta name="author" content="{e(author)}">
+<meta name="robots" content="{robots}"><meta name="description" content="{e(description)}"><meta name="author" content="{e(author)}">
 <meta name="theme-color" content="#080b12"><link rel="canonical" href="{e(canonical)}">
 {chr(10).join(alternate)}
 <link rel="icon" type="image/svg+xml" href="/asset/logo/favicon.svg">
@@ -138,16 +143,18 @@ def main():
  headlines=json.loads((NEWS/"data/headlines.json").read_text(encoding="utf-8"))
  selected=[];seen=set()
  for story in list(headlines.get("stories",[]))+list(archive.get("stories",[])):
-  if story.get("lang") not in LANGS or not ok(story): continue
+  if story.get("lang") not in LANGS or not visible(story): continue
   slug=slug_of(story);key=(story["lang"],slug)
   if key in seen: raise ValueError("Duplicate published story URL: "+"/".join(key))
   seen.add(key);selected.append(story)
- page_map={(s["lang"],s["slug"]):url_of(s) for s in selected}
+ indexable=[s for s in selected if ok(s)]
+ page_map={(s["lang"],s["slug"]):url_of(s) for s in indexable}
  families=defaultdict(dict)
- for story in selected:
+ for story in indexable:
   key=family(story)
   if key: families[key][story["lang"]]=story["slug"]
  def alts_for(story):
+  if not ok(story): return {}
   key=family(story);variants=families.get(key,{}) if key else {}
   if len(variants)<2:return {}
   return {lang:page_map[(lang,slug)] for lang,slug in variants.items()}
@@ -182,7 +189,10 @@ def main():
  today=datetime.datetime.now(datetime.timezone.utc).date().isoformat()
  add(BASE+"/news/",today)
  for lang in LANGS:add(home[lang],today,home_alts)
- for story in selected:add(url_of(story),story.get("dateISO"),alts_for(story))
+ index_counts={lang:0 for lang in LANGS}
+ for story in indexable:
+  add(url_of(story),story.get("dateISO"),alts_for(story))
+  index_counts[story["lang"]]+=1
  SITEMAP.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
 
  check=ET.parse(SITEMAP).getroot()
@@ -191,8 +201,9 @@ def main():
  if any(home[lang] not in locs for lang in LANGS):raise SystemExit("Sitemap is missing newsroom landing page.")
  for lang in LANGS:
   actual=sum(1 for loc in locs if f"/news/{lang}/articles/" in loc)
-  if actual!=counts[lang] or actual<10:raise SystemExit(f"Sitemap/article count mismatch for {lang}: {counts[lang]} pages; {actual} URLs")
- print("Generated static article pages:",counts)
+  if actual!=index_counts[lang] or actual<10:raise SystemExit(f"Sitemap/article count mismatch for {lang}: indexable={index_counts[lang]} pages; {actual} URLs")
+ print("Generated static article pages (published and scheduled, scheduled pages noindex):",counts)
+ print("Indexable published article URLs in sitemap:",index_counts)
  print("Validated sitemap URLs:",len(locs),"; existing non-news URLs preserved.")
 
 if __name__=="__main__":main()
