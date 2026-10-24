@@ -48,7 +48,7 @@ jobs:
               Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
               if filename == "index.html":
                   # The global homepage selects the language from the requested route/query and defaults to English.
-                  if "let pageLang=" not in text or "requestedLang" not in text or "['en','tr','ar']" not in text or ":'en';" not in text:
+                  if "const pageLang=" not in text or "requestedLang" not in text or "['en','tr','ar']" not in text or ":'en';" not in text:
                       raise SystemExit(f"{filename}: dynamic language routing must support EN/TR/AR and default to English")
               else:
                   expected = f"const pageLang='{locale}'"
