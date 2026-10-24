@@ -12,6 +12,7 @@ on:
       - ".github/workflows/deploy-cloudflare.yml"
       - "RocketPenTech_500_*.zip"
       - "scripts/build_news_archive.py"
+      - "scripts/build_news_seo.py"
       - "scripts/qa_news_archive.py"
       - "sitemap.xml"
       - "robots.txt"
@@ -79,6 +80,8 @@ jobs:
             git rebase origin/main
             git push origin HEAD:main
           fi
+      - name: Generate static SEO article pages and multilingual sitemap
+        run: python scripts/build_news_seo.py
       - name: Verify Cloudflare credentials
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -170,11 +173,46 @@ jobs:
           PY
             for LANG in tr en ar; do
               curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/" -o "/tmp/news-$LANG.html"
-              grep -q 'news.js?v=20261024-19' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261024-19."; exit 1; }
+              grep -q 'news.js?v=' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261024-19."; exit 1; }
               grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no headline slider."; exit 1; }
               grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no archive list."; exit 1; }
             done
           done
-          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261024-19" -o /tmp/news.js
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/sitemap.xml" -o /tmp/news-sitemap.xml
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from collections import Counter
+          root=ET.parse("/tmp/news-sitemap.xml").getroot()
+          ns={"sm":"http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls=[e.findtext("sm:loc",default="",namespaces=ns) for e in root.findall("sm:url",ns)]
+          if len(urls)!=len(set(urls)): raise SystemExit("Sitemap contains duplicate URLs.")
+          counts=Counter()
+          for url in urls:
+              for lang in ("tr","en","ar"):
+                  if f"/news/{lang}/articles/" in url: counts[lang]+=1
+          for lang in ("tr","en","ar"):
+              if counts[lang] < 10: raise SystemExit(f"Sitemap is missing generated {lang} article URLs: {counts[lang]}")
+              home=f"https://rocketpendigital.com/news/{lang}/"
+              if home not in urls: raise SystemExit(f"Sitemap is missing newsroom landing page: {home}")
+          print("News sitemap OK:",dict(counts),"article URLs; multilingual landing pages included.")
+          PY
+          for LANG in tr en ar; do
+            SLUG=$(python - "$LANG" <<'PY'
+          import json,sys
+          lang=sys.argv[1]
+          with open("news/data/headlines.json",encoding="utf-8") as f: headlines=json.load(f).get("stories",[])
+          with open("news/data/news.json",encoding="utf-8") as f: archive=json.load(f).get("stories",[])
+          for s in headlines+archive:
+              if s.get("lang")==lang and s.get("status")=="published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval")!="pending":
+                  print(s["slug"]); break
+          else: raise SystemExit("No published story for "+lang)
+          PY
+          )
+            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$BASE/news/$LANG/articles/$SLUG.html" -o "/tmp/story-$LANG.html"
+            grep -q 'rel="canonical"' "/tmp/story-$LANG.html" || { echo "Missing canonical on static $LANG article."; exit 1; }
+            grep -q 'application/ld+json' "/tmp/story-$LANG.html" || { echo "Missing NewsArticle structured data on static $LANG article."; exit 1; }
+            grep -q 'name="description"' "/tmp/story-$LANG.html" || { echo "Missing description on static $LANG article."; exit 1; }
+          done
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261025-1" -o /tmp/news.js
           node --check /tmp/news.js
           echo "Smoke test passed: worker and custom domain JSON, all three editions, current HTML, slider, archive list, and JS syntax."
