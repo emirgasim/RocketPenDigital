@@ -58,7 +58,19 @@ jobs:
             exit 0
           fi
           git fetch --no-tags --depth=1 origin "$BEFORE_SHA"
-          if git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA" | grep -Eq '^RocketPenTech_500_(News_Gasim_Piraliyev|Arapca_Haber|Ingilizce_Haber)\.zip
+          CHANGED_FILES="$(git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA")"
+          for SOURCE in RocketPenTech_500_News_Gasim_Piraliyev.zip RocketPenTech_500_Arapca_Haber.zip RocketPenTech_500_Ingilizce_Haber.zip; do
+            if printf "%s\n" "$CHANGED_FILES" | grep -Fqx "$SOURCE"; then
+              echo "rebuild=true" >> "$GITHUB_OUTPUT"
+              echo "Source archive changed: $SOURCE"
+              exit 0
+            fi
+          done
+          echo "rebuild=false" >> "$GITHUB_OUTPUT"
+          echo "Source ZIPs are unchanged; keep the validated archive."
+      - name: Build multilingual news archive from supplied ZIPs
+        if: steps.news_archive_source.outputs.rebuild == 'true'
+        run: python scripts/build_news_archive.py
       - name: Validate original editorial headline data
         run: |
           node --check news/assets/news.js
