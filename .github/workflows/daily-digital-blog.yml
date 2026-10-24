@@ -91,3 +91,48 @@ jobs:
             git push
             printf '%s\n' '' '## Publication status' '' 'The generated article pages, index pages and sitemap were committed and pushed successfully.' '' '[Open English Digital Blog](https://rocketpendigital.com/blog/en/index.html) · [Türkçe](https://rocketpendigital.com/blog/tr/index.html) · [العربية](https://rocketpendigital.com/blog/ar/index.html)' >> "$GITHUB_STEP_SUMMARY"
           fi
+      - name: Deploy the generated multilingual blog directly to Cloudflare
+        if: steps.readiness.outputs.ready == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Articles were generated, but deployment requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets."
+            exit 1
+          fi
+          npx --yes wrangler@4 deploy --config wrangler.toml
+
+      - name: Verify published pages, archives and multilingual sitemap
+        if: steps.readiness.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
+            for URL in "/blog/en/index.html" "/blog/tr/index.html" "/blog/ar/index.html" "/blog/tr/page/30.html" "/blog/en/page/28.html" "/blog/ar/page/31.html" "/sitemap.xml"; do
+              code="$(curl --silent --show-error --location --retry 5 --retry-delay 2 -o /tmp/rocketpen-live -w '%{http_code}' "$HOST$URL")"
+              echo "$HOST$URL => $code"
+              if [ "$code" != "200" ]; then
+                echo "::error::Published endpoint failed: $HOST$URL ($code)"
+                head -c 300 /tmp/rocketpen-live || true
+                exit 1
+              fi
+              if [ "$URL" = "/sitemap.xml" ]; then cp /tmp/rocketpen-live /tmp/rocketpen-sitemap.xml; fi
+            done
+          done
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          root=ET.parse('/tmp/rocketpen-sitemap.xml').getroot()
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls=[x.text or '' for x in root.findall('.//s:loc',ns)]
+          for lang,minimum in [('en',650),('tr',440),('ar',450)]:
+              count=sum('/blog/'+lang+'/articles/' in u for u in urls)
+              print(f'{lang}: {count} article URLs in sitemap')
+              if count < minimum:
+                  raise SystemExit(f'Sitemap has fewer than the pre-existing {minimum} {lang} articles')
+          if len(urls)!=len(set(urls)):
+              raise SystemExit('Duplicate sitemap URLs found')
+          print(f'Sitemap verified: {len(urls)} unique URLs across EN/TR/AR.')
+          PY
+          printf '%s\\n' '' '## Live deployment verification' '' 'The generated multilingual articles were deployed directly to Cloudflare and the English, Turkish and Arabic blog indexes, archive pages and sitemap returned HTTP 200 on both production hosts.' >> "$GITHUB_STEP_SUMMARY"
