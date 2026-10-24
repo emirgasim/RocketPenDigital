@@ -45,7 +45,8 @@ jobs:
               match = re.search(r"<script>([\s\S]*?)</script>", text)
               if not match:
                   raise SystemExit(f"{filename}: inline application script missing")
-              Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
+              js = match.group(1)
+              Path(f"/tmp/rocketpen-{locale}.js").write_text(js, encoding="utf-8")
               if filename != "index.html":
                   start = js.find("\n" + locale + ":{", js)
                   if start < 0:
