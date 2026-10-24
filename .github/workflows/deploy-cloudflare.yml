@@ -73,6 +73,10 @@ jobs:
             echo "Archive JSON already matches the validated build; no persistence commit needed."
           else
             git commit -m "Persist validated multilingual news archive [skip ci]"
+            # Other QA/workflow commits can reach main while the archive is being built.
+            # Rebase this archive commit on the latest main before pushing to avoid a stale-ref rejection.
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
       - name: Verify Cloudflare credentials
