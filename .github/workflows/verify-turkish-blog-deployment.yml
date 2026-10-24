@@ -46,7 +46,7 @@ jobs:
           tr_articles=[u for u in locs if '/blog/tr/articles/' in u]
           tr_pages=[u for u in locs if '/blog/tr/page/' in u]
           assert len(tr_articles)==440, f'Expected 440 Turkish article URLs, found {len(tr_articles)}'
-          assert all(f'/blog/tr/page/{n}.html' in locs for n in (28,29,30)), 'Archive pages 28-30 missing from sitemap'
+          assert all(any(u.endswith(f'/blog/tr/page/{n}.html') for u in locs) for n in (28,29,30)), 'Archive pages 28-30 missing from sitemap'
           assert len(locs)==len(set(locs)), 'Duplicate sitemap URLs'
           print(f'Worker sitemap verified: {len(tr_articles)} Turkish articles; {len(tr_pages)} numbered Turkish archive pages; no duplicate URLs.')
           PY
