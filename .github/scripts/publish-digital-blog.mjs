@@ -32,6 +32,26 @@ const TOPICS = {
   ['brand-repositioning-business','When a growing company should invest in brand repositioning and a website refresh','brand-strategy','buyer-intent'],
   ['uae-gulf-digital-agency','How to prepare a digital presence for reaching premium clients in the UAE and Gulf','digital-growth','buyer-intent'],
 
+  ['brand-agency-hiring','How to choose a brand strategy agency for an established company','brand-strategy','buyer-intent'],
+  ['website-cost-drivers','What affects the scope and cost of a custom business website','web-seo','buyer-intent'],
+  ['website-redesign-timing','How to tell whether a business website needs a redesign','web-seo','buyer-intent'],
+  ['service-website-conversion-audit','A practical conversion audit for a service business website','digital-growth','buyer-intent'],
+  ['luxury-hotel-website','What a premium hospitality website needs to answer before a guest enquires','industry-guides','buyer-intent'],
+  ['private-clinic-website','How private clinics can make their website clearer and more useful to prospective patients','industry-guides','buyer-intent'],
+  ['international-seo-provider','How to evaluate international SEO support before expanding abroad','web-seo','buyer-intent'],
+  ['arabic-english-website','Planning an Arabic-English website for customers across the Gulf','web-seo','buyer-intent'],
+  ['business-website-project-process','What to prepare before commissioning a business website','web-seo','buyer-intent'],
+  ['crm-website-integration','When a business website should connect to a CRM and lead workflow','digital-growth','buyer-intent'],
+  ['lead-quality-improvement','How to improve lead quality instead of simply increasing enquiry volume','digital-growth','buyer-intent'],
+  ['high-value-service-landing-page','How to structure a landing page for a high-consideration service','web-seo','buyer-intent'],
+  ['consultancy-website-trust','How consulting firms can explain expertise and build trust online','industry-guides','buyer-intent'],
+  ['brand-identity-scope','What a professional brand identity engagement should include','brand-strategy','buyer-intent'],
+  ['uae-market-entry-digital','Digital preparation checklist for a company entering the UAE market','digital-growth','buyer-intent'],
+  ['premium-ecommerce-conversion','How premium ecommerce brands can reduce purchase uncertainty','industry-guides','buyer-intent'],
+  ['b2b-website-redesign','How B2B firms can plan a website redesign around sales questions','web-seo','buyer-intent'],
+  ['agency-proposal-review','How to compare digital agency proposals beyond the headline price','digital-growth','buyer-intent'],
+  ['seo-consultant-or-agency','When to hire an SEO consultant versus a specialist agency','web-seo','buyer-intent'],
+  ['customer-journey-website-audit','How to audit a website from first visit to qualified enquiry','digital-growth','buyer-intent'],
  ['brand-positioning','Brand positioning for growing service businesses','brand-strategy'],
  ['brand-message','Writing a brand message customers understand quickly','brand-strategy'],
  ['visual-identity','Creating a flexible visual identity system','brand-strategy'],
@@ -75,6 +95,26 @@ const TOPICS = {
   ['marka-yenileme-zamani','Bir işletme marka kimliğini ve web sitesini ne zaman yenilemeli?','brand-strategy','buyer-intent'],
   ['dubai-korfez-musteri-kazanimi','Dubai ve Körfez bölgesinden müşteri hedefleyen işletmeler için dijital hazırlık','digital-growth','buyer-intent'],
 
+  ['marka-ajansi-secimi','Marka stratejisi ajansı seçerken nelere dikkat edilmeli?','brand-strategy','buyer-intent'],
+  ['kurumsal-site-maliyet-etkenleri','Kurumsal web sitesi projesinin kapsamını ve maliyetini hangi unsurlar belirler?','web-seo','buyer-intent'],
+  ['site-yenileme-zamani','Bir işletmenin web sitesini yenilemesi gerektiği nasıl anlaşılır?','web-seo','buyer-intent'],
+  ['hizmet-sitesi-donusum-denetimi','Hizmet işletmeleri için web sitesi dönüşüm denetimi nasıl yapılır?','digital-growth','buyer-intent'],
+  ['premium-otel-web-sitesi','Premium otel web sitesi ziyaretçinin karar vermesi için neleri açıklamalı?','industry-guides','buyer-intent'],
+  ['ozel-klinik-web-sitesi','Özel klinikler web sitelerini hasta adayları için nasıl daha anlaşılır hale getirebilir?','industry-guides','buyer-intent'],
+  ['uluslararasi-seo-ajansi','Yurt dışına açılmadan önce uluslararası SEO hizmeti nasıl değerlendirilir?','web-seo','buyer-intent'],
+  ['arapca-ingilizce-web-sitesi','Körfez pazarları için Arapça ve İngilizce web sitesi nasıl planlanır?','web-seo','buyer-intent'],
+  ['kurumsal-site-proje-sureci','Kurumsal web sitesi yaptırmadan önce hangi hazırlıklar yapılmalı?','web-seo','buyer-intent'],
+  ['web-sitesi-crm-entegrasyonu','Web sitesi CRM sistemine ne zaman bağlanmalı?','digital-growth','buyer-intent'],
+  ['nitelikli-musteri-adayi','Daha çok form yerine daha nitelikli müşteri adayı nasıl kazanılır?','digital-growth','buyer-intent'],
+  ['yuksek-degerli-hizmet-acilis-sayfasi','Karar vermesi uzun süren hizmetler için açılış sayfası nasıl tasarlanır?','web-seo','buyer-intent'],
+  ['danismanlik-web-sitesi-guven','Danışmanlık şirketleri uzmanlığını internette nasıl anlaşılır anlatabilir?','industry-guides','buyer-intent'],
+  ['marka-kimligi-hizmet-kapsami','Profesyonel marka kimliği çalışmasının kapsamı neleri içermeli?','brand-strategy','buyer-intent'],
+  ['bae-pazarina-acilma-dijital','BAE pazarına açılacak işletmeler için dijital hazırlık kontrol listesi','digital-growth','buyer-intent'],
+  ['premium-eticaret-satis-engelleri','Premium e-ticaret markaları satın alma tereddütlerini nasıl azaltabilir?','industry-guides','buyer-intent'],
+  ['b2b-web-sitesi-yenileme','B2B şirketleri web sitesi yenilemesini satış sorularına göre nasıl planlamalı?','web-seo','buyer-intent'],
+  ['ajans-teklif-karsilastirma','Dijital ajans teklifleri yalnızca fiyatına bakılmadan nasıl karşılaştırılır?','digital-growth','buyer-intent'],
+  ['seo-uzmani-mi-ajans-mi','SEO uzmanı mı yoksa uzmanlaşmış ajans mı tercih edilmeli?','web-seo','buyer-intent'],
+  ['musteri-yolculugu-site-denetimi','İlk ziyaretten nitelikli talebe kadar web sitesi müşteri yolculuğu nasıl denetlenir?','digital-growth','buyer-intent'],
  ['marka-konumlandirma','Büyüyen işletmeler için marka konumlandırma rehberi','brand-strategy'],
  ['marka-mesaji','Müşterinin hızlıca anlayacağı marka mesajı oluşturmak','brand-strategy'],
  ['gorsel-kimlik','Tutarlı ve esnek bir görsel kimlik sistemi kurmak','brand-strategy'],
@@ -118,6 +158,26 @@ const TOPICS = {
   ['brand-refresh-business-ar','متى تحتاج الشركة إلى تحديث هويتها التجارية وموقعها الإلكتروني؟','brand-strategy','buyer-intent'],
   ['premium-clients-uae-qatar-ar','كيف تستعد الشركات لاستهداف العملاء ذوي القيمة العالية في الإمارات وقطر؟','digital-growth','buyer-intent'],
 
+  ['brand-agency-hiring-ar','كيف تختار وكالة استراتيجية علامة تجارية لشركة قائمة؟','brand-strategy','buyer-intent'],
+  ['business-website-cost-ar','ما العوامل التي تحدد نطاق وتكلفة مشروع موقع تجاري مخصص؟','web-seo','buyer-intent'],
+  ['website-redesign-timing-ar','كيف تعرف أن موقع شركتك يحتاج إلى إعادة تصميم؟','web-seo','buyer-intent'],
+  ['service-site-conversion-audit-ar','كيف تجري مراجعة عملية لتحسين تحويل زوار موقع الخدمات إلى استفسارات؟','digital-growth','buyer-intent'],
+  ['premium-hotel-website-ar','ما المعلومات التي يحتاجها الزائر قبل التواصل مع فندق فاخر؟','industry-guides','buyer-intent'],
+  ['private-clinic-website-ar','كيف تجعل العيادات الخاصة مواقعها أوضح للمرضى المحتملين؟','industry-guides','buyer-intent'],
+  ['international-seo-provider-ar','كيف تقيّم خدمات SEO الدولي قبل التوسع إلى أسواق جديدة؟','web-seo','buyer-intent'],
+  ['arabic-english-website-gulf-ar','كيف تخطط لموقع عربي وإنجليزي يخدم عملاء الخليج؟','web-seo','buyer-intent'],
+  ['business-website-project-ar','ما الذي ينبغي تجهيزه قبل التعاقد على تصميم موقع شركة؟','web-seo','buyer-intent'],
+  ['crm-website-integration-ar','متى ينبغي ربط الموقع الإلكتروني بنظام CRM وإدارة العملاء المحتملين؟','digital-growth','buyer-intent'],
+  ['qualified-leads-ar','كيف تحسّن جودة العملاء المحتملين بدلاً من زيادة عدد الاستفسارات فقط؟','digital-growth','buyer-intent'],
+  ['high-consideration-service-landing-ar','كيف تصمم صفحة هبوط لخدمة تحتاج إلى دراسة ومقارنة قبل الشراء؟','web-seo','buyer-intent'],
+  ['consultancy-website-trust-ar','كيف تعرض شركات الاستشارات خبرتها بوضوح وتبني الثقة عبر الإنترنت؟','industry-guides','buyer-intent'],
+  ['brand-identity-scope-ar','ما الذي ينبغي أن تتضمنه خدمة الهوية البصرية الاحترافية؟','brand-strategy','buyer-intent'],
+  ['uae-market-entry-digital-ar','قائمة تجهيز الحضور الرقمي للشركات التي تدخل سوق الإمارات','digital-growth','buyer-intent'],
+  ['premium-ecommerce-conversion-ar','كيف تقلل متاجر المنتجات الفاخرة تردد العملاء قبل الشراء؟','industry-guides','buyer-intent'],
+  ['b2b-website-redesign-ar','كيف تخطط شركات B2B لإعادة تصميم الموقع وفق أسئلة فريق المبيعات؟','web-seo','buyer-intent'],
+  ['agency-proposal-review-ar','كيف تقارن عروض وكالات التسويق الرقمي بعيداً عن السعر المعلن فقط؟','digital-growth','buyer-intent'],
+  ['seo-consultant-or-agency-ar','متى تختار مستشار SEO ومتى تحتاج إلى وكالة متخصصة؟','web-seo','buyer-intent'],
+  ['customer-journey-website-audit-ar','كيف تراجع رحلة العميل من أول زيارة حتى الاستفسار المؤهل؟','digital-growth','buyer-intent'],
  ['gulf-brand-positioning','استراتيجية تموضع العلامة للشركات الخدمية في الإمارات وقطر','brand-strategy'],
  ['arabic-brand-message','صياغة رسالة علامة تجارية واضحة للجمهور العربي','brand-strategy'],
  ['arabic-visual-identity','بناء هوية بصرية مرنة ومتسقة للعلامة التجارية','brand-strategy'],
@@ -378,21 +438,31 @@ async function main(){
  for(const lang of LANGS){
   const pool=TOPICS[lang],used=new Set(byLang[lang].map(a=>normalizeTopicId(a.topicId)));
   let count=0;
-  for(const item of pool){
-   if(count>=counts[lang])break;
-   for(const variant of variants){
-    if(count>=counts[lang])break;
-    const isBuyerIntent=item[3]==='buyer-intent';
-    const angle=isBuyerIntent?'buyer-intent-solution-guide':variant;
-    const topicId=item[0]+'-'+variantId(angle);
-    if(used.has(topicId))continue;
-    used.add(topicId);
-    const market=markets[lang][(byLang[lang].length+count)%markets[lang].length];
-    const buyerBrief=isBuyerIntent?' This is a CUSTOMER-INTENT article, not a general sector explainer. Prioritize the real phrases a prospective buyer might search when deciding whether to hire, compare providers, fix a failing result, qualify a premium service, or reach a new market. Give practical diagnosis, selection criteria, budget drivers without inventing prices, red flags, an actionable checklist, and a non-pushy next step. Distinguish commercial investigation from purely informational intent.':'';
-    tasks.push({lang,topic:item[1]+'. Editorial angle: '+angle+'. Market emphasis: '+market+'. Research actual query language and intent before drafting.'+buyerBrief,topicId,category:item[2],market});
-    count++;
+  const addFromPool=(sourcePool,desired,buyerIntent)=>{
+   let added=0;
+   for(const item of sourcePool){
+    if(added>=desired)break;
+    const angles=buyerIntent?['buyer-intent-solution-guide']:variants;
+    for(const variant of angles){
+     if(added>=desired)break;
+     const topicId=item[0]+'-'+variantId(variant);
+     if(used.has(topicId))continue;
+     used.add(topicId);
+     const market=markets[lang][(byLang[lang].length+count)%markets[lang].length];
+     const buyerBrief=buyerIntent?' This is a CUSTOMER-INTENT article, not a general sector explainer. Prioritize the real phrases a prospective buyer might search when deciding whether to hire, compare providers, fix a failing result, qualify a premium service, or reach a new market. Give practical diagnosis, selection criteria, budget drivers without inventing prices, red flags, an actionable checklist, and a non-pushy next step. Distinguish commercial investigation from purely informational intent.':'';
+     const angle=buyerIntent?'buyer-intent-solution-guide':variant;
+     tasks.push({lang,topic:item[1]+'. Editorial angle: '+angle+'. Market emphasis: '+market+'. Research actual query language and intent before drafting.'+buyerBrief,topicId,category:item[2],market});
+     count++;added++;
+    }
    }
-  }
+   return added;
+  };
+  const buyerPool=pool.filter(item=>item[3]==='buyer-intent');
+  const sectorPool=pool.filter(item=>item[3]!=='buyer-intent');
+  const buyerTarget=Math.min(Math.ceil(counts[lang]/2),counts[lang]);
+  const buyerAdded=addFromPool(buyerPool,buyerTarget,true);
+  const sectorAdded=addFromPool(sectorPool,counts[lang]-buyerAdded,false);
+  if(buyerAdded+sectorAdded<counts[lang])addFromPool(buyerPool,counts[lang]-buyerAdded-sectorAdded,true);
   if(count!==counts[lang])throw new Error('Not enough unused topic-angle combinations to reach the article target for '+lang+' ('+count+'/'+counts[lang]+')');
  }
  console.log('Article target: '+TARGET_PER_LANGUAGE+' per language. Current: '+LANGS.map(lang=>lang.toUpperCase()+' '+byLang[lang].length+'/'+TARGET_PER_LANGUAGE).join(', ')+'. This batch: '+tasks.length+' ('+counts.en+' EN, '+counts.tr+' TR, '+counts.ar+' AR).');
