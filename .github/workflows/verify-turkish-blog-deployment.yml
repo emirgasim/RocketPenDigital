@@ -1,0 +1,52 @@
+name: Verify Turkish blog deployment
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-turkish-blog-deployment.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify deployed worker endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORKER="https://rocketpendigital.qasimm2012.workers.dev"
+          CANONICAL="https://rocketpendigital.com"
+          paths=(
+            "/blog/tr/articles/kurumsal-web-sitesi-yenileme-rehberi.html"
+            "/blog/tr/articles/web-sitesi-guvenligi-seo-rehberi.html"
+            "/blog/tr/page/28.html"
+            "/blog/tr/page/29.html"
+            "/blog/tr/page/30.html"
+            "/sitemap.xml"
+          )
+          for path in "${paths[@]}"; do
+            code="$(curl --silent --show-error --location --retry 3 --retry-delay 2 -o /tmp/worker-response -w '%{http_code}' "$WORKER$path")"
+            echo "Worker $code $path"
+            if [ "$code" != "200" ]; then
+              echo "::error::Worker endpoint failed: $path ($code)"
+              head -c 500 /tmp/worker-response || true
+              exit 1
+            fi
+            code="$(curl --silent --show-error --location --retry 2 --retry-delay 1 -o /tmp/canonical-response -w '%{http_code}' "$CANONICAL$path" || true)"
+            echo "Canonical $code $path"
+          done
+          python - <<'PY'
+          import urllib.request, xml.etree.ElementTree as ET
+          url='https://rocketpendigital.qasimm2012.workers.dev/sitemap.xml'
+          with urllib.request.urlopen(url, timeout=20) as r:
+              root=ET.fromstring(r.read())
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          locs=[e.text or '' for e in root.findall('.//s:loc',ns)]
+          tr_articles=[u for u in locs if '/blog/tr/articles/' in u]
+          tr_pages=[u for u in locs if '/blog/tr/page/' in u]
+          assert len(tr_articles)==440, f'Expected 440 Turkish article URLs, found {len(tr_articles)}'
+          assert all(f'/blog/tr/page/{n}.html' in locs for n in (28,29,30)), 'Archive pages 28-30 missing from sitemap'
+          assert len(locs)==len(set(locs)), 'Duplicate sitemap URLs'
+          print(f'Worker sitemap verified: {len(tr_articles)} Turkish articles; {len(tr_pages)} numbered Turkish archive pages; no duplicate URLs.')
+          PY
