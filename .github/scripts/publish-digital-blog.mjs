@@ -164,11 +164,36 @@ async function loadArticles(lang){
  for(const file of files){try{list.push(JSON.parse(await fs.readFile(path.join(dir,file),'utf8')))}catch(e){console.warn('Skipping invalid JSON',file,e.message)}}
  return list;
 }
+function plainText(value){
+ return String(value||'').replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&#x27;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\\s+/g,' ').trim();
+}
+async function loadExistingHtmlArticles(lang,knownSlugs=new Set()){
+ const dir=path.join(ROOT,'blog',lang,'articles');let files=[];
+ try{files=(await fs.readdir(dir)).filter(f=>f.endsWith('.html'))}catch{}
+ const list=[];
+ for(const file of files){
+  const slug=file.slice(0,-5);if(knownSlugs.has(slug))continue;
+  try{
+   const html=await fs.readFile(path.join(dir,file),'utf8');
+   const h1=html.match(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/i);
+   const metaDescription=html.match(/<meta\\s+name=["']description["']\\s+content=["']([^"']*)["']/i);
+   const standfirst=html.match(/<p[^>]*class=["'][^"']*standfirst[^"']*["'][^>]*>([\\s\\S]*?)<\\/p>/i);
+   const ogTitle=html.match(/<meta\\s+property=["']og:title["']\\s+content=["']([^"']*)["']/i);
+   const date=html.match(/<meta[^>]+(?:article:published_time|name=["']datePublished["'])[^>]+content=["'](\\d{4}-\\d{2}-\\d{2})["']/i)||html.match(/"datePublished"\\s*:\\s*"(\\d{4}-\\d{2}-\\d{2})"/);
+   const tag=html.match(/<div[^>]*class=["'][^"']*tag[^"']*["'][^>]*>([\\s\\S]*?)<\\/div>/i);
+   const title=plainText(h1?.[1]||ogTitle?.[1]||'');
+   const description=plainText(metaDescription?.[1]||standfirst?.[1]||title);
+   if(!title)continue;
+   list.push({lang,slug,title,excerpt:plainText(standfirst?.[1]||description),description,publishedAt:date?.[1]||'',updatedAt:date?.[1]||'',category:'digital-growth',market:'existing published article',legacyHtml:true,tag:plainText(tag?.[1]||'')});
+  }catch(e){console.warn('Could not inventory existing article',file,e.message)}
+ }
+ return list;
+}
 function words(a){return [a.title,a.description,a.excerpt,a.intro,a.answerSummary,a.conversionBridge,a.conversionLabel,...a.sections.flatMap(s=>[s.heading,...s.paragraphs,...(s.bullets||[])]),...(a.faq||[]).flatMap(f=>[f.q,f.a])].join(' ').trim().split(/\s+/).length}
 function validSlug(s){return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)&&s.length<=90}
 async function requestArticle(t,existingTitles,existingSlugs){
  const locale=L[t.lang];
- const instructions='You are the senior research editor for RocketPen Digital Studio. Use the built-in web_search tool before drafting and consult 3-5 trustworthy sources that directly support the article. Create original, people-first, non-commodity content with a distinct angle; never mass-produce near-duplicate pages. First research and infer the primary query/search intent (informational, commercial-investigation, transactional or navigational); do not invent search volume, keyword difficulty, market statistics, case studies, testimonials or first-hand experience. Use the primary keyword naturally in a descriptive title, introduction and relevant headings where appropriate, with related terms and concrete questions instead of keyword stuffing. Provide an answer-first summary (roughly 40-80 words) that directly answers the core query, then explain practical steps, decision criteria, examples, trade-offs, limitations and market-specific considerations. Use natural '+locale.name+' for this market: '+t.market+'. The article should be genuinely useful even if the reader never contacts us. Where relevant, explain what a customer should compare or prepare before hiring a studio. For CUSTOMER-INTENT topics, prioritize commercial investigation or transactional search intent: buyer questions, provider-selection criteria, common failure diagnosis, budget factors (never invented prices), red flags, decision checklists, and a practical path to solving the reader's problem. These must be distinct from broad sector/educational articles; never imply guaranteed results. Build an ethical conversion path: the conversionBridge must connect the reader’s problem to a useful next step with RocketPen Digital Studio; the conversionLabel should be a concise, natural CTA in the article language, without pressure, false urgency or guaranteed outcomes. Write approximately 900-1,300 visible words, at least 6 substantive sections, two or more developed paragraphs per section, useful bullets, 4 specific FAQs and 3-5 HTTPS sources. Do not make rankings, traffic, revenue or legal/compliance promises. Return only the requested JSON schema; slugs must be unique ASCII kebab-case.';
+ const instructions='You are the senior research editor for RocketPen Digital Studio. Use the built-in web_search tool before drafting and consult 3-5 trustworthy sources that directly support the article. Create original, people-first, non-commodity content with a distinct angle; never mass-produce near-duplicate pages. First research and infer the primary query/search intent (informational, commercial-investigation, transactional or navigational); do not invent search volume, keyword difficulty, market statistics, case studies, testimonials or first-hand experience. Use the primary keyword naturally in a descriptive title, introduction and relevant headings where appropriate, with related terms and concrete questions instead of keyword stuffing. Provide an answer-first summary (roughly 40-80 words) that directly answers the core query, then explain practical steps, decision criteria, examples, trade-offs, limitations and market-specific considerations. Use natural '+locale.name+' for this market: '+t.market+'. The article should be genuinely useful even if the reader never contacts us. Where relevant, explain what a customer should compare or prepare before hiring a studio. For CUSTOMER-INTENT topics, prioritize commercial investigation or transactional search intent: buyer questions, provider-selection criteria, common failure diagnosis, budget factors (never invented prices), red flags, decision checklists, and a practical path to solving the the reader problem. These must be distinct from broad sector/educational articles; never imply guaranteed results. Build an ethical conversion path: the conversionBridge must connect the reader’s problem to a useful next step with RocketPen Digital Studio; the conversionLabel should be a concise, natural CTA in the article language, without pressure, false urgency or guaranteed outcomes. Write approximately 900-1,300 visible words, at least 6 substantive sections, two or more developed paragraphs per section, useful bullets, 4 specific FAQs and 3-5 HTTPS sources. Do not make rankings, traffic, revenue or legal/compliance promises. Return only the requested JSON schema; slugs must be unique ASCII kebab-case.';
  const prompt='Create one publish-ready long-form article for RocketPen Digital Studio.\nLanguage: '+locale.name+' ('+t.lang+')\nTarget market: '+t.market+'\nTopic seed: '+t.topic+'\nEditorial topic ID: '+t.topicId+'\nCategory: '+t.category+'\nAllowed categories: '+CATS.join(', ')+'\nExisting titles to avoid: \n'+existingTitles.slice(-100).map(x=>'- '+x).join('\n')+'\nExisting slugs to avoid: '+existingSlugs.slice(-100).join(', ')+'\nThe article must be original for this locale, not a shallow translation of another page. Explain the reader problem, give a clear framework and checklist, note trade-offs, use specific hypothetical examples only when labelled hypothetical, and cite sources with exact URLs. Do not fabricate market statistics.';
  for(let attempt=0;attempt<2;attempt++){
   const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,tools:[{type:'web_search'}],tool_choice:'required',instructions:instructions,input:prompt+(attempt?'\nPrevious draft failed: '+t.validationError+'. Write a complete, longer article that meets all constraints.':''),max_output_tokens:6500,text:{format:{type:'json_schema',name:'digital_blog_article',strict:true,schema:schema}}})});
@@ -236,7 +261,6 @@ function renderArticle(a,availableArticles=[]){
  '<div class="cta"><h2>'+locale.contact+'</h2><p>'+locale.cta+'</p><a href="'+home+'#contact">'+locale.contact+'</a></div></article></main>'+
  '<footer class="end"><span>© '+a.publishedAt.slice(0,4)+' RocketPen Digital Studio</span><a href="'+locale.blog+'">← '+locale.blogLabel+'</a><a href="'+home+'">'+locale.homeLabel+'</a></footer><script>const topbar=document.querySelector(\'.top\');const onScroll=()=>topbar.classList.toggle(\'is-scrolled\',window.scrollY>12);window.addEventListener(\'scroll\',onScroll,{passive:true});onScroll();</script></body></html>';
 }
-const PAGE_SIZE=24;
 function articleCard(a,lang,index){
  const label=CAT[lang][a.category]||a.category;
  const link='/blog/'+lang+'/articles/'+esc(a.slug)+'.html';
@@ -260,7 +284,7 @@ async function renderIndex(lang,articles){
  const start='<!-- POSTS_START -->',end='<!-- POSTS_END -->',si=html.indexOf(start),ei=html.indexOf(end);
  if(si<0||ei<si)throw new Error('Missing article markers in blog/'+lang+'/index.html');
  const sorted=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||''));
- const total=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
+ const PAGE_SIZE=lang==='en'?24:15;\n const total=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
  const pagerStart='<!-- PAGINATION_START -->',pagerEnd='<!-- PAGINATION_END -->';
  const cards=sorted.slice(0,PAGE_SIZE).map((a,i)=>articleCard(a,lang,i)).join('\\n');
  html=html.slice(0,si+start.length)+'\\n'+cards+'\\n'+html.slice(ei);
@@ -335,7 +359,10 @@ async function main(){
   if(configuredSite.protocol!=='https:'||configuredSite.origin!==SITE_URL)throw new Error('SITE_URL must be an HTTPS origin without a path, query or fragment, e.g. https://www.example.com');
  }
  const byLang={};for(const lang of LANGS)byLang[lang]=await loadArticles(lang);
- const all=LANGS.flatMap(lang=>byLang[lang]);const titles=all.map(a=>a.title),slugs=all.map(a=>a.slug);
+ const existingByLang={};
+ for(const lang of LANGS)existingByLang[lang]=await loadExistingHtmlArticles(lang,new Set(byLang[lang].map(a=>a.slug)));
+ const all=LANGS.flatMap(lang=>[...existingByLang[lang],...byLang[lang]]);
+ const titles=all.map(a=>a.title),slugs=all.map(a=>a.slug);
  const TARGET_PER_LANGUAGE=100,BATCH_PER_LANGUAGE=10;
  const variants=['implementation guide','decision framework','audit checklist','common mistakes and alternatives','measurement and optimization'];
  const variantId=value=>value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -382,8 +409,8 @@ async function main(){
   await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a,all));
   byLang[t.lang].push(a);all.push(a);titles.push(a.title);slugs.push(a.slug);newlyGenerated.push(a);
  }
- for(const a of all){const pageDir=path.join(ROOT,'blog',a.lang,'articles');await fs.mkdir(pageDir,{recursive:true});await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a,all));}
- for(const lang of LANGS)await renderIndex(lang,byLang[lang]);
+ for(const a of newlyGenerated){const pageDir=path.join(ROOT,'blog',a.lang,'articles');await fs.mkdir(pageDir,{recursive:true});await fs.writeFile(path.join(pageDir,a.slug+'.html'),renderArticle(a,all));}
+ for(const lang of LANGS){const indexRecords=[...existingByLang[lang],...byLang[lang]];const unique=new Map(indexRecords.map(a=>[a.slug,a]));await renderIndex(lang,[...unique.values()]);}
  await updateSeoBlocks();
  await writeSitemap(all);
  const reportBase=SITE_URL||'https://rocketpendigital.com';
