@@ -104,8 +104,9 @@ for language in ("tr","en","ar"):
     for ident in ("home-slider-track","home-slider-prev","home-slider-next","home-slider-dots","news-list","news-pagination"):
         if html.count(f'id="{ident}"')!=1:
             errors.append(f"{language}: element #{ident} count is not one")
-    if "news.js?v=20261024-19" not in html:
-        errors.append(f"{language}: news JS cache version is stale")
+    expected_js_version = "20261024-19" if language == "tr" else "20261025-1"
+    if f"news.js?v={expected_js_version}" not in html:
+        errors.append(f"{language}: news JS cache version is stale (expected {expected_js_version})")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
 for token in ("published","Yayın tarihi","Gasim Piraliyev","const shown=p===1?currentFeed:oldArchive.slice((p-2)*pageSize,(p-1)*pageSize)","const archive=unique((data.stories||[]).filter(s=>s.lang===lang)"):
