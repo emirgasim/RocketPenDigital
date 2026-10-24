@@ -2,12 +2,12 @@ name: Integrate Turkish SEO articles 101-140
 on:
   push:
     paths:
-      - 'data/rocketpen-tr-101-140/part05.b64'
+      - 'data/rocketpen-tr-101-140/part10.b64'
 permissions:
   contents: write
 jobs:
   import-and-deploy:
-    if: hashFiles('data/rocketpen-tr-101-140/part05.b64') != ''
+    if: hashFiles('data/rocketpen-tr-101-140/part10.b64') != ''
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
