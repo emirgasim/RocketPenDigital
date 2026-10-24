@@ -7,7 +7,6 @@ permissions:
   contents: write
 jobs:
   import-and-deploy:
-    if: hashFiles('data/rocketpen-tr-101-140/part17.b64') != ''
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
