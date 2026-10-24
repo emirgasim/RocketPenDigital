@@ -284,7 +284,8 @@ async function renderIndex(lang,articles){
  const start='<!-- POSTS_START -->',end='<!-- POSTS_END -->',si=html.indexOf(start),ei=html.indexOf(end);
  if(si<0||ei<si)throw new Error('Missing article markers in blog/'+lang+'/index.html');
  const sorted=articles.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||''));
- const PAGE_SIZE=lang==='en'?24:15;\n const total=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
+ const PAGE_SIZE=lang==='en'?24:15;
+ const total=Math.max(1,Math.ceil(sorted.length/PAGE_SIZE));
  const pagerStart='<!-- PAGINATION_START -->',pagerEnd='<!-- PAGINATION_END -->';
  const cards=sorted.slice(0,PAGE_SIZE).map((a,i)=>articleCard(a,lang,i)).join('\n');
  html=html.slice(0,si+start.length)+'\n'+cards+'\n'+html.slice(ei);
