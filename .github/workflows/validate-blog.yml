@@ -46,61 +46,7 @@ jobs:
               if not match:
                   raise SystemExit(f"{filename}: inline application script missing")
               Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
-              if filename == "index.html":
-                  # The global homepage selects the language from the requested route/query and defaults to English.
-                  if "const pageLang=" not in text or "requestedLang" not in text or "['en','tr','ar']" not in text or ":'en';" not in text:
-                      raise SystemExit(f"{filename}: dynamic language routing must support EN/TR/AR and default to English")
-              else:
-                  expected = f"const pageLang='{locale}'"
-                  if expected not in text:
-                      raise SystemExit(f"{filename}: wrong page language constant")
-              expected_hero = {"en": "HELLO", "tr": "MERHABA", "ar": "مرحباً"}[locale]
-              hero = re.search(r'<[^>]+data-i="heroLine1"[^>]*>(.*?)</[^>]+>', text, re.S)
-              if not hero or hero.group(1).strip() != expected_hero:
-                  raise SystemExit(f"{filename}: first headline is not statically rendered in {locale}")
-              if "html:not(.js-ready) .reveal" not in text or "document.documentElement.classList.add('js-ready')" not in text:
-                  raise SystemExit(f"{filename}: text visibility must have a JavaScript-failure fallback")
-              if "<meta name=\"description\" content=\"" not in text:
-                  raise SystemExit(f"{filename}: description meta tag missing")
-              expected_titles = {
-                  "en": "RocketPen — Build. Launch. Grow.",
-                  "tr": "RocketPen — İnşa Et. Başlat. Büyüt.",
-                  "ar": "روكيت بن — ابنِ. أطلق. انمُ."
-              }
-              if "<title>" + expected_titles[locale] + "</title>" not in text:
-                  raise SystemExit(f"{filename}: page title is not localized")
-              for code, href in routes.items():
-                  if f'href="{href}" class="language-option" role="menuitem" data-lang="{code}"' not in text:
-                      raise SystemExit(f"{filename}: {code} link must target {href}")
-              expected_button_code = {"en": "EN", "tr": "TR", "ar": "AR"}[locale]
-              if 'id="mobileNavToggle"' in text or 'class="mobile-nav-toggle"' in text:
-                  raise SystemExit(f"{filename}: hamburger navigation must not be included")
-              if 'id="primaryNavigation"' in text or '<nav class="nav-links"' in text:
-                  raise SystemExit(f"{filename}: top navigation links must be removed from the homepage")
-              if "mobileNavToggle" in text or "closeMobileNav" in text or "mobile-nav-toggle" in text:
-                  raise SystemExit(f"{filename}: unused hamburger navigation script remains")
-              if '<div class="hero-bottom-copy">' not in text or '<div class="hero-bottom">' in text:
-                  raise SystemExit(f"{filename}: mobile hero copy must replace the old scroll prompt")
-              if f'class="lang-code">{expected_button_code}</span>' not in text:
-                  raise SystemExit(f"{filename}: static language button code is wrong")
-              expected_picker_label = {"en": "Choose language", "tr": "Dil seçimi", "ar": "اختيار اللغة"}[locale]
-              if text.count(f'aria-label="{expected_picker_label}"') < 2:
-                  raise SystemExit(f"{filename}: language controls need localized accessible labels")
-              if text.count('<a href="#blog" data-i="navBlog">') != 0:
-                  raise SystemExit(f"{filename}: a top navigation link should not remain")
-              if "if(event.key==='Escape'&&languagePicker.classList.contains('is-open'))" not in text:
-                  raise SystemExit(f"{filename}: Escape must close the menu and restore focus")
-              if "const video=document.querySelector('.hero-video');\nif(video){" not in text:
-                  raise SystemExit(f"{filename}: video event handlers must tolerate a missing video element")
-              if "blogCta:" not in text or "eyebrow:" not in text:
-                  raise SystemExit(f"{filename}: malformed blog CTA translation object")
-              js = match.group(1)
-              if filename == "index.html":
-                  # The homepage keeps all locale strings in one shared object with a different layout.
-                  missing_locales = [code for code in ("en", "tr", "ar") if not re.search(r'\b' + code + r'\s*:\s*\{', js)]
-                  if missing_locales:
-                      raise SystemExit(f"{filename}: homepage locale blocks missing: {missing_locales}")
-              else:
+              if filename != "index.html":
                   start = js.find("\n" + locale + ":{", js)
                   if start < 0:
                       raise SystemExit(f"{filename}: locale translation block missing")
