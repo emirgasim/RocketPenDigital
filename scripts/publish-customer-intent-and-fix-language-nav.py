@@ -101,7 +101,8 @@ def set_blog_language_routes(html, active_lang):
 
 def card(a, index):
     lang=a["lang"]; href=f'/blog/{lang}/articles/{a["slug"]}.html'
-    category={"tr":"MÜŞTERİ REHBERİ","en":"CLIENT GUIDE","ar":"دليل العملاء"}[lang]
+    is_client_intent = any(a["slug"] == item["slug"] and a["lang"] == item["lang"] for item in ARTICLES)
+    category = ({"tr":"MÜŞTERİ REHBERİ","en":"CLIENT GUIDE","ar":"دليل العملاء"} if is_client_intent else {"tr":"SEKTÖREL REHBER","en":"DIGITAL GUIDE","ar":"دليل رقمي"})[lang]
     return (f'<article class="article-card" data-category="client-intent">'
       f'<div class="article-no">{lang.upper()} / {category}</div><div>'
       f'<h3><a href="{href}">{esc(a["title"])}</a></h3><p>{esc(a["description"])}</p></div>'
