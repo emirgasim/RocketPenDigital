@@ -23,7 +23,7 @@ on:
     types: [completed]
     branches: [main]
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: cloudflare-production-deploy
   cancel-in-progress: true
@@ -47,6 +47,34 @@ jobs:
           node -e "const d=require('./news/data/headlines.json'); if(!Array.isArray(d.stories)||d.stories.length<1||d.stories.some(s=>s.editorialOriginal!==true||!Array.isArray(s.sources)||s.sources.length<1)) process.exit(1); console.log('Original editorial headlines:',d.stories.length)"
       - name: QA archive data and unique story artwork
         run: python scripts/qa_news_archive.py
+      - name: Persist validated multilingual archive in GitHub
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          data = json.loads(Path("news/data/news.json").read_text(encoding="utf-8"))
+          stories = data.get("stories", [])
+          counts = Counter(s.get("lang") for s in stories)
+          expected = ("tr", "en", "ar")
+          for lang in expected:
+              if counts[lang] < 400:
+                  raise SystemExit(f"Refusing to persist incomplete archive: {lang} has {counts[lang]} stories; expected at least 400.")
+          if len(stories) < 1200:
+              raise SystemExit(f"Refusing to persist incomplete archive: only {len(stories)} stories total.")
+          print("Validated persistent archive:", len(stories), dict(counts))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news/data/news.json
+          if git diff --cached --quiet; then
+            echo "Archive JSON already matches the validated build; no persistence commit needed."
+          else
+            git commit -m "Persist validated multilingual news archive [skip ci]"
+            git push origin HEAD:main
+          fi
       - name: Verify Cloudflare credentials
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
