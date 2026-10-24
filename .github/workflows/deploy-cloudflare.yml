@@ -40,7 +40,209 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Detect multilingual news source changes
+        id: news_archive_source
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_run" ]; then
+            echo "rebuild=false" >> "$GITHUB_OUTPUT"
+            echo "Workflow-run deploy: use the already validated archive."
+            exit 0
+          fi
+          if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git fetch --no-tags --depth=1 origin "$BEFORE_SHA"
+          if git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA" | grep -Eq '^RocketPenTech_500_(News_Gasim_Piraliyev|Arapca_Haber|Ingilizce_Haber)\.zip
+      - name: Validate original editorial headline data
+        run: |
+          node --check news/assets/news.js
+          node -e "const d=require('./news/data/headlines.json'); if(!Array.isArray(d.stories)||d.stories.length<1||d.stories.some(s=>s.editorialOriginal!==true||!Array.isArray(s.sources)||s.sources.length<1)) process.exit(1); console.log('Original editorial headlines:',d.stories.length)"
+      - name: QA archive data and unique story artwork
+        run: python scripts/qa_news_archive.py
+      - name: Persist validated multilingual archive in GitHub
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          data = json.loads(Path("news/data/news.json").read_text(encoding="utf-8"))
+          stories = data.get("stories", [])
+          counts = Counter(s.get("lang") for s in stories)
+          expected = ("tr", "en", "ar")
+          for lang in expected:
+              if counts[lang] < 400:
+                  raise SystemExit(f"Refusing to persist incomplete archive: {lang} has {counts[lang]} stories; expected at least 400.")
+          if len(stories) < 1200:
+              raise SystemExit(f"Refusing to persist incomplete archive: only {len(stories)} stories total.")
+          print("Validated persistent archive:", len(stories), dict(counts))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news/data/news.json
+          if git diff --cached --quiet; then
+            echo "Archive JSON already matches the validated build; no persistence commit needed."
+          else
+            git commit -m "Persist validated multilingual news archive [skip ci]"
+            # Other QA/workflow commits can reach main while the archive is being built.
+            # Rebase this archive commit on the latest main before pushing to avoid a stale-ref rejection.
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+      - name: Generate static SEO article pages and multilingual sitemap
+        run: python scripts/build_news_seo.py
+      - name: Verify Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::Deployment blocked: add CLOUDFLARE_API_TOKEN under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Deployment blocked: add CLOUDFLARE_ACCOUNT_ID under Settings > Secrets and variables > Actions > Secrets."
+            exit 1
+          fi
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Deploy static assets and Worker configuration
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 deploy --config wrangler.toml
+      - name: Smoke-test deployed news endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://rocketpendigital.qasimm2012.workers.dev"
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/data/news.json" -o /tmp/news.json
+          python - <<'PY'
+          import json
+          from collections import Counter
+          with open("/tmp/news.json", encoding="utf-8") as f:
+              data = json.load(f)
+          stories = data.get("stories", [])
+          if not stories:
+              raise SystemExit("Smoke test failed: live news.json has no stories.")
+          published = Counter(s.get("lang") for s in stories if s.get("status") == "published")
+          print(f"Live JSON response: {len(stories)} total stories; published by language: {dict(published)}")
+          for lang in ("tr", "en", "ar"):
+              if published[lang] < 10:
+                  raise SystemExit(f"Smoke test failed: {lang} has only {published[lang]} published stories.")
+          PY
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/data/headlines.json" -o /tmp/headlines.json
+          python - <<'PY'
+          import json, datetime
+          with open("/tmp/headlines.json", encoding="utf-8") as f:
+              data = json.load(f)
+          stories = data.get("stories", [])
+          now = datetime.datetime.now(datetime.timezone.utc)
+          cutoff = now - datetime.timedelta(hours=48)
+          published = [s for s in stories if s.get("lang") == "tr" and s.get("status") == "published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval") != "pending"]
+          fresh = []
+          for story in published:
+              stamp = story.get("publishedAt") or story.get("dateISO") or ""
+              try:
+                  d = datetime.datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+                  if d.tzinfo is None: d = d.replace(tzinfo=datetime.timezone.utc)
+                  if cutoff <= d <= now + datetime.timedelta(hours=2): fresh.append(story)
+              except ValueError:
+                  pass
+          print(f"Live headline response: {len(stories)} items; {len(fresh)} published Turkish items within 48 hours.")
+          if not fresh:
+              raise SystemExit("Smoke test failed: no current Turkish headline is available.")
+          PY
+          for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
+            echo "Checking production host: $HOST"
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/news.json" -o /tmp/news-host.json
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/data/headlines.json" -o /tmp/headlines-host.json
+            python - "$HOST" <<'PY'
+          import json, sys
+          with open("/tmp/headlines-host.json", encoding="utf-8") as f:
+              headlines=json.load(f).get("stories", [])
+          fresh=[s for s in headlines if s.get("lang")=="tr" and s.get("status")=="published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval")!="pending"]
+          print(f"{sys.argv[1]}: headline-items={len(headlines)} published-tr={len(fresh)}")
+          if not fresh:
+              raise SystemExit("Live host has no published Turkish headlines.")
+          PY
+            python - "$HOST" <<'PY'
+          import json, sys
+          from collections import Counter
+          host=sys.argv[1]
+          with open("/tmp/news-host.json", encoding="utf-8") as f:
+              data=json.load(f)
+          stories=data.get("stories", [])
+          published=Counter(s.get("lang") for s in stories if s.get("status")=="published")
+          print(f"{host}: total={len(stories)} published={dict(published)}")
+          if not stories or any(published[lang] < 10 for lang in ("tr","en","ar")):
+              raise SystemExit("Live host has missing or insufficient published news.")
+          PY
+            for LANG in tr en ar; do
+              curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/" -o "/tmp/news-$LANG.html"
+              grep -q 'news.js?v=' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261024-19."; exit 1; }
+              grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no headline slider."; exit 1; }
+              grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no archive list."; exit 1; }
+            done
+          done
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/sitemap.xml" -o /tmp/news-sitemap.xml
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from collections import Counter
+          root=ET.parse("/tmp/news-sitemap.xml").getroot()
+          ns={"sm":"http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls=[e.findtext("sm:loc",default="",namespaces=ns) for e in root.findall("sm:url",ns)]
+          if len(urls)!=len(set(urls)): raise SystemExit("Sitemap contains duplicate URLs.")
+          counts=Counter()
+          for url in urls:
+              for lang in ("tr","en","ar"):
+                  if f"/news/{lang}/articles/" in url: counts[lang]+=1
+          for lang in ("tr","en","ar"):
+              if counts[lang] < 10: raise SystemExit(f"Sitemap is missing generated {lang} article URLs: {counts[lang]}")
+              home=f"https://rocketpendigital.com/news/{lang}/"
+              if home not in urls: raise SystemExit(f"Sitemap is missing newsroom landing page: {home}")
+          print("News sitemap OK:",dict(counts),"article URLs; multilingual landing pages included.")
+          PY
+          SEO_BASE="https://rocketpendigital.com"
+          for LANG in tr en ar; do
+            SLUG=$(python - "$LANG" <<'PY'
+          import json,sys
+          lang=sys.argv[1]
+          with open("news/data/headlines.json",encoding="utf-8") as f: headlines=json.load(f).get("stories",[])
+          with open("news/data/news.json",encoding="utf-8") as f: archive=json.load(f).get("stories",[])
+          for s in headlines+archive:
+              if s.get("lang")==lang and s.get("status")=="published" and s.get("approved") is not False and s.get("editorialApproved") is not False and s.get("editorialApproval")!="pending":
+                  print(s["slug"]); break
+          else: raise SystemExit("No published story for "+lang)
+          PY
+          )
+            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$SEO_BASE/news/$LANG/articles/$SLUG" -o "/tmp/story-$LANG.html"
+            grep -q 'rel="canonical"' "/tmp/story-$LANG.html" || { echo "Missing canonical on $SEO_BASE/news/$LANG/articles/$SLUG.html; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
+            grep -q 'application/ld+json' "/tmp/story-$LANG.html" || { echo "Missing NewsArticle structured data on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
+            grep -q 'name="description"' "/tmp/story-$LANG.html" || { echo "Missing description on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
+          done
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/news/assets/news.js?v=20261025-1" -o /tmp/news.js
+          node --check /tmp/news.js
+          echo "Smoke test passed: worker and custom domain JSON, all three editions, current HTML, slider, archive list, and JS syntax."
+; then
+            echo "rebuild=true" >> "$GITHUB_OUTPUT"
+            echo "A source archive changed; rebuild all three language editions."
+          else
+            echo "rebuild=false" >> "$GITHUB_OUTPUT"
+            echo "Source ZIPs are unchanged; keep the validated news archive."
+          fi
       - name: Build multilingual news archive from supplied ZIPs
+        if: steps.news_archive_source.outputs.rebuild == 'true'
         run: python scripts/build_news_archive.py
       - name: Validate original editorial headline data
         run: |
