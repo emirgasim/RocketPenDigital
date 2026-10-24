@@ -33,14 +33,14 @@ jobs:
               head -c 500 /tmp/worker-response || true
               exit 1
             fi
+            if [ "$path" = "/sitemap.xml" ]; then cp /tmp/worker-response /tmp/deployed-sitemap.xml; fi
             code="$(curl --silent --show-error --location --retry 2 --retry-delay 1 -o /tmp/canonical-response -w '%{http_code}' "$CANONICAL$path" || true)"
             echo "Canonical $code $path"
           done
           python - <<'PY'
-          import urllib.request, xml.etree.ElementTree as ET
-          url='https://rocketpendigital.qasimm2012.workers.dev/sitemap.xml'
-          with urllib.request.urlopen(url, timeout=20) as r:
-              root=ET.fromstring(r.read())
+          import xml.etree.ElementTree as ET
+          with open('/tmp/deployed-sitemap.xml', 'rb') as f:
+              root=ET.parse(f).getroot()
           ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
           locs=[e.text or '' for e in root.findall('.//s:loc',ns)]
           tr_articles=[u for u in locs if '/blog/tr/articles/' in u]
