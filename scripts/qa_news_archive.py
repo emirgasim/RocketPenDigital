@@ -104,11 +104,11 @@ for language in ("tr","en","ar"):
     for ident in ("home-slider-track","home-slider-prev","home-slider-next","home-slider-dots","news-list","news-pagination"):
         if html.count(f'id="{ident}"')!=1:
             errors.append(f"{language}: element #{ident} count is not one")
-    if "news.js?v=20261023-16" not in html:
+    if "news.js?v=20261024-19" not in html:
         errors.append(f"{language}: news JS cache version is stale")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
-for token in ("published","Yayın tarihi","Gasim Piraliyev","shown=pageItems","const all=combined.filter(s=>s.lang===lang)"):
+for token in ("published","Yayın tarihi","Gasim Piraliyev","const shown=p===1?currentFeed:oldArchive.slice((p-2)*pageSize,(p-1)*pageSize)","const archive=unique((data.stories||[]).filter(s=>s.lang===lang)")
     if token not in js:
         errors.append("News listing missing expected metadata/dedup logic: "+token)
 article=(ROOT/"news/article.html").read_text(encoding="utf-8")
