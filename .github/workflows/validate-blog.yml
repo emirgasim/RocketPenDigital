@@ -46,9 +46,14 @@ jobs:
               if not match:
                   raise SystemExit(f"{filename}: inline application script missing")
               Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
-              expected = f"const pageLang='{locale}'"
-              if expected not in text:
-                  raise SystemExit(f"{filename}: wrong page language constant")
+              if filename == "index.html":
+                  # The global homepage selects the language from the requested route/query and defaults to English.
+                  if not re.search(r"let pageLang=\['en','tr','ar'\]\.includes\(requestedLang\)\?requestedLang:'en';", text):
+                      raise SystemExit(f"{filename}: dynamic language routing must support EN/TR/AR and default to English")
+              else:
+                  expected = f"const pageLang='{locale}'"
+                  if expected not in text:
+                      raise SystemExit(f"{filename}: wrong page language constant")
               expected_hero = {"en": "HELLO", "tr": "MERHABA", "ar": "مرحباً"}[locale]
               hero = re.search(r'<[^>]+data-i="heroLine1"[^>]*>(.*?)</[^>]+>', text, re.S)
               if not hero or hero.group(1).strip() != expected_hero:
