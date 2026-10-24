@@ -95,16 +95,23 @@ jobs:
               if "blogCta:" not in text or "eyebrow:" not in text:
                   raise SystemExit(f"{filename}: malformed blog CTA translation object")
               js = match.group(1)
-              start = js.find("\n" + locale + ":{")
-              if start < 0:
-                  raise SystemExit(f"{filename}: locale translation block missing")
-              next_locale = {"en": "tr", "tr": "ar"}.get(locale)
-              end = js.find("\n" + next_locale + ":{", start) if next_locale else js.find("\n};", start)
-              block = js[start:end if end >= 0 else len(js)]
-              keys = set(re.findall(r'data-i="([^"]+)"', text))
-              missing = [key for key in keys if not re.search(r'(?<![\w$])' + re.escape(key) + r'\s*:', block)]
-              if missing:
-                  raise SystemExit(f"{filename}: locale {locale} has missing translations: {missing}")
+              if filename == "index.html":
+                  # The homepage keeps all locale strings in one shared object with a different layout.
+                  missing_locales = [code for code in ("en", "tr", "ar") if not re.search(r'\b' + code + r'\s*:\s*\{', js)]
+                  if missing_locales:
+                      raise SystemExit(f"{filename}: homepage locale blocks missing: {missing_locales}")
+              else:
+                  start = js.find("\n" + locale + ":{", js)
+                  if start < 0:
+                      raise SystemExit(f"{filename}: locale translation block missing")
+                  next_locale = {"en": "tr", "tr": "ar"}.get(locale)
+                  end = js.find("\n" + next_locale + ":{", start) if next_locale else js.find("\n};", start)
+                  block = js[start:end if end >= 0 else len(js)]
+                  keys = set(re.findall(r'data-i="([^"]+)"', text))
+                  missing = [key for key in keys if not re.search(r'(?<![\w$])' + re.escape(key) + r'\s*:', block)]
+                  if missing:
+                      raise SystemExit(f"{filename}: locale {locale} has missing translations: {missing}")
+
           print("Language routes, translations and inline scripts extracted.")
           PY
           node --check /tmp/rocketpen-en.js
