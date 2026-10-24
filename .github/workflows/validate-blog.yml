@@ -48,7 +48,7 @@ jobs:
               js = match.group(1)
               Path(f"/tmp/rocketpen-{locale}.js").write_text(js, encoding="utf-8")
               if filename != "index.html":
-                  start = js.find("\n" + locale + ":{", js)
+                  start = js.find("\n" + locale + ":{")
                   if start < 0:
                       raise SystemExit(f"{filename}: locale translation block missing")
                   next_locale = {"en": "tr", "tr": "ar"}.get(locale)
