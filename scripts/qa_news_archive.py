@@ -108,7 +108,7 @@ for language in ("tr","en","ar"):
         errors.append(f"{language}: news JS cache version is stale")
 
 js=(ROOT/"news/assets/news.js").read_text(encoding="utf-8")
-for token in ("published","Yayın tarihi","Gasim Piraliyev","const shown=p===1?currentFeed:oldArchive.slice((p-2)*pageSize,(p-1)*pageSize)","const archive=unique((data.stories||[]).filter(s=>s.lang===lang)")
+for token in ("published","Yayın tarihi","Gasim Piraliyev","const shown=p===1?currentFeed:oldArchive.slice((p-2)*pageSize,(p-1)*pageSize)","const archive=unique((data.stories||[]).filter(s=>s.lang===lang)"):
     if token not in js:
         errors.append("News listing missing expected metadata/dedup logic: "+token)
 article=(ROOT/"news/article.html").read_text(encoding="utf-8")
