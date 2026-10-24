@@ -184,7 +184,14 @@ def render_listing(template,lang,page,articles,total):
     base=f'https://rocketpendigital.com/blog/{lang}/index.html'
     target=f'https://rocketpendigital.com/blog/{lang}/page/{page}.html' if page>1 else base
     html=re.sub(r'<link rel="canonical" href="[^"]*">',f'<link rel="canonical" href="{target}">',html,count=1,flags=re.I)
-    html=re.sub(r'<meta property="og:url" content="[^"]*">',f'<meta property="og:url" content="{target}">',html,count=1,flags=re.I)
+    if re.search(r'<link rel="canonical" href="[^"]*">', html, re.I):
+        html=re.sub(r'<link rel="canonical" href="[^"]*">',f'<link rel="canonical" href="{target}">',html,count=1,flags=re.I)
+    else:
+        html=html.replace('</head>',f'<link rel="canonical" href="{target}"></head>',1)
+    if re.search(r'<meta property="og:url" content="[^"]*">', html, re.I):
+        html=re.sub(r'<meta property="og:url" content="[^"]*">',f'<meta property="og:url" content="{target}">',html,count=1,flags=re.I)
+    else:
+        html=html.replace('</head>',f'<meta property="og:url" content="{target}"></head>',1)
     if page>1:
         title=re.search(r'<title>(.*?)</title>',html,re.I|re.S)
         if title:
@@ -268,7 +275,7 @@ def main():
             rendered=render_listing(template,lang,page,subset,total)
             page_path.write_text(rendered,encoding='utf-8')
         # Remove stale archive pages only if they exceed the newly computed total.
-        for stale in (ROOT/'blog'/lang/'page').glob('*.html') if (ROOT/'blog'/lang/'page').exists() else []:
+        for stale in ((ROOT/'blog'/lang/'page').glob('*.html') if (ROOT/'blog'/lang/'page').exists() else []):
             m=re.fullmatch(r'(\d+)\.html',stale.name)
             if m and int(m.group(1))>total: stale.unlink()
         print(f'{lang}: rebuilt {total} archive pages, {len(all_articles)} article URLs')
