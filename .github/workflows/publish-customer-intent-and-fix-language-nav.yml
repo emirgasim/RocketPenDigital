@@ -1,0 +1,105 @@
+name: Publish Customer-Intent SEO in TR EN AR
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/publish-customer-intent-and-fix-language-nav.py"
+      - ".github/workflows/publish-customer-intent-and-fix-language-nav.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: customer-intent-multilingual-publish
+  cancel-in-progress: false
+jobs:
+  publish-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate customer-intent articles and fix language navigation
+        run: |
+          python -m py_compile scripts/publish-customer-intent-and-fix-language-nav.py
+          python scripts/publish-customer-intent-and-fix-language-nav.py
+      - name: Validate language routes, article pages, archive pagination and sitemap
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, xml.etree.ElementTree as ET
+          root=Path('.')
+          counts={}
+          for lang in ('tr','en','ar'):
+              articles=list((root/'blog'/lang/'articles').glob('*.html'))
+              counts[lang]=len(articles)
+              if not articles:
+                  raise SystemExit(f'No {lang} article pages found')
+              for p in articles:
+                  s=p.read_text(encoding='utf-8')
+                  if 'class="language-picker"' in s:
+                      raise SystemExit(f'Article language picker remains: {p}')
+                  if '<link rel="canonical"' not in s:
+                      raise SystemExit(f'Canonical missing: {p}')
+              index=(root/'blog'/lang/'index.html').read_text(encoding='utf-8')
+              for code,href in [('en','/blog/en/index.html'),('tr','/blog/tr/index.html'),('ar','/blog/ar/index.html')]:
+                  if not re.search(r'<a\b(?=[^>]*data-lang="'+code+r'")(?=[^>]*href="'+re.escape(href)+r'")[^>]*>',index):
+                      raise SystemExit(f'{lang} blog language menu does not route {code} to {href}')
+              total=(len(articles)+(23 if lang=='en' else 14))//(24 if lang=='en' else 15)
+              for n in range(2,total+1):
+                  p=root/'blog'/lang/'page'/f'{n}.html'
+                  if not p.exists():
+                      raise SystemExit(f'Missing archive page {p}')
+                  html=p.read_text(encoding='utf-8')
+                  if f'https://rocketpendigital.com/blog/{lang}/page/{n}.html' not in html:
+                      raise SystemExit(f'Canonical mismatch in {p}')
+          ET.register_namespace('', 'http://www.sitemaps.org/schemas/sitemap/0.9')
+          sitemap=ET.parse('sitemap.xml').getroot()
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls=[x.text or '' for x in sitemap.findall('.//s:loc',ns)]
+          if len(urls)!=len(set(urls)): raise SystemExit('Duplicate sitemap URLs')
+          for lang,n in counts.items():
+              found=sum(f'/blog/{lang}/articles/' in u for u in urls)
+              if found!=n: raise SystemExit(f'{lang} sitemap article count {found} != {n}')
+          print('Validated article counts:', counts)
+          print('Unique sitemap URLs:', len(urls))
+          PY
+      - name: Commit multilingual article and archive updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No content changes to commit."
+          else
+            git commit -m "Publish customer-intent SEO guides in Turkish English Arabic"
+            git push origin HEAD:main
+          fi
+      - name: Deploy to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          test -n "$CLOUDFLARE_API_TOKEN" || (echo "::error::CLOUDFLARE_API_TOKEN secret is missing"; exit 1)
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || (echo "::error::CLOUDFLARE_ACCOUNT_ID secret is missing"; exit 1)
+          npx --yes wrangler@4 deploy --config wrangler.toml
+      - name: Verify live pages and language routes
+        run: |
+          set -euo pipefail
+          for host in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
+            for path in "/blog/tr/index.html" "/blog/en/index.html" "/blog/ar/index.html" "/blog/tr/articles/premium-web-tasarim-ajansi-nasil-secilir.html" "/blog/en/articles/how-to-choose-premium-web-design-agency.html" "/blog/ar/articles/ikhtiyar-sharikat-tasmim-mawaqi-fakhira.html" "/blog/tr/page/30.html" "/blog/en/page/28.html" "/blog/ar/page/31.html" "/sitemap.xml"; do
+              code="$(curl --silent --show-error --location --retry 3 --retry-delay 2 -o /tmp/rocketpen-response -w '%{http_code}' "$host$path")"
+              echo "$host$path => $code"
+              if [ "$code" != "200" ]; then
+                echo "::error::Live verification failed for $host$path"
+                head -c 500 /tmp/rocketpen-response || true
+                exit 1
+              fi
+            done
+          done
