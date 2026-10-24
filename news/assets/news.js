@@ -76,6 +76,13 @@
   const heading=$('#latest .section-head h2'),head=$('#latest .section-head');
   let currentFeed=current.filter(s=>!featured.has(s.slug)),oldArchive=archive;
   if(selectedCategory){currentFeed=currentFeed.filter(s=>s.category===selectedCategory);oldArchive=oldArchive.filter(s=>s.category===selectedCategory)}
+  // Match the Turkish edition: keep ten current headlines in the slider and show additional stories below.
+  // English and Arabic currently have only ten feed headlines, so fill the first page from the archive without duplicating them on later pages.
+  if((lang==='en'||lang==='ar')&&!selectedCategory&&currentFeed.length===0&&featured.size){
+    currentFeed=oldArchive.filter(s=>!featured.has(s.slug)).slice(0,10);
+    const firstPageSlugs=new Set(currentFeed.map(s=>s.slug));
+    oldArchive=oldArchive.filter(s=>!firstPageSlugs.has(s.slug));
+  }
   if(heading)heading.textContent=selectedCategory?(catName(selectedCategory)||t.all):t.all;
   if(selectedCategory&&!currentFeed.length&&!oldArchive.length&&head)notice(head,t.noCategory);
   const archivePages=Math.ceil(oldArchive.length/pageSize),pages=Math.max(1,1+archivePages),p=Math.min(page,pages);
