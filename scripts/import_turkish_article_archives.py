@@ -406,7 +406,14 @@ def update_sitemap(article_records, total_pages):
         root = ET.Element("{" + SM + "}urlset")
     if root.tag != "{" + SM + "}urlset":
         raise RuntimeError("Unexpected sitemap root; refusing to overwrite.")
-    existing = {(e.findtext("{" + SM + "}loc") or "").strip() for e in root.findall("{" + SM + "}url")}
+    url_tag, loc_tag = "{" + SM + "}url", "{" + SM + "}loc"
+    existing = set()
+    for element in list(root.findall(url_tag)):
+        value = (element.findtext(loc_tag) or "").strip()
+        if not value or value in existing:
+            root.remove(element)
+        else:
+            existing.add(value)
     urls = [BASE + "/blog/tr/index.html"]
     urls.extend(BASE + "/blog/tr/page/" + str(n) + ".html" for n in range(2, total_pages+1))
     urls.extend(BASE + "/blog/tr/articles/" + a["slug"] + ".html" for a in article_records)
@@ -479,15 +486,20 @@ def main():
                     report["skippedQualityGate"] += 1
                     continue
                 title_key = norm(a["title"])
-                if a["slug"] in old_slugs or a["slug"] in slug_counter:
-                    report["skippedExistingSlug"] += 1
-                    continue
                 if title_key in old_titles or title_key in seen_titles:
                     report["skippedDuplicateTitle"] += 1
                     continue
                 if a["digest"] in seen_digests or a["digest"] in old_digests:
                     report["skippedDuplicateBody"] += 1
                     continue
+                if a["slug"] in old_slugs or a["slug"] in slug_counter:
+                    suffix = hashlib.sha1((a["source"] + a["title"]).encode("utf-8")).hexdigest()[:8]
+                    a["slug"] = a["slug"][:76].rstrip("-") + "-" + suffix
+                    while a["slug"] in old_slugs or a["slug"] in slug_counter:
+                        suffix = hashlib.sha1((a["source"] + a["title"] + suffix).encode("utf-8")).hexdigest()[:8]
+                        a["slug"] = a["slug"][:76].rstrip("-") + "-" + suffix
+                    report.setdefault("slugCollisionsResolved", 0)
+                    report["slugCollisionsResolved"] += 1
                 seen_titles.add(title_key)
                 seen_digests.add(a["digest"])
                 slug_counter[a["slug"]] += 1
