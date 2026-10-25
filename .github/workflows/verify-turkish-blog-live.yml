@@ -1,0 +1,70 @@
+name: Verify Turkish Blog Live
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/verify-turkish-blog-live.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check published Turkish blog and article endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARTICLE_PATH=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          print(urlsplit(json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))["sampleArticleUrl"]).path)
+          PY
+          )
+          for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
+            echo "Checking $HOST"
+            curl --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
+            curl --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
+            python - "$HOST" "$ARTICLE_PATH" <<'PY'
+          import sys
+          from pathlib import Path
+          host, article_path = sys.argv[1], sys.argv[2]
+          blog = Path("/tmp/tr-blog.html").read_text(encoding="utf-8", errors="replace")
+          article = Path("/tmp/tr-article.html").read_text(encoding="utf-8", errors="replace")
+          errors = []
+          if len(blog) < 3000: errors.append("blog listing response is unexpectedly short")
+          if "Dijital Blog" not in blog and "RocketPen Digital" not in blog: errors.append("blog listing brand/title missing")
+          if '/blog/tr/articles/' not in blog: errors.append("blog listing has no Turkish article links")
+          for label, ok in [
+              ("canonical", 'rel="canonical"' in article and article_path in article),
+              ("BlogPosting JSON-LD", 'application/ld+json' in article and "BlogPosting" in article),
+              ("related topics", "İlgili ve Önerilen Konular" in article),
+              ("contact CTA", '/languages/tr.html#contact' in article and "Projenizi konuşalım" in article),
+              ("FAQ section", "Sıkça Sorulan Sorular" in article),
+          ]:
+              if not ok: errors.append("sample article missing " + label)
+          print("Blog listing bytes:", len(blog), "| sample article bytes:", len(article))
+          if errors:
+              print("Validation errors:", "; ".join(errors))
+              print("Blog excerpt:", blog[:900])
+              print("Article excerpt:", article[:1200])
+              raise SystemExit(1)
+          print("PASS: listing, canonical, JSON-LD, related topics, FAQ and CTA:", host + article_path)
+          PY
+          done
+          curl --fail --silent --show-error --retry 4 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))
+          sitemap=Path("/tmp/site-sitemap.xml").read_text(encoding="utf-8")
+          if report["sampleArticleUrl"] not in sitemap:
+              raise SystemExit("Sample article URL is missing from the live sitemap.")
+          print("PASS: imported sample article is present in live sitemap.xml")
+          print("Cumulative archive articles:", report["importedCount"])
+          print("Total Turkish article pages:", report["finalTurkishArticleCount"])
+          print("Turkish listing pages:", report["turkishListingPages"])
+          PY
