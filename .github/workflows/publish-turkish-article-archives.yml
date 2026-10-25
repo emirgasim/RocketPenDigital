@@ -1,0 +1,127 @@
+name: Publish Turkish Article Archives
+on:
+  push:
+    branches: [main]
+    paths:
+      - "RocketPenDigital_1000_Makale_Parca_*.zip"
+      - "scripts/import_turkish_article_archives.py"
+      - ".github/workflows/publish-turkish-article-archives.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-turkish-article-archives
+  cancel-in-progress: false
+jobs:
+  import-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Import Turkish article archives and build SEO pages
+        run: python scripts/import_turkish_article_archives.py
+      - name: Validate generated article pages, listing pagination, and sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          report = json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))
+          article_dir = Path("blog/tr/articles")
+          pages = sorted(article_dir.glob("*.html"))
+          if report["importedCount"] < 1:
+              raise SystemExit("No new Turkish article pages were imported.")
+          if len(pages) != report["finalTurkishArticleCount"]:
+              raise SystemExit(f"Article count mismatch: files={len(pages)} report={report['finalTurkishArticleCount']}")
+          sample = article_dir / report["sampleArticleUrl"].split("/articles/")[-1]
+          if not sample.exists():
+              raise SystemExit(f"Sample article is missing: {sample}")
+          checks = {
+              "canonical": r'<link rel="canonical" href="https://rocketpendigital\.com/blog/tr/articles/',
+              "description": r'<meta name="description" content="[^"]{40,}"',
+              "structured data": r'"@type":"BlogPosting"',
+              "related topics": r'İlgili ve Önerilen Konular',
+              "contact CTA": r'href="/languages/tr\.html#contact"',
+              "FAQ": r'Sıkça Sorulan Sorular',
+          }
+          text = sample.read_text(encoding="utf-8")
+          for label, pattern in checks.items():
+              if not re.search(pattern, text, re.I):
+                  raise SystemExit(f"Sample page is missing {label}: {sample}")
+          listing = Path("blog/tr/index.html").read_text(encoding="utf-8")
+          if "POSTS_START" not in listing or "POSTS_END" not in listing or "pagination" not in listing:
+              raise SystemExit("Turkish blog listing or pagination markers are missing.")
+          sitemap = ET.parse("sitemap.xml").getroot()
+          ns = {"sm":"http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [e.findtext("sm:loc", default="", namespaces=ns) for e in sitemap.findall("sm:url", ns)]
+          if len(urls) != len(set(urls)):
+              raise SystemExit("Duplicate URLs exist in sitemap.xml.")
+          if report["sampleArticleUrl"] not in urls:
+              raise SystemExit("Sample Turkish article URL is missing from sitemap.xml.")
+          print("Imported:", report["importedCount"])
+          print("Existing articles retained:", report["existingHtmlArticleCount"])
+          print("Final article pages:", report["finalTurkishArticleCount"])
+          print("Listing pages:", report["turkishListingPages"])
+          print("Sitemap URLs:", len(urls))
+          print("Sample article checks passed:", sample)
+          PY
+      - name: Commit generated Turkish article pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A blog/tr/articles blog/tr/page blog/tr/index.html sitemap.xml reports/turkish-article-import-report.json
+          if git diff --cached --quiet; then
+            echo "No generated blog changes to commit."
+          else
+            git commit -m "Import Turkish article archive with SEO structure"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+      - name: Check Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN secret is missing"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID secret is missing"; exit 1; }
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Deploy to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 deploy --config wrangler.toml
+      - name: Smoke test live Turkish blog and sample article
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARTICLE_URL=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          print(json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))["sampleArticleUrl"])
+          PY
+          )
+          for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
+            grep -q "POSTS_START" /tmp/tr-blog.html
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$ARTICLE_URL" -o /tmp/tr-article.html
+            grep -q 'rel="canonical"' /tmp/tr-article.html
+            grep -q 'application/ld+json' /tmp/tr-article.html
+            grep -q 'İlgili ve Önerilen Konular' /tmp/tr-article.html
+            grep -q 'Projenizi konuşalım' /tmp/tr-article.html
+            echo "Live blog and sample article OK: $HOST"
+          done
