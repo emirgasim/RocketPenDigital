@@ -493,6 +493,9 @@ def main():
                 a = parse_markdown(content, info.filename)
                 if not a:
                     report["skippedQualityGate"] += 1
+                    if archive.name == "RocketPenDigital_10000_Yerel_SEO_Makale.zip" and report.get("localSeoParserSamples", 0) < 5:
+                        report["localSeoParserSamples"] = report.get("localSeoParserSamples", 0) + 1
+                        print("LOCAL_SEO_REJECT_SAMPLE", info.filename, repr(content[:700]))
                     continue
                 title_key = norm(a["title"])
                 if title_key in old_titles or title_key in seen_titles:
