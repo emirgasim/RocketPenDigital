@@ -48,7 +48,7 @@ jobs:
           checks = {
               "canonical": r'<link rel="canonical" href="https://rocketpendigital\.com/blog/tr/articles/',
               "description": r'<meta name="description" content="[^"]{40,}"',
-              "structured data": r'"@type":"BlogPosting"',
+              "structured data": r'"@type"\s*:\s*"BlogPosting"',
               "related topics": r'İlgili ve Önerilen Konular',
               "contact CTA": r'href="/languages/tr\.html#contact"',
               "FAQ": r'Sıkça Sorulan Sorular',
