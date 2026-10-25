@@ -456,7 +456,7 @@ def main():
             "Technical SEO does not guarantee indexing or rankings; human editorial review of templated source content remains recommended."
         ],
     }
-    candidates, seen_titles, seen_digests = [], set(), set()
+    old_digests = set()\n    candidates, seen_titles, seen_digests = [], set(), set()
     slug_counter = Counter(old_slugs)
     for archive in ARCHIVES:
         with ZipFile(archive) as z:
