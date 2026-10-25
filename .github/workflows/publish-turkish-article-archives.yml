@@ -116,9 +116,9 @@ jobs:
           PY
           )
           for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
+            curl --location --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
             grep -q "article-card" /tmp/tr-blog.html
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
+            curl --location --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
             grep -q 'rel="canonical"' /tmp/tr-article.html
             grep -q 'application/ld+json' /tmp/tr-article.html
             grep -q 'İlgili ve Önerilen Konular' /tmp/tr-article.html
