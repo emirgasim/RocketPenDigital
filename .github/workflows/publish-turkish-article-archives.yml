@@ -5,7 +5,6 @@ on:
     paths:
       - "RocketPenDigital_1000_Makale_Parca_*.zip"
       - "scripts/import_turkish_article_archives.py"
-      - ".github/workflows/publish-turkish-article-archives.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -118,7 +117,7 @@ jobs:
           )
           for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
             curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
-            grep -q "POSTS_START" /tmp/tr-blog.html
+            grep -q "article-card" /tmp/tr-blog.html
             curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
             grep -q 'rel="canonical"' /tmp/tr-article.html
             grep -q 'application/ld+json' /tmp/tr-article.html
