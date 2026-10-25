@@ -19,53 +19,21 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           from zipfile import ZipFile
-          import re, json
           zips = sorted(Path('.').glob('RocketPenDigital_1000_Makale_Parca_*.zip'))
           if not zips:
               raise SystemExit('No Turkish article archives found in repository root.')
           for zp in zips:
               print('\\n' + '='*88 + '\\nARCHIVE:', zp.name, 'SIZE:', zp.stat().st_size)
-              try:
-                  with ZipFile(zp) as z:
-                      files = [x for x in z.infolist() if not x.is_dir()]
-                      print('ENTRY_COUNT:', len(files))
-                      for x in files[:120]:
-                          print('ENTRY:', x.filename, '| bytes:', x.file_size)
-                      print('--- CONTENT SAMPLES ---')
-                      samples = 0
-                      for x in files:
-                          suffix = Path(x.filename).suffix.lower()
-                          if suffix not in {'.html','.htm','.md','.txt','.json','.csv'}:
-                              continue
-                          try:
-                              raw = z.read(x)
-                              text = raw.decode('utf-8-sig', errors='replace')
-                          except Exception as e:
-                              print('READ_ERROR:', x.filename, str(e))
-                              continue
-                          if suffix in {'.html','.htm'}:
-                              m = re.search(r'<h1[^>]*>(.*?)</h1>', text, re.I|re.S)
-                              title = re.sub('<[^>]+>', ' ', m.group(1)).strip() if m else ''
-                              if not title:
-                                  m = re.search(r'<title[^>]*>(.*?)</title>', text, re.I|re.S)
-                                  title = re.sub('<[^>]+>', ' ', m.group(1)).strip() if m else ''
-                          elif suffix == '.json':
-                              title = 'JSON'
-                          else:
-                              m = re.search(r'^#\\s+(.+)$', text, re.M)
-                              title = m.group(1).strip() if m else ''
-                          print('SAMPLE_FILE:', x.filename, '| title:', title[:240], '| chars:', len(text))
-                          print('HEADINGS:', ' | '.join(re.findall(r'^#{1,3}\\s+(.+)
-                          samples += 1
-                          if samples >= 1:
-                              break
-              except Exception as e:
-                  print('ZIP_ERROR:', zp.name, repr(e))
-          PY
-, text, re.M)))\n                          print('SAMPLE_TEXT_FULL:', text[:5000])
-                          samples += 1
-                          if samples >= 3:
-                              break
-              except Exception as e:
-                  print('ZIP_ERROR:', zp.name, repr(e))
-          PY
+              with ZipFile(zp) as z:
+                  files = [x for x in z.infolist() if not x.is_dir()]
+                  print('ENTRY_COUNT:', len(files))
+                  for x in files[:3]:
+                      print('ENTRY:', x.filename, '| bytes:', x.file_size)
+                  for x in files:
+                      if Path(x.filename).suffix.lower() != '.md':
+                          continue
+                      text = z.read(x).decode('utf-8-sig', errors='replace')
+                      print('SAMPLE_FILE:', x.filename, '| chars:', len(text))
+                      print('HEADINGS:', [line for line in text.splitlines() if line.startswith('#')][:25])
+                      print('SAMPLE_TEXT_FULL:', text[:5000].replace(chr(10), ' '))
+                      break
