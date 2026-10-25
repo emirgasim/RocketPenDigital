@@ -56,5 +56,11 @@
   "newSitemapUrls": 0,
   "sitemapTotalUrls": 5915,
   "slugCollisionsResolved": 258,
-  "sampleArticleUrl": "https://rocketpendigital.com/blog/tr/articles/psikiyatri-ve-psikoloji-klinikleri-tiktok-ve-kisa-video-reelsshorts-pazarlamas-d41f69d.html"
+  "sampleArticleUrl": "https://rocketpendigital.com/blog/tr/articles/psikiyatri-ve-psikoloji-klinikleri-tiktok-ve-kisa-video-reelsshorts-pazarlamas-d41f69d.html",
+  "localSeoDraftCount": 9999,
+  "localSeoIndexableCount": 0,
+  "localSeoDraftManifest": "/reports/local-seo-draft-manifest.txt",
+  "localSeoAnalysisReport": "/reports/local-seo-article-analysis.json",
+  "localSeoDraftDirectory": "/blog/tr/local-seo-drafts/",
+  "localSeoDraftsIndexable": false
 }
