@@ -538,6 +538,7 @@ def main():
                     report["slugCollisionsResolved"] += 1
                 seen_titles.add(title_key)
                 seen_digests.add(a["digest"])
+                a["sourceArchive"] = archive.name
                 slug_counter[a["slug"]] += 1
                 candidates.append(a)
     # Re-read existing digest set only to maintain a simple dedupe invariant; current article HTML files are never overwritten.
@@ -690,7 +691,7 @@ def main():
         "slugCollisionsResolved": max(report.get("slugCollisionsResolved", 0), int(prior_report.get("slugCollisionsResolved", 0) or 0)),
         "sampleArticleUrl": prior_sample or (BASE + "/blog/tr/articles/" + fallback_slug + ".html" if fallback_slug else ""),
         "localSeoDraftCount": len(local_drafts),
-        "localSeoIndexableCount": sum(1 for a in candidates if a.get("source") and a["source"] not in {item["file"] for item in report["archives"] if item["file"] == local_archive_name}),
+        "localSeoIndexableCount": sum(1 for a in candidates if a.get("sourceArchive") == local_archive_name),
         "localSeoDraftManifest": "/reports/local-seo-draft-manifest.txt",
         "localSeoAnalysisReport": "/reports/local-seo-article-analysis.json",
         "localSeoDraftDirectory": "/blog/tr/local-seo-drafts/",
