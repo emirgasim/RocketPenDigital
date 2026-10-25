@@ -58,6 +58,21 @@ jobs:
           print("PASS: listing, canonical, JSON-LD, related topics, FAQ and CTA:", host + article_path)
           PY
           done
+          DRAFT_PATH="/blog/tr/local-seo-drafts/sinop-elektrikci-google-haritalar-benim-isletmem-optimizasyonu.html"
+          for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
+            curl --location --fail --silent --show-error --retry 3 --retry-delay 2 "$HOST$DRAFT_PATH" -o /tmp/local-seo-draft.html
+            python - "$HOST" "$DRAFT_PATH" <<'PY'
+          import sys
+          from pathlib import Path
+          host, path = sys.argv[1], sys.argv[2]
+          page = Path("/tmp/local-seo-draft.html").read_text(encoding="utf-8", errors="replace")
+          expected = ['content="noindex,follow"', "Sıkça Sorulan Sorular", "İlgili ve Önerilen Konular", "Projenizi konuşalım", "/blog/tr/local-seo-drafts/drafts.css"]
+          missing = [needle for needle in expected if needle not in page]
+          if missing:
+              raise SystemExit(host + path + " draft missing: " + ", ".join(missing))
+          print("PASS: noindex draft with FAQ, related topics, contact CTA and shared CSS:", host + path)
+          PY
+          done
           curl --location --silent --show-error --retry 3 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
           python - <<'PY'
           import json
@@ -66,8 +81,12 @@ jobs:
           sitemap=Path("/tmp/site-sitemap.xml").read_text(encoding="utf-8")
           if report["sampleArticleUrl"] not in sitemap:
               raise SystemExit("Sample article URL is missing from the live sitemap.")
-          print("PASS: imported sample article is present in live sitemap.xml")
+          draft_url = "https://rocketpendigital.com/blog/tr/local-seo-drafts/sinop-elektrikci-google-haritalar-benim-isletmem-optimizasyonu.html"
+          if draft_url in sitemap:
+              raise SystemExit("Noindex local SEO draft was incorrectly added to live sitemap.")
+          print("PASS: indexed sample article is present; noindex draft is absent from sitemap.xml")
           print("Cumulative archive articles:", report["importedCount"])
           print("Total Turkish article pages:", report["finalTurkishArticleCount"])
+          print("Local SEO noindex drafts:", report["localSeoDraftCount"])
           print("Turkish listing pages:", report["turkishListingPages"])
           PY
