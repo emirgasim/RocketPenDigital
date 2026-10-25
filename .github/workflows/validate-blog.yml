@@ -49,7 +49,7 @@ jobs:
               if filename != "index.html":
                   # The language dictionary is embedded in the HTML page application script.
                   js = text
-                  start = js.find("\\n" + locale + ":{")
+                  start = js.find("\n" + locale + ":{")
                   if start < 0:
                       raise SystemExit(f"{filename}: locale translation block missing")
                   next_locale = {"en": "tr", "tr": "ar"}.get(locale)
