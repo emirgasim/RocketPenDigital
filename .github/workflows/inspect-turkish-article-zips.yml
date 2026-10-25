@@ -1,0 +1,64 @@
+name: Inspect Turkish Article Archives
+on:
+  push:
+    branches: [main]
+    paths:
+      - "RocketPenDigital_1000_Makale_Parca_*.zip"
+      - ".github/workflows/inspect-turkish-article-zips.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect archive contents without modifying the site
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import re, json
+          zips = sorted(Path('.').glob('RocketPenDigital_1000_Makale_Parca_*.zip'))
+          if not zips:
+              raise SystemExit('No Turkish article archives found in repository root.')
+          for zp in zips:
+              print('\\n' + '='*88 + '\\nARCHIVE:', zp.name, 'SIZE:', zp.stat().st_size)
+              try:
+                  with ZipFile(zp) as z:
+                      files = [x for x in z.infolist() if not x.is_dir()]
+                      print('ENTRY_COUNT:', len(files))
+                      for x in files[:120]:
+                          print('ENTRY:', x.filename, '| bytes:', x.file_size)
+                      print('--- CONTENT SAMPLES ---')
+                      samples = 0
+                      for x in files:
+                          suffix = Path(x.filename).suffix.lower()
+                          if suffix not in {'.html','.htm','.md','.txt','.json','.csv'}:
+                              continue
+                          try:
+                              raw = z.read(x)
+                              text = raw.decode('utf-8-sig', errors='replace')
+                          except Exception as e:
+                              print('READ_ERROR:', x.filename, str(e))
+                              continue
+                          if suffix in {'.html','.htm'}:
+                              m = re.search(r'<h1[^>]*>(.*?)</h1>', text, re.I|re.S)
+                              title = re.sub('<[^>]+>', ' ', m.group(1)).strip() if m else ''
+                              if not title:
+                                  m = re.search(r'<title[^>]*>(.*?)</title>', text, re.I|re.S)
+                                  title = re.sub('<[^>]+>', ' ', m.group(1)).strip() if m else ''
+                          elif suffix == '.json':
+                              title = 'JSON'
+                          else:
+                              m = re.search(r'^#\\s+(.+)$', text, re.M)
+                              title = m.group(1).strip() if m else ''
+                          print('SAMPLE_FILE:', x.filename, '| title:', title[:240], '| chars:', len(text))
+                          print('SAMPLE_TEXT:', re.sub(r'\\s+', ' ', text)[:1300])
+                          samples += 1
+                          if samples >= 3:
+                              break
+              except Exception as e:
+                  print('ZIP_ERROR:', zp.name, repr(e))
+          PY
