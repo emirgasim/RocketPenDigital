@@ -26,9 +26,7 @@ PAGE_SIZE = 15
 SM = "http://www.sitemaps.org/schemas/sitemap/0.9"
 ET.register_namespace("", SM)
 
-STOP = set("""ve ile icin bir bu da de veya gibi olan olarak rehberi stratejileri stratejisi
-yol haritasi kapsamli yeni nesil odakli yaklasim yaklasimi nasil nedir 2026 rocketpen
-digital studio dijital işletmeler isletmeler icin sektoru sektor sektorunde alaninda""".split())
+STOP = set("""ve ile icin bir bu da de veya gibi olan olarak rehberi stratejileri stratejisi\nyol haritasi kapsamli yeni nesil odakli yaklasim yaklasimi nasil nedir 2026 rocketpen\ndigital studio dijital işletmeler isletmeler icin sektoru sektor sektorunde alaninda""".split())
 STOP_HEADING = re.compile(r"^(sıkça sorulan|sikca sorulan|sss\b|benzer\b|önerilen\b|onerilen\b|profesyonel destek\b|kaynakça\b|kaynaklar\b)", re.I)
 PROMISES = [
     (r"(?i)garanti altına al(?:ır|mak|an|arak|ın)", "destekler"),
@@ -206,8 +204,7 @@ def parse_markdown(text, filename):
         "source": Path(filename).name, "digest": digest,
     }
 
-def article_tokens(title):
-    return {w for w in norm(title).split() if len(w) > 2 and w not in STOP}
+STOP_NORM = {norm(x) for x in STOP}\n\ndef article_tokens(title):\n    return {w for w in norm(title).split() if len(w) > 2 and w not in STOP_NORM}
 
 def select_sources(title):
     n = norm(title)
