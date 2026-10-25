@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - "RocketPenDigital_1000_Makale_Parca_*.zip"
+      - "RocketPenDigital_10000_Yerel_SEO_Makale.zip"
       - "scripts/import_turkish_article_archives.py"
   workflow_dispatch:
 permissions:
