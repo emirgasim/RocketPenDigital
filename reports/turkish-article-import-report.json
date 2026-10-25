@@ -36,7 +36,7 @@
   "importedCount": 3989,
   "existingHtmlArticleCount": 443,
   "skippedExistingSlug": 0,
-  "skippedDuplicateTitle": 0,
+  "skippedDuplicateTitle": 3989,
   "skippedDuplicateBody": 0,
   "skippedQualityGate": 2011,
   "notes": [
@@ -44,10 +44,11 @@
     "Absolute performance promises and fixed SEO/ads result timelines are softened; unsupported company self-citations are removed from the source section.",
     "Technical SEO does not guarantee indexing or rankings; human editorial review of templated source content remains recommended."
   ],
-  "slugCollisionsResolved": 258,
+  "newlyImportedCount": 0,
   "finalTurkishArticleCount": 4432,
   "turkishListingPages": 296,
-  "newSitemapUrls": 4255,
+  "newSitemapUrls": 0,
   "sitemapTotalUrls": 5914,
+  "slugCollisionsResolved": 258,
   "sampleArticleUrl": "https://rocketpendigital.com/blog/tr/articles/psikiyatri-ve-psikoloji-klinikleri-tiktok-ve-kisa-video-reelsshorts-pazarlamas-d41f69d.html"
 }
