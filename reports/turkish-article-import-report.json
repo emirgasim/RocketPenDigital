@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-10-25",
+  "archives": [
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_1.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_2.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_3.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_4.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_5.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_1000_Makale_Parca_6.zip",
+      "entries": 1000,
+      "markdownFiles": 1000
+    }
+  ],
+  "archiveMarkdownCount": 6000,
+  "importedCount": 3989,
+  "existingHtmlArticleCount": 443,
+  "skippedExistingSlug": 0,
+  "skippedDuplicateTitle": 0,
+  "skippedDuplicateBody": 0,
+  "skippedQualityGate": 2011,
+  "notes": [
+    "Markdown content is retained with safe HTML rendering, contextual title metadata, structured data, internal related-topic links, and official source links.",
+    "Absolute performance promises and fixed SEO/ads result timelines are softened; unsupported company self-citations are removed from the source section.",
+    "Technical SEO does not guarantee indexing or rankings; human editorial review of templated source content remains recommended."
+  ],
+  "slugCollisionsResolved": 258,
+  "finalTurkishArticleCount": 4432,
+  "turkishListingPages": 296,
+  "newSitemapUrls": 4255,
+  "sitemapTotalUrls": 5914,
+  "sampleArticleUrl": "https://rocketpendigital.com/blog/tr/articles/psikiyatri-ve-psikoloji-klinikleri-tiktok-ve-kisa-video-reelsshorts-pazarlamas-d41f69d.html"
+}
