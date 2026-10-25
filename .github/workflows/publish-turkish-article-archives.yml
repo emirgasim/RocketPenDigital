@@ -109,16 +109,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ARTICLE_URL=$(python - <<'PY'
+          ARTICLE_PATH=$(python - <<'PY'
           import json
           from pathlib import Path
-          print(json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))["sampleArticleUrl"])
+          from urllib.parse import urlsplit
+          print(urlsplit(json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))["sampleArticleUrl"]).path)
           PY
           )
           for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
             curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
             grep -q "POSTS_START" /tmp/tr-blog.html
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$ARTICLE_URL" -o /tmp/tr-article.html
+            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
             grep -q 'rel="canonical"' /tmp/tr-article.html
             grep -q 'application/ld+json' /tmp/tr-article.html
             grep -q 'İlgili ve Önerilen Konular' /tmp/tr-article.html
