@@ -558,6 +558,108 @@ def main():
         links = [x for x in links if x.get("existing") or x["slug"] in candidate_slugs][:3]
         (ARTICLE_DIR / (a["slug"] + ".html")).write_text(render_article(a, links), encoding="utf-8")
 
+    # Thin local-SEO files are uploaded into a separate, hidden editorial queue.
+    # They get the requested FAQ, related-topic and contact sections, but stay noindex.
+    DRAFT_DIR = ROOT / "blog" / "tr" / "local-seo-drafts"
+    DRAFT_DIR.mkdir(parents=True, exist_ok=True)
+    indexed_records = old + [
+        {"slug":a["slug"],"title":a["title"],"description":a["description"],"excerpt":a["excerpt"],"publishedAt":a["publishedAt"]}
+        for a in candidates
+    ]
+    record_tokens = [article_tokens(r["title"]) for r in indexed_records]
+    document_frequency = Counter(t for token_set in record_tokens for t in token_set)
+    document_count = max(1, len(indexed_records))
+    token_weights = [
+        {t: math.log((document_count + 1) / (document_frequency[t] + 1)) + 1 for t in token_set}
+        for token_set in record_tokens
+    ]
+    token_norms = [math.sqrt(sum(weight*weight for weight in vector.values())) or 1.0 for vector in token_weights]
+    token_postings = {}
+    for idx, vector in enumerate(token_weights):
+        for term, weight in vector.items():
+            token_postings.setdefault(term, []).append((idx, weight))
+    draft_manifest = [
+        "ROCKETPEN DIGITAL — YEREL SEO TASLAK ENVANTERİ",
+        "Bu sayfalar içerik kalite kontrolü nedeniyle noindex olarak saklanır. İndeksleme için gerçek yerel veri, özgün analiz ve uzman editör kontrolü gerekir.",
+        "Toplam yerel SEO taslağı: " + str(len(local_drafts)),
+        ""
+    ]
+    draft_analysis_rows = []
+    expected_draft_files = set()
+    for draft in local_drafts:
+        weights = {t: math.log((document_count + 1) / (document_frequency[t] + 1)) + 1 for t in article_tokens(draft["title"])}
+        norm_d = math.sqrt(sum(v*v for v in weights.values())) or 1.0
+        scores = {}
+        for term, weight in weights.items():
+            for idx, other_weight in token_postings.get(term, []):
+                scores[idx] = scores.get(idx, 0.0) + weight * other_weight
+        ranked = sorted(
+            ((score / (norm_d * token_norms[idx]), idx) for idx, score in scores.items()),
+            key=lambda item: (-item[0], indexed_records[item[1]]["title"].casefold())
+        )
+        recommended = [indexed_records[idx] for score, idx in ranked if score > 0][:3]
+        target = DRAFT_DIR / (draft["slug"] + ".html")
+        expected_draft_files.add(target.name)
+        target.write_text(render_article(draft, recommended, draft=True), encoding="utf-8")
+        relative = "/blog/tr/local-seo-drafts/" + draft["slug"] + ".html"
+        draft_manifest.append(
+            f'{draft["title"]}\n  {relative}\n  Kaynak: {draft["source"]} | yaklaşık kelime: {draft["wordCount"]} | durum: NOINDEX TASLAK'
+        )
+        heading_signature = " | ".join(norm(h["heading"]) for h in draft["sections"])
+        draft_analysis_rows.append({
+            "title": draft["title"], "slug": draft["slug"], "source": draft["source"],
+            "url": relative, "wordCount": draft["wordCount"],
+            "bodyCharacters": len(plain(draft["visibleText"])),
+            "sectionHeadings": [h["heading"] for h in draft["sections"]],
+            "sectionSignature": heading_signature,
+            "indexing": "noindex,follow",
+            "reason": draft["draftReason"]
+        })
+    for stale in DRAFT_DIR.glob("*.html"):
+        if stale.name not in expected_draft_files:
+            stale.unlink()
+
+    # Preserve an auditable file-by-file analysis of every local SEO seed.
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    (REPORT.parent / "local-seo-draft-manifest.txt").write_text("\n".join(draft_manifest) + "\n", encoding="utf-8")
+    signature_counts = Counter(row["sectionSignature"] for row in draft_analysis_rows)
+    word_counts = [row["wordCount"] for row in draft_analysis_rows]
+    topic_counts = Counter()
+    for row in draft_analysis_rows:
+        title_n = norm(row["title"])
+        if "google haritalar" in title_n or "isletme profili" in title_n:
+            topic_counts["Google Haritalar / işletme profili"] += 1
+        elif "sosyal medya" in title_n:
+            topic_counts["Yerel sosyal medya"] += 1
+        elif "yorum" in title_n or "itibar" in title_n:
+            topic_counts["Müşteri yorumları / itibar"] += 1
+        elif "reklam" in title_n or "ads" in title_n:
+            topic_counts["Yerel reklam yönetimi"] += 1
+        elif "seo" in title_n or "anahtar kelime" in title_n:
+            topic_counts["Yerel SEO / anahtar kelimeler"] += 1
+        else:
+            topic_counts["Diğer yerel dijital pazarlama"] += 1
+    analysis = {
+        "generatedAt": TODAY,
+        "archive": local_archive_name,
+        "sourceMarkdownCount": next((x["markdownFiles"] for x in report["archives"] if x["file"] == local_archive_name), 0),
+        "draftPagesCreated": len(draft_analysis_rows),
+        "draftsAreIndexable": False,
+        "wordCount": {
+            "min": min(word_counts) if word_counts else 0,
+            "median": sorted(word_counts)[len(word_counts)//2] if word_counts else 0,
+            "max": max(word_counts) if word_counts else 0,
+            "under200Words": sum(1 for n in word_counts if n < 200),
+            "under300Words": sum(1 for n in word_counts if n < 300)
+        },
+        "topicCounts": dict(topic_counts),
+        "mostRepeatedSectionPatterns": [{"pattern": key, "count": count} for key, count in signature_counts.most_common(20)],
+        "indexingDecision": "Thin, template-based local landing articles remain noindex until expanded with verifiable, unique local information and editorial review.",
+        "policyReference": "https://developers.google.com/search/docs/essentials/spam-policies",
+        "articles": draft_analysis_rows
+    }
+    (REPORT.parent / "local-seo-article-analysis.json").write_text(json.dumps(analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     # Existing HTML articles plus all new pages, sorted newest first but alphabetically stable for the same day.
     all_records = old + [{"slug":a["slug"],"title":a["title"],"description":a["description"],"excerpt":a["excerpt"],"publishedAt":a["publishedAt"]} for a in candidates]
     all_records.sort(key=lambda a: (a.get("publishedAt") or "", a["title"].casefold()), reverse=True)
