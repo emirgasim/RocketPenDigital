@@ -26,8 +26,8 @@ jobs:
           )
           for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
             echo "Checking $HOST"
-            curl --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
-            curl --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
+            curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
+            curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
             python - "$HOST" "$ARTICLE_PATH" <<'PY'
           import sys
           from pathlib import Path
@@ -55,7 +55,7 @@ jobs:
           print("PASS: listing, canonical, JSON-LD, related topics, FAQ and CTA:", host + article_path)
           PY
           done
-          curl --fail --silent --show-error --retry 4 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
+          curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
           python - <<'PY'
           import json
           from pathlib import Path
