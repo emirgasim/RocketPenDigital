@@ -30,15 +30,20 @@
       "file": "RocketPenDigital_1000_Makale_Parca_6.zip",
       "entries": 1000,
       "markdownFiles": 1000
+    },
+    {
+      "file": "RocketPenDigital_10000_Yerel_SEO_Makale.zip",
+      "entries": 10000,
+      "markdownFiles": 10000
     }
   ],
-  "archiveMarkdownCount": 6000,
+  "archiveMarkdownCount": 16000,
   "importedCount": 3989,
   "existingHtmlArticleCount": 443,
   "skippedExistingSlug": 0,
   "skippedDuplicateTitle": 3989,
   "skippedDuplicateBody": 0,
-  "skippedQualityGate": 2011,
+  "skippedQualityGate": 12011,
   "notes": [
     "Markdown content is retained with safe HTML rendering, contextual title metadata, structured data, internal related-topic links, and official source links.",
     "Absolute performance promises and fixed SEO/ads result timelines are softened; unsupported company self-citations are removed from the source section.",
