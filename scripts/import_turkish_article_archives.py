@@ -437,6 +437,12 @@ def main():
     if not LISTING.exists():
         raise SystemExit("Turkish blog listing not found: " + str(LISTING))
     template = LISTING.read_text(encoding="utf-8")
+    prior_report = {}
+    if REPORT.exists():
+        try:
+            prior_report = json.loads(REPORT.read_text(encoding="utf-8"))
+        except Exception:
+            prior_report = {}
     if "<!-- POSTS_START -->" not in template or "<!-- POSTS_END -->" not in template:
         raise SystemExit("Existing Turkish blog listing markers are missing.")
 
@@ -535,12 +541,22 @@ def main():
             file.unlink()
 
     new_urls, all_urls = update_sitemap(all_records, total_pages)
+    prior_sample = prior_report.get("sampleArticleUrl", "")
+    prior_sample_slug = prior_sample.split("/articles/")[-1] if prior_sample else ""
+    if prior_sample_slug and not (ARTICLE_DIR / prior_sample_slug).exists():
+        prior_sample = ""
+    fallback_slug = candidates[0]["slug"] if candidates else (old[0]["slug"] if old else "")
     report.update({
-        "importedCount":len(candidates), "skippedExistingSlug":report["skippedExistingSlug"],
-        "existingHtmlArticleCount":len(old), "finalTurkishArticleCount":len(all_records),
-        "turkishListingPages":total_pages, "newSitemapUrls":new_urls,
-        "sitemapTotalUrls":all_urls,
-        "sampleArticleUrl":BASE+"/blog/tr/articles/"+(candidates[0]["slug"] if candidates else old[0]["slug"])+".html" if (candidates or old) else "",
+        "importedCount": max(len(candidates), int(prior_report.get("importedCount", 0) or 0)),
+        "newlyImportedCount": len(candidates),
+        "skippedExistingSlug": report["skippedExistingSlug"],
+        "existingHtmlArticleCount": int(prior_report.get("existingHtmlArticleCount", len(old)) or len(old)),
+        "finalTurkishArticleCount": len(all_records),
+        "turkishListingPages": total_pages,
+        "newSitemapUrls": new_urls,
+        "sitemapTotalUrls": all_urls,
+        "slugCollisionsResolved": max(report.get("slugCollisionsResolved", 0), int(prior_report.get("slugCollisionsResolved", 0) or 0)),
+        "sampleArticleUrl": prior_sample or (BASE + "/blog/tr/articles/" + fallback_slug + ".html" if fallback_slug else ""),
     })
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
