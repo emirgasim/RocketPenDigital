@@ -1,0 +1,38 @@
+ROCKETPEN DIGITAL — YEREL SEO ZIP ANALİZ ÖZETİ
+Tarih: 25 Ekim 2026
+
+KAPSAM
+- Kaynak arşiv: RocketPenDigital_10000_Yerel_SEO_Makale.zip
+- Kaynak dosya sayısı: 10.000 Markdown makalesi
+- Aynı işlemde taranan tüm yedi ZIP arşivi: 16.000 Markdown dosyası
+- Son durumdaki Türkçe blog: 4.433 yayınlanmış HTML makale sayfası; 296 blog listeleme/sayfalama sayfası
+- Yerel SEO taslakları: 9.999 HTML sayfa oluşturuldu
+- Aynı başlıkla mevcut içeriğe denk gelen dosya: 1; ikinci bir kopya oluşturulmadı
+- Bu arşivden yeni indekslenebilir sayfa: 0
+- Yerel SEO taslakları sitemap.xml içine eklenmedi
+
+KALİTE GÖZLEMLERİ
+- Örnek olarak incelenen “Sinop Elektrikçi … Google Haritalar Optimizasyonu” dosyası yaklaşık 150 kelime ve iki ana içerik bölümünden oluşuyordu.
+- Örnekte, “973 ilçeye yayılan geniş bir ağ” gibi yerel bağlamı yanlış genelleyen bir ifade vardı; taslak çıktısında bu ifade temizlendi.
+- Bu arşivde çok sayıda kısa, benzer yapılı yerel sayfa bulunduğundan, sadece şehir/meslek/konu anahtar kelimesi değiştirerek tümünü indeksletmek doğru bir SEO yaklaşımı değildir.
+- Bu nedenle 9.999 sayfa normal blog listesine eklenmedi; hepsi noindex,follow ile taslak alanına yüklendi.
+
+TASLAKLARDA BULUNAN BÖLÜMLER
+- Başlık, açıklama, canonical ve BlogPosting yapılandırılmış verisi
+- Sıkça Sorulan Sorular
+- İlgili ve önerilen yayınlanmış içerikler
+- İletişim/proje görüşmesi yönlendirmesi
+- Ortak CSS ile mobil uyumlu sayfa tasarımı
+- noindex,follow; sitemap dışında tutulur
+
+ARAMA SONUÇLARINA AÇMA ÖLÇÜTÜ
+Taslağın indekslenebilir olması için, yalnızca metni uzatmak yerine, hedef şehir ve iş koluyla ilgili doğrulanabilir bilgiler, özgün pratik rehberlik, ayırt edici alt konular ve editoryal kontrol eklenmesi gerekir.
+
+Resmî Google kaynakları:
+- Spam politikaları (scaled content abuse ve doorway abuse): https://developers.google.com/search/docs/essentials/spam-policies
+- Yararlı, güvenilir ve insan odaklı içerik: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+
+DETAYLI DOSYALAR
+- Tam makale bazlı analiz: reports/local-seo-article-analysis.json
+- Taslakların URL/başlık listesi: reports/local-seo-draft-manifest.txt
+- İçe aktarma özeti: reports/turkish-article-import-report.json
