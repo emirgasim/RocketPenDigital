@@ -601,7 +601,9 @@ def main():
         recommended = [indexed_records[idx] for score, idx in ranked if score > 0][:3]
         target = DRAFT_DIR / (draft["slug"] + ".html")
         expected_draft_files.add(target.name)
-        target.write_text(render_article(draft, recommended, draft=True), encoding="utf-8")
+        html_doc = render_article(draft, recommended, draft=True)
+        html_doc = re.sub(r"<style>[\s\S]*?</style>", '<link rel="stylesheet" href="/blog/tr/local-seo-drafts/drafts.css">', html_doc, count=1, flags=re.I)
+        target.write_text(html_doc, encoding="utf-8")
         relative = "/blog/tr/local-seo-drafts/" + draft["slug"] + ".html"
         draft_manifest.append(
             f'{draft["title"]}\n  {relative}\n  Kaynak: {draft["source"]} | yaklaşık kelime: {draft["wordCount"]} | durum: NOINDEX TASLAK'
