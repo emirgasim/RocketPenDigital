@@ -179,6 +179,8 @@ def parse_markdown(text, filename):
             buf.append(line)
     flush()
     main_text = plain(intro) + " " + " ".join(plain(" ".join(x["blocks"])) for x in sections)
+    if Path(filename).name.startswith("0001-"):
+        print("PARSER_DIAGNOSTIC", filename, "title_chars", len(plain(title)), "intro_chars", len(plain(intro)), "section_count", len(sections), "body_chars", len(main_text), "headings", [x["heading"] for x in sections])
     if len(plain(title)) < 15 or len(plain(intro)) < 90 or len(sections) < 2 or len(main_text) < 1700:
         return None
 
