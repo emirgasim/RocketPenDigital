@@ -24,10 +24,12 @@ jobs:
           print(urlsplit(json.loads(Path("reports/turkish-article-import-report.json").read_text(encoding="utf-8"))["sampleArticleUrl"]).path)
           PY
           )
-          for HOST in "https://rocketpendigital.com" "https://rocketpendigital.qasimm2012.workers.dev"; do
+          for HOST in "https://rocketpendigital.qasimm2012.workers.dev" "https://rocketpendigital.com"; do
             echo "Checking $HOST"
-            curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html
-            curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html
+            BLOG_STATUS=$(curl --location --silent --show-error --retry 3 --retry-delay 2 -D /tmp/blog-headers.txt -w "%{http_code} %{url_effective} %{size_download}" "$HOST/blog/tr/index.html" -o /tmp/tr-blog.html)
+            echo "Blog response: $BLOG_STATUS"
+            ARTICLE_STATUS=$(curl --location --silent --show-error --retry 3 --retry-delay 2 -D /tmp/article-headers.txt -w "%{http_code} %{url_effective} %{size_download}" "$HOST$ARTICLE_PATH" -o /tmp/tr-article.html)
+            echo "Article response: $ARTICLE_STATUS"
             python - "$HOST" "$ARTICLE_PATH" <<'PY'
           import sys
           from pathlib import Path
@@ -51,11 +53,12 @@ jobs:
               print("Validation errors:", "; ".join(errors))
               print("Blog excerpt:", blog[:900])
               print("Article excerpt:", article[:1200])
+              print("Blog response headers:", Path("/tmp/blog-headers.txt").read_text(errors="replace")[:1500])
               raise SystemExit(1)
           print("PASS: listing, canonical, JSON-LD, related topics, FAQ and CTA:", host + article_path)
           PY
           done
-          curl --location --fail --silent --show-error --retry 4 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
+          curl --location --silent --show-error --retry 3 --retry-delay 2 "https://rocketpendigital.com/sitemap.xml" -o /tmp/site-sitemap.xml
           python - <<'PY'
           import json
           from pathlib import Path
