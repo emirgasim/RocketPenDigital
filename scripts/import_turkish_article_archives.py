@@ -146,7 +146,7 @@ def parse_markdown(text, filename):
     intro_lines, main_lines = [], []
     reached_section = False
     for line in lines:
-        if re.match(r"^\s*##\s+", line):
+        if re.match(r"^\s*#{2,3}\s+", line):
             reached_section = True
         (main_lines if reached_section else intro_lines).append(line)
     intro = clean_claims("\n".join(intro_lines).strip())
@@ -162,8 +162,7 @@ def parse_markdown(text, filename):
                 sections.append(current)
         buf = []
     for line in main_lines:
-        h2 = re.match(r"^\s*##\s+(.+?)\s*$", line)
-        h3 = re.match(r"^\s*###\s+(.+?)\s*$", line)
+        h2 = re.match(r"^\s*#{2,3}\s+(.+?)\s*$", line)
         if h2:
             heading = clean_claims(h2.group(1).strip())
             if STOP_HEADING.match(heading) or "rocketpen digital" in heading.casefold():
@@ -172,13 +171,13 @@ def parse_markdown(text, filename):
             flush()
             current = {"heading": heading, "blocks": []}
             continue
-        if h3 and STOP_HEADING.match(h3.group(1).strip()):
-            flush()
-            break
         if current:
             buf.append(line)
     flush()
     main_text = plain(intro) + " " + " ".join(plain(" ".join(x["blocks"])) for x in sections)
+    if Path(filename).name.startswith("10000-") and not getattr(parse_markdown, "_local_diag", False):
+        parse_markdown._local_diag = True
+        print("LOCAL_SEO_METRICS", filename, "titleChars", len(plain(title)), "introChars", len(plain(intro)), "sectionCount", len(sections), "bodyChars", len(main_text), "wordCount", len(re.findall(r"\w+", main_text, re.UNICODE)), "headings", [x["heading"] for x in sections])
     if len(plain(title)) < 15 or len(plain(intro)) < 90 or len(sections) < 2 or len(main_text) < 1300:
         return None
 
