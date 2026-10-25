@@ -203,7 +203,7 @@ def parse_markdown(text, filename, require_quality=True):
         "slug": slug_for(Path(filename).name), "title": title, "description": description,
         "excerpt": description, "intro": intro, "sections": sections, "faq": faqs,
         "publishedAt": TODAY, "updatedAt": TODAY, "wordCount": len(re.findall(r"\w+", main_text, re.UNICODE)),
-        "source": Path(filename).name, "digest": digest,
+        "source": Path(filename).name, "digest": digest, "visibleText": main_text,
     }
 
 STOP_NORM = {norm(x) for x in STOP}
@@ -689,6 +689,12 @@ def main():
         "sitemapTotalUrls": all_urls,
         "slugCollisionsResolved": max(report.get("slugCollisionsResolved", 0), int(prior_report.get("slugCollisionsResolved", 0) or 0)),
         "sampleArticleUrl": prior_sample or (BASE + "/blog/tr/articles/" + fallback_slug + ".html" if fallback_slug else ""),
+        "localSeoDraftCount": len(local_drafts),
+        "localSeoIndexableCount": sum(1 for a in candidates if a.get("source") and a["source"] not in {item["file"] for item in report["archives"] if item["file"] == local_archive_name}),
+        "localSeoDraftManifest": "/reports/local-seo-draft-manifest.txt",
+        "localSeoAnalysisReport": "/reports/local-seo-article-analysis.json",
+        "localSeoDraftDirectory": "/blog/tr/local-seo-drafts/",
+        "localSeoDraftsIndexable": False,
     })
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
