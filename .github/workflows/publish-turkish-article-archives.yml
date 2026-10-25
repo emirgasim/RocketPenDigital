@@ -6,6 +6,7 @@ on:
       - "RocketPenDigital_1000_Makale_Parca_*.zip"
       - "RocketPenDigital_10000_Yerel_SEO_Makale.zip"
       - "scripts/import_turkish_article_archives.py"
+      - ".github/workflows/publish-turkish-article-archives.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -67,7 +68,31 @@ jobs:
               raise SystemExit("Duplicate URLs exist in sitemap.xml.")
           if report["sampleArticleUrl"] not in urls:
               raise SystemExit("Sample Turkish article URL is missing from sitemap.xml.")
+          draft_dir = Path("blog/tr/local-seo-drafts")
+          draft_files = sorted(draft_dir.glob("*.html"))
+          analysis = json.loads(Path("reports/local-seo-article-analysis.json").read_text(encoding="utf-8"))
+          if len(draft_files) != analysis["draftPagesCreated"]:
+              raise SystemExit(f"Local SEO draft mismatch: files={len(draft_files)} analysis={analysis['draftPagesCreated']}")
+          if len(draft_files) != report["localSeoDraftCount"]:
+              raise SystemExit(f"Local SEO draft count mismatch: files={len(draft_files)} report={report['localSeoDraftCount']}")
+          if draft_files:
+              draft_text = draft_files[0].read_text(encoding="utf-8")
+              for label, needle in [
+                  ("noindex", 'content="noindex,follow"'),
+                  ("FAQ", "Sıkça Sorulan Sorular"),
+                  ("related topics", "İlgili ve Önerilen Konular"),
+                  ("contact CTA", "Projenizi konuşalım"),
+              ]:
+                  if needle not in draft_text:
+                      raise SystemExit(f"Local SEO draft is missing {label}: {draft_files[0]}")
+              draft_url = "https://rocketpendigital.com/blog/tr/local-seo-drafts/" + draft_files[0].name
+              if draft_url in urls:
+                  raise SystemExit("Noindex local SEO draft was incorrectly added to sitemap.xml.")
+          if not Path("reports/local-seo-draft-manifest.txt").exists():
+              raise SystemExit("Local SEO draft manifest was not created.")
           print("Imported:", report["importedCount"])
+          print("Local SEO noindex drafts:", report["localSeoDraftCount"])
+          print("Local SEO analysis:", report["localSeoAnalysisReport"])
           print("Existing articles retained:", report["existingHtmlArticleCount"])
           print("Final article pages:", report["finalTurkishArticleCount"])
           print("Listing pages:", report["turkishListingPages"])
@@ -80,7 +105,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A blog/tr/articles blog/tr/page blog/tr/index.html sitemap.xml reports/turkish-article-import-report.json
+          git add -A blog/tr/articles blog/tr/page blog/tr/local-seo-drafts blog/tr/index.html sitemap.xml reports/turkish-article-import-report.json reports/local-seo-article-analysis.json reports/local-seo-draft-manifest.txt
           if git diff --cached --quiet; then
             echo "No generated blog changes to commit."
           else
