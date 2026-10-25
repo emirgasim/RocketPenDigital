@@ -480,8 +480,10 @@ def main():
         ],
     }
     old_digests = set()
-    candidates, seen_titles, seen_digests = [], set(), set()
+    candidates, local_drafts, seen_titles, seen_digests = [], [], set(), set()
+    seen_draft_titles, seen_draft_slugs = set(), set()
     slug_counter = Counter(old_slugs)
+    local_archive_name = "RocketPenDigital_10000_Yerel_SEO_Makale.zip"
     for archive in ARCHIVES:
         with ZipFile(archive) as z:
             infos = [x for x in z.infolist() if not x.is_dir()]
@@ -495,11 +497,29 @@ def main():
                     report["skippedQualityGate"] += 1
                     continue
                 a = parse_markdown(content, info.filename)
+                if not a and archive.name == local_archive_name:
+                    # Keep thin local SEO seed articles accessible for editorial work,
+                    # but publish them as noindex drafts until they have sufficient original value.
+                    draft = parse_markdown(content, info.filename, require_quality=False)
+                    if draft:
+                        title_key = norm(draft["title"])
+                        if title_key in old_titles or title_key in seen_titles or title_key in seen_draft_titles:
+                            report["localSeoDraftDuplicates"] = report.get("localSeoDraftDuplicates", 0) + 1
+                            continue
+                        if draft["slug"] in old_slugs or draft["slug"] in slug_counter or draft["slug"] in seen_draft_slugs:
+                            suffix = hashlib.sha1((draft["source"] + draft["title"]).encode("utf-8")).hexdigest()[:8]
+                            draft["slug"] = draft["slug"][:76].rstrip("-") + "-" + suffix
+                            while draft["slug"] in old_slugs or draft["slug"] in slug_counter or draft["slug"] in seen_draft_slugs:
+                                suffix = hashlib.sha1((draft["source"] + draft["title"] + suffix).encode("utf-8")).hexdigest()[:8]
+                                draft["slug"] = draft["slug"][:76].rstrip("-") + "-" + suffix
+                            report["slugCollisionsResolved"] = report.get("slugCollisionsResolved", 0) + 1
+                        draft["draftReason"] = "Short/template-based source text; noindex until expanded with verifiable local specifics and substantive original guidance."
+                        seen_draft_titles.add(title_key)
+                        seen_draft_slugs.add(draft["slug"])
+                        local_drafts.append(draft)
+                        continue
                 if not a:
                     report["skippedQualityGate"] += 1
-                    if archive.name == "RocketPenDigital_10000_Yerel_SEO_Makale.zip" and report.get("localSeoParserSamples", 0) < 5:
-                        report["localSeoParserSamples"] = report.get("localSeoParserSamples", 0) + 1
-                        print("LOCAL_SEO_REJECT_SAMPLE", info.filename, repr(content[:700]))
                     continue
                 title_key = norm(a["title"])
                 if title_key in old_titles or title_key in seen_titles:
