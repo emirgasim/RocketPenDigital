@@ -204,7 +204,10 @@ def parse_markdown(text, filename):
         "source": Path(filename).name, "digest": digest,
     }
 
-STOP_NORM = {norm(x) for x in STOP}\n\ndef article_tokens(title):\n    return {w for w in norm(title).split() if len(w) > 2 and w not in STOP_NORM}
+STOP_NORM = {norm(x) for x in STOP}
+
+def article_tokens(title):
+    return {w for w in norm(title).split() if len(w) > 2 and w not in STOP_NORM}
 
 def select_sources(title):
     n = norm(title)
