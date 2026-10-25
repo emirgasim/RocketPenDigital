@@ -72,6 +72,8 @@ def plain(value):
 def clean_claims(value):
     for pattern, replacement in PROMISES:
         value = re.sub(pattern, replacement, value)
+    value = re.sub(r"(?i)\s*\(toplam\s+973\s+ilçeye\s+yayılan\s+geniş\s+bir\s+ağda\)", "", value)
+    value = re.sub(r"(?i)973\s+ilçeye\s+yayılan\s+geniş\s+bir\s+ağda", "çevresindeki hizmet alanında", value)
     return value.strip()
 
 def clip(value, limit):
@@ -135,7 +137,7 @@ def render_blocks(blocks):
         flush_items()
     return "\n".join(output)
 
-def parse_markdown(text, filename):
+def parse_markdown(text, filename, require_quality=True):
     text = text.lstrip("\ufeff").replace("\r\n", "\n").replace("\r", "\n")
     title_match = re.search(r"(?m)^#\s+(.+?)\s*$", text)
     if not title_match:
@@ -175,10 +177,11 @@ def parse_markdown(text, filename):
             buf.append(line)
     flush()
     main_text = plain(intro) + " " + " ".join(plain(" ".join(x["blocks"])) for x in sections)
-    if Path(filename).name.startswith("10000-") and not getattr(parse_markdown, "_local_diag", False):
-        parse_markdown._local_diag = True
-        print("LOCAL_SEO_METRICS", filename, "titleChars", len(plain(title)), "introChars", len(plain(intro)), "sectionCount", len(sections), "bodyChars", len(main_text), "wordCount", len(re.findall(r"\w+", main_text, re.UNICODE)), "headings", [x["heading"] for x in sections])
-    if len(plain(title)) < 15 or len(plain(intro)) < 90 or len(sections) < 2 or len(main_text) < 1300:
+    if len(plain(title)) < 15 or len(plain(intro)) < 90:
+        return None
+    if require_quality and (len(sections) < 2 or len(main_text) < 1300):
+        return None
+    if not require_quality and (len(sections) < 1 or len(main_text) < 350):
         return None
 
     # Keep supplied specific FAQs where present; discard the old promotional/source section.
@@ -262,9 +265,11 @@ def build_related(all_articles):
         result[all_articles[i]["slug"]] = [all_articles[j] for _, j in ranked[:3]]
     return result
 
-def render_article(a, related):
+def render_article(a, related, draft=False):
     title, slug = a["title"], a["slug"]
-    url = BASE + "/blog/tr/articles/" + slug + ".html"
+    route = "/blog/tr/local-seo-drafts/" if draft else "/blog/tr/articles/"
+    url = BASE + route + slug + ".html"
+    robots = "noindex,follow" if draft else "index,follow"
     desc = clip(a["description"], 160)
     sections = []
     for section in a["sections"]:
@@ -306,7 +311,7 @@ def render_article(a, related):
     return '''<!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>''' + html.escape(clip(title, 57) + " | RocketPen") + '''</title>
-<meta name="description" content="''' + html.escape(desc, quote=True) + '''"><meta name="robots" content="index,follow">
+<meta name="description" content="''' + html.escape(desc, quote=True) + '''"><meta name="robots" content="''' + robots + '''">
 <link rel="canonical" href="''' + url + '''"><meta name="author" content="RocketPen Digital Studio Yayın Ekibi">
 <meta property="og:type" content="article"><meta property="og:locale" content="tr_TR"><meta property="og:title" content="''' + html.escape(title, quote=True) + '''">
 <meta property="og:description" content="''' + html.escape(desc, quote=True) + '''"><meta property="og:url" content="''' + url + '''">
