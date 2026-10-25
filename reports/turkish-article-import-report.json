@@ -43,13 +43,13 @@
   "skippedExistingSlug": 0,
   "skippedDuplicateTitle": 3989,
   "skippedDuplicateBody": 0,
-  "skippedQualityGate": 12011,
+  "skippedQualityGate": 2011,
   "notes": [
     "Markdown content is retained with safe HTML rendering, contextual title metadata, structured data, internal related-topic links, and official source links.",
     "Absolute performance promises and fixed SEO/ads result timelines are softened; unsupported company self-citations are removed from the source section.",
     "Technical SEO does not guarantee indexing or rankings; human editorial review of templated source content remains recommended."
   ],
-  "localSeoParserSamples": 5,
+  "localSeoDraftDuplicates": 1,
   "newlyImportedCount": 0,
   "finalTurkishArticleCount": 4433,
   "turkishListingPages": 296,
