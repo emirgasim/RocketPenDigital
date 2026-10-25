@@ -15,7 +15,7 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://rocketpendigital.com"
-ARCHIVES = sorted(ROOT.glob("RocketPenDigital_1000_Makale_Parca_*.zip"))
+ARCHIVES = sorted(ROOT.glob("RocketPenDigital_1000_Makale_Parca_*.zip")) + sorted(ROOT.glob("RocketPenDigital_10000_Yerel_SEO_Makale.zip"))
 ARTICLE_DIR = ROOT / "blog" / "tr" / "articles"
 LISTING = ROOT / "blog" / "tr" / "index.html"
 PAGES_DIR = ROOT / "blog" / "tr" / "page"
@@ -431,8 +431,11 @@ def update_sitemap(article_records, total_pages):
     return added, len(existing)
 
 def main():
-    if len(ARCHIVES) != 6:
-        raise SystemExit("Expected 6 article archives, found " + str(len(ARCHIVES)))
+    if not ARCHIVES:
+        raise SystemExit("No supported Turkish article archives found.")
+    core_archives = list(ROOT.glob("RocketPenDigital_1000_Makale_Parca_*.zip"))
+    if core_archives and len(core_archives) != 6:
+        raise SystemExit("Expected 6 core article archives, found " + str(len(core_archives)))
     ARTICLE_DIR.mkdir(parents=True, exist_ok=True)
     if not LISTING.exists():
         raise SystemExit("Turkish blog listing not found: " + str(LISTING))
