@@ -256,3 +256,13 @@ html body .language-picker:not(.is-open):not([open]) .lang:hover .lang-chevron {
 /* Site-wide fix: remove numbered category/index labels from every blog card, all languages and pagination pages. */
 html body .article-no,
 html body .article-card .article-no { display: none !important; }
+
+
+/* Fix logo glow for article-header markup used across the Turkish article archive. */
+header.top img.logo,
+header.top > a > img.logo,
+header.top .logo,
+.top img.logo,
+.top > a > img.logo {
+  filter: drop-shadow(0 0 5px rgba(255,255,255,.32)) drop-shadow(0 0 13px rgba(255,255,255,.16)) !important;
+}
