@@ -179,13 +179,15 @@ jobs:
           print("Publisher validates its origin before generation and rejects malformed or duplicate source URLs.")
           for filename in ("index.html", "languages/tr.html", "languages/ar.html"):
               html = Path(filename).read_text(encoding="utf-8")
+              if "rocketpen-home" not in html.split("<body", 1)[1].split(">", 1)[0]:
+                  raise SystemExit(f"{filename}: homepage scope marker for mobile language-menu fixes is missing")
               video = html.split('<video class="hero-video"', 1)[1].split(">", 1)[0]
               if "autoplay" in video.split():
                   raise SystemExit(f"{filename}: autoplay attribute bypasses reduced-motion preference")
               if 'preload="metadata"' not in video:
                   raise SystemExit(f"{filename}: hero video should not use eager preload")
-              if "@media(prefers-reduced-motion:reduce){.hero-video{display:none!important}}" not in html:
-                  raise SystemExit(f"{filename}: hero video must be hidden for reduced-motion users")
+              if "@media(prefers-reduced-motion:reduce){.hero-video{display:block!important;animation:none!important;transition:none!important}}" not in html:
+                  raise SystemExit(f"{filename}: hero video must retain a static frame for reduced-motion users")
               js = html.split("const video=document.querySelector('.hero-video');", 1)[1]
               js = js.split("document.documentElement.classList.add('js-ready')", 1)[0]
               if "motionPreference.matches||document.hidden" not in js or "video.pause()" not in js:
@@ -211,7 +213,7 @@ jobs:
                   raise SystemExit(f"{path}: branded favicon link missing")
           if '<link rel="icon" type="image/svg+xml" href="/asset/logo/favicon.svg">' not in publisher:
               raise SystemExit("Generated articles must include branded favicon")
-          if '<body class="arabic">' not in Path("languages/ar.html").read_text(encoding="utf-8"):
+          if 'class="arabic' not in Path("languages/ar.html").read_text(encoding="utf-8"):
               raise SystemExit("Arabic body styling must work before JavaScript initializes")
           print("Branded favicon, generated article icon link, and static Arabic styling verified.")
           ar_html = Path("languages/ar.html").read_text(encoding="utf-8")
