@@ -2,14 +2,50 @@
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f4f1e9"><title>Dr. Deniz Arman — Kardiyoloji | Demo</title>
 <style>
 :root{--ink:#173a38;--muted:#60736e;--paper:#f4f1e9;--white:#fffdf8;--mint:#cce4d8;--line:#d9ded4;--accent:#b6533b}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Avenir Next",system-ui,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}button,select{font:inherit}.wrap{width:min(1240px,91%);margin:auto}.demo{background:#173a38;color:#fff;text-align:center;font-size:12px;letter-spacing:.06em;padding:8px 12px}.top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:22px}.brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:-.04em}.monogram{width:44px;height:44px;border:1px solid #8ea79a;border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:19px}.brand small{display:block;font-size:10px;letter-spacing:.2em;font-weight:700;color:var(--muted);margin-top:3px}.nav{display:flex;align-items:center;gap:24px;font-size:13px}.nav a:not(.cta){color:#536b65}.cta{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;background:var(--ink);color:white;border-radius:2px;font-size:13px;font-weight:700;transition:.2s}.cta:hover{background:var(--accent)}.lang{border:1px solid var(--line);background:transparent;padding:8px}.slider{position:relative;overflow:hidden;background:#dbe6dd;min-height:570px}.slide{display:none;min-height:570px;grid-template-columns:1fr 1fr;align-items:center}.slide.active{display:grid;animation:fade .55s ease}.slidecopy{padding:70px max(5vw,24px) 75px max(calc((100vw - 1240px)/2),4.5vw)}.kicker{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--accent)}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.045em}h1{font-size:clamp(44px,5.3vw,76px);line-height:1.02;margin:18px 0 22px;max-width:620px}.slidecopy p{font-size:16px;color:#536b65;max-width:480px;margin:0 0 28px}.slidephoto{height:100%;min-height:570px;background-size:cover;background-position:center;position:relative}.slidephoto:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#dbe6dd20,transparent 35%)}.slide:nth-child(2) .slidecopy{background:#e8dcd0}.slide:nth-child(3) .slidecopy{background:#e2e8dc}.slide:nth-child(2) .kicker{color:#8d4d3a}.slide:nth-child(3) .kicker{color:#476a5b}.slider-ui{position:absolute;bottom:24px;left:5%;display:flex;gap:10px;align-items:center}.dot{border:0;width:8px;height:8px;border-radius:50%;background:#8fa49a;padding:0;cursor:pointer}.dot.active{width:28px;border-radius:8px;background:var(--ink)}.slide-count{font-size:11px;letter-spacing:.1em;margin-left:10px}.intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:10%;padding:90px 0;align-items:start}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800}.intro h2,.sectionhead h2{font-size:clamp(34px,4vw,54px);line-height:1.07;margin:12px 0}.intro p{color:var(--muted);font-size:17px;max-width:660px}.stats{display:flex;gap:32px;margin-top:26px}.stat strong{font-family:Georgia,serif;font-size:28px;display:block;font-weight:400}.stat span{font-size:11px;color:var(--muted)}.services{background:var(--white);padding:80px 0}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:24px}.sectionhead p{max-width:360px;color:var(--muted);font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:35px}.card{background:var(--white);padding:30px;min-height:230px}.number{font-family:Georgia,serif;font-size:15px;color:var(--accent)}.card h3{font-family:Georgia,serif;font-size:25px;font-weight:400;margin:22px 0 9px}.card p{font-size:14px;color:var(--muted)}.quote{padding:82px 0;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}.quote blockquote{font-family:Georgia,serif;font-size:clamp(27px,3.4vw,42px);line-height:1.2;margin:0}.quote p{color:var(--muted)}.contact{background:#173a38;color:#f8f6ef;padding:68px 0}.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:10%;align-items:center}.contact h2{font-size:clamp(36px,4vw,54px);line-height:1.05;margin:12px 0}.contact p{color:#c3d1c9}.contact .cta{background:#d4e5d7;color:#173a38}.details{border-top:1px solid #54706a;padding-top:20px;margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:13px}.details strong{display:block;color:#fff;margin-bottom:5px}.foot{padding:22px 0;display:flex;justify-content:space-between;gap:20px;font-size:12px;color:var(--muted)}.foot a{text-decoration:underline}@keyframes fade{from{opacity:.45}to{opacity:1}}@media(max-width:800px){.top{align-items:flex-start}.nav{gap:10px;flex-wrap:wrap;justify-content:flex-end}.nav a:not(.cta){display:none}.slide,.slide.active{grid-template-columns:1fr}.slidecopy{padding:42px 6% 55px}.slidephoto{min-height:330px;order:-1}.slider,.slide{min-height:0}.slider-ui{bottom:14px;left:6%}.intro,.quote,.contactgrid{grid-template-columns:1fr;gap:22px;padding-top:54px;padding-bottom:54px}.cards{grid-template-columns:1fr}.sectionhead{display:block}.stats{gap:18px}.foot{flex-direction:column}.details{grid-template-columns:1fr 1fr}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto;animation:none!important;transition:none!important}}
-</style></head><body>
+
+/* RocketPen motion + SVG polish */
+.scroll-progress{position:fixed;inset:0 0 auto;height:3px;z-index:9999;pointer-events:none;overflow:hidden}
+.scroll-progress span{display:block;width:100%;height:100%;background:var(--accent,var(--lime,var(--terracotta,#e43d32)));transform:scaleX(0);transform-origin:left;will-change:transform}
+.slider-progress{position:absolute;inset:auto 0 0;height:3px;z-index:5;pointer-events:none;overflow:hidden}
+.slider-progress span{display:block;width:100%;height:100%;background:var(--accent,var(--lime,var(--terracotta,#e43d32)));transform-origin:left;animation:rpSlideProgress 6.5s linear infinite}
+.slider:hover .slider-progress span,.slider:focus-within .slider-progress span{animation-play-state:paused}
+.rp-inline-icon{display:inline-block;width:.92em;height:.92em;vertical-align:-.13em;margin-inline-start:.24em;overflow:visible;transition:transform .25s cubic-bezier(.2,.75,.25,1)}
+a:hover .rp-inline-icon,button:hover .rp-inline-icon,.btn:hover .rp-inline-icon,.cta:hover .rp-inline-icon{transform:translate(2px,-2px)}
+body.motion-ready [data-reveal]{opacity:0;transform:translateY(22px) scale(.992);transition:opacity .72s cubic-bezier(.2,.7,.2,1),transform .72s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+body.motion-ready [data-reveal].is-visible{opacity:1;transform:translateY(0) scale(1);will-change:auto}
+a,button,select,.btn,.cta,.navbtn,.langchips button,.langselect,.lang,.dot{transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .28s ease,transform .28s cubic-bezier(.2,.75,.25,1),opacity .22s ease}
+a:focus-visible,button:focus-visible,select:focus-visible,.btn:focus-visible,.cta:focus-visible,.navbtn:focus-visible,.langchips button:focus-visible,.langselect:focus-visible,.lang:focus-visible,.dot:focus-visible{outline:3px solid currentColor;outline-offset:4px}
+button:hover,select:hover,.btn:hover,.cta:hover,.navbtn:hover,.langchips button:hover,.langselect:hover,.lang:hover,.dot:hover{transform:translateY(-2px)}
+button:active,.btn:active,.cta:active,.navbtn:active,.langchips button:active,.dot:active{transform:scale(.97)}
+.btn,.cta,.navbtn{box-shadow:0 0 0 rgba(0,0,0,0)}
+.btn:hover,.cta:hover,.navbtn:hover{box-shadow:0 12px 28px rgba(16,26,48,.16)}
+.nav a:not(.cta):not(.btn):not(.navbtn),.links a:not(.cta):not(.btn):not(.navbtn){position:relative}
+.nav a:not(.cta):not(.btn):not(.navbtn)::after,.links a:not(.cta):not(.btn):not(.navbtn)::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav a:not(.cta):not(.btn):not(.navbtn):hover::after,.nav a.is-current::after,.links a:not(.cta):not(.btn):not(.navbtn):hover::after,.links a.is-current::after{transform:scaleX(1)}
+.card,.service,.article,.knowledge article,.servicegrid,.portrait,.globalimage,.visual,.slidephoto{transition:transform .5s cubic-bezier(.2,.75,.25,1),box-shadow .35s ease,border-color .35s ease,filter .35s ease}
+.card:hover,.service:hover,.article:hover,.knowledge article:hover{transform:translateY(-6px);box-shadow:0 22px 42px rgba(19,34,50,.12)}
+.slider .slide.active .copy>*,.slider .slide.active .slidecopy>*{animation:rpTextIn .65s both}
+.slider .slide.active .copy>*:nth-child(2),.slider .slide.active .slidecopy>*:nth-child(2){animation-delay:.06s}
+.slider .slide.active .copy>*:nth-child(3),.slider .slide.active .slidecopy>*:nth-child(3){animation-delay:.12s}
+.slider .slide.active .copy>*:nth-child(4),.slider .slide.active .slidecopy>*:nth-child(4){animation-delay:.18s}
+.slider .slide.active .visual,.slider .slide.active .slidephoto{animation:rpVisualIn .85s cubic-bezier(.2,.75,.25,1) both}
+.slide .visual,.slide .slidephoto{background-size:cover;background-repeat:no-repeat}
+.slider .dot{position:relative;overflow:hidden}
+.slider .dot.active{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent,var(--lime,var(--terracotta,#e43d32))) 16%,transparent)}
+.is-current{color:var(--motion-accent,var(--accent,var(--lime,var(--terracotta,#e43d32))))}
+@keyframes rpSlideProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes rpTextIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes rpVisualIn{from{opacity:.45;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
+@keyframes rpCardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.slider-progress{display:none}body.motion-ready [data-reveal]{opacity:1!important;transform:none!important;will-change:auto}}
+</style></head><body data-motion="subtle"><div class="scroll-progress" aria-hidden="true"><span></span></div>
 <div class="demo">TASARIM ÖNİZLEMESİ · TÜM HEKİM VE KLİNİK BİLGİLERİ KURGUSALDIR</div>
 <header class="wrap top"><a class="brand" href="#"><span class="monogram">DA</span><span>Dr. Deniz Arman<small>KARDİYOLOJİ</small></span></a><nav class="nav"><a href="#hakkinda">Hakkımda</a><a href="#hizmetler">Uzmanlık</a><a href="#iletisim">İletişim</a><select class="lang" id="lang" aria-label="Site dili"><option value="tr">TR</option><option value="en">EN</option></select><a class="cta" href="#iletisim" data-tr="Randevu bilgisi" data-en="Appointment info">Randevu bilgisi ↗</a></nav></header>
 <main>
 <section class="slider" aria-label="Öne çıkanlar">
-<article class="slide active"><div class="slidecopy"><span class="kicker" data-tr="Kalp sağlığı · 01 / 03" data-en="Heart health · 01 / 03">Kalp sağlığı · 01 / 03</span><h1 data-tr="Kalbinizi anlamak, iyi hissetmenin ilk adımı." data-en="Understanding your heart is the first step to feeling well.">Kalbinizi anlamak, iyi hissetmenin ilk adımı.</h1><p data-tr="Koruyucu kardiyoloji yaklaşımı ve kişiye özel değerlendirme için güven veren, yalın bir başlangıç." data-en="A thoughtful first step to preventive cardiology and a personalized assessment.">Koruyucu kardiyoloji yaklaşımı ve kişiye özel değerlendirme için güven veren, yalın bir başlangıç.</p><a class="cta" href="#hakkinda" data-tr="Yaklaşımımı keşfedin ↗" data-en="Discover my approach ↗">Yaklaşımımı keşfedin ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=85')"></div></article>
-<article class="slide"><div class="slidecopy"><span class="kicker" data-tr="Koruyucu yaklaşım · 02 / 03" data-en="Preventive care · 02 / 03">Koruyucu yaklaşım · 02 / 03</span><h1 data-tr="Sağlığınız için daha bilinçli kararlar." data-en="More informed choices for your health.">Sağlığınız için daha bilinçli kararlar.</h1><p data-tr="Risk değerlendirmesi, düzenli takip ve yaşam alışkanlıklarına dair anlaşılır bilgilendirme." data-en="Clear guidance on risk assessment, follow-up and everyday habits.">Risk değerlendirmesi, düzenli takip ve yaşam alışkanlıklarına dair anlaşılır bilgilendirme.</p><a class="cta" href="#hizmetler" data-tr="Uzmanlık alanları ↗" data-en="Areas of care ↗">Uzmanlık alanları ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=1400&q=85')"></div></article>
-<article class="slide"><div class="slidecopy"><span class="kicker" data-tr="Size ayrılan zaman · 03 / 03" data-en="Time for you · 03 / 03">Size ayrılan zaman · 03 / 03</span><h1 data-tr="Sorularınız için açık, anlaşılır bir görüşme." data-en="A clear conversation for your questions.">Sorularınız için açık, anlaşılır bir görüşme.</h1><p data-tr="Tıbbi değerlendirmenin her adımını anlayabilmeniz için sade iletişim ve şeffaf bilgilendirme." data-en="Straightforward communication to help you understand each step of your assessment.">Tıbbi değerlendirmenin her adımını anlayabilmeniz için sade iletişim ve şeffaf bilgilendirme.</p><a class="cta" href="#iletisim" data-tr="İletişim bilgileri ↗" data-en="Contact details ↗">İletişim bilgileri ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=85')"></div></article>
+<article class="slide active"><div class="slidecopy"><span class="kicker" data-tr="Kalp sağlığı · 01 / 03" data-en="Heart health · 01 / 03">Kalp sağlığı · 01 / 03</span><h1 data-tr="Kalbinizi anlamak, iyi hissetmenin ilk adımı." data-en="Understanding your heart is the first step to feeling well.">Kalbinizi anlamak, iyi hissetmenin ilk adımı.</h1><p data-tr="Koruyucu kardiyoloji yaklaşımı ve kişiye özel değerlendirme için güven veren, yalın bir başlangıç." data-en="A thoughtful first step to preventive cardiology and a personalized assessment.">Koruyucu kardiyoloji yaklaşımı ve kişiye özel değerlendirme için güven veren, yalın bir başlangıç.</p><a class="cta" href="#hakkinda" data-tr="Yaklaşımımı keşfedin ↗" data-en="Discover my approach ↗">Yaklaşımımı keşfedin ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1766299892683-d50398e31823?auto=format&fit=crop&w=1400&q=85')"></div></article>
+<article class="slide"><div class="slidecopy"><span class="kicker" data-tr="Koruyucu yaklaşım · 02 / 03" data-en="Preventive care · 02 / 03">Koruyucu yaklaşım · 02 / 03</span><h1 data-tr="Sağlığınız için daha bilinçli kararlar." data-en="More informed choices for your health.">Sağlığınız için daha bilinçli kararlar.</h1><p data-tr="Risk değerlendirmesi, düzenli takip ve yaşam alışkanlıklarına dair anlaşılır bilgilendirme." data-en="Clear guidance on risk assessment, follow-up and everyday habits.">Risk değerlendirmesi, düzenli takip ve yaşam alışkanlıklarına dair anlaşılır bilgilendirme.</p><a class="cta" href="#hizmetler" data-tr="Uzmanlık alanları ↗" data-en="Areas of care ↗">Uzmanlık alanları ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1777269749032-d8d458ae594d?auto=format&fit=crop&w=1400&q=85')"></div></article>
+<article class="slide"><div class="slidecopy"><span class="kicker" data-tr="Size ayrılan zaman · 03 / 03" data-en="Time for you · 03 / 03">Size ayrılan zaman · 03 / 03</span><h1 data-tr="Sorularınız için açık, anlaşılır bir görüşme." data-en="A clear conversation for your questions.">Sorularınız için açık, anlaşılır bir görüşme.</h1><p data-tr="Tıbbi değerlendirmenin her adımını anlayabilmeniz için sade iletişim ve şeffaf bilgilendirme." data-en="Straightforward communication to help you understand each step of your assessment.">Tıbbi değerlendirmenin her adımını anlayabilmeniz için sade iletişim ve şeffaf bilgilendirme.</p><a class="cta" href="#iletisim" data-tr="İletişim bilgileri ↗" data-en="Contact details ↗">İletişim bilgileri ↗</a></div><div class="slidephoto" style="background-image:url('https://images.unsplash.com/photo-1766325693394-138c599bd739?auto=format&fit=crop&w=1400&q=85')"></div></article>
 <div class="slider-ui"><button class="dot active" aria-label="1. slayt"></button><button class="dot" aria-label="2. slayt"></button><button class="dot" aria-label="3. slayt"></button><span class="slide-count">01 — 03</span></div></section>
 <section class="wrap intro" id="hakkinda"><div><span class="eyebrow">Kişisel yaklaşım</span><h2 data-tr="Tıp bilgisi, açık iletişimle buluştuğunda." data-en="Where medical knowledge meets clear communication.">Tıp bilgisi, açık iletişimle buluştuğunda.</h2></div><div><p data-tr="Dr. Deniz Arman için hazırlanan bu örnek sayfa, hekim kimliğini sakin ve güven veren bir görsel dil ile anlatır. Ziyaretçi aradığı bilgiye hızla ulaşır; uzmanlık alanlarını, yaklaşımı ve iletişim adımlarını tek akışta keşfeder." data-en="This sample page for Dr. Deniz Arman presents a calm, reassuring visual identity. Visitors can quickly explore areas of care, the doctor's approach and contact details in one clear flow.">Dr. Deniz Arman için hazırlanan bu örnek sayfa, hekim kimliğini sakin ve güven veren bir görsel dil ile anlatır. Ziyaretçi aradığı bilgiye hızla ulaşır; uzmanlık alanlarını, yaklaşımı ve iletişim adımlarını tek akışta keşfeder.</p><div class="stats"><div class="stat"><strong>01</strong><span>Tek sayfa deneyimi</span></div><div class="stat"><strong>TR / EN</strong><span>İki dilde içerik</span></div><div class="stat"><strong>100%</strong><span>Mobil uyumlu tasarım</span></div></div></div></section>
 <section class="services" id="hizmetler"><div class="wrap"><div class="sectionhead"><div><span class="eyebrow">Uzmanlık alanları</span><h2 data-tr="Sağlık yolculuğunuzda rehberlik." data-en="Guidance throughout your health journey.">Sağlık yolculuğunuzda rehberlik.</h2></div><p>Örnek hizmet başlıklarıdır. İçerik, gerçek hekim uzmanlığına ve mevzuata göre özelleştirilir.</p></div><div class="cards"><article class="card"><span class="number">01 /</span><h3>Kalp sağlığı değerlendirmesi</h3><p>Şikâyetlerin ve risk faktörlerinin hekim tarafından değerlendirilmesi.</p></article><article class="card"><span class="number">02 /</span><h3>Koruyucu kardiyoloji</h3><p>Kalp-damar sağlığına dair koruyucu yaklaşım ve bilgilendirme.</p></article><article class="card"><span class="number">03 /</span><h3>Takip ve danışmanlık</h3><p>Muayene sonrası planın ve takip adımlarının anlaşılır biçimde aktarılması.</p></article></div></div></section>
@@ -17,5 +53,89 @@
 <section class="contact" id="iletisim"><div class="wrap contactgrid"><div><span class="eyebrow" style="color:#c5dfd1">İletişim</span><h2 data-tr="İlk adım, bir görüşmeyle başlar." data-en="A first step begins with a conversation.">İlk adım, bir görüşmeyle başlar.</h2><p>Bu demo için iletişim bilgileri örnek amaçlıdır; gerçek proje tesliminde doğrulanmış bilgileriniz kullanılır.</p><a class="cta" href="https://rocketpendigital.com">Site tasarımınızı konuşalım ↗</a></div><div class="details"><div><strong>Çalışma saatleri</strong>Pzt–Cum · 09.00–17.00<br>Cumartesi · Randevuyla</div><div><strong>Örnek klinik</strong>Merkez Mahallesi, Örnek Sokak<br>İstanbul · Kurgusal adres</div><div><strong>Telefon</strong>+90 212 000 00 00 (örnek)</div><div><strong>E-posta</strong>hello@example.invalid</div></div></div></section>
 </main><footer class="wrap foot"><span>© <span id="year"></span> Dr. Deniz Arman · Tasarım önizlemesi</span><span><a href="https://rocketpendigital.com">RocketPen Digital Studio</a> · <a href="https://www.instagram.com/rocketpendigital/">Instagram</a></span></footer>
 <script>
-const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.dot')],count=document.querySelector('.slide-count');let current=0,timer;function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current));count.textContent='0'+(current+1)+' — 03'}function restart(){clearInterval(timer);timer=setInterval(()=>show(current+1),6500)}dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);restart()}));document.querySelector('.slider').addEventListener('mouseenter',()=>clearInterval(timer));document.querySelector('.slider').addEventListener('mouseleave',restart);restart();const dict={tr:{},en:{}};document.getElementById('lang').addEventListener('change',e=>{const lang=e.target.value;document.documentElement.lang=lang;document.querySelectorAll('[data-'+lang+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+lang));});document.getElementById('year').textContent=new Date().getFullYear();
-</script></body></html>
+const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.dot')],count=document.querySelector('.slide-count');let current=0,timer;function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current));count.textContent='0'+(current+1)+' — 03'}function restart(){clearInterval(timer);timer=setInterval(()=>show(current+1),6500)}dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);restart()}));document.querySelector('.slider').addEventListener('mouseenter',()=>clearInterval(timer));document.querySelector('.slider').addEventListener('mouseleave',()=>{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)restart()});document.querySelector('.slider').addEventListener('focusin',()=>clearInterval(timer));document.querySelector('.slider').addEventListener('focusout',()=>{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)restart()});if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)restart();const dict={tr:{},en:{}};document.getElementById('lang').addEventListener('change',e=>{const lang=e.target.value;document.documentElement.lang=lang;document.querySelectorAll('[data-'+lang+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+lang));});document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+<script>
+(function(){
+  const body=document.body;
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const icons={
+    '↗':{view:'0 0 24 24',d:'M7 17 17 7M8 7h9v9',fill:'none',stroke:'currentColor'},
+    '→':{view:'0 0 24 24',d:'M4 12h15M13 5l7 7-7 7',fill:'none',stroke:'currentColor'},
+    '✳':{view:'0 0 24 24',d:'M12 2.5 14.5 9.5 21.5 12 14.5 14.5 12 21.5 9.5 14.5 2.5 12 9.5 9.5Z',fill:'currentColor',stroke:'none'}
+  };
+  function svgFor(symbol){
+    const data=icons[symbol];if(!data)return null;
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox',data.view);svg.setAttribute('class','rp-inline-icon');svg.setAttribute('aria-hidden','true');svg.setAttribute('focusable','false');
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',data.d);path.setAttribute('fill',data.fill);
+    if(data.stroke!=='none'){path.setAttribute('stroke',data.stroke);path.setAttribute('stroke-width','1.8');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');}
+    svg.appendChild(path);return svg;
+  }
+  function replaceGlyphs(root){
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];let node;
+    while((node=walker.nextNode())){
+      if(!/[↗→✳]/u.test(node.nodeValue))continue;
+      if(node.parentElement&&node.parentElement.closest('script,style,svg,textarea,code,pre'))continue;
+      nodes.push(node);
+    }
+    nodes.forEach(textNode=>{
+      const parts=textNode.nodeValue.split(/([↗→✳])/u),frag=document.createDocumentFragment();
+      parts.forEach(part=>{if(icons[part]){const icon=svgFor(part);if(icon)frag.appendChild(icon);}else if(part)frag.appendChild(document.createTextNode(part));});
+      textNode.parentNode&&textNode.parentNode.replaceChild(frag,textNode);
+    });
+  }
+  function addReveal(){
+    const mode=body.dataset.motion||'intensive';
+    const map={
+      intensive:'main > section:not(.slider), .trustbar, .service, .article, .knowledge article, .stats, .sectionhead, .contactrow, .servicegrid, .globalgrid, .intro > div, .trustrow, .languageinner, .portrait, .globalimage, .footerrow, .foot',
+      subtle:'main > section:not(.slider), .card, .stat, .quote blockquote, .quote > div, .contactgrid > div, .foot',
+      landing:'.hero h1, .hero p, .notice, .card, .footer'
+    };
+    const all=[...document.querySelectorAll(map[mode]||map.intensive)];
+    all.forEach((el,i)=>{el.setAttribute('data-reveal','');el.style.setProperty('--reveal-delay',(Math.min(i%4,3)*75)+'ms');});
+    if(reduce||!('IntersectionObserver' in window)){all.forEach(el=>el.classList.add('is-visible'));return;}
+    body.classList.add('motion-ready');
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}
+    }),{threshold:.12,rootMargin:'0px 0px -5% 0px'});
+    all.forEach(el=>observer.observe(el));
+  }
+  function addSliderProgress(){
+    document.querySelectorAll('.slider').forEach(slider=>{
+      if(slider.querySelector('.slider-progress'))return;
+      const bar=document.createElement('div');bar.className='slider-progress';bar.setAttribute('aria-hidden','true');
+      const fill=document.createElement('span');bar.appendChild(fill);slider.appendChild(bar);
+      const dots=[...slider.querySelectorAll('.dot')];
+      dots.forEach(dot=>dot.addEventListener('click',()=>{fill.style.animation='none';void fill.offsetWidth;fill.style.animation='rpSlideProgress 6.5s linear infinite';}));
+      slider.addEventListener('mouseenter',()=>fill.style.animationPlayState='paused');
+      slider.addEventListener('mouseleave',()=>fill.style.animationPlayState='running');
+      slider.addEventListener('focusin',()=>fill.style.animationPlayState='paused');
+      slider.addEventListener('focusout',()=>fill.style.animationPlayState='running');
+      slider.addEventListener('keydown',e=>{
+        if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+        const active=slider.querySelector('.dot.active');const index=dots.indexOf(active);
+        if(index<0||!dots.length)return;e.preventDefault();dots[(index+(e.key==='ArrowRight'?1:-1)+dots.length)%dots.length].click();
+      });
+    });
+  }
+  function addNavigationState(){
+    const sections=[...document.querySelectorAll('main section[id]')];
+    if(!sections.length||!('IntersectionObserver' in window))return;
+    const links=[...document.querySelectorAll('a[href^="#"]')];
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      links.forEach(link=>{if(link.hash&&link.hash.length>1)link.classList.toggle('is-current',link.hash==='#'+entry.target.id);});
+    }),{rootMargin:'-35% 0px -55% 0px',threshold:0});
+    sections.forEach(s=>observer.observe(s));
+  }
+  const progress=document.querySelector('.scroll-progress span');
+  let ticking=false;
+  function updateScroll(){const max=document.documentElement.scrollHeight-window.innerHeight;const ratio=max>0?window.scrollY/max:0;if(progress)progress.style.transform='scaleX('+Math.min(1,Math.max(0,ratio))+')';body.classList.toggle('has-scrolled',window.scrollY>16);ticking=false;}
+  window.addEventListener('scroll',()=>{if(!ticking){window.requestAnimationFrame(updateScroll);ticking=true;}},{passive:true});
+  document.querySelectorAll('#language,#lang,.langchips button').forEach(el=>{el.addEventListener('change',()=>queueMicrotask(()=>replaceGlyphs(body)));el.addEventListener('click',()=>queueMicrotask(()=>replaceGlyphs(body)));});
+  addReveal();addSliderProgress();addNavigationState();replaceGlyphs(body);updateScroll();
+})();
+</script>
+</body></html>
