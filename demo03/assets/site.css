@@ -1,5 +1,5 @@
 /* Mira Demo 3 — classic, symmetric, responsive site */
-:root{color-scheme:light;--ink:#102b45;--navy:#0f2942;--navy2:#173b5b;--blue:#133b6e;--blue2:#1e56a0;--mint:#4ade80;--mint2:#5ce67c;--body:#4a607a;--muted:#536b82;--ice:#dcebfa;--paper:#f3f8fd;--line:#d8e6f0;--white:#fff;--glass:rgba(255,255,255,.84);--shadow:0 14px 35px rgba(19,59,110,.08);--radius:22px;--content:1200px}
+:root{color-scheme:light;--ink:#102b45;--navy:#0f2942;--navy2:#173b5b;--blue:#173f70;--blue2:#245b91;--mint:#4ade80;--mint2:#5ce67c;--body:#4a607a;--muted:#536b82;--ice:#dcebfa;--paper:#f3f8fd;--line:#d8e6f0;--white:#fff;--glass:rgba(255,255,255,.84);--shadow:0 14px 35px rgba(19,59,110,.08);--radius:22px;--content:1200px}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:92px}
 body{margin:0;background:linear-gradient(180deg,#edf6fd 0,#f8fbff 460px,#fff 100%);color:var(--ink);font-family:"Plus Jakarta Sans",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.65}
@@ -15,7 +15,7 @@ button{cursor:pointer}
 .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(19,59,110,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .brand{display:flex;align-items:center;gap:11px;min-width:230px;flex:0 0 auto}
-.brand-mark{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;padding:4px;border:1px solid #d6e8ef;border-radius:14px;background:linear-gradient(145deg,#e2f7ee,#e5f1fc)}
+.brand-mark{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;padding:4px;border:1px solid #d6e8ef;border-radius:14px;background:linear-gradient(145deg,#e4f7f0,#e7f2fb)}
 .brand-mark img{width:100%;height:100%;object-fit:contain}
 .brand-copy{min-width:0;display:block}
 .brand-name{display:block;color:var(--blue);font-size:16px;font-weight:800;letter-spacing:-.025em;line-height:1.25;white-space:nowrap}
@@ -74,11 +74,11 @@ main{min-height:50vh}
 .card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-bottom:17px}
 .card-tag{color:#55738b;font-size:9px;font-weight:900;letter-spacing:.08em}
 .card-arrow{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:var(--mint2);color:var(--navy);font-size:17px;font-weight:900}
-.topic-illustration{display:grid;place-items:center;width:78px;height:78px;margin-bottom:17px;border:1px solid #d5e8f0;border-radius:22px;background:radial-gradient(circle at 32% 25%,#fff,#d7f5f1 42%,#93cbe7 100%);box-shadow:inset 0 0 15px rgba(255,255,255,.65),0 9px 20px rgba(19,59,110,.08)}
+.topic-illustration{display:grid;place-items:center;width:78px;height:78px;margin-bottom:17px;border:1px solid #d5e8f0;border-radius:22px;background:radial-gradient(circle at 32% 25%,#fff 0%,#e1f5f4 42%,#b8dfe9 100%);box-shadow:inset 0 0 15px rgba(255,255,255,.65),0 9px 20px rgba(19,59,110,.08)}
 .topic-illustration svg{width:51px;height:51px}
 .topic-card h3,.article-card h3,.page-card h3{margin:0 0 8px;color:var(--blue);font-size:18px;font-weight:800;letter-spacing:-.015em;line-height:1.35}
 .topic-card p,.article-card p,.page-card p{margin:0;color:#536b82;font-size:12px;line-height:1.8}
-.topic-card.featured{background:linear-gradient(140deg,#3a7bd5,#1e4e8c);border-color:#4c84bf}
+.topic-card.featured{background:linear-gradient(140deg,#245b91 0%,#173f70 58%,#143653 100%);border-color:#4d7ca5}
 .topic-card.featured .card-tag,.topic-card.featured h3,.topic-card.featured p{color:#fff}
 .topic-card.featured p{color:#e4effb}
 .topic-card.featured .card-arrow{background:#fff;color:var(--blue)}
