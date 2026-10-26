@@ -41,6 +41,18 @@
   (function(){
     if(document.getElementById('rp-whatsapp-style')) return;
     var lang=(document.documentElement.lang||'en').toLowerCase().split('-')[0];
+    /* Show WhatsApp CTAs only to visitors arriving from an identifiable search engine. */
+    var path=window.location.pathname.toLowerCase();
+    var isBlogPage=/^\/blog\/(tr|en|ar)(\/|$)/.test(path);
+    var referrerHost='';
+    try{referrerHost=document.referrer?new URL(document.referrer).hostname.toLowerCase().replace(/^www\./,''):'';}catch(e){}
+    var searchEngines=[
+      /(^|\.)google\./,/^google\./,/^bing\.com$/,/^search\.yahoo\./,/^yahoo\./,
+      /^duckduckgo\.com$/,/^yandex\./,/^baidu\.com$/,/^ecosia\.org$/,/^search\.brave\.com$/,
+      /^qwant\.com$/,/^startpage\.com$/,/^search\.aol\.com$/,/^ask\.com$/
+    ];
+    var fromSearchEngine=searchEngines.some(function(re){return re.test(referrerHost);});
+    if(!isBlogPage||!fromSearchEngine)return;
     var copy={
       tr:{float:'WhatsApp\'tan Bilgi Al',ctaTitle:'Projenizi birlikte büyütelim.',ctaText:'İhtiyacınızı konuşalım ve sizin için doğru dijital adımı belirleyelim.',ctaButton:'WhatsApp\'tan İletişime Geç',message:'Merhaba RocketPen Digital, şu içerikten geliyorum:'},
       en:{float:'Chat on WhatsApp',ctaTitle:'Let’s grow your project.',ctaText:'Tell us what you need and let’s find the right next step for your business.',ctaButton:'Talk to Us on WhatsApp',message:'Hello RocketPen Digital, I came from this article:'},
