@@ -402,8 +402,8 @@ async function dragReviews(page, direction, step) {
 
       await page.evaluate(() => {
         // Override smooth-scroll CSS in the test so this assertion is deterministic.
-        document.documentElement.style.scrollBehavior = 'auto';
-        document.body.style.scrollBehavior = 'auto';
+        document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+        document.body.style.setProperty('scroll-behavior', 'auto', 'important');
         window.scrollTo(0, 360);
       });
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
@@ -413,7 +413,11 @@ async function dragReviews(page, direction, step) {
       const stickyState = await page.locator('header.nav').evaluate(el => ({ position: getComputedStyle(el).position, top: el.getBoundingClientRect().top, zIndex: getComputedStyle(el).zIndex }));
       assert.equal(stickyState.position, 'fixed', 'mobile top bar should remain fixed during scroll: ' + JSON.stringify(stickyState));
       assert.ok(Math.abs(stickyState.top) <= 1, 'fixed top bar should stay aligned to the viewport top: ' + JSON.stringify(stickyState));
-      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.evaluate(() => {
+        document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
+        document.body.style.setProperty('scroll-behavior', 'auto', 'important');
+        window.scrollTo(0, 0);
+      });
       await page.waitForFunction(() => !document.querySelector('header.nav').classList.contains('is-scrolled'));
 
       await page.setViewportSize({ width: 1440, height: 900 });
