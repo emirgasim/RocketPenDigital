@@ -400,7 +400,12 @@ async function dragReviews(page, direction, step) {
       }
 
 
-      await page.evaluate(() => window.scrollTo(0, 360));
+      await page.evaluate(() => {
+        // Override smooth-scroll CSS in the test so this assertion is deterministic.
+        document.documentElement.style.scrollBehavior = 'auto';
+        document.body.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 360);
+      });
       await page.waitForFunction(() => document.querySelector('header.nav').classList.contains('is-scrolled'));
       // The nav enters with a 400ms keyframe animation; wait for that motion to finish
       // before asserting its final fixed position, especially in WebKit.
