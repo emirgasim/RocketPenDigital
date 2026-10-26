@@ -33,9 +33,9 @@ button{cursor:pointer}
 .menu-toggle svg{width:21px;height:21px}
 main{min-height:50vh}
 .hero-slider{margin-top:25px;border:1px solid rgba(255,255,255,.98);border-radius:26px;background:#fff;box-shadow:0 22px 55px rgba(19,59,110,.12);overflow:hidden}
-.slides{position:relative}
-.slide{display:none;min-height:450px;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);align-items:stretch}
-.slide.is-active{display:grid;animation:slide-in .35s ease both}
+.slides{position:relative;display:grid;grid-template-areas:"slide"}
+.slide{grid-area:slide;display:grid;min-height:450px;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);align-items:stretch;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .28s ease,visibility .28s ease}
+.slide.is-active{opacity:1;visibility:visible;pointer-events:auto;animation:slide-in .35s ease both}
 .slide-copy{align-self:center;padding:clamp(28px,4.5vw,66px);max-width:620px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid #dce9f1;border-radius:999px;background:#fff;color:#23628f;font-size:10px;font-weight:850;letter-spacing:.08em;line-height:1.55}
 .eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint)}
