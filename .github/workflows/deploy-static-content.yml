@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - "blog/tr/**"
+      - "asset/**"
       - "robots.txt"
       - "sitemap-rocketpen-tr-141-150.xml"
       - "wrangler.toml"
