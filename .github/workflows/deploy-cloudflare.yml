@@ -148,13 +148,13 @@ jobs:
           BASE="https://rocketpendigital.com"
           for PAGE in /demo01/ /demo02/ /demo03/ /demo03/approach.html /demo03/focus.html /demo03/guide.html /demo03/knowledge.html /demo03/contact.html; do
             echo "Checking doctor demo page: $BASE$PAGE"
-            curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE$PAGE" -o /tmp/demo-page.html
+            curl --location --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE$PAGE?__deploy=$GITHUB_SHA" -o /tmp/demo-page.html
             grep -qi 'name="robots" content="noindex,nofollow"' /tmp/demo-page.html || { echo "$BASE$PAGE is missing demo noindex protection."; exit 1; }
             if [[ "$PAGE" == /demo03/* || "$PAGE" == /demo03/ ]]; then
               grep -q 'assets/site.css?v=patient-centered-20261026' /tmp/demo-page.html || { echo "$BASE$PAGE is serving stale CSS references."; exit 1; }
             fi
           done
-          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/demo03/assets/site.css?v=patient-centered-20261026" -o /tmp/mira-site.css
+          curl --location --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/demo03/assets/site.css?v=patient-centered-20261026&__deploy=$GITHUB_SHA" -o /tmp/mira-site.css
           grep -q 'aspect-ratio:16/9!important' /tmp/mira-site.css || { echo "Mira shared CSS is stale."; exit 1; }
           echo "Doctor demo smoke test passed."
       - name: Smoke-test deployed news endpoints
