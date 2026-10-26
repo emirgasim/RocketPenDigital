@@ -1220,3 +1220,29 @@ body.arabic header.nav > .nav-right {
     overflow-wrap: anywhere;
   }
 }
+
+/* RocketPen homepages: keep the locale menu attached to its trigger on phones.
+   Older fixed-to-viewport rules could position it behind the mobile browser/header. */
+@media (max-width: 760px) {
+  html body.rocketpen-home #languageMenu {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    bottom: auto !important;
+    right: 0 !important;
+    left: auto !important;
+    width: min(190px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    transform-origin: top right !important;
+    z-index: 5000 !important;
+  }
+
+  html[dir="rtl"] body.rocketpen-home #languageMenu {
+    left: 0 !important;
+    right: auto !important;
+    transform-origin: top left !important;
+  }
+
+  body.rocketpen-home .language-picker {
+    z-index: 501 !important;
+  }
+}

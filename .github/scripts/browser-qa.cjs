@@ -186,6 +186,10 @@ async function dragReviews(page, direction, step) {
       assert.equal(await page.locator('html').getAttribute('lang'), route.lang);
       assert.equal(await page.locator('html').getAttribute('dir') || 'ltr', route.dir);
       assert.ok((await page.locator('h1').innerText()).trim().length > 0, route.path + ' hero heading should be visible');
+      assert.notEqual(await page.locator('.hero-video').evaluate(v => getComputedStyle(v).display), 'none',
+        route.path + ' hero video must not be hidden by responsive/accessibility CSS');
+      assert.equal(await page.locator('.hero-video source').evaluate(source => new URL(source.src).pathname),
+        '/asset/video/banner-vid1.MP4', route.path + ' hero video source must resolve correctly from every locale');
       await page.locator('.nav .logo-image').evaluate(img => img.decode());
       assert.ok(await page.locator('.nav .logo-image').evaluate(img => img.naturalWidth > 0), 'brand logo must decode');
       assert.equal(await page.locator('#primaryNavigation').count(), 0, 'top navigation menu must be removed');
@@ -381,9 +385,16 @@ async function dragReviews(page, direction, step) {
         await page.waitForFunction(() => { const menu = document.querySelector('#languageMenu'); const style = getComputedStyle(menu); return style.visibility === 'visible' && Number(style.opacity) > 0; });
         const menuRect = await page.locator('#languageMenu').evaluate(el => {
           const r = el.getBoundingClientRect();
-          return { left: r.left, right: r.right, width: r.width };
+          return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, position: getComputedStyle(el).position };
+        });
+        const langButtonRect = await page.locator('#lang').evaluate(el => {
+          const r = el.getBoundingClientRect();
+          return { top: r.top, bottom: r.bottom };
         });
         assert.ok(menuRect.left >= -1 && menuRect.right <= width + 1, width + 'px language menu should stay within viewport: ' + JSON.stringify(menuRect));
+        assert.equal(menuRect.position, 'absolute', width + 'px homepage locale menu should stay anchored to its language control: ' + JSON.stringify(menuRect));
+        assert.ok(menuRect.top >= langButtonRect.bottom - 2,
+          width + 'px locale menu should open underneath its trigger rather than at a fixed screen coordinate: ' + JSON.stringify({ menuRect, langButtonRect }));
         await page.keyboard.press('Escape');
         assert.ok((await page.evaluate(() => document.documentElement.scrollWidth)) <= width + 1, width + 'px page should not overflow horizontally');
       }
@@ -544,7 +555,8 @@ async function dragReviews(page, direction, step) {
     const reducePage = await reduceContext.newPage();
     await reducePage.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
     await reducePage.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
-    assert.equal(await reducePage.locator('.hero-video').evaluate(v => getComputedStyle(v).display), 'none', 'hero video should be hidden for reduced-motion users');
+    assert.notEqual(await reducePage.locator('.hero-video').evaluate(v => getComputedStyle(v).display), 'none',
+      'hero video frame should remain visible for reduced-motion users instead of leaving a blank hero');
     assert.equal(await reducePage.locator('.hero-video').evaluate(v => v.paused), true, 'hero video should remain paused for reduced-motion users');
     await reduceContext.close();
 

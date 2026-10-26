@@ -344,7 +344,7 @@ html.js-ready .reveal.visible{opacity:1;transform:none;filter:none}
 
 
  
-@media(prefers-reduced-motion:reduce){.hero-video{display:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-video{display:block!important;animation:none!important;transition:none!important}}
 
 /* Responsive hero: prevent translated headings and calls to action from colliding on narrow screens */
 @media (max-width: 760px) {
@@ -555,7 +555,7 @@ fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 </head>
-<body>
+<body class="rocketpen-home">
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066085935474383&ev=PageView&noscript=1" alt=""></noscript><div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 <div class="wrap">
 <header class="nav">
