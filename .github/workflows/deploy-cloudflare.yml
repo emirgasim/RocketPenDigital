@@ -226,13 +226,13 @@ jobs:
               raise SystemExit("Live host has missing or insufficient published news.")
           PY
             for LANG in tr en ar; do
-              curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/" -o "/tmp/news-$LANG.html"
+              curl --fail --silent --show-error --retry 5 --retry-delay 2 "$HOST/news/$LANG/?__deploy=$GITHUB_SHA" -o "/tmp/news-$LANG.html"
               grep -q 'news.js?v=' "/tmp/news-$LANG.html" || { echo "Live host is serving stale $LANG HTML; expected news.js?v=20261024-19."; exit 1; }
               grep -q 'id="home-slider-track"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no headline slider."; exit 1; }
               grep -q 'id="news-list"' "/tmp/news-$LANG.html" || { echo "$HOST/$LANG has no archive list."; exit 1; }
             done
           done
-          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/sitemap.xml" -o /tmp/news-sitemap.xml
+          curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/sitemap.xml?__deploy=$GITHUB_SHA" -o /tmp/news-sitemap.xml
           python - <<'PY'
           import xml.etree.ElementTree as ET
           from collections import Counter
@@ -263,7 +263,7 @@ jobs:
           else: raise SystemExit("No published story for "+lang)
           PY
           )
-            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$SEO_BASE/news/$LANG/articles/$SLUG" -o "/tmp/story-$LANG.html"
+            curl --fail --silent --show-error --retry 3 --retry-delay 1 "$SEO_BASE/news/$LANG/articles/$SLUG?__deploy=$GITHUB_SHA" -o "/tmp/story-$LANG.html"
             grep -q 'rel="canonical"' "/tmp/story-$LANG.html" || { echo "Missing canonical on $SEO_BASE/news/$LANG/articles/$SLUG.html; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
             grep -q 'application/ld+json' "/tmp/story-$LANG.html" || { echo "Missing NewsArticle structured data on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
             grep -q 'name="description"' "/tmp/story-$LANG.html" || { echo "Missing description on static $LANG article; response excerpt:"; head -c 1800 "/tmp/story-$LANG.html"; echo; exit 1; }
