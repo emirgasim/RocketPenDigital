@@ -155,7 +155,7 @@ jobs:
             fi
           done
           curl --fail --silent --show-error --retry 5 --retry-delay 2 "$BASE/demo03/assets/site.css?v=patient-centered-20261026" -o /tmp/mira-site.css
-          grep -q 'patient-centered' /tmp/mira-site.css || { echo "Mira shared CSS is stale."; exit 1; }
+          grep -q 'aspect-ratio:16/9!important' /tmp/mira-site.css || { echo "Mira shared CSS is stale."; exit 1; }
           echo "Doctor demo smoke test passed."
       - name: Smoke-test deployed news endpoints
         if: steps.scope.outputs.demo_only != 'true'
