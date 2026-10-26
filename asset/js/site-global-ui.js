@@ -60,6 +60,7 @@
       '#rp-whatsapp-float svg{width:24px;height:24px;flex:0 0 24px;fill:currentColor}'+
       '.rp-whatsapp-cta{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:12px;padding:13px 18px;border:1px solid #25D366;border-radius:4px;background:#25D366;color:#062b16!important;font-weight:700;text-decoration:none!important;line-height:1.4}'+
       '.rp-whatsapp-cta:hover{filter:brightness(.94)}'+
+      '.rp-whatsapp-cta svg{width:21px;height:21px;flex:0 0 21px;fill:currentColor}'+
       '.rp-blog-whatsapp-panel{position:relative;isolation:isolate;margin:42px 0;padding:clamp(22px,4vw,38px);border:1px solid rgba(255,255,255,.16);border-radius:8px;background:linear-gradient(135deg,rgba(37,211,102,.12),rgba(255,255,255,.025));color:inherit}'+
       '.rp-blog-whatsapp-panel h2{margin:0 0 12px;font-size:clamp(22px,3vw,32px);line-height:1.2}'+
       '.rp-blog-whatsapp-panel p{max-width:680px;line-height:1.75;opacity:.84}'+
@@ -91,7 +92,7 @@
     cta.href=href;cta.innerHTML=icon+'<span></span>';cta.querySelector('span').textContent=t.ctaButton;
     cta.addEventListener('click',function(){track('article_end');});
     var existing=document.querySelector('.cta');
-    var article=document.querySelector('main article, article');
+    var article=document.querySelector('.article-card')?null:document.querySelector('main article, article');
     if(existing){
       if(!existing.querySelector('.rp-whatsapp-cta'))existing.appendChild(cta.cloneNode(true));
       var existingLink=existing.querySelector('.rp-whatsapp-cta');
