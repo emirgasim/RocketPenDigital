@@ -413,12 +413,18 @@ async function dragReviews(page, direction, step) {
       const stickyState = await page.locator('header.nav').evaluate(el => ({ position: getComputedStyle(el).position, top: el.getBoundingClientRect().top, zIndex: getComputedStyle(el).zIndex }));
       assert.equal(stickyState.position, 'fixed', 'mobile top bar should remain fixed during scroll: ' + JSON.stringify(stickyState));
       assert.ok(Math.abs(stickyState.top) <= 1, 'fixed top bar should stay aligned to the viewport top: ' + JSON.stringify(stickyState));
-      await page.evaluate(() => {
+      const resetState = await page.evaluate(() => {
         document.documentElement.style.setProperty('scroll-behavior', 'auto', 'important');
         document.body.style.setProperty('scroll-behavior', 'auto', 'important');
-        window.scrollTo(0, 0);
+        const scroller = document.scrollingElement || document.documentElement;
+        scroller.scrollTop = 0;
+        document.body.scrollTop = 0;
+        window.dispatchEvent(new Event('scroll'));
+        const nav = document.querySelector('header.nav');
+        return { scrollY: window.scrollY, scrollTop: scroller.scrollTop, isScrolled: nav.classList.contains('is-scrolled') };
       });
-      await page.waitForFunction(() => !document.querySelector('header.nav').classList.contains('is-scrolled'));
+      assert.ok(resetState.scrollY <= 40 && resetState.scrollTop <= 40 && !resetState.isScrolled,
+        'mobile header state should reset at the top of the page: ' + JSON.stringify(resetState));
 
       await page.setViewportSize({ width: 1440, height: 900 });
       await page.locator('#lang').click();
