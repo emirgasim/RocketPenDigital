@@ -6,7 +6,13 @@ contactPhoneValue:"+90 212 000 00 00 · örnek bilgi",
 contactAddressTitle:"Klinik adresi",
 contactAddressValue:"İstanbul · örnek adres",
 contactHoursTitle:"Çalışma saatleri",
-contactHoursValue:"Hafta içi 09.00–17.00 · örnek bilgi"
+contactHoursValue:"Hafta içi 09.00–17.00 · örnek bilgi",
+prep1Title:"Belirtilerinizi not edin",
+prep1Desc:"Ne zaman başladığını ve günlük yaşamınızı nasıl etkilediğini düşünün.",
+prep2Title:"İlaçlarınızı ve tetkiklerinizi hazırlayın",
+prep2Desc:"Kullandığınız ilaçları, takviyeleri ve varsa test sonuçlarını listeleyin.",
+prep3Title:"Sorularınızı önceden yazın",
+prep3Desc:"Görüşmede konuşmak istediğiniz konuları kısa notlarla hazırlayın."
 
 },
 en: {privacyText:"This design preview does not collect personal health information or real appointment requests.",navLabel:"Main navigation",approachImageAlt:"A doctor and patient talking in a consultation room",guideImageAlt:"A person preparing for a medical appointment",plusSix:"+6 languages",
@@ -16,7 +22,13 @@ contactPhoneValue:"+90 212 000 00 00 · example",
 contactAddressTitle:"Clinic address",
 contactAddressValue:"Istanbul · example address",
 contactHoursTitle:"Opening hours",
-contactHoursValue:"Weekdays 09:00–17:00 · example"
+contactHoursValue:"Weekdays 09:00–17:00 · example",
+prep1Title:"Make a note of your symptoms",
+prep1Desc:"Consider when they began and how they affect daily life.",
+prep2Title:"Gather medicines and test results",
+prep2Desc:"List medicines and supplements you take, and bring recent results if available.",
+prep3Title:"Write down your questions",
+prep3Desc:"Make a short note of the topics you would like to discuss at your appointment."
 
 },
 de: {privacyText:"Diese Designvorschau erfasst keine persönlichen Gesundheitsdaten oder echten Terminanfragen.",navLabel:"Hauptnavigation",approachImageAlt:"Gespräch zwischen Arzt und Patient in einem Behandlungsraum",guideImageAlt:"Vorbereitung auf einen Arzttermin",plusSix:"+6 Sprachen",
@@ -26,7 +38,13 @@ contactPhoneValue:"+90 212 000 00 00 · Beispiel",
 contactAddressTitle:"Praxisadresse",
 contactAddressValue:"Istanbul · Beispieladresse",
 contactHoursTitle:"Öffnungszeiten",
-contactHoursValue:"Werktags 09:00–17:00 · Beispiel"
+contactHoursValue:"Werktags 09:00–17:00 · Beispiel",
+prep1Title:"Beschwerden notieren",
+prep1Desc:"Überlegen Sie, wann sie begonnen haben und wie sie den Alltag beeinflussen.",
+prep2Title:"Medikamente und Befunde vorbereiten",
+prep2Desc:"Listen Sie Medikamente und Präparate auf und bringen Sie vorhandene Ergebnisse mit.",
+prep3Title:"Fragen vorab notieren",
+prep3Desc:"Schreiben Sie kurz auf, welche Themen Sie beim Termin besprechen möchten."
 
 },
 fr: {privacyText:"Cet aperçu ne recueille aucune donnée de santé personnelle ni demande réelle de rendez-vous.",navLabel:"Navigation principale",approachImageAlt:"Conversation entre un médecin et un patient en consultation",guideImageAlt:"Préparation à une consultation médicale",plusSix:"+6 langues",
@@ -36,7 +54,13 @@ contactPhoneValue:"+90 212 000 00 00 · exemple",
 contactAddressTitle:"Adresse du cabinet",
 contactAddressValue:"Istanbul · adresse fictive",
 contactHoursTitle:"Horaires",
-contactHoursValue:"En semaine 09 h–17 h · exemple"
+contactHoursValue:"En semaine 09 h–17 h · exemple",
+prep1Title:"Notez vos symptômes",
+prep1Desc:"Pensez à leur apparition et à leur impact sur votre quotidien.",
+prep2Title:"Préparez médicaments et résultats",
+prep2Desc:"Listez vos médicaments et compléments et apportez les résultats disponibles.",
+prep3Title:"Écrivez vos questions",
+prep3Desc:"Notez brièvement les sujets que vous souhaitez aborder pendant la consultation."
 
 },
 es: {privacyText:"Esta vista previa no recoge datos personales de salud ni solicitudes reales de cita.",navLabel:"Navegación principal",approachImageAlt:"Conversación entre médico y paciente en consulta",guideImageAlt:"Preparación para una consulta médica",plusSix:"+6 idiomas",
@@ -46,7 +70,13 @@ contactPhoneValue:"+90 212 000 00 00 · ejemplo",
 contactAddressTitle:"Dirección de la clínica",
 contactAddressValue:"Estambul · dirección de ejemplo",
 contactHoursTitle:"Horario",
-contactHoursValue:"Entre semana 09:00–17:00 · ejemplo"
+contactHoursValue:"Entre semana 09:00–17:00 · ejemplo",
+prep1Title:"Anota tus síntomas",
+prep1Desc:"Piensa cuándo comenzaron y cómo afectan a tu vida diaria.",
+prep2Title:"Prepara medicamentos y pruebas",
+prep2Desc:"Haz una lista de medicamentos y suplementos y lleva resultados disponibles.",
+prep3Title:"Escribe tus preguntas",
+prep3Desc:"Anota brevemente los temas que quieres comentar durante la consulta."
 
 },
 ru: {privacyText:"В этой версии не собираются личные медицинские данные или реальные заявки на приём.",navLabel:"Основная навигация",approachImageAlt:"Разговор врача и пациента в кабинете",guideImageAlt:"Подготовка к медицинскому приёму",plusSix:"+6 языков",
@@ -56,7 +86,13 @@ contactPhoneValue:"+90 212 000 00 00 · пример",
 contactAddressTitle:"Адрес клиники",
 contactAddressValue:"Стамбул · пример адреса",
 contactHoursTitle:"Часы работы",
-contactHoursValue:"Будни 09:00–17:00 · пример"
+contactHoursValue:"Будни 09:00–17:00 · пример",
+prep1Title:"Запишите симптомы",
+prep1Desc:"Отметьте, когда они появились и как влияют на повседневную жизнь.",
+prep2Title:"Подготовьте список лекарств и анализы",
+prep2Desc:"Запишите лекарства и добавки и возьмите результаты обследований, если они есть.",
+prep3Title:"Заранее запишите вопросы",
+prep3Desc:"Кратко отметьте темы, которые хотите обсудить на приёме."
 
 },
 ar: {privacyText:"لا تجمع هذه المعاينة بيانات صحية شخصية أو طلبات مواعيد حقيقية.",navLabel:"التنقل الرئيسي",approachImageAlt:"حوار بين الطبيب والمريض في غرفة الاستشارة",guideImageAlt:"الاستعداد لموعد طبي",plusSix:"+٦ لغات",
@@ -66,7 +102,13 @@ contactPhoneValue:"+90 212 000 00 00 · مثال",
 contactAddressTitle:"عنوان العيادة",
 contactAddressValue:"إسطنبول · عنوان افتراضي",
 contactHoursTitle:"ساعات العمل",
-contactHoursValue:"أيام الأسبوع 09:00–17:00 · مثال"
+contactHoursValue:"أيام الأسبوع 09:00–17:00 · مثال",
+prep1Title:"دوّن الأعراض",
+prep1Desc:"فكّر في موعد بدايتها وكيف تؤثر في حياتك اليومية.",
+prep2Title:"جهّز قائمة الأدوية والفحوص",
+prep2Desc:"اكتب الأدوية والمكملات التي تستخدمها وأحضر النتائج المتاحة.",
+prep3Title:"اكتب أسئلتك مسبقًا",
+prep3Desc:"دوّن بإيجاز الموضوعات التي تريد مناقشتها أثناء الاستشارة."
 
 },
 fa: {privacyText:"این پیش‌نمایش اطلاعات شخصی سلامت یا درخواست واقعی نوبت را جمع‌آوری نمی‌کند.",navLabel:"پیمایش اصلی",approachImageAlt:"گفت‌وگوی پزشک و بیمار در اتاق مشاوره",guideImageAlt:"آمادگی برای ویزیت پزشکی",plusSix:"+۶ زبان",
@@ -76,7 +118,13 @@ contactPhoneValue:"+90 212 000 00 00 · نمونه",
 contactAddressTitle:"نشانی کلینیک",
 contactAddressValue:"استانبول · نشانی نمونه",
 contactHoursTitle:"ساعات کاری",
-contactHoursValue:"روزهای کاری 09:00 تا 17:00 · نمونه"
+contactHoursValue:"روزهای کاری 09:00 تا 17:00 · نمونه",
+prep1Title:"علائم خود را یادداشت کنید",
+prep1Desc:"به زمان شروع علائم و تأثیر آن‌ها بر زندگی روزمره توجه کنید.",
+prep2Title:"داروها و نتایج آزمایش را آماده کنید",
+prep2Desc:"فهرست داروها و مکمل‌ها را بنویسید و نتایج موجود را همراه داشته باشید.",
+prep3Title:"پرسش‌های خود را از قبل بنویسید",
+prep3Desc:"موضوعاتی را که می‌خواهید در ویزیت مطرح کنید کوتاه یادداشت کنید."
 
 },
 az: {privacyText:"Bu dizayn nümunəsi şəxsi sağlamlıq məlumatlarını və real görüş müraciətlərini toplamır.",navLabel:"Əsas naviqasiya",approachImageAlt:"Müayinə otağında həkim və pasiyent söhbəti",guideImageAlt:"Həkim görüşünə hazırlıq",plusSix:"+6 dil",
@@ -86,7 +134,13 @@ contactPhoneValue:"+90 212 000 00 00 · nümunə",
 contactAddressTitle:"Klinika ünvanı",
 contactAddressValue:"İstanbul · nümunə ünvan",
 contactHoursTitle:"İş saatları",
-contactHoursValue:"Həftə içi 09:00–17:00 · nümunə"
+contactHoursValue:"Həftə içi 09:00–17:00 · nümunə",
+prep1Title:"Əlamətlərinizi qeyd edin",
+prep1Desc:"Nə vaxt başladığını və gündəlik həyatınıza necə təsir etdiyini düşünün.",
+prep2Title:"Dərmanları və analizləri hazırlayın",
+prep2Desc:"İstifadə etdiyiniz dərman və əlavələri siyahıya alın, mövcud nəticələri gətirin.",
+prep3Title:"Suallarınızı əvvəlcədən yazın",
+prep3Desc:"Görüşdə müzakirə etmək istədiyiniz mövzuları qısa qeyd edin."
 
 },
 nl: {privacyText:"Dit ontwerpvoorbeeld verzamelt geen persoonlijke gezondheidsgegevens of echte afspraakverzoeken.",navLabel:"Hoofdnavigatie",approachImageAlt:"Gesprek tussen arts en patiënt in een spreekkamer",guideImageAlt:"Voorbereiding op een medische afspraak",plusSix:"+6 talen",
@@ -96,7 +150,13 @@ contactPhoneValue:"+90 212 000 00 00 · voorbeeld",
 contactAddressTitle:"Kliniekadres",
 contactAddressValue:"Istanbul · voorbeeldadres",
 contactHoursTitle:"Openingstijden",
-contactHoursValue:"Weekdagen 09.00–17.00 · voorbeeld"
+contactHoursValue:"Weekdagen 09.00–17.00 · voorbeeld",
+prep1Title:"Noteer uw klachten",
+prep1Desc:"Denk na over wanneer ze begonnen en hoe ze uw dagelijks leven beïnvloeden.",
+prep2Title:"Verzamel medicijnen en uitslagen",
+prep2Desc:"Maak een lijst van medicijnen en supplementen en neem beschikbare uitslagen mee.",
+prep3Title:"Schrijf uw vragen op",
+prep3Desc:"Noteer kort welke onderwerpen u tijdens het consult wilt bespreken."
 
 }
 };
