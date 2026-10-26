@@ -894,7 +894,7 @@ const nav=document.querySelector('.nav'),progress=document.getElementById('scrol
 const updateScroll=()=>{
  const root=document.documentElement;
  const max=Math.max(0,root.scrollHeight-window.innerHeight);
- const current=Math.max(0,window.scrollY||root.scrollTop||0);
+ const current=Math.max(0,window.scrollY??root.scrollTop??0);
  if(progress)progress.style.width=(max>0?Math.min(100,Math.max(0,current/max*100)):0)+'%';
  if(nav)nav.classList.toggle('is-scrolled',current>40);
  const sections=[...document.querySelectorAll('main section[id]')];
