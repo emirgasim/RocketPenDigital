@@ -38,6 +38,18 @@ button:active,.btn:active,.cta:active,.navbtn:active,.langchips button:active,.d
 @keyframes rpVisualIn{from{opacity:.45;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
 @keyframes rpCardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.slider-progress{display:none}body.motion-ready [data-reveal]{opacity:1!important;transform:none!important;will-change:auto}}
+
+.mobile-menu-toggle{display:none;place-items:center;width:42px;height:42px;padding:0;border:1px solid #44516a;border-radius:12px;background:transparent;color:#fff;cursor:pointer}
+.mobile-menu-toggle svg{width:22px;height:22px}
+@media(max-width:850px){
+ .nav{position:relative;align-items:center}
+ .mobile-menu-toggle{display:grid;flex:0 0 42px}
+ .links{display:none!important;position:absolute;top:calc(100% - 4px);left:0;right:0;z-index:150;flex-direction:column;align-items:stretch;gap:5px;padding:14px;border:1px solid #34415a;border-radius:15px;background:rgba(16,26,48,.98);box-shadow:0 20px 40px rgba(16,26,48,.25)}
+ .links.is-open{display:flex!important}
+ .links.is-open a:not(.navbtn){display:block!important;padding:11px 9px}
+ .links .navbtn{width:100%;text-align:center}
+}
+
 </style>
 <style>
 .contactinfo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;min-width:min(100%,420px);max-width:540px;padding:22px;border:1px solid rgba(16,26,48,.14);border-radius:14px;background:rgba(255,255,255,.24)}
@@ -50,7 +62,7 @@ button:active,.btn:active,.cta:active,.navbtn:active,.langchips button:active,.d
 </style>
 </head><body data-motion="intensive"><div class="scroll-progress" aria-hidden="true"><span></span></div>
 <div class="demo">DEMO WEB SİTESİ · DR. SELİN KAYA VE KLİNİK BİLGİLERİ KURGUSALDIR</div>
-<header class="header"><div class="wrap nav"><a class="brand" href="#"><span class="symbol">SK</span><span>SELİN KAYA<small>DERMATOLOJİ · KLİNİK</small></span></a><nav class="links"><a href="#klinik">Klinik</a><a href="#hizmetler">Uzmanlık alanları</a><a href="#rehber">Sağlık rehberi</a><a href="#iletisim" class="navbtn">İletişim ↗</a></nav></div></header>
+<header class="header"><div class="wrap nav"><a class="brand" href="#"><span class="symbol">SK</span><span>SELİN KAYA<small>DERMATOLOJİ · KLİNİK</small></span></a><button type="button" class="mobile-menu-toggle" id="menu-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Menüyü aç"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button><nav class="links" id="primary-navigation" aria-label="Ana navigasyon"><a href="#klinik">Klinik</a><a href="#hizmetler">Uzmanlık alanları</a><a href="#rehber">Sağlık rehberi</a><a href="#iletisim" class="navbtn">İletişim ↗</a></nav></div></header>
 <main>
 <section class="slider" aria-label="Klinik öne çıkanları">
 <article class="slide active"><div class="copy"><span class="eyebrow">DERMATOLOJİ · 01 / 03</span><h1>Cildiniz.<br>Bilimle, özenle.</h1><p>Cilt sağlığı hakkında doğru bilgiye ulaşın; değerlendirme, takip ve tedavi seçeneklerini hekiminizle birlikte ele alın.</p><div class="actions"><a class="btn" href="#hizmetler">Uzmanlık alanları ↗</a><a class="btn ghost" href="#klinik">Kliniği tanıyın</a></div></div><div class="visual" style="background-image:url('https://videocdn.pollo.ai/web-cdn/pollo/production/cmustjhindx6fh051iaiau0vb/image/1793032374110-5e011708-2482-4a02-9c9a-66fbfce93951.png')"><span class="visual-label">01 · Cilt sağlığı</span></div></article>
@@ -146,5 +158,8 @@ button:active,.btn:active,.cta:active,.navbtn:active,.langchips button:active,.d
   document.querySelectorAll('#language,#lang,.langchips button').forEach(el=>{el.addEventListener('change',()=>queueMicrotask(()=>replaceGlyphs(body)));el.addEventListener('click',()=>queueMicrotask(()=>replaceGlyphs(body)));});
   addReveal();addSliderProgress();addNavigationState();replaceGlyphs(body);updateScroll();
 })();
+</script>
+<script>
+(()=>{const b=document.getElementById('menu-toggle'),n=document.getElementById('primary-navigation');if(!b||!n)return;const close=(focus=false)=>{n.classList.remove('is-open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Menüyü aç');if(focus)b.focus()};b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';n.classList.toggle('is-open',open);b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-label',open?'Menüyü kapat':'Menüyü aç')});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>close(false)));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true')close(true)});document.addEventListener('click',e=>{if(b.getAttribute('aria-expanded')==='true'&&!e.target.closest('.nav'))close(false)});})();
 </script>
 </body></html>
