@@ -59,7 +59,7 @@ jobs:
           git diff --name-only "$EVENT_BEFORE" "$EVENT_SHA" > /tmp/changed-files.txt
           echo "Changed paths:"
           cat /tmp/changed-files.txt
-          if grep -Ev '^(demo01/|demo02/|demo03/|\.github/workflows/deploy-cloudflare\.yml$)' /tmp/changed-files.txt; then
+          if grep -Ev '^(demo01/|demo02/|demo03/|demos/|\.github/workflows/deploy-cloudflare\.yml$)' /tmp/changed-files.txt; then
             echo "demo_only=false" >> "$GITHUB_OUTPUT"
             echo "Non-demo production paths changed; full news QA will run."
           else
