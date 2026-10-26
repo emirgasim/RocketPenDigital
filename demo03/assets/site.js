@@ -80,9 +80,11 @@
     if(!slider) return;
     dots.forEach((dot,index)=>{
       dot.setAttribute("aria-pressed",String(index===current));
-      const key="slide"+(index+1)+"Aria";
+      const key="dot"+(index+1);
       if(tr()[key]) dot.setAttribute("aria-label",tr()[key]);
     });
+    const status=slider.querySelector("#slide-status");
+    if(status) status.textContent=String(current+1).padStart(2,"0")+" — "+String(slides.length).padStart(2,"0");
     if(pauseButton){
       pauseButton.textContent=paused?"▶":"Ⅱ";
       pauseButton.setAttribute("aria-pressed",String(paused));
