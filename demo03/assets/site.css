@@ -327,3 +327,9 @@ main{min-height:50vh}
  .topic-card,.article-card,.page-card{border-radius:22px}
 }
 @media(prefers-reduced-motion:reduce){.topic-card{transition:none}.topic-card:hover{transform:none}}
+
+
+/* Visual cleanup: reduce repetitive diagonal-arrow decoration */
+.card-arrow{display:none!important}
+.media-badge [aria-hidden="true"]{display:none!important}
+.topic-card .card-head{padding-right:0}
