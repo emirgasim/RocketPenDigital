@@ -174,7 +174,7 @@ async function dragReviews(page, direction, step) {
     for (const route of routes) {
       const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
       const page = await context.newPage();
-      page.on('pageerror', error => failures.push(route.path + ' pageerror: ' + error.message));
+      page.on('pageerror', error => failures.push(route.path + ' pageerror: ' + error.message + '\\n' + (error.stack || 'no stack')));
       page.on('response', response => {
         if (response.url().startsWith(BASE) && response.status() >= 400)
           failures.push(route.path + ' HTTP ' + response.status() + ': ' + response.url());
