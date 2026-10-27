@@ -392,7 +392,7 @@ async function dragReviews(page, direction, step) {
           return { top: r.top, bottom: r.bottom };
         });
         assert.ok(menuRect.left >= -1 && menuRect.right <= width + 1, width + 'px language menu should stay within viewport: ' + JSON.stringify(menuRect));
-        assert.equal(menuRect.position, 'absolute', width + 'px homepage locale menu should stay anchored to its language control: ' + JSON.stringify(menuRect));
+        assert.equal(menuRect.position, width <= 760 ? 'fixed' : 'absolute', width + 'px homepage locale menu should stay anchored to its language control: ' + JSON.stringify(menuRect));
         assert.ok(menuRect.top >= langButtonRect.bottom - 2,
           width + 'px locale menu should open underneath its trigger rather than at a fixed screen coordinate: ' + JSON.stringify({ menuRect, langButtonRect }));
         await page.keyboard.press('Escape');
