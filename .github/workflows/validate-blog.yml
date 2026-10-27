@@ -43,13 +43,13 @@ jobs:
           manifest = []
           for filename, (locale, routes) in pages.items():
               text = Path(filename).read_text(encoding="utf-8")
-              scripts = list(re.finditer(r"<script(?P<attrs>\\s[^>]*)?>(?P<body>[\\s\\S]*?)</script\\s*>", text, re.I))
+              scripts = list(re.finditer(r"<script(?P<attrs>\s[^>]*)?>(?P<body>[\s\S]*?)</script\s*>", text, re.I))
               js_count = 0
               for script in scripts:
                   attrs = script.group("attrs") or ""
-                  if re.search(r"\\bsrc\\s*=", attrs, re.I):
+                  if re.search(r"\bsrc\s*=", attrs, re.I):
                       continue
-                  type_match = re.search(r"""\\btype\\s*=\\s*["']([^"']+)["']""", attrs, re.I)
+                  type_match = re.search(r"""\btype\s*=\s*["']([^"']+)["']""", attrs, re.I)
                   script_type = type_match.group(1).lower() if type_match else ""
                   if script_type and script_type not in ("text/javascript", "application/javascript", "module"):
                       continue
@@ -65,17 +65,17 @@ jobs:
               if filename != "index.html":
                   # Check the page's own locale dictionary is present and populated.
                   js = text
-                  start = js.find("\\n" + locale + ":{")
+                  start = js.find("\n" + locale + ":{")
                   if start < 0:
                       raise SystemExit(f"{filename}: locale translation block missing")
                   next_locale = {"en": "tr", "tr": "ar"}.get(locale)
-                  end = js.find("\\n" + next_locale + ":{", start) if next_locale else js.find("\\n};", start)
+                  end = js.find("\n" + next_locale + ":{", start) if next_locale else js.find("\n};", start)
                   block = js[start:end if end >= 0 else len(js)]
                   keys = set(re.findall(r'data-i="([^"]+)"', text))
-                  missing = [key for key in keys if not re.search(r'(?<![\\w$])' + re.escape(key) + r'\\s*:', block)]
+                  missing = [key for key in keys if not re.search(r'(?<![\w$])' + re.escape(key) + r'\s*:', block)]
                   if missing:
                       raise SystemExit(f"{filename}: locale {locale} has missing translations: {missing}")
-          Path("/tmp/rocketpen-inline-js-manifest.txt").write_text("\\n".join(manifest) + "\\n", encoding="utf-8")
+          Path("/tmp/rocketpen-inline-js-manifest.txt").write_text("\n".join(manifest) + "\n", encoding="utf-8")
           print(f"Extracted {len(manifest)} inline JavaScript blocks across all three language pages.")
           PY
           while IFS= read -r script_file; do
