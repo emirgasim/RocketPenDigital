@@ -429,7 +429,7 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 .reviews-foot{margin-top:10px}
 @media(max-width:760px){.reviews-section{padding:38px 20px 42px}.reviews-heading{grid-template-columns:1fr;gap:14px;margin-bottom:17px}.reviews-heading .section-title{font-size:clamp(38px,10vw,54px)}.reviews-heading-side{grid-template-columns:1fr;gap:13px}.reviews-heading-side p{font-size:13px;line-height:1.6}.reviews-heading-actions{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.reviews-card{flex-basis:min(80vw,350px);min-height:205px;padding:19px 18px 17px;gap:12px}.reviews-copy{font-size:14px;line-height:1.6}.reviews-card-customer{margin:8px 0 6px;padding:9px 0}.reviews-card-foot{font-size:9px;letter-spacing:.9px}.reviews-foot{flex-direction:column;align-items:flex-start;gap:7px;margin-top:8px;font-size:9px}}
 </style>
-<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-langfix2">
+<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-fix3">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 <meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"><style>
 /* Freelance contact form and floating WhatsApp */
@@ -482,7 +482,7 @@ fbq('track', 'PageView');
 </header>
 <main>
 <section class="hero" id="home">
-<video class="hero-video" muted loop playsinline preload="metadata" aria-label="RocketPen cinematic background video"><source src="../asset/video/banner-vid1.MP4" type="video/mp4"></video>
+<video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-label="RocketPen cinematic background video"><source src="../asset/video/banner-vid1.MP4" type="video/mp4"></video>
 <div class="hero-inner">
 <div class="eyebrow" data-i="eyebrow">Bağımsız yaratıcı ve dijital stüdyo</div>
 <h1><span data-i="heroLine1">MERHABA</span><span class="line2" data-i="heroLine2">DÜNYALILAR.</span></h1>
@@ -718,9 +718,42 @@ ar:{reviewsKicker:"آراء العملاء",reviewsTitle:'العمل الجيد 
 const pageLang='tr';let current=pageLang;const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});renderReviewCards(lang);const feedbackViewport=document.getElementById('reviewsViewport');if(feedbackViewport&&t.reviewsCarouselLabel)feedbackViewport.setAttribute('aria-label',t.reviewsCarouselLabel);langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
 const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
-function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}
+function clearLanguageMenuPosition(){
+ ['position','top','right','left','bottom','width','max-width','max-height','height','overflow','opacity','visibility','pointer-events','transform','z-index','background','border','border-radius','box-shadow','padding','box-sizing'].forEach(property=>languageMenu.style.removeProperty(property));
+}
+function positionLanguageMenu(){
+ if(window.matchMedia('(max-width: 760px)').matches){
+  const rect=langButton.getBoundingClientRect();
+  const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
+  languageMenu.style.setProperty('position','fixed','important');
+  languageMenu.style.setProperty('top',Math.min(window.innerHeight-170,rect.bottom+8)+'px','important');
+  languageMenu.style.setProperty('right',rtl?'auto':Math.max(8,window.innerWidth-rect.right)+'px','important');
+  languageMenu.style.setProperty('left',rtl?Math.max(8,rect.left)+'px':'auto','important');
+  languageMenu.style.setProperty('bottom','auto','important');
+  languageMenu.style.setProperty('width','min(190px, calc(100vw - 32px))','important');
+  languageMenu.style.setProperty('max-width','calc(100vw - 32px)','important');
+  languageMenu.style.setProperty('max-height','260px','important');
+  languageMenu.style.setProperty('height','auto','important');
+  languageMenu.style.setProperty('overflow','visible','important');
+  languageMenu.style.setProperty('z-index','2147483647','important');
+  languageMenu.style.setProperty('background','rgba(12,15,21,.98)','important');
+  languageMenu.style.setProperty('border','1px solid rgba(255,255,255,.2)','important');
+  languageMenu.style.setProperty('border-radius','8px','important');
+  languageMenu.style.setProperty('box-shadow','0 18px 55px rgba(0,0,0,.5)','important');
+  languageMenu.style.setProperty('padding','7px','important');
+  languageMenu.style.setProperty('box-sizing','border-box','important');
+ } else clearLanguageMenuPosition();
+ languageMenu.style.setProperty('display','block','important');
+ languageMenu.style.setProperty('opacity','1','important');
+ languageMenu.style.setProperty('visibility','visible','important');
+ languageMenu.style.setProperty('pointer-events','auto','important');
+ languageMenu.style.setProperty('transform','translateY(0) scale(1)','important');
+}
+function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition()}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
-langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();languageMenu.style.visibility='visible';languageMenu.style.pointerEvents='auto'}else{languageMenu.style.visibility='';languageMenu.style.pointerEvents=''}});
+langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();positionLanguageMenu()}else closeLanguageMenu()});
+window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});
+window.addEventListener('scroll',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()},{passive:true});
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
 
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePicker.classList.contains('is-open')){event.preventDefault();closeLanguageMenu();langButton.focus();return}if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
@@ -750,17 +783,19 @@ document.querySelectorAll('.reveal,.services-intro,.service,.step,.contact-card'
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}));
 const video=document.querySelector('.hero-video');
 if(video){
- const motionPreference=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
+ video.muted=true;
+ video.defaultMuted=true;
+ video.autoplay=true;
+ video.playsInline=true;
  const startVideo=()=>{
-  if(motionPreference.matches||document.hidden){video.pause();return}
-  try{const playback=video.play();if(playback&&typeof playback.catch==='function')playback.catch(()=>{})}
+  if(document.hidden){return}
+  try{const playback=video.play();if(playback&&typeof playback.catch==='function')playback.catch(error=>{console.debug('Hero video autoplay was blocked; poster/background remains visible:',error)})}
   catch(error){console.debug('Hero video playback is unavailable:',error)}
  };
- const updateMotionPreference=()=>{if(motionPreference.matches)video.pause();else startVideo()};
+ const updateMotionPreference=()=>startVideo();
  video.addEventListener('error',()=>{console.warn('Hero video failed to load:',video.currentSrc)});
  document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();return}startVideo()});
- if(typeof motionPreference.addEventListener==='function')motionPreference.addEventListener('change',updateMotionPreference);
- else if(typeof motionPreference.addListener==='function')motionPreference.addListener(updateMotionPreference);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)startVideo()});
  startVideo();
 }
 document.documentElement.classList.add('js-ready');
