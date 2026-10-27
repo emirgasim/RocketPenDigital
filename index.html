@@ -511,7 +511,7 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 .reviews-foot{margin-top:10px}
 @media(max-width:760px){.reviews-section{padding:38px 20px 42px}.reviews-heading{grid-template-columns:1fr;gap:14px;margin-bottom:17px}.reviews-heading .section-title{font-size:clamp(38px,10vw,54px)}.reviews-heading-side{grid-template-columns:1fr;gap:13px}.reviews-heading-side p{font-size:13px;line-height:1.6}.reviews-heading-actions{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.reviews-card{flex-basis:min(80vw,350px);min-height:205px;padding:19px 18px 17px;gap:12px}.reviews-copy{font-size:14px;line-height:1.6}.reviews-card-customer{margin:8px 0 6px;padding:9px 0}.reviews-card-foot{font-size:9px;letter-spacing:.9px}.reviews-foot{flex-direction:column;align-items:flex-start;gap:7px;margin-top:8px;font-size:9px}}
 </style>
-<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-langportal1">
+<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-langportal2">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 <meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"><style>
 /* Freelance contact form and floating WhatsApp */
@@ -564,7 +564,7 @@ fbq('track', 'PageView');
 </header>
 <main>
 <section class="hero" id="home">
-<video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-label="RocketPen cinematic background video"><source src="asset/video/banner-vid1.MP4" type="video/mp4"></video>
+<video class="hero-video" muted loop playsinline webkit-playsinline preload="auto" aria-label="RocketPen cinematic background video"><source src="asset/video/banner-vid1.MP4" type="video/mp4"></video>
 <div class="hero-inner">
 <div class="eyebrow" data-i="eyebrow">Independent creative & digital studio</div>
 <h1><span data-i="heroLine1">HELLO</span><span class="line2" data-i="heroLine2">EARTHLINGS.</span></h1>
@@ -833,33 +833,32 @@ function positionLanguageMenu(){
  if(isMobile && languageMenu.parentElement!==document.body) document.body.appendChild(languageMenu);
  if(!isMobile && languageMenu.parentElement!==languagePicker) languagePicker.appendChild(languageMenu);
  const rect=langButton.getBoundingClientRect();
+ const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
+ const style=(name,value)=>languageMenu.style.setProperty(name,value,'important');
+ style('display','block');style('visibility','visible');style('opacity','1');style('pointer-events','auto');
+ style('transform','none');style('z-index','2147483647');style('box-sizing','border-box');
  if(isMobile){
-  const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
-  languageMenu.style.setProperty('position','fixed','important');
-  languageMenu.style.setProperty('top',Math.min(window.innerHeight-170,rect.bottom+8)+'px','important');
-  languageMenu.style.setProperty('right',rtl?'auto':Math.max(8,window.innerWidth-rect.right)+'px','important');
-  languageMenu.style.setProperty('left',rtl?Math.max(8,rect.left)+'px':'auto','important');
-  languageMenu.style.setProperty('bottom','auto','important');
-  languageMenu.style.setProperty('width','min(190px, calc(100vw - 32px))','important');
-  languageMenu.style.setProperty('max-width','calc(100vw - 32px)','important');
-  languageMenu.style.setProperty('max-height','260px','important');
-  languageMenu.style.setProperty('height','auto','important');
-  languageMenu.style.setProperty('overflow','visible','important');
-  languageMenu.style.setProperty('z-index','2147483647','important');
-  languageMenu.style.setProperty('background','rgba(12,15,21,.98)','important');
-  languageMenu.style.setProperty('border','1px solid rgba(255,255,255,.2)','important');
-  languageMenu.style.setProperty('border-radius','8px','important');
-  languageMenu.style.setProperty('box-shadow','0 18px 55px rgba(0,0,0,.5)','important');
-  languageMenu.style.setProperty('padding','7px','important');
-  languageMenu.style.setProperty('box-sizing','border-box','important');
- } else clearLanguageMenuPosition();
- languageMenu.style.setProperty('display','block','important');
- languageMenu.style.setProperty('opacity','1','important');
- languageMenu.style.setProperty('visibility','visible','important');
- languageMenu.style.setProperty('pointer-events','auto','important');
- languageMenu.style.setProperty('transform','translateY(0) scale(1)','important');
+  style('position','fixed');style('top',Math.max(8,Math.min(window.innerHeight-150,rect.bottom+8))+'px');
+  style('left',rtl?Math.max(8,rect.left)+'px':'auto');
+  style('right',rtl?'auto':Math.max(8,window.innerWidth-rect.right)+'px');
+  style('bottom','auto');style('width','190px');style('max-width','calc(100vw - 24px)');
+  style('max-height','none');style('height','auto');style('overflow','visible');
+  style('padding','7px');style('background','rgba(12,15,21,.98)');
+  style('border','1px solid rgba(255,255,255,.25)');style('border-radius','8px');
+  style('box-shadow','0 18px 55px rgba(0,0,0,.6)');
+ }else{
+  ['position','top','right','left','bottom','width','max-width','max-height','height','overflow','padding','background','border','border-radius','box-shadow','box-sizing'].forEach(p=>languageMenu.style.removeProperty(p));
+  style('display','block');style('visibility','visible');style('opacity','1');style('pointer-events','auto');style('z-index','2147483647');style('transform','none');
+ }
+ languageMenu.querySelectorAll('.language-option').forEach(option=>{
+  option.style.setProperty('display','grid','important');
+  option.style.setProperty('visibility','visible','important');
+  option.style.setProperty('opacity','1','important');
+  option.style.setProperty('color','#f7f7f5','important');
+  option.style.setProperty('min-height','42px','important');
+ });
 }
-function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition();if(languageMenu.parentElement!==languagePicker)languagePicker.appendChild(languageMenu)}
+function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition();languageMenu.querySelectorAll('.language-option').forEach(option=>option.removeAttribute('style'));if(languageMenu.parentElement!==languagePicker)languagePicker.appendChild(languageMenu)}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
 langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();positionLanguageMenu()}else closeLanguageMenu()});
 window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});

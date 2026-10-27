@@ -1250,11 +1250,8 @@ body.arabic header.nav > .nav-right {
 
 
 
-/* Mobile language menu fallback. JS positions the menu relative to the actual trigger. */
-@media (max-width: 760px) {
-  html body.rocketpen-home #languageMenu { max-height: 260px !important; box-sizing: border-box !important; }
-  html body.rocketpen-home .language-picker.is-open #languageMenu { display:block !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; overflow:visible !important; z-index:2147483647 !important; }
-}
-/* Keep a visible fallback surface behind the hero video if media playback is delayed. */
-html body.rocketpen-home .hero { background-color:#090d14 !important; background-image:radial-gradient(ellipse at 50% 42%,rgba(25,34,49,.72) 0%,rgba(9,13,20,.96) 72%) !important; }
-html body.rocketpen-home .hero-video { display:block !important; visibility:visible !important; opacity:1 !important; }
+
+/* Menu itself is portalled to body on mobile, so give its options explicit visible defaults. */
+html body #languageMenu .language-option { display:grid !important; visibility:visible !important; opacity:1 !important; color:#f7f7f5 !important; min-height:42px !important; }
+html body #languageMenu .language-option-name { display:block !important; visibility:visible !important; color:#f7f7f5 !important; }
+html body #languageMenu .language-option-code { display:block !important; visibility:visible !important; color:#ffeb00 !important; }
