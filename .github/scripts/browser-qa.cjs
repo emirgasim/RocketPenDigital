@@ -171,6 +171,51 @@ async function dragReviews(page, direction, step) {
     assert.equal(faviconHead.status, 200, 'favicon SVG must be served');
     assert.match(faviconHead.headers.get('content-type') || '', /image\/svg\+xml|application\/octet-stream/);
 
+    // Run an isolated language-menu smoke test before unrelated homepage/carousel checks.
+    // This guarantees every locale's menu and destination route are verified independently.
+    for (const route of routes) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+      const page = await context.newPage();
+      const pageErrors = [];
+      page.on('pageerror', error => pageErrors.push(error.message));
+      const response = await page.goto(BASE + route.path, { waitUntil: 'domcontentloaded' });
+      assert.equal(response.status(), 200, route.path + ' language smoke route should load');
+      await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
+      assert.equal(await page.locator('html').getAttribute('lang'), route.lang, route.path + ' must initialize its own locale');
+      const beforeWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+      await page.locator('#lang').tap();
+      assert.equal(await page.locator('#lang').getAttribute('aria-expanded'), 'true', route.path + ' language button must open');
+      await page.waitForFunction(() => {
+        const menu = document.querySelector('#languageMenu');
+        const style = getComputedStyle(menu);
+        return style.visibility === 'visible' && Number(style.opacity) > 0;
+      });
+      assert.ok(await visible(page, '#languageMenu'), route.path + ' language menu must be visible on mobile');
+      assert.equal(await page.locator('#languageMenu [data-lang]').count(), 3, route.path + ' must provide all three languages');
+      const menuRect = await page.locator('#languageMenu').evaluate(el => {
+        const r = el.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, position: getComputedStyle(el).position };
+      });
+      const buttonRect = await page.locator('#lang').evaluate(el => {
+        const r = el.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+      });
+      assert.equal(menuRect.position, 'fixed', route.path + ' mobile menu must use viewport-safe positioning');
+      assert.ok(menuRect.left >= 0 && menuRect.right <= 391, route.path + ' menu must stay within mobile viewport: ' + JSON.stringify(menuRect));
+      assert.ok(menuRect.top >= buttonRect.bottom, route.path + ' menu must open below its button: ' + JSON.stringify({menuRect, buttonRect}));
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth) <= beforeWidth + 1,
+        route.path + ' opening the menu must not widen/shift the page');
+      await Promise.all([
+        page.waitForURL(url => url.pathname === route.nextPath),
+        page.locator('#languageMenu [data-lang="' + route.nextLang + '"]').tap(),
+      ]);
+      await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
+      assert.equal(await page.locator('html').getAttribute('lang'), route.nextLang, route.path + ' language choice must initialize target locale');
+      assert.deepEqual(pageErrors, [], route.path + ' must not throw JavaScript errors during language navigation: ' + JSON.stringify(pageErrors));
+      console.log('LANGUAGE MENU SMOKE PASS: ' + route.path + ' -> ' + route.nextPath + ' at 390px (' + (process.env.QA_BROWSER === 'webkit' ? 'WebKit' : 'Chromium') + ')');
+      await context.close();
+    }
+
     for (const route of routes) {
       const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
       const page = await context.newPage();
