@@ -432,7 +432,20 @@ async function dragReviews(page, direction, step) {
         page.waitForURL(url => url.pathname === route.nextPath),
         page.locator('#languageMenu [data-lang="' + route.nextLang + '"]').click(),
       ]);
-      await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'));
+      try {
+        await page.waitForFunction(() => document.documentElement.classList.contains('js-ready'), null, { timeout: 8000 });
+      } catch (error) {
+        const browserState = await page.evaluate(() => ({
+          href: location.href,
+          title: document.title,
+          lang: document.documentElement.lang,
+          ready: document.documentElement.classList.contains('js-ready'),
+          scriptCount: document.scripts.length,
+          lastScripts: [...document.scripts].slice(-5).map(script => ({ src: script.src || 'inline', text: (script.textContent || '').slice(-160) }))
+        })).catch(stateError => ({ stateError: stateError.message }));
+        console.error('Locale link loaded but page initialization did not finish. Route: ' + route.path + ' -> ' + route.nextPath + '. Browser errors: ' + JSON.stringify(failures) + '. State: ' + JSON.stringify(browserState));
+        throw error;
+      }
       assert.equal(await page.locator('html').getAttribute('lang'), route.nextLang, 'language link should reach the right locale');
 
       await context.close();
