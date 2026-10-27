@@ -718,9 +718,48 @@ ar:{reviewsKicker:"آراء العملاء",reviewsTitle:'العمل الجيد 
 const pageLang='tr';let current=pageLang;const langButton=document.getElementById('lang');
 function setLang(lang){current=lang;const t=translations[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.classList.toggle('arabic',lang==='ar');document.querySelectorAll('[data-i]').forEach(el=>{const key=el.dataset.i;if(t[key]!==undefined)el.innerHTML=t[key]});renderReviewCards(lang);const feedbackViewport=document.getElementById('reviewsViewport');if(feedbackViewport&&t.reviewsCarouselLabel)feedbackViewport.setAttribute('aria-label',t.reviewsCarouselLabel);langButton.querySelector('.lang-code').textContent=({en:'EN',tr:'TR',ar:'AR'})[lang];document.title=lang==='tr'?'RocketPen — İnşa Et. Başlat. Büyüt.':lang==='ar'?'روكيت بن — ابنِ. أطلق. انمُ.':'RocketPen — Build. Launch. Grow.';try{localStorage.setItem('rp-lang',lang)}catch(e){}}
 const languagePicker=document.getElementById('languagePicker'),languageMenu=document.getElementById('languageMenu');
+function positionLanguageMenu(){
+  const mobile=window.matchMedia('(max-width: 760px)').matches;
+  const positionProps=['position','top','right','left','bottom','width','max-width','z-index','transform-origin','box-sizing'];
+  positionProps.forEach(property=>languageMenu.style.removeProperty(property));
+  if(!mobile)return;
+  const rect=langButton.getBoundingClientRect();
+  const viewportWidth=document.documentElement.clientWidth||window.innerWidth;
+  const width=Math.min(190,Math.max(0,viewportWidth-16));
+  const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
+  let left=rtl?rect.left:rect.right-width;
+  left=Math.max(8,Math.min(left,viewportWidth-width-8));
+  const top=rect.bottom+8;
+  const set=(property,value)=>languageMenu.style.setProperty(property,value,'important');
+  set('position','fixed');
+  set('top',top+'px');
+  set('left',left+'px');
+  set('right','auto');
+  set('bottom','auto');
+  set('width',width+'px');
+  set('max-width',(viewportWidth-16)+'px');
+  set('z-index','2147483647');
+  set('transform-origin',rtl?'top left':'top right');
+  set('box-sizing','border-box');
+}
+function closeLanguageMenu(){
+  languagePicker.classList.remove('is-open');
+  langButton.setAttribute('aria-expanded','false');
+  ['position','top','right','left','bottom','width','max-width','z-index','transform-origin','box-sizing'].forEach(property=>languageMenu.style.removeProperty(property));
+}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
-langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening)syncLanguageOptions();else closeLanguageMenu();});
-
+langButton.addEventListener('click',event=>{
+  event.preventDefault();event.stopPropagation();
+  const opening=langButton.getAttribute('aria-expanded')!=='true';
+  if(opening){
+    syncLanguageOptions();
+    languagePicker.classList.add('is-open');
+    langButton.setAttribute('aria-expanded','true');
+    positionLanguageMenu();
+  }else closeLanguageMenu();
+});
+window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});
+window.addEventListener('scroll',()=>{if(languagePicker.classList.contains('is-open')&&window.matchMedia('(max-width: 760px)').matches)positionLanguageMenu()},{passive:true});
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target)&&!languageMenu.contains(event.target))closeLanguageMenu()});
 
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePicker.classList.contains('is-open')){event.preventDefault();closeLanguageMenu();langButton.focus();return}if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});

@@ -528,20 +528,6 @@ html[lang="ar"] .article h3 {
   }
 }
 
-/* Keep the locale dropdown anchored to the viewport on narrow screens,
-   even when the header's logo and menu controls need to wrap. */
-@media (max-width: 760px) {
-  html body .language-menu {
-    position: fixed !important;
-    top: 76px !important;
-    left: auto !important;
-    right: 10px !important;
-    width: min(175px, calc(100vw - 20px)) !important;
-    max-width: calc(100vw - 20px) !important;
-    transform-origin: top right !important;
-  }
-}
-
 /* Override legacy hero line-height declarations that were too tight at mobile zoom. */
 body .hero-inner h1 { line-height: 1.12 !important; }
 body .arabic .hero-inner h1, html[lang="ar"] .hero-inner h1 { line-height: 1.38 !important; letter-spacing: normal !important; }
@@ -965,28 +951,6 @@ body.arabic #languageMenu {
 }
 
 
-/* Mobile dropdowns use viewport anchoring instead of inheriting legacy nav transforms. */
-@media (max-width: 760px) {
-  html[dir="ltr"] body #languageMenu {
-    position: fixed !important;
-    top: 72px !important;
-    right: 16px !important;
-    left: auto !important;
-    width: min(190px, calc(100vw - 32px)) !important;
-    max-width: calc(100vw - 32px) !important;
-    transform-origin: top right !important;
-  }
-  html[dir="rtl"] body #languageMenu,
-  body.arabic #languageMenu {
-    position: fixed !important;
-    top: 72px !important;
-    left: 16px !important;
-    right: auto !important;
-    width: min(190px, calc(100vw - 32px)) !important;
-    max-width: calc(100vw - 32px) !important;
-    transform-origin: top left !important;
-  }
-}
 
 /* Final RTL brand lockup: size the header link to the image itself, not the
    remaining header row, and keep the built-in rocket mark on the image's left
