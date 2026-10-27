@@ -511,7 +511,7 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 .reviews-foot{margin-top:10px}
 @media(max-width:760px){.reviews-section{padding:38px 20px 42px}.reviews-heading{grid-template-columns:1fr;gap:14px;margin-bottom:17px}.reviews-heading .section-title{font-size:clamp(38px,10vw,54px)}.reviews-heading-side{grid-template-columns:1fr;gap:13px}.reviews-heading-side p{font-size:13px;line-height:1.6}.reviews-heading-actions{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.reviews-card{flex-basis:min(80vw,350px);min-height:205px;padding:19px 18px 17px;gap:12px}.reviews-copy{font-size:14px;line-height:1.6}.reviews-card-customer{margin:8px 0 6px;padding:9px 0}.reviews-card-foot{font-size:9px;letter-spacing:.9px}.reviews-foot{flex-direction:column;align-items:flex-start;gap:7px;margin-top:8px;font-size:9px}}
 </style>
-<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-langportal2">
+<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-stablemenu4">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 <meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"><style>
 /* Freelance contact form and floating WhatsApp */
@@ -564,7 +564,7 @@ fbq('track', 'PageView');
 </header>
 <main>
 <section class="hero" id="home">
-<video class="hero-video" muted loop playsinline webkit-playsinline preload="auto" aria-label="RocketPen cinematic background video"><source src="asset/video/banner-vid1.MP4" type="video/mp4"></video>
+<video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-label="RocketPen cinematic background video"><source src="asset/video/banner-vid1.MP4" type="video/mp4"></video>
 <div class="hero-inner">
 <div class="eyebrow" data-i="eyebrow">Independent creative & digital studio</div>
 <h1><span data-i="heroLine1">HELLO</span><span class="line2" data-i="heroLine2">EARTHLINGS.</span></h1>
@@ -829,36 +829,25 @@ function clearLanguageMenuPosition(){
  ['position','top','right','left','bottom','width','max-width','max-height','height','overflow','opacity','visibility','pointer-events','transform','z-index','background','border','border-radius','box-shadow','padding','box-sizing'].forEach(property=>languageMenu.style.removeProperty(property));
 }
 function positionLanguageMenu(){
- const isMobile=window.matchMedia('(max-width: 760px)').matches;
- if(isMobile && languageMenu.parentElement!==document.body) document.body.appendChild(languageMenu);
- if(!isMobile && languageMenu.parentElement!==languagePicker) languagePicker.appendChild(languageMenu);
+ const mobile=window.matchMedia('(max-width: 760px)').matches;
+ if(mobile && languageMenu.parentElement!==document.body) document.body.appendChild(languageMenu);
+ if(!mobile && languageMenu.parentElement!==languagePicker) languagePicker.appendChild(languageMenu);
  const rect=langButton.getBoundingClientRect();
  const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
- const style=(name,value)=>languageMenu.style.setProperty(name,value,'important');
- style('display','block');style('visibility','visible');style('opacity','1');style('pointer-events','auto');
- style('transform','none');style('z-index','2147483647');style('box-sizing','border-box');
- if(isMobile){
-  style('position','fixed');style('top',Math.max(8,Math.min(window.innerHeight-150,rect.bottom+8))+'px');
-  style('left',rtl?Math.max(8,rect.left)+'px':'auto');
-  style('right',rtl?'auto':Math.max(8,window.innerWidth-rect.right)+'px');
-  style('bottom','auto');style('width','190px');style('max-width','calc(100vw - 24px)');
-  style('max-height','none');style('height','auto');style('overflow','visible');
-  style('padding','7px');style('background','rgba(12,15,21,.98)');
-  style('border','1px solid rgba(255,255,255,.25)');style('border-radius','8px');
-  style('box-shadow','0 18px 55px rgba(0,0,0,.6)');
- }else{
-  ['position','top','right','left','bottom','width','max-width','max-height','height','overflow','padding','background','border','border-radius','box-shadow','box-sizing'].forEach(p=>languageMenu.style.removeProperty(p));
-  style('display','block');style('visibility','visible');style('opacity','1');style('pointer-events','auto');style('z-index','2147483647');style('transform','none');
+ const set=(key,value)=>languageMenu.style.setProperty(key,value,'important');
+ set('display','block');set('position',mobile?'fixed':'absolute');set('visibility','visible');set('opacity','1');set('pointer-events','auto');set('transform','none');set('z-index','2147483647');set('box-sizing','border-box');
+ if(mobile){
+  set('top',Math.max(8,Math.min(window.innerHeight-160,rect.bottom+8))+'px');
+  set('left',rtl?Math.max(8,rect.left)+'px':'auto');set('right',rtl?'auto':Math.max(8,window.innerWidth-rect.right)+'px');
+  set('bottom','auto');set('width','190px');set('max-width','calc(100vw - 24px)');set('height','auto');set('max-height','none');set('overflow','visible');
+  set('padding','7px');set('background','#0c0f15');set('border','1px solid rgba(255,255,255,.25)');set('border-radius','8px');set('box-shadow','0 18px 55px rgba(0,0,0,.6)');
+ } else {
+  set('top','calc(100% + 8px)');set('right',rtl?'auto':'0');set('left',rtl?'0':'auto');set('width','190px');set('max-width','calc(100vw - 24px)');set('background','#0c0f15');set('border','1px solid rgba(255,255,255,.25)');set('border-radius','8px');set('padding','7px');set('box-shadow','0 18px 55px rgba(0,0,0,.6)');
  }
  languageMenu.querySelectorAll('.language-option').forEach(option=>{
-  option.style.setProperty('display','grid','important');
-  option.style.setProperty('visibility','visible','important');
-  option.style.setProperty('opacity','1','important');
-  option.style.setProperty('color','#f7f7f5','important');
-  option.style.setProperty('min-height','42px','important');
+  option.style.setProperty('display','grid','important');option.style.setProperty('visibility','visible','important');option.style.setProperty('opacity','1','important');option.style.setProperty('color','#f7f7f5','important');option.style.setProperty('min-height','42px','important');
  });
 }
-function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition();languageMenu.querySelectorAll('.language-option').forEach(option=>option.removeAttribute('style'));if(languageMenu.parentElement!==languagePicker)languagePicker.appendChild(languageMenu)}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
 langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();positionLanguageMenu()}else closeLanguageMenu()});
 window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});
@@ -960,7 +949,6 @@ if(video){
  const updateMotionPreference=()=>startVideo();
  video.addEventListener('error',()=>{console.warn('Hero video failed to load:',video.currentSrc)});
  document.addEventListener('visibilitychange',()=>{if(document.hidden){video.pause();return}startVideo()});
- document.addEventListener('visibilitychange',()=>{if(!document.hidden)startVideo()});
  startVideo();
 }
 document.documentElement.classList.add('js-ready');
