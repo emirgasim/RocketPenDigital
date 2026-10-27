@@ -1220,20 +1220,3 @@ body.arabic header.nav > .nav-right {
     overflow-wrap: anywhere;
   }
 }
-
-
-
-
-
-
-
-
-
-/* Keep the mobile locale dropdown anchored to the picker without moving it into body. */
-@media (max-width:760px){
- html body.rocketpen-home .language-picker{position:relative !important;overflow:visible !important;}
- html body.rocketpen-home #languageMenu{position:absolute !important;top:calc(100% + 8px) !important;z-index:2147483647 !important;min-width:190px !important;max-width:calc(100vw - 32px) !important;}
- html body.rocketpen-home #languageMenu .language-option{display:grid !important;visibility:visible !important;opacity:1 !important;color:#f7f7f5 !important;min-height:42px !important;}
- html body.rocketpen-home #languageMenu .language-option-name{display:block !important;visibility:visible !important;color:#f7f7f5 !important;}
- html body.rocketpen-home #languageMenu .language-option-code{display:block !important;visibility:visible !important;color:#ffeb00 !important;}
-}
