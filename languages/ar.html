@@ -430,7 +430,7 @@ html[dir="rtl"] .portfolio-lightbox-close{right:auto;left:var(--pad)}
 .reviews-foot{margin-top:10px}
 @media(max-width:760px){.reviews-section{padding:38px 20px 42px}.reviews-heading{grid-template-columns:1fr;gap:14px;margin-bottom:17px}.reviews-heading .section-title{font-size:clamp(38px,10vw,54px)}.reviews-heading-side{grid-template-columns:1fr;gap:13px}.reviews-heading-side p{font-size:13px;line-height:1.6}.reviews-heading-actions{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.reviews-card{flex-basis:min(80vw,350px);min-height:205px;padding:19px 18px 17px;gap:12px}.reviews-copy{font-size:14px;line-height:1.6}.reviews-card-customer{margin:8px 0 6px;padding:9px 0}.reviews-card-foot{font-size:9px;letter-spacing:.9px}.reviews-foot{flex-direction:column;align-items:flex-start;gap:7px;margin-top:8px;font-size:9px}}
 </style>
-<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-fix3">
+<link rel="stylesheet" href="/asset/css/responsive-overrides.css?v=20261027-langportal1">
 <!-- SEO_ALTERNATES_START --><!-- SEO_ALTERNATES_END -->
 <meta name="robots" content="index,follow"><link rel="canonical" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="en" href="https://rocketpendigital.com/"><link rel="alternate" hreflang="tr" href="https://rocketpendigital.com/languages/tr.html"><link rel="alternate" hreflang="ar" href="https://rocketpendigital.com/languages/ar.html"><link rel="alternate" hreflang="x-default" href="https://rocketpendigital.com/"><style>
 /* Freelance contact form and floating WhatsApp */
@@ -723,8 +723,11 @@ function clearLanguageMenuPosition(){
  ['position','top','right','left','bottom','width','max-width','max-height','height','overflow','opacity','visibility','pointer-events','transform','z-index','background','border','border-radius','box-shadow','padding','box-sizing'].forEach(property=>languageMenu.style.removeProperty(property));
 }
 function positionLanguageMenu(){
- if(window.matchMedia('(max-width: 760px)').matches){
-  const rect=langButton.getBoundingClientRect();
+ const isMobile=window.matchMedia('(max-width: 760px)').matches;
+ if(isMobile && languageMenu.parentElement!==document.body) document.body.appendChild(languageMenu);
+ if(!isMobile && languageMenu.parentElement!==languagePicker) languagePicker.appendChild(languageMenu);
+ const rect=langButton.getBoundingClientRect();
+ if(isMobile){
   const rtl=document.documentElement.dir==='rtl'||document.body.classList.contains('arabic');
   languageMenu.style.setProperty('position','fixed','important');
   languageMenu.style.setProperty('top',Math.min(window.innerHeight-170,rect.bottom+8)+'px','important');
@@ -750,12 +753,12 @@ function positionLanguageMenu(){
  languageMenu.style.setProperty('pointer-events','auto','important');
  languageMenu.style.setProperty('transform','translateY(0) scale(1)','important');
 }
-function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition()}
+function closeLanguageMenu(){languagePicker.classList.remove('is-open');langButton.setAttribute('aria-expanded','false');clearLanguageMenuPosition();if(languageMenu.parentElement!==languagePicker)languagePicker.appendChild(languageMenu)}
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
 langButton.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const opening=langButton.getAttribute('aria-expanded')!=='true';languagePicker.classList.toggle('is-open',opening);langButton.setAttribute('aria-expanded',opening?'true':'false');if(opening){syncLanguageOptions();positionLanguageMenu()}else closeLanguageMenu()});
 window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});
 window.addEventListener('scroll',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()},{passive:true});
-document.addEventListener('click',event=>{if(!languagePicker.contains(event.target))closeLanguageMenu()});
+document.addEventListener('click',event=>{if(!languagePicker.contains(event.target)&&!languageMenu.contains(event.target))closeLanguageMenu()});
 
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePicker.classList.contains('is-open')){event.preventDefault();closeLanguageMenu();langButton.focus();return}if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
 
