@@ -216,6 +216,11 @@ async function dragReviews(page, direction, step) {
       await context.close();
     }
 
+    if (process.env.QA_ONLY_LOCALE_MENU === 'true') {
+      console.log('All mobile language-menu checks passed (' + (process.env.QA_BROWSER === 'webkit' ? 'WebKit' : 'Chromium') + ').');
+      return;
+    }
+
     for (const route of routes) {
       const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
       const page = await context.newPage();

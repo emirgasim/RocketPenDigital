@@ -48,5 +48,7 @@ jobs:
             sleep 1
           done
           curl --fail --silent http://127.0.0.1:4173/ >/dev/null
+          QA_ONLY_LOCALE_MENU=true NODE_PATH=/tmp/rocketpen-playwright/node_modules node .github/scripts/browser-qa.cjs
+          QA_BROWSER=webkit QA_ONLY_LOCALE_MENU=true NODE_PATH=/tmp/rocketpen-playwright/node_modules node .github/scripts/browser-qa.cjs
           NODE_PATH=/tmp/rocketpen-playwright/node_modules node .github/scripts/browser-qa.cjs
           QA_BROWSER=webkit NODE_PATH=/tmp/rocketpen-playwright/node_modules node .github/scripts/browser-qa.cjs
