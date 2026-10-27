@@ -40,31 +40,48 @@ jobs:
               "languages/tr.html": ("tr", {"en": "../index.html", "tr": "tr.html", "ar": "ar.html"}),
               "languages/ar.html": ("ar", {"en": "../index.html", "tr": "tr.html", "ar": "ar.html"}),
           }
+          manifest = []
           for filename, (locale, routes) in pages.items():
               text = Path(filename).read_text(encoding="utf-8")
-              match = re.search(r"<script>([\s\S]*?)</script>", text)
-              if not match:
-                  raise SystemExit(f"{filename}: inline application script missing")
-              Path(f"/tmp/rocketpen-{locale}.js").write_text(match.group(1), encoding="utf-8")
+              scripts = list(re.finditer(r"<script(?P<attrs>\\s[^>]*)?>(?P<body>[\\s\\S]*?)</script\\s*>", text, re.I))
+              js_count = 0
+              for script in scripts:
+                  attrs = script.group("attrs") or ""
+                  if re.search(r"\\bsrc\\s*=", attrs, re.I):
+                      continue
+                  type_match = re.search(r"""\\btype\\s*=\\s*["']([^"']+)["']""", attrs, re.I)
+                  script_type = type_match.group(1).lower() if type_match else ""
+                  if script_type and script_type not in ("text/javascript", "application/javascript", "module"):
+                      continue
+                  body = script.group("body")
+                  if not body.strip():
+                      continue
+                  output = Path(f"/tmp/rocketpen-{locale}-{js_count:02d}.js")
+                  output.write_text(body, encoding="utf-8")
+                  manifest.append(str(output))
+                  js_count += 1
+              if not js_count:
+                  raise SystemExit(f"{filename}: inline JavaScript missing")
               if filename != "index.html":
-                  # The language dictionary is embedded in the HTML page application script.
+                  # Check the page's own locale dictionary is present and populated.
                   js = text
-                  start = js.find("\n" + locale + ":{")
+                  start = js.find("\\n" + locale + ":{")
                   if start < 0:
                       raise SystemExit(f"{filename}: locale translation block missing")
                   next_locale = {"en": "tr", "tr": "ar"}.get(locale)
-                  end = js.find("\n" + next_locale + ":{", start) if next_locale else js.find("\n};", start)
+                  end = js.find("\\n" + next_locale + ":{", start) if next_locale else js.find("\\n};", start)
                   block = js[start:end if end >= 0 else len(js)]
                   keys = set(re.findall(r'data-i="([^"]+)"', text))
-                  missing = [key for key in keys if not re.search(r'(?<![\w$])' + re.escape(key) + r'\s*:', block)]
+                  missing = [key for key in keys if not re.search(r'(?<![\\w$])' + re.escape(key) + r'\\s*:', block)]
                   if missing:
                       raise SystemExit(f"{filename}: locale {locale} has missing translations: {missing}")
-
-          print("Language routes, translations and inline scripts extracted.")
+          Path("/tmp/rocketpen-inline-js-manifest.txt").write_text("\\n".join(manifest) + "\\n", encoding="utf-8")
+          print(f"Extracted {len(manifest)} inline JavaScript blocks across all three language pages.")
           PY
-          node --check /tmp/rocketpen-en.js
-          node --check /tmp/rocketpen-tr.js
-          node --check /tmp/rocketpen-ar.js
+          while IFS= read -r script_file; do
+            echo "Checking $script_file"
+            node --check "$script_file"
+          done < /tmp/rocketpen-inline-js-manifest.txt
       - name: Audit HTML links, assets and duplicate IDs
         shell: bash
         run: |
