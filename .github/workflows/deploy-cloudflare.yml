@@ -5,6 +5,7 @@ on:
     paths:
       - "blog/**"
       - "index.html"
+      - "reviews/**"
       - "languages/**"
       - "assets/**"
       - "asset/**"
