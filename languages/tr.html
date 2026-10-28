@@ -748,6 +748,7 @@ function closeLanguageMenu(){
   ['position','top','right','left','bottom','width','max-width','z-index','transform-origin','box-sizing'].forEach(property=>languageMenu.style.removeProperty(property));
 }
 function syncLanguageOptions(){languageMenu.querySelectorAll('[data-lang]').forEach(option=>{const active=option.dataset.lang===current;if(active)option.setAttribute('aria-current','page');else option.removeAttribute('aria-current');option.tabIndex=0})}
+ languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',()=>{try{localStorage.setItem('rp-lang',option.dataset.lang)}catch(e){}}));
 langButton.addEventListener('click',event=>{
   event.preventDefault();event.stopPropagation();
   const opening=langButton.getAttribute('aria-expanded')!=='true';
