@@ -880,7 +880,7 @@ langButton.addEventListener('click',event=>{
 });
 window.addEventListener('resize',()=>{if(languagePicker.classList.contains('is-open'))positionLanguageMenu()});
 window.addEventListener('scroll',()=>{if(languagePicker.classList.contains('is-open')&&window.matchMedia('(max-width: 760px)').matches)positionLanguageMenu()},{passive:true});
-languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const selected=option.dataset.lang;if(!supportedLanguages.includes(selected))return;setLang(selected);syncLanguageOptions();closeLanguageMenu();}));
+languageMenu.querySelectorAll('[data-lang]').forEach(option=>option.addEventListener('click',()=>{const selected=option.dataset.lang;if(supportedLanguages.includes(selected)){try{localStorage.setItem('rp-lang',selected)}catch(e){}}}));
 document.addEventListener('click',event=>{if(!languagePicker.contains(event.target)&&!languageMenu.contains(event.target))closeLanguageMenu()});
 
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&languagePicker.classList.contains('is-open')){event.preventDefault();closeLanguageMenu();langButton.focus();return}if(event.key==='ArrowDown'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx+1+options.length)%options.length].focus()}if(event.key==='ArrowUp'&&languagePicker.classList.contains('is-open')){event.preventDefault();const options=[...languageMenu.querySelectorAll('[data-lang]')];const idx=options.indexOf(document.activeElement);options[(idx-1+options.length)%options.length].focus()}});
