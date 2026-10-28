@@ -754,8 +754,8 @@ function renderReviewCards(lang){
     const quote=document.createElement('div');quote.className='reviews-quote-mark';quote.textContent='“';quote.setAttribute('aria-hidden','true');
     const copy=document.createElement('p');copy.className='reviews-copy';copy.textContent=item[lang]||item.en||item.tr||'';
     const customer=document.createElement('div');customer.className='reviews-card-customer';
-    const customerNames=['R-482','M-731','K-205','T-864','V-319','D-657','H-143','P-908','L-526','S-274','N-691','C-438','Y-157','F-803','J-362','W-594','B-216','G-745','Q-381','E-629','X-174','U-952','A-407','Z-583','I-268','O-716','R-935','D-124','M-608','T-347','K-891','P-453','H-720','V-186','C-574','N-302','S-849','F-231','Y-665','L-418','G-973','B-540','W-127','E-386','J-754','Q-219','A-862','U-495','X-630','O-158'];
-    const customerLabel=lang==='tr'?'Müşteri: ':lang==='ar'?'العميل: ':'Client: ';
+    const customerNames=['Meh*** Yıl***','Ayş*** Dem***','Mur*** Kay***','Eli*** Şah***','Can Ayd***','Zey*** Çel***','Emr*** Yıl***','Der*** Ars***','Bur*** Doğ***','Sel*** Kıl***','Ahm*** Özt***','Ece Koç','Ker*** Kur***','İre*** Özd***','Den*** Asl***','Bor*** Pol***','Cer*** Aks***','Onu*** Yal***','Mel*** Taş','Ere*** Gün***','Joh*** Smi***','Emi*** Bro***','Mic*** Wil***','Oli*** Tay***','Jam*** Mil***','Sop*** Dav***','Dan*** Mar***','Emm*** Cla***','Wil*** Lew***','Gra*** Wal***','Lia*** Hal***','Ava All***','Noa*** You***','Mia Kin***','Luc*** Wri***','Sof*** Ros***','Mar*** Bia***','Chl*** Mar***','Hug*** Ber***','Léa Dub***','Ann*** Sch***','Fel*** Web***','Mil*** Fis***','Luc*** Mey***','Sar*** Nov***','Oma*** Has***','Lay*** Kha***','Yus*** Rah***','Nou*** Sal***','Ami*** Far***'];
+    const customerLabel=lang==='tr'?'Örnek yorum · ':lang==='ar'?'رأي تجريبي · ':'Sample review · ';
     customer.textContent=customerLabel+(customerNames[index]||'Anonymous customer');
     const foot=document.createElement('div');foot.className='reviews-card-foot';
     foot.textContent=(reviewCategoryLabels[lang]||reviewCategoryLabels.en)[item.category]||'';
