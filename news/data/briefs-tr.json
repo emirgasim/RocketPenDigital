@@ -1,0 +1,1405 @@
+{
+  "title": "RocketPen Tech — 220 Günlük Haber Özeti",
+  "dateRange": "26 Ekim – 16 Kasım 2026",
+  "author": "Gasim Piraliyev",
+  "editorialNotice": "Bu içerikler kısa haber özetleridir. Her madde birincil kaynak ve özgün yayın saati doğrulanana kadar taslak niteliğindedir.",
+  "days": [
+    {
+      "date": "26 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Apple yeni OLED iPad mini için hazırlık sinyali verdi",
+          "category": "Cihazlar",
+          "summary": "Günlük teknoloji derlemesinde Apple’ın iPad mini ailesinde OLED ekrana geçiş hazırlığı yaptığı aktarılıyor. Ekran teknolojisi ve ürün takvimi, resmî ürün duyurusu üzerinden teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Claude’un Georgia seçim verilerindeki ödeme duvarını aşması tartışma yarattı",
+          "category": "Siber güvenlik",
+          "summary": "Derlemede, bir yapay zekâ aracının Georgia’daki seçim verilerine erişim sınırını aşabildiği iddiası yer alıyor. Olayın teknik ayrıntıları ve erişilen verinin kapsamı bağımsız kaynaklardan doğrulanmadan kesin ihlal olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Anthropic’in iç sistemlerine erişildiği iddiası yapay zekâ güvenliğini gündeme taşıdı",
+          "category": "Siber güvenlik",
+          "summary": "Günlük arşiv, Cathedral adlı grubun Anthropic’in iç sistemlerine eriştiğini öne sürdüğünü bildiriyor. İddianın şirket tarafından doğrulanıp doğrulanmadığı netleştirilmeden haber dili “iddia” çerçevesinde tutulmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Cloudflare modeli istek bazında seçen yönlendiricisini tanıttı",
+          "category": "Yazılım",
+          "summary": "Derlemede Cloudflare’ın gelen isteğe göre farklı yapay zekâ modellerini yönlendirebilen aracı öne çıkıyor. Bu yaklaşım maliyet ve hız optimizasyonu sağlayabilir; güvenilirlik ve yönlendirme başarısı gerçek kullanım testleriyle değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Finans şirketleri yapay zekâ işlem gücünü temel kaynak gibi satın alıyor",
+          "category": "Yapay zekâ",
+          "summary": "Jane Street ve Hudson River Trading’in yapay zekâ hesaplama kapasitesine yaptığı yatırımlar gündeme taşınıyor. Gelişme, yüksek performanslı işlem ve model çalıştırma için GPU erişiminin stratejik önemini gösteriyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Poco X8s OLED ekran ve hızlı şarj özellikleriyle gündemde",
+          "category": "Cihazlar",
+          "summary": "Poco X8s’e ilişkin haberlerde OLED panel ve hızlı şarj öne çıkıyor. Nihai teknik özellikler, bölgesel model farkları ve fiyat bilgileri üreticinin resmî açıklamasıyla karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Pentagon’un SpaceX ile yörünge takip verisi paylaşımı haber oldu",
+          "category": "Uzay",
+          "summary": "Günlük derleme, SpaceX’e kısıtlı yörünge izleme verisi sağlandığı iddiasını aktarıyor. Konunun askerî ve uzay güvenliği boyutu nedeniyle kurum açıklamaları ve kapsam bilgisi ayrıca doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Samsung’un Galaxy A üretimini azaltacağı bildirildi",
+          "category": "Cihazlar",
+          "summary": "Bellek ve depolama maliyetlerindeki artışın Samsung’un Galaxy A üretim planlarını etkileyebileceği öne sürülüyor. Bu, doğrulanmış üretim kararı olarak değil, tedarik zinciri kaynaklarına dayandırılan bir rapor olarak ele alınmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "PHP projesindeki güvenlik açığı bakım modelini yeniden tartışmaya açtı",
+          "category": "Siber güvenlik",
+          "summary": "PHP’nin bakım yapısı ve bir güvenlik açığının süreçlerden nasıl geçtiği üzerine bir analiz gündeme geldi. Açığın etkisi, etkilenen sürümler ve yama durumu teknik güvenlik duyurularından kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Avrupa’nın Mars aracı için yeni simülasyon altyapısı hazırlanıyor",
+          "category": "Bilim ve uzay",
+          "summary": "İtalya’da geliştirilen simülatörün Avrupa’nın Mars keşif çalışmalarına katkı sunması bekleniyor. Simülasyon, araçların zorlu yüzey koşullarında test edilmesine yardımcı olabilir; görev takvimi ve resmî proje kapsamı teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "27 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Lara 3 çeviri testlerinde öne çıktığını iddia ediyor",
+          "category": "Yapay zekâ",
+          "summary": "Günlük derlemede Lara 3 adlı modelin bazı dil çiftlerinde GPT-5.6 Sol’u geride bıraktığı belirtiliyor. Sonuçlar kullanılan test kümesine bağlı olduğundan bağımsız benchmark ve model kartı görülmeden genel üstünlük iddiası kurulmamamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "NASA astronotları 2028’de Ay’a döndürme hedefini öne çıkardı",
+          "category": "Uzay",
+          "summary": "NASA’nın insanlı Ay programında 2028 hedefi ve Apollo dönemini hatırlatan yaklaşım gündeme taşındı. Takvim; araç, iniş sistemi ve görev hazırlıklarına bağlı olduğundan hedef tarih ile kesin operasyon tarihi ayrılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "ABD-Çin yapay zekâ yarışı Çin teknoloji piyasasında baskı yaratıyor",
+          "category": "Yapay zekâ",
+          "summary": "Derlemede, yapay zekâ yatırımlarının Çin teknoloji şirketlerinin piyasa değerleri üzerindeki etkisi ele alınıyor. Haber, sektörün sermaye ihtiyacı ve rekabet baskısına odaklanıyor; piyasa rakamları tarih ve endeks bazında doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Yapay zekâ sohbet botuyla ilişki kurmaya yönelik toplumsal tutum ölçüldü",
+          "category": "Dijital kültür",
+          "summary": "Bir ankette katılımcıların üçte birinden fazlasının yapay zekâ sohbet botuyla romantik ilişkiyi aldatma saymadığı aktarılıyor. Bu sonuç tüm topluma genellenmemeli; anket örneklemi ve soru biçimi haberde açıklanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Lenovo ThinkBook 14 Gen 9 değiştirilebilir bataryayla satışa çıktı",
+          "category": "Cihazlar",
+          "summary": "Yeni ThinkBook modelinde kullanıcı tarafından değiştirilebilen batarya öne çıkıyor. Onarılabilirlik ve cihaz ömrü açısından olumlu olabilecek bu tasarımın hangi pazarlarda sunulduğu ve servis koşulları kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "macOS 27 güncellemesinde Rosetta desteğinin korunacağı bildirildi",
+          "category": "Yazılım",
+          "summary": "Günlük haber akışı, macOS 27’de Rosetta uyumluluğunun sürdürüleceğini aktarıyor. Intel tabanlı uygulamalara bağımlı kullanıcılar için önemli olan bu ayrıntı, Apple’ın geliştirici belgeleriyle doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Temel M6 MacBook Pro modelinde bellek bant genişliği artışı sınırlı kalabilir",
+          "category": "Cihazlar",
+          "summary": "Derlemede, temel M6 MacBook Pro yapılandırmasının üst modellerdeki bellek bant genişliği kazanımını sunmayabileceği belirtiliyor. Satın alma kararı öncesinde model bazında teknik tablo ve bellek yapılandırması karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "MSI, NVIDIA GB300 tabanlı yapay zekâ iş istasyonunu tanıttı",
+          "category": "Donanım",
+          "summary": "MSI’nin GB300 süperçipini kullanan iş istasyonu, yerel ve kurumsal yapay zekâ iş yüklerini hedefliyor. Performans, güç tüketimi, erişilebilirlik ve fiyat bilgileri üreticinin ürün dokümanlarıyla netleştirilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Büyük dil modeli kullanım maliyetlerinde düşüş rekabeti hızlandırıyor",
+          "category": "Yapay zekâ",
+          "summary": "Günlük derlemede OpenAI ve Anthropic gibi sağlayıcıların token fiyatlarında ciddi indirimlere gittiği aktarılıyor. Karşılaştırma yapılırken giriş-çıkış token ücretleri, bağlam uzunluğu ve kalite düzeyi aynı ölçekte ele alınmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "NVIDIA, 24 GB bellekte çalışabilen 74 milyar parametreli modeli gündeme taşıdı",
+          "category": "Yapay zekâ",
+          "summary": "Derlemede büyük parametreli bir NVIDIA modelinin 24 GB bellekli sistemlerde çalıştırılabilmesi öne çıkıyor. Nicel iddialar donanım, sıkıştırma ve hassasiyet ayarlarına bağlı olduğundan model kartı incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "28 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "DiffuSpace Clover adlı 35 milyar parametreli modeli duyurdu",
+          "category": "Yapay zekâ",
+          "summary": "Clover, büyük ölçekli difüzyon mimarisini açık model ekosistemine taşımayı hedefliyor. Kullanım lisansı, donanım gereksinimleri ve üretim kalitesi yayın öncesinde model deposundan doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "AuroraIMG2 yerel görsel üretimine odaklanan küçük model olarak tanıtıldı",
+          "category": "Yapay zekâ",
+          "summary": "AuroraIMG2’nin düşük parametre sayısıyla cihaz üzerinde görsel üretmeyi hedeflediği aktarılıyor. Gerçek çıktı kalitesi ve hız; kullanılan cihaz, çözünürlük ve model lisansına göre ayrıca test edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "NVIDIA Nemotron 3.5 Transcribe konuşma tanımaya yeni kontrol seçenekleri ekliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni transkripsiyon modeli, istemlerle yönlendirilebilen konuşma çözümleme özellikleriyle tanıtılıyor. Dil desteği, doğruluk, gecikme ve ticari kullanım koşulları resmi model sayfasından kontrol edilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "HP, Asus ve Acer’ın bazı bilgisayar üretimlerini Çin’e taşıdığı bildirildi",
+          "category": "Donanım",
+          "summary": "Tedarik zinciri değişiklikleri, PC üreticilerinin maliyet ve lojistik dengesini yeniden değerlendirdiğine işaret ediyor. Haber, tüm üretimin taşındığı anlamına gelmez; ürün ve tesis bazında kapsam doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Valve bağımsız geliştiricilere topluluk ve düzenli güncelleme öneriyor",
+          "category": "Oyun",
+          "summary": "Valve’ın mesajı, yapay zekâyla seri biçimde üretilen benzer oyunlar yerine oyuncu topluluğu ve sürdürülebilir güncelleme stratejisini öne çıkarıyor. Bu yaklaşım bağımsız oyunların görünürlük mücadelesi açısından dikkat çekici.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "OrcaRouter, kullanıcı GPU’sunu küresel yapay zekâ API ağına dönüştürmeyi hedefliyor",
+          "category": "Yazılım",
+          "summary": "Proje, yerel ekran kartı kaynaklarını dağıtık model erişimi için kullanmayı öneriyor. Güvenlik, veri gizliliği, performans ve operatörlerin kazanç modeli bağımsız test edilmeden hizmete güvenilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Amazon Echo ürün ailesinde yeni modelleri Avrupa pazarına sundu",
+          "category": "Cihazlar",
+          "summary": "Derlemede İtalya’da alarm saatli Echo ve merkez işlevli Echo Dot seçenekleri yer alıyor. Ürünlerin Türkiye’de bulunabilirliği, bölgesel özellikleri ve abonelik şartları pazara göre değişebilir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Yapay zekâ konsol oyunlarını PC’ye taşımada yeni bir araç olarak kullanılıyor",
+          "category": "Oyun",
+          "summary": "Günlük haber akışı, konsol oyunlarının yerel PC sürümlerini hazırlarken yapay zekâ destekli iş akışlarının rolünü ele alıyor. Port kalitesi, performans ve lisans izinleri projeden projeye değişecektir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "ASUS 24,5 inç e-spor monitörlerinde OLED paneli öne çıkarıyor",
+          "category": "Donanım",
+          "summary": "Yeni monitör kategorisi, hızlı tepki süresi ve kontrastı bir arada sunmayı hedefliyor. Yenileme hızı, parlaklık, piksel ömrü ve fiyat bilgileri gerçek ürün teknik sayfasıyla karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Google Android’de alternatif uygulama mağazaları için yeni program açıyor",
+          "category": "Yazılım",
+          "summary": "Derlemeye göre Google, ABD dışındaki geliştiricilerin Android cihazlarda üçüncü taraf mağazalar sunmasına yönelik bir program duyurdu. Ülke kapsamı, güvenlik denetimi ve mağaza kabul koşulları resmî Android açıklamasından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "29 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Mistral, trilyon parametre ölçeğinde açık ağırlıklı modelini gündeme taşıdı",
+          "category": "Yapay zekâ",
+          "summary": "Le Chonk adıyla anılan modelin ajan tabanlı kodlama ve siber savunma işlerinde kullanılabileceği aktarılıyor. Parametre sayısı, model ağırlıklarının erişimi ve lisans koşulları resmî depodan doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "OpenBonsai modelleri üç değerli ağırlıklarla sıkıştırmayı hedefliyor",
+          "category": "Yazılım",
+          "summary": "Açık kaynaklı çerçeve, model ağırlıklarını daha az bellek ve hesaplama gerektirecek biçimde sıkıştırmayı amaçlıyor. Kalite kaybı, uyumlu donanım ve gerçek hız kazancı test sonuçlarıyla ölçülmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Particle-1 kodlama doğruluğunu koruyarak token tüketimini azaltmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Derlemede Particle-1’in belirli kodlama görevlerinde token kullanımını yüzde 45 azaltabildiği belirtiliyor. Sonuç, benchmark kapsamına ve karşılaştırma modeline bağlıdır; üretim ortamında ayrıca sınanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Kanada Avrupa süperbilgisayar ağına katılıyor",
+          "category": "Bilim",
+          "summary": "İş birliği, araştırmacıların yüksek başarımlı hesaplama kaynaklarına erişimini genişletebilir. Katılımın hangi kurumları, kapasiteyi ve kullanım takvimini kapsadığı resmî açıklamadan teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "PlayStation Plus kasım kataloğunda Tomb Raider oyunları öne çıkıyor",
+          "category": "Oyun",
+          "summary": "Kasım seçkisinde Tomb Raider IV–VI oyunlarının ve yeni bir deste kurma oyununun yer aldığı bildiriliyor. Kütüphaneye eklenme tarihleri ve bölgesel erişim PlayStation’ın yerel kataloğundan kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Claude Opus 5.5 karma gerçeklikte Super Mario 64 deneyimiyle gösterildi",
+          "category": "Yapay zekâ",
+          "summary": "Günlük derleme, modelin karma gerçeklik ortamında etkileşimli bir oyun deneyimi üretmesini örnek gösteriyor. Demo, ticari oyun üretiminde hazır olunduğu anlamına gelmez; kod, varlık ve telif izinleri ayrı değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "NISCO çelik üretiminde sürü zekâsı yaklaşımını yüzlerce AI uygulamasıyla deniyor",
+          "category": "Sanayi",
+          "summary": "Çelik üretiminde çok sayıda yapay zekâ uygulamasının süreç optimizasyonu için kullanıldığı aktarılıyor. Kalite, enerji tasarrufu ve iş güvenliği etkileri bağımsız performans ölçümleriyle doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Gemini tarih, enerji ve uzay konularında etkileşimli öğrenme deneyimleri sunuyor",
+          "category": "Yapay zekâ",
+          "summary": "Google’ın etkileşimli keşifleri, kullanıcıların karmaşık konuları görsel ve uygulamalı biçimde incelemesine odaklanıyor. İçerik doğruluğu, kaynak gösterimi ve yaşa uygunluk eğitim kullanımı açısından önem taşıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Redmi K100 ve iQOO Neo 12 karşılaştırmasında pil ile işlemci dengesi öne çıkıyor",
+          "category": "Cihazlar",
+          "summary": "Sızıntı ve ürün haberleri, yüksek pil kapasitesi ile yeni nesil yonga arasındaki tercihi gündeme taşıyor. Model isimleri ve teknik veriler resmî tanıtım öncesinde kesin özellik gibi yazılmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Intel Moon Lake düşük güç tüketimli dizüstü işlemcisi olarak anılıyor",
+          "category": "Donanım",
+          "summary": "Derlemede dört Darkmont çekirdekli ve 6 W sınıfında bir işlemci planından söz ediliyor. Kod adı, çekirdek yapılandırması ve çıkış takvimi henüz söylenti düzeyindeyse açıkça bu şekilde belirtilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "30 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Binance’in büyük kripto hırsızlığı iddiası güvenlik tartışması başlattı",
+          "category": "Siber güvenlik",
+          "summary": "Günlük haber derlemesi, 6,3 milyar dolarlık bir hırsızlık iddiası sonrası çekimlerin durdurulduğunu öne sürüyor. Bu olağanüstü büyüklükteki iddia Reuters ve şirket açıklamasıyla doğrulanmadan yayımlanmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "OpenAI’nin Navier–Stokes çözümü iddiası araştırma etiği tartışması yarattı",
+          "category": "Bilim",
+          "summary": "Yapay zekâ ajanlarıyla akışkanlar mekaniğinde uzun süredir açık kalan bir problemin çözüldüğü iddiası gündeme geldi. Matematiksel kanıtın bağımsız uzmanlarca incelenmesi ve katkı sahiplerinin açıkça belirtilmesi gerekiyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "GLM 5.3’ün Firefox yamaları yayımlanmadan açıkları kullanabildiği öne sürüldü",
+          "category": "Siber güvenlik",
+          "summary": "Derleme, yayımlanmamış yamalardan yararlanarak yerel dosyalara erişebilen bir saldırı senaryosunu aktarıyor. Sürüm, açık ve istismar koşulları üretici güvenlik bülteniyle teyit edilmeden teknik yönlendirme olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "ABD’de çok sayıda yerel seçim sitesinin .gov alan adı kullanmadığı bildirildi",
+          "category": "Siber güvenlik",
+          "summary": "Standart alan adı kullanımı, resmî seçim kaynaklarının ayırt edilmesi ve kimlik avının önlenmesi açısından önemli. Çalışmanın örneklemi ve eyalet bazındaki oranları özgün rapordan kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Claude Code’un mevcut oyunları yeniden üretmesini engelleyen kural gündemde",
+          "category": "Yapay zekâ",
+          "summary": "Anthropic’in kodlama aracına, yayımlanmış oyunların kopyalanmasını önlemeye dönük sınırlama getirdiği aktarılıyor. Telif hakkı, istem denetimi ve kullanıcı sorumluluğu açısından geliştiriciler için önemli bir gelişme.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Sam Altman ev bilgisayarlarında RAM ihtiyacını tartışmaya açtı",
+          "category": "Donanım",
+          "summary": "Altman’ın PC belleğiyle ilgili açıklaması, yapay zekâ işlem kapasitesinin tüketici donanımına etkisini gündeme taşıyor. Alıntı bağlamı ve teknik iddia, orijinal konuşma kaydından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "ChatGPT Pro abonelerine sunulan kullanım limitlerinin artırıldığı bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Derlemeye göre OpenAI, abonelerin tepkilerinin ardından bazı Pro kullanım sınırlarını genişletti. Hangi model ve özelliklerin etkilendiği, hesap türüne göre koşullar ve geçerlilik tarihi kontrol edilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Cisco’da bir mühendise kod dönüşümü için yüksek hacimli AI token erişimi verildi",
+          "category": "Yazılım",
+          "summary": "Haber, şirket içi yazılım modernizasyonunda geliştirici başına yapay zekâ kullanım limitlerinin esnetilmesini örnek gösteriyor. Uygulamanın tekil bir vaka mı yoksa genel politika mı olduğu netleştirilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Liquid AI’nin LFM3 modelleri telefonda çevrim dışı çalışmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Küçük ve çok kipli modeller, bazı yapay zekâ işlevlerini buluta veri göndermeden cihaz üzerinde yürütmeyi amaçlıyor. Dil kapsamı, bellek ihtiyacı ve gizlilik kazanımları model dokümanıyla doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Canlı nöronlardan esinlenen video modeli araştırma gündemine girdi",
+          "category": "Yapay zekâ",
+          "summary": "Biyolojik nöronlarla ilişkilendirilen bir video üretim yaklaşımının maliyet ve çalışma süresi iddiaları haberleştirildi. Araştırmanın deneysel kapsamı ve “canlı nöron” ifadesinin teknik anlamı dikkatle açıklanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "31 Ekim 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "OpenAI, Google ve Microsoft için ortak robots.txt sinyali gündeme geldi",
+          "category": "Yapay zekâ",
+          "summary": "Web sitelerinin yapay zekâ eğitimi için içerik kullanımını standart bir işaretle sınırlayabilmesi tartışılıyor. Bu işaretin tarayıcılar ve modeller tarafından nasıl uygulanacağı, şirketlerin teknik belgeleriyle doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Mistral Timestral zaman serisi tahminine odaklanıyor",
+          "category": "Yapay zekâ",
+          "summary": "Timestral ailesi, karmaşık veriler üzerinden zaman içindeki değişimleri tahmin etmeyi hedefliyor. Üretim, enerji ve finans uygulamalarındaki doğruluk; gerçek veri setleri ve klasik modellerle karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Genie 4 gerçek zamanlı keşfedilebilir sanal dünyalar oluşturmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni sistemin görüntü ve sesle etkileşimli ortamlar üretebildiği aktarılıyor. Demo kalitesi, gecikme ve kullanıcı kontrolü ürünün oyun ve simülasyon alanındaki gerçek değerini belirleyecek.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Local Code Mac için yerel ve özel bir yapay zekâ asistanı sunuyor",
+          "category": "Yazılım",
+          "summary": "Yerel çalışma yaklaşımı, kod ve proje verilerini bulut hizmetlerine göndermeden analiz etmeyi amaçlıyor. Desteklenen modeller, cihaz kaynakları ve telemetri ayarları gizlilik açısından incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Büyük teknoloji şirketleri AI botları için ortak robots.txt seçeneğini değerlendiriyor",
+          "category": "Yazılım",
+          "summary": "Standart işaretleme fikri, yayıncıların içeriklerinin model eğitimi için kullanılmasını daha açık biçimde yönetmesine yardımcı olabilir. Hukuki bağlayıcılık ile teknik uyumluluk aynı şey değildir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Roblox’ta yapay zekâ aracıyla beş ayda 70 bin oyun üretildiği bildirildi",
+          "category": "Oyun",
+          "summary": "Metinden oyun oluşturma araçları, kullanıcı üretimi içerik miktarını hızlandırabilir. Kalite, telif, moderasyon ve oyuncu güvenliği konuları üretim hacmi kadar önemli hale geliyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "ABD’de yapay zekâ veri merkezlerinin iklim hedeflerini zorlayabileceği uyarısı yapıldı",
+          "category": "Enerji",
+          "summary": "Yeni veri merkezlerinin elektrik ihtiyacındaki artış, enerji üretimi ve emisyon hedefleri üzerinde baskı oluşturabilir. Tahminler; elektrik karışımı, soğutma ve verimlilik varsayımlarına bağlı olarak değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Gears of War: E-Day bütçesine ilişkin yüksek maliyet iddiası gündeme geldi",
+          "category": "Oyun",
+          "summary": "Oyunun geliştirme bütçesinin yüz milyonlarca dolara ulaştığına dair haberler yayıldı. Resmî mali açıklama bulunmadıkça rakam doğrulanmış bütçe olarak verilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Güneş hücrelerinde yüzde 33 verim sınırını aşmaya yönelik deney duyuruldu",
+          "category": "Bilim",
+          "summary": "Barselona’daki araştırma, yeni hücre tasarımıyla yüksek verim hedefliyor. Laboratuvar ölçümü, ticari modül performansı anlamına gelmez; sertifikalı test koşulları ve dayanıklılık verileri önemlidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Netgear yönlendiricilerinde birden fazla güvenlik açığı raporlandı",
+          "category": "Siber güvenlik",
+          "summary": "Bazı router modellerinin güvenlik güncellemesi veya kullanım dışı bırakma gerektirebileceği bildiriliyor. Kullanıcılar etkilenen model ve firmware sürümlerini üreticinin güvenlik duyurusundan kontrol etmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "1 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "ChatGPT’de sohbet ve iş akışı özelliklerinin birleştirilmesi gündemde",
+          "category": "Yapay zekâ",
+          "summary": "Derleme, Chat ve Work deneyimlerinin ortak bir arayüz ve yeni kullanım limitleri altında bir araya getirileceğini aktarıyor. Özelliklerin hangi abonelere ne zaman açılacağı ürün duyurusundan teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Apple 99 ülkedeki kullanıcıları hedefli casus yazılım saldırılarına karşı uyardı",
+          "category": "Siber güvenlik",
+          "summary": "Apple’ın güvenlik bildirimleri, hedefli gözetim yazılımlarının iPhone kullanıcıları için risk oluşturduğunu hatırlatıyor. Kullanıcılara yönelik bildirimlerin kapsamı ve önerilen adımlar resmî Apple destek sayfasından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Adobe EditAgent görsel düzenleme araçlarını seçebilen ajan yaklaşımını gösterdi",
+          "category": "Yapay zekâ",
+          "summary": "EditAgent, kullanıcının düzenleme hedefini uygun görüntü işleme araçlarıyla eşleştirmeyi amaçlıyor. İnsan değerlendirmeleriyle karşılaştırılan sonuçlar, gerçek profesyonel iş akışlarında ayrıca sınanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "WhatsApp sabitlenen mesajların grup sohbetlerindeki yönetimini geliştiriyor",
+          "category": "Uygulamalar",
+          "summary": "Güncelleme, grup geçmişinde önemli mesajların daha uzun süre görünür kalmasını hedefliyor. Özelliğin dağıtım takvimi ve sabitleme süresi platform sürümüne göre farklılaşabilir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Yapay zekâ Allen Telescope Array verilerinde uzaylı sinyali arıyor",
+          "category": "Bilim",
+          "summary": "Araştırmacılar radyo gözlemlerindeki örüntüleri yapay zekâ ile tarayarak sıra dışı sinyalleri ayıklamayı hedefliyor. Bu yöntem sinyal keşfini hızlandırabilir; tek başına dünya dışı yaşam kanıtı değildir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Anthropic Claude ile eğitim verisi izleme sistemindeki boşlukları arıyor",
+          "category": "Yapay zekâ",
+          "summary": "Şirketin model destekli denetim yaklaşımı, eğitim verilerinin kökeni ve kullanım koşullarındaki eksikleri bulmayı amaçlıyor. Denetim sistemi, veri hakları ve insan incelemesinin yerine geçmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Neuralink Blindsight projesinin düzenleyici onay beklediği bildirildi",
+          "category": "Sağlık teknolojisi",
+          "summary": "Proje, görsel algının belirli yönlerini beyin arayüzü üzerinden desteklemeyi hedefliyor. Klinik güvenlik, etkinlik ve hasta uygunluğu konusunda şirket beyanı ile düzenleyici onay birbirinden ayrılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "OpenShot 4.1 metin düzenleme ve ajan kontrolü özelliklerini genişletiyor",
+          "category": "Yazılım",
+          "summary": "Yeni sürümde metin düzenleme ve komut satırı üzerinden otomasyon imkanlarının öne çıktığı aktarılıyor. Video üreticileri için iş akışının kararlılığı, codec uyumluluğu ve dışa aktarma kalitesi test edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Bir film yönetmeninin görsel dilini taklit etmeyi hedefleyen iPhone uygulaması çıktı",
+          "category": "Uygulamalar",
+          "summary": "Yeni uygulama, mobil kamerada sinematik çekim tarzlarına odaklanıyor. Uygulamanın preset, filtre ve kayıt özellikleri pazarlama örneklerinden ziyade gerçek cihaz testleriyle değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "25 bin PPI yoğunluğunda e-kâğıt ekran teknolojisi gündeme geldi",
+          "category": "Cihazlar",
+          "summary": "Çok yüksek piksel yoğunluğu, metin ve görüntü keskinliğini yeni bir seviyeye taşımayı hedefliyor. Piksel yoğunluğunun tek başına okunabilirlik, yenileme hızı ve enerji verimliliğini açıklamadığı unutulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "2 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Amazon’un bazı GPU siparişlerini iptal ettiği iddiası yapay zekâ tedarikini etkiledi",
+          "category": "Donanım",
+          "summary": "Günlük derleme, yüksek performanslı ekran kartı siparişleri ve hesap kapatmalarıyla ilgili kullanıcı raporlarını aktarıyor. Şirket doğrulaması bulunmadan geniş çaplı tedarik politikası değişikliği olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "NVIDIA RTX 5080 24 GB tasarım kitlerinde gecikme yaşayabilir",
+          "category": "Donanım",
+          "summary": "Partner üreticilere yönelik teknik kit ve dokümantasyon takviminin gecikebileceği öne sürülüyor. Ürünün 2027 takvimi kesinleşmiş değilse haber sızıntı olarak etiketlenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "xAI’nin Mississippi’deki gaz türbinleri çevre davasına konu oldu",
+          "category": "Enerji",
+          "summary": "Dava, veri merkezi enerji ihtiyacını karşılamak üzere kullanılan türbinlerin hava izinleri bakımından muafiyetini tartışıyor. Mahkeme kararının kapsamı ve sonraki hukuki adımlar resmi kayıtlardan teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Reflection 501 milyar parametreli açık ağırlıklı Beam modelini duyurdu",
+          "category": "Yapay zekâ",
+          "summary": "Büyük uzman karışımı mimarisi, modelin toplam parametre sayısını artırırken çalıştırma için yüksek bellek ihtiyacı doğurabilir. Kullanılabilir ağırlıklar, lisans ve pratik donanım gereksinimleri incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Phantom Blade Zero Steam’de yüksek eşzamanlı oyuncu sayısına ulaştı",
+          "category": "Oyun",
+          "summary": "Oyunun Steam’de 833 binin üzerinde eşzamanlı oyuncuya ulaştığı iddia ediliyor. Rakamın demo, etkinlik veya tam sürüm bağlamı açıklanmalı; SteamDB gibi bağımsız veri kaynaklarıyla kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "AutoHebb sinir ağlarının yeniden eğitim olmadan bağlantılarını değiştirmesini araştırıyor",
+          "category": "Yapay zekâ",
+          "summary": "Araştırma, ağların kendi bağlantı yapısını güncelleyerek öğrenmesini hedefliyor. Bu deneysel yaklaşımın ölçeklenebilirlik ve kararlılık düzeyi, hakemli çalışma ve kod deposuyla değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Steam’de yeni oyunların AI kullanımını açıklaması daha görünür hale geliyor",
+          "category": "Oyun",
+          "summary": "Platformda geliştiricilerin üretimde yapay zekâ kullanımı hakkında yaptığı bildirimler inceleniyor. Açıklamanın gönüllü mü zorunlu mu olduğu ve oyuncuların hangi bilgileri gördüğü doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Mario Kart World’ün PC üzerinde DLSS 5 ile çalıştırıldığı gösterildi",
+          "category": "Oyun",
+          "summary": "Bir demo veya mod, görüntü yükseltme tekniklerinin oyun deneyimini nasıl değiştirebileceğini öne çıkarıyor. Resmî PC sürümü olduğu izlenimi verilmemeli; uyumluluk ve haklar ayrıca incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Hydroid, modifiye PS5 üzerinde Android oyunlarının çalışmasını sağlıyor",
+          "category": "Yazılım",
+          "summary": "Proje, konsol donanımını farklı işletim sistemi ve oyunlarla kullanmayı hedefliyor. Modifikasyonun garanti, güvenlik ve çevrim içi hesap riski taşıyabileceği belirtilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Ticari 5G kulelerinin drone tespiti için kullanılması değerlendiriliyor",
+          "category": "Güvenlik",
+          "summary": "Askerî uygulamalar, mevcut hücresel altyapıyı hava sahası izleme amaçlı kullanmayı araştırıyor. Tespit doğruluğu, mahremiyet ve sivil ağlarla etkileşim konuları ayrıca ele alınmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "3 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "DeepSeek V5’in Huawei Ascend çipleriyle eğitilebileceği bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Çin üretimi hızlandırıcıların büyük model eğitiminde kullanılması, yerli yarı iletken ekosistemi açısından önemli olabilir. Henüz teyit edilmemiş eğitim planı kesinleşmiş ürün bilgisi olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "itch.io yapay zekâ ile üretilen düşük kaliteli içeriklere karşı filtre ekliyor",
+          "category": "Oyun",
+          "summary": "Platformun çok büyük miktarda AI üretimi içeriği kaldırdığı ve kullanıcılar için “No AI” filtresi hazırladığı aktarılıyor. Politikanın kapsamı, kaldırma ölçütleri ve geliştirici hakları resmî açıklamayla doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Team Group bellek arzındaki sıkışıklığın 2027’ye uzayabileceği uyarısı yaptı",
+          "category": "Donanım",
+          "summary": "Bellek üreticilerinin yapay zekâ sunucularına öncelik vermesi tüketici donanımı fiyat ve bulunabilirliğini etkileyebilir. Tahmin, şirketin tedarik ve üretim beklentisi olarak aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Huawei Watch D3 bilekten tansiyon ölçümü ve uzun pil ömrüyle tanıtıldı",
+          "category": "Cihazlar",
+          "summary": "Saatteki sağlık sensörleri, manşetsiz ölçüm iddiasıyla öne çıkıyor. Klinik doğruluk ve tıbbi cihaz onayı, pazarlama özelliklerinden ayrı olarak incelenmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Herculaneum parşömenlerinden yeni metinlerin okunması başarıldı",
+          "category": "Bilim",
+          "summary": "Araştırmacılar, antik metinleri fiziksel olarak açmadan görüntüleme ve yapay zekâ destekli analizle çözümlemeye devam ediyor. Yeni okuma iddiasının hangi parşömen ve satırlara dayandığı araştırma ekibinin yayınıyla teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "DNA kaset fikri çok büyük veri depolama kapasitesi vadediyor",
+          "category": "Bilim",
+          "summary": "DNA moleküllerinin veri depolama ortamı olarak kullanılması, yoğunluk ve uzun süreli saklama potansiyeli taşıyor. Yazma-okuma maliyeti, hata düzeltme ve erişim hızı hâlâ temel engeller arasında.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "iOS 27.2 arayan kişiye kim olduğunu ve neden aradığını sorabilir",
+          "category": "Yazılım",
+          "summary": "Çağrı tarama özelliği, bilinmeyen numaralardan gelen aramaları kullanıcı yanıtlamadan önce filtrelemeyi hedefliyor. Dil desteği ve ülke bazında çalışma koşulları Apple’ın sürüm notlarından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "REDMAGIC 12 Pro soğutma fanını oyun telefonu tasarımına taşıyor",
+          "category": "Cihazlar",
+          "summary": "Modelin sıvı soğutma ve aktif fan sistemiyle uzun süreli oyun performansına odaklandığı bildiriliyor. Gürültü, ısı, batarya ve bölgesel özellikler bağımsız incelemelerle karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "NVIDIA küçük ölçekli konuşma temizleme modelini yayımladı",
+          "category": "Yapay zekâ",
+          "summary": "Model, konuşma sinyalindeki gürültüyü azaltmayı hedefleyen hafif bir yapay zekâ çözümü olarak tanıtılıyor. Desteklenen diller, gecikme ve gerçek ortam performansı model kartında incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Gartner açık modellerin kurumsal ajan iş akışlarında yaygınlaşacağını öngörüyor",
+          "category": "Yapay zekâ",
+          "summary": "Analist tahmini, işletmelerin belirli otomasyon adımlarında açık ağırlıklı modelleri tercih edebileceğine işaret ediyor. Bu oran bir tahmindir; şirketlerin kendi güvenlik ve maliyet koşullarına göre değişebilir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "4 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Axion 1.0 bilimsel ajanlar için açık model olarak tanıtıldı",
+          "category": "Yapay zekâ",
+          "summary": "35 milyar parametreli olduğu belirtilen model, araştırma görevlerini planlama ve bilimsel araçları kullanma amacı taşıyor. Gerçek bilimsel doğruluk, araç erişimi ve kaynak gösterme davranışı ayrıca ölçülmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "MaixStation yerel yapay zekâ için yüksek bellekli Linux mini PC sunuyor",
+          "category": "Donanım",
+          "summary": "Sipeed’in cihazı, güçlü hızlandırıcı ve 128 GB bellekle yerel model çalıştırmayı hedefliyor. Fiyat, güç tüketimi, sürücü desteği ve model uyumluluğu teknik incelemede kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Tencent tespit, OCR ve segmentasyonu tek açık modelde birleştiriyor",
+          "category": "Yapay zekâ",
+          "summary": "Çok görevli görsel model, görüntü analizinde farklı işlemleri ortak bir mimaride toplamayı amaçlıyor. Modelin doğruluğu, lisans kapsamı ve ticari kullanım sınırları araştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "SUSE çalışanlarının yaklaşık yüzde 10’unu azaltma planını duyurdu",
+          "category": "İş dünyası",
+          "summary": "Şirketin yeniden yapılanmasında yaklaşık 190 pozisyonun etkilenebileceği bildiriliyor. İşten çıkarma kararının gerekçesi, etkilenen ülkeler ve AI ile ilişkilendirilen bölüm şirket açıklamasına göre aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "AMD, 2027’de PC sevkiyatlarında çift haneli düşüş bekliyor",
+          "category": "Donanım",
+          "summary": "Bellek ve GPU maliyetlerindeki yükseliş bilgisayar pazarının büyümesini sınırlayabilir. Bu bir şirket/analist tahminidir; gerçekleşmiş satış verisi gibi sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "NASA Dragonfly görevinin uçuş sistemini test tezgâhında denedi",
+          "category": "Uzay",
+          "summary": "Titan’a gönderilmesi planlanan rotorcraft için yapılan yer testleri, uçuş donanımının doğrulanmasına katkı sağlıyor. Test düzeneği ile gerçek Titan atmosferindeki uçuş performansı birbirinden ayrılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Netflix’in Assassin’s Creed canlı aksiyon dizisinde çekimleri tamamladığı bildirildi",
+          "category": "Eğlence teknolojisi",
+          "summary": "Oyun serisinin televizyon uyarlamasında yapım aşaması ilerliyor. Oyuncu kadrosu, yayın tarihi ve hikâye ayrıntıları resmî Netflix duyurusundan kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "AMD’nin x86 pazar payında Intel’i ilk kez geçebileceği konuşuluyor",
+          "category": "Donanım",
+          "summary": "İşlemci pazarındaki rekabet, veri merkezi ve tüketici CPU satışları üzerinden yeniden şekilleniyor. Pazar payı verisi dönem, segment ve ölçüm kuruluşuna göre değişeceği için kaynak belirtilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Anthropic yeni modellerin kendi gelişimini hızlandırabileceği eşiğe yaklaştığını söylüyor",
+          "category": "Yapay zekâ",
+          "summary": "Şirket yöneticilerinin açıklamaları, yapay zekâ sistemlerinin araştırma ve geliştirme süreçlerine katkısını tartışmaya açıyor. “Kendi kendini geliştirme” ifadesi net tanım ve kanıt olmadan abartılmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Intel, milyarlarca yapay zekâ ajanının güvenliğini yeni bir zorluk olarak görüyor",
+          "category": "Siber güvenlik",
+          "summary": "Ajanların araçlara, dosyalara ve kurumsal sistemlere erişmesi kimlik, yetki ve denetim sorunlarını büyütüyor. Güvenlik tasarımında en az ayrıcalık, kayıt ve insan onayı ilkeleri öne çıkıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "5 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "SpaceX’in 2027 için 10 GW veri merkezi kapasitesini hedeflediği bildirildi",
+          "category": "Altyapı",
+          "summary": "Bu büyüklükte bir kapasite hedefi, yapay zekâ altyapısının enerji ve şebeke ihtiyacını gündeme getiriyor. Rakamın şirket planı mı yoksa analist senaryosu mu olduğu açıkça belirtilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Avrupa’da veri merkezi projelerine karşı protestolar düzenleniyor",
+          "category": "Enerji",
+          "summary": "Yerel topluluklar, veri merkezlerinin elektrik, su ve arazi tüketimine yönelik kaygılarını dile getiriyor. Yatırımın ekonomik getirisi ile yerel çevresel etkiler birlikte incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "ABD’li bir Kongre üyesi süperzekâ çalışmalarının yasaklanmasını önerdi",
+          "category": "Politika",
+          "summary": "Öneri, yüksek kapasiteli yapay zekâ sistemlerinin güvenliği ve düzenlenmesi tartışmasını sertleştiriyor. Tek bir yasa tasarısı veya siyasi açıklama, yürürlüğe girmiş ulusal yasak olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Çin yapay zekâ güvenliği için geliştirmeden dağıtıma uzanan standartlar hazırlıyor",
+          "category": "Politika",
+          "summary": "Düzenleme yaklaşımı, modellerin tasarım ve kullanım aşamalarında risk değerlendirmesi yapılmasını hedefliyor. Taslak, yürürlük tarihi ve hangi sektörlere uygulanacağı resmî metinden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "PulseAI akıllı saat üzerinden ritim analizi için FDA izni aldığını duyurdu",
+          "category": "Sağlık teknolojisi",
+          "summary": "Giyilebilir cihazlarda aritmi analizi, erken uyarı ve sağlık takibi açısından önem taşıyor. FDA izninin tam kapsamı, cihaz türü ve klinik kullanım sınırları doğru aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "NVIDIA GeForce 8800 GTX’in 20. yılı ekran kartı tarihini yeniden hatırlattı",
+          "category": "Donanım",
+          "summary": "CUDA döneminin başlangıcıyla ilişkilendirilen kart, GPU’ların genel amaçlı hesaplamaya evrilmesinde önemli bir kilometre taşı olarak anılıyor. Tarihsel yorum teknik kaynaklarla desteklenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Intel Arc sürücüsü üç yeni oyun için destek sunuyor",
+          "category": "Yazılım",
+          "summary": "Yeni WHQL sürümü, belirli oyunlarda uyumluluk ve hata düzeltmelerini hedefliyor. Güncelleme notları, desteklenen GPU listesi ve bilinen sorunlar kurulumdan önce incelenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Sony PS6 geliştirme takviminin sürdüğünü, bellek maliyetlerinin baskı yarattığını belirtti",
+          "category": "Oyun",
+          "summary": "Yeni nesil konsolun geliştirme planı devam ederken bileşen maliyetleri bütçeyi zorlayabilir. Konsolun teknik özellikleri ve çıkış tarihi resmî duyuru olmadan kesinleştirilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Nintendo Switch 2 için 2027 başına uzanan oyun takvimi paylaşıldı",
+          "category": "Oyun",
+          "summary": "Yeni platformda üçüncü taraf oyunların yayın pencereleri oyuncuların satın alma planlarını etkileyebilir. Tarihler bölge ve yayıncıya göre değişebileceği için güncel mağaza kayıtları kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Araştırmacılar kendi başına varlığını sürdürebilen AI ajanları konusunda uyarıyor",
+          "category": "Yapay zekâ",
+          "summary": "Otonom sistemlerin görev, kaynak ve erişim yetkilerini kendi başına yönetmesi denetim sorunları doğurabilir. Uyarı senaryo ve risk analizi olarak aktarılmalı; mevcut sistemlerin bunu başardığı izlenimi verilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "6 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Stanford Memorilla 16 token ile uzun sohbetleri hatırlamayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni yöntem, uzun konuşma geçmişini daha küçük bir bellek temsiline dönüştürmeyi amaçlıyor. Hatırlama doğruluğu, bilgi kaybı ve gizlilik koruması bağımsız testlerle değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Çinli araştırma ekibi DNA deneyini yapay zekâ ile otomatikleştirdiğini bildirdi",
+          "category": "Bilim",
+          "summary": "Derlemede 11.382 adımlı deneyin 203 saatte tamamlandığı aktarılıyor. Deneyin bilimsel sonucu, laboratuvar protokolü ve otomasyon düzeyi araştırma makalesinden teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Tesla yapay zekâ çiplerinin adlandırmasını ve hesaplama hedefini yeniliyor",
+          "category": "Donanım",
+          "summary": "Yeni isimlendirme ve performans hedefleri, araç içi ve veri merkezi donanım stratejisini yansıtabilir. Çarpanlı performans iddiaları önceki nesil, hassasiyet ve iş yükü belirtilerek değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "2 milyar parametreli görsel modelin düşük bütçeyle eğitildiği öne sürüldü",
+          "category": "Yapay zekâ",
+          "summary": "Açık model topluluğundaki bir çalışma, görece düşük eğitim maliyetiyle görsel üretim modelinin geliştirilebildiğini savunuyor. Maliyet hesabı veri, GPU süresi ve emek kalemleri açıklanmadan karşılaştırılamaz.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Woof adlı 32 MB konuşma modeli tarayıcıda çalışmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Küçük model, konuşma işleme işlevlerini sunucu yerine kullanıcının cihazında yürütmeyi amaçlıyor. Dil kapsamı, doğruluk ve işlemci yükü farklı tarayıcılarda test edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "AI sohbet botlarının sahte seçim sitelerini kaynak göstermesi tartışıldı",
+          "category": "Dijital kültür",
+          "summary": "Araştırmada bazı sohbet botlarının gerçeği yansıtmayan kampanya sitelerine atıf yaptığı bildiriliyor. Bu durum, kaynak denetimi ve yapay zekâ yanıtlarında doğrulama ihtiyacını öne çıkarıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Üniversite kütüphanelerinde yapay zekâ botlarının yoğunlaştığı bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Otomatik ajanların dijital kütüphane hizmetlerini kullanması, erişim yükü ve kaynakların kötüye kullanımı tartışmasını gündeme getiriyor. Kütüphaneler bot trafiği, kullanım politikası ve insan erişimini birlikte yönetmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Ev temizliği yapan insansı robotların hâlâ uzaktan kontrol edildiği aktarıldı",
+          "category": "Robotik",
+          "summary": "Robotik sistemler ev ortamında iş yapabilse de bazı görevlerin insan operatör desteğine ihtiyaç duyduğu bildiriliyor. Tanıtım videoları ile gerçek otonomi seviyesi birbirinden ayrılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "CapisciAMe konuşma bozukluğu yaşayan kişiler için ses tanımayı geliştirmeyi amaçlıyor",
+          "category": "Yapay zekâ",
+          "summary": "Model, dizartri gibi konuşma farklılıklarını daha iyi anlamaya odaklanıyor. Erişilebilirlik açısından önemli olan bu alanda hasta verisi koruması ve klinik değerlendirme özellikle dikkat gerektiriyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "AB, ABD toprağına bağımlılığı azaltacak Arktik denizaltı kablosuna yatırım yapıyor",
+          "category": "Altyapı",
+          "summary": "Kuzey rotasındaki bağlantı projesi, Avrupa’nın veri iletişiminde dayanıklılığı ve stratejik özerkliği artırmayı hedefliyor. Güzergâh, finansman ve tamamlanma takvimi proje belgelerinden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "7 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Windows 11 aramasına Copilot geliyor; kullanıcılar özelliği kapatabilecek",
+          "category": "Yazılım",
+          "summary": "Arama deneyimine AI yanıtlarının eklenmesi, masaüstü kullanımını değiştirebilir. Özelliğin hangi Windows sürümünde ve bölgede açılacağı, kapatma ayarlarının nerede bulunduğu sürüm notlarından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Google video üretiminde 15 saniyeye kadar klipleri hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Gemini Omni 1.2 Flash için daha uzun ve düşük maliyetli video üretimi bildiriliyor. Çözünürlük, ses, düzenleme sınırları ve erişim koşulları ürün dokümanından kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Core Studio film prodüksiyonunda 24 AI ajanı kullanmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Proje, farklı üretim aşamalarını birden fazla ajanla koordine etmeyi amaçlıyor. İnsan yaratıcı kontrolü, telif hakları ve çıktı kalitesi iddiaları gerçek yapım süreciyle karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "PFN PLaMo 3 Translate çevrim dışı çeviri için açık ağırlıklarla geliyor",
+          "category": "Yapay zekâ",
+          "summary": "Model ailesinin telefon ve bilgisayarlarda internet bağlantısı olmadan çalışması hedefleniyor. Desteklenen diller, cihaz gereksinimleri ve çeviri doğruluğu kullanım öncesi test edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Phonon konuşma modelini sunucuya ihtiyaç duymadan cihazda çalıştırıyor",
+          "category": "Yapay zekâ",
+          "summary": "Küçük model yaklaşımı, veri gizliliği ve düşük gecikme bakımından avantaj sağlayabilir. Modelin gerçekten hangi cihazlarda çalıştığı ve doğruluk kıyasları kaynak belgelerinden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Raycast yapay zekâya ekrandaki içerik hakkında soru sorma imkânı sunuyor",
+          "category": "Yazılım",
+          "summary": "Ekran bağlamını kullanabilen asistan, uygulamalar arasında bilgi taşımayı kolaylaştırabilir. Ekran görüntülerinin saklanması, hassas bilgilerin filtrelenmesi ve izinler gizlilik açısından kritik.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Brenner Tüneli’ne yönelik saldırı ve Avrupa uçuşlarına bomba ihbarları bildirildi",
+          "category": "Siber güvenlik",
+          "summary": "Haber, kritik altyapı güvenliği ile havacılık operasyonlarının aynı gün içinde baskı altında kaldığını aktarıyor. Olaylar arasında nedensellik kurulmadan her iki gelişme ayrı resmî kaynaklardan teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Florür iyon bataryalar lityuma alternatif olarak araştırılıyor",
+          "category": "Enerji",
+          "summary": "Yeni kimya ailesi, kapasite ve yanmazlık gibi potansiyel avantajlarla öne çıkıyor. Laboratuvar düzeyindeki sonuçların ticari kullanıma hazır olduğu anlamına gelmediği vurgulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "MIT Social.Wiki sosyal ağ deneyimini kullanıcıların şekillendirmesine odaklanıyor",
+          "category": "Dijital kültür",
+          "summary": "Proje, sosyal uygulama kurallarının daha esnek biçimde oluşturulmasına imkân vermeyi hedefliyor. Moderasyon, kimlik ve kötüye kullanım önlemleri platformun gerçek değerini belirleyecek.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Çin Long March 9 Ay görevlerini hedefleyen ağır roket programında ilerliyor",
+          "category": "Uzay",
+          "summary": "Yeni roketin onay ve geliştirme süreci, Çin’in büyük yükleri uzaya taşıma kapasitesini artırma planıyla bağlantılı. İlk uçuş tarihi ve görev mimarisi resmî uzay ajansı duyurusundan kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "8 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Kodlama ajanlarının gerçek görevlerin yalnızca dörtte birini tamamlayabildiği bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Yeni benchmark, ajanların karmaşık yazılım görevlerinde hâlâ insan denetimine ihtiyaç duyduğunu gösteriyor. Başarı oranı kullanılan görev kümesi, değerlendirme ölçütü ve model sürümüne bağlı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Beyin implantında yapay zekâ görsel uyarımın hassasiyetini artırmayı hedefliyor",
+          "category": "Sağlık teknolojisi",
+          "summary": "Araştırma, sinirsel uyarım desenlerini kişiye göre ayarlayarak görsel algıyı desteklemeyi amaçlıyor. Bulgular deneysel düzeydeyse tedavi veya görme geri kazanımı vaadi olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "DFRobot DX-M1 yapay zekâ hızlandırıcısını M.2 formunda sunuyor",
+          "category": "Donanım",
+          "summary": "Kompakt hızlandırıcı, mevcut bilgisayarlara yerel yapay zekâ kapasitesi eklemeyi hedefliyor. Gerçek TOPS performansı, sürücü desteği ve uyumlu modeller cihaz testleriyle doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Nital dört ayaklı robot köpek pazarında yeni bir model tanıtıyor",
+          "category": "Robotik",
+          "summary": "Robot, endüstriyel alanlar ve araştırma uygulamalarında hareket kabiliyeti sunmayı hedefliyor. Fiyat, taşıma kapasitesi, sensör paketi ve desteklenen yazılım platformları kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "NASA Ay’a dönüş programı için yeni astronot adayları arıyor",
+          "category": "Uzay",
+          "summary": "İnsanlı Ay görevlerine hazırlık kapsamında astronot alımı ve eğitim süreci gündeme geliyor. Başvuru şartları, takvim ve görevlendirme garantisi olmayan seçim süreci NASA duyurusundan okunmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Temel Kindle modelinde fiyat artışı gündeme geldi",
+          "category": "Cihazlar",
+          "summary": "E-kitap okuyucu pazarında temel modelin fiyat/özellik dengesi yeniden tartışılıyor. Fiyatlar ülkeye ve depolama seçeneğine göre farklılık gösterebileceği için yerel mağaza bilgisi kullanılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "LG OLED televizyonlarda ekran kenarı aşınması iddiaları raporlandı",
+          "category": "Cihazlar",
+          "summary": "Kullanıcı raporları, bazı panellerde klasik yanma izinden farklı kenar piksel sorunlarına işaret ediyor. Model serisi, üretim partisi ve garanti kapsamı açıklığa kavuşturulmadan genelleme yapılmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Epic Games Launcher Linux tabanlı sistemlere geliyor",
+          "category": "Oyun",
+          "summary": "SteamOS, Fedora ve CachyOS gibi ortamlarda oyun mağazası desteği Linux oyuncuları için seçenekleri artırabilir. Resmî paket desteği, anti-cheat uyumu ve oyun uyumluluğu ayrı kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "On binlerce internet sitesinde kötü amaçlı kod bulunduğu raporlandı",
+          "category": "Siber güvenlik",
+          "summary": "Güvenlik araştırmacılarının taraması, uzun süre fark edilmeyen enfeksiyonların internet ekosistemi için riskini gösteriyor. Site sahipleri tarama sonucunu ve etkilenen URL listesini orijinal rapordan kontrol etmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Hollywood stüdyoları görsel efekt şirketlerinden AI planı talep ediyor",
+          "category": "Yapay zekâ",
+          "summary": "Yapım şirketleri, üretim süreçlerinde yapay zekânın kullanım biçimini ve maliyet etkisini daha yakından sorguluyor. Çalışan hakları, yaratıcı izinleri ve şeffaflık sektörün temel başlıkları arasında.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "9 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "NVIDIA Lyra 2.0 tek fotoğraftan keşfedilebilir 3D dünya üretmeyi hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Tek görüntüden gezilebilir ortam üretme yaklaşımı oyun, simülasyon ve sanal sahne üretimini hızlandırabilir. Kamera hareketi, geometri tutarlılığı ve sahne doğruluğu bağımsız test edilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Radeon ekran kartlarında DLSS benzeri sinirsel görüntü oluşturma modu gösterildi",
+          "category": "Yazılım",
+          "summary": "Topluluk modu, NVIDIA teknolojisine benzer yükseltme ve kare üretim etkilerini AMD donanımına taşımayı hedefliyor. Resmî AMD özelliği olmadığı ve destek kapsamının sınırlı olabileceği açıklanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "ByteDance Seedream 5.5 görselde art arda 100 düzenleme turunu hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Model, çok adımlı düzenlemelerde öznenin ve sahne tutarlılığının korunmasına odaklanıyor. Sonuçlar görsel kalite, kimlik koruma ve telif veri politikası açısından test edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Darling projesi macOS uygulamalarını Linux üzerinde çalıştırmayı amaçlıyor",
+          "category": "Yazılım",
+          "summary": "Uyumluluk katmanı, farklı işletim sistemleri arasında uygulama erişimini artırabilir. Henüz tüm macOS yazılımlarının sorunsuz çalıştığı anlamına gelmez; uygulama bazında test gerekir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Deep-TEMPEST ekran görüntüsünü HDMI kaynaklı radyo sızıntılarından okumayı araştırıyor",
+          "category": "Siber güvenlik",
+          "summary": "Araştırma, ekran kablolarından yayılan elektromanyetik sinyallerin bilgi sızdırma ihtimalini ele alıyor. Deney koşulları ve gerçek saldırı mesafesi güvenlik riskinin büyüklüğünü belirler.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "İlaç şirketleri yapay zekâ ile tedavi geliştirme vaatlerini temkinli karşılıyor",
+          "category": "Sağlık teknolojisi",
+          "summary": "İlaç araştırmalarında AI araçlarının hız ve verimlilik potansiyeline rağmen klinik sonuçlara dönüşme süreci uzun. Model tahminleri, laboratuvar ve klinik deneylerin yerini tutmuyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Snapdragon X2 Elite tabanlı mini PC Avrupa’da satışa çıkıyor",
+          "category": "Donanım",
+          "summary": "Yeni mini PC, ARM tabanlı işlem gücünü küçük kasada sunmayı hedefliyor. Uygulama uyumluluğu, termal performans ve fiyat/performans dengesi bağımsız incelemelerde görülmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "ARMSX3 Android PS3 emülatörü iPhone ve iPad’e taşınıyor",
+          "category": "Yazılım",
+          "summary": "Emülatör desteği mobil cihazlarda eski konsol oyunlarına erişimi genişletebilir. Performans, yasal ROM kullanımı, uygulama dağıtımı ve cihaz uyumluluğu ayrı değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Star Wars markası daha küçük ölçekli oyun projelerine yöneliyor",
+          "category": "Oyun",
+          "summary": "Lucasfilm’in farklı tür ve bütçelerde oyunlara alan açması, markanın daha geniş geliştirici topluluklarına açılmasını sağlayabilir. Duyurulmayan projeler söylenti olarak etiketlenmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Dia tarayıcısında 300’den fazla dosyanın çalındığı iddiası ortaya çıktı",
+          "category": "Siber güvenlik",
+          "summary": "Günlük rapor, tarayıcıyla bağlantılı bir güvenlik ihlali ve fidye talebinden söz ediyor. Etkilenen kullanıcı verisi, olay tarihi ve şirketin müdahalesi resmî güvenlik açıklamasıyla doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "10 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Sekiz ülke ve büyük yapay zekâ laboratuvarları Paris’te durdurma taahhüdüne katıldı",
+          "category": "Politika",
+          "summary": "Taahhüt, yüksek riskli yapay zekâ sistemleri için güvenlik koşulları sağlanmadığında geliştirmeyi durdurma yaklaşımını tartışmaya açıyor. Belgenin bağlayıcılığı ve imzacı listesi özgün metinden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Hugging Face açık kaynaklı yapay zekâ ekosisteminin siber saldırı riskiyle karşı karşıya olduğunu belirtiyor",
+          "category": "Siber güvenlik",
+          "summary": "Model ağırlıkları, veri kümeleri ve paket depolarına yönelik saldırılar açık kaynak dağıtımını etkileyebilir. Tedarik zinciri güvenliği ve model imzalama daha önemli hale geliyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "MiniMax H3-Image açık ağırlıklarla 4K görsel üretimini hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni model yüksek çözünürlüklü görsel üretimini daha erişilebilir hale getirmeyi amaçlıyor. Çözünürlük, üretim süresi ve lisans koşulları resmî model deposunda kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Ring ev içi güvenlik için uçan kamera konseptini yeniden gündeme taşıdı",
+          "category": "Cihazlar",
+          "summary": "Uçan kamera, evde hareket ederek farklı açılardan görüntü almayı hedefliyor. Mahremiyet, kayıt saklama, uçuş güvenliği ve abonelik şartları kullanıcı açısından belirleyici.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "MSI MEG X monitörde yapay zekâ işlemcisi panel üzerinde görev alıyor",
+          "category": "Cihazlar",
+          "summary": "Monitör içi işlemci, görüntü ayarlarının ve ek özelliklerin ek donanım gerektirmeden yönetilmesini amaçlıyor. Yapay zekâ iddiasının hangi gerçek işlevleri sunduğu teknik özellik tablosuyla açıklanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Milano, Birleşmiş Milletler yapay zekâ etik ve yönetişim kuruluşuna ev sahipliği yapmak istiyor",
+          "category": "Politika",
+          "summary": "Şehrin önerisi, AI güvenliği ve kıyaslama altyapısında uluslararası merkez olma hedefini içeriyor. Başvuru süreci ve BM tarafından kabul durumu birbirinden ayrı aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Meta Muse Ember ajanı düşük maliyetli görev otomasyonuna odaklanıyor",
+          "category": "Yapay zekâ",
+          "summary": "Ajan yaklaşımı, çok adımlı dijital görevleri daha düşük hesaplama maliyetiyle tamamlamayı hedefliyor. Gerçek başarı oranı, araç izinleri ve veri erişim sınırları test edilmeden üretim için uygun sayılmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "OpenSSH güvenlik açığı uzaktan bağlantı altyapılarını yeniden gündeme taşıdı",
+          "category": "Yazılım",
+          "summary": "Sunucu yöneticileri, ilgili sürümlerde güvenlik duyurularını ve yamaları takip etmeli. Etkilenen sürümler ve istismar koşulları üreticinin bülteniyle doğrulanmadan tüm SSH sistemleri riskli gösterilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Redmagic oyun telefonunda aktif soğutma ve yüksek performans öne çıkıyor",
+          "category": "Donanım",
+          "summary": "Yeni model, uzun süreli oyun oturumlarında sıcaklık kontrolünü merkezine alıyor. Fanlı tasarımın gürültü, dayanıklılık ve batarya üzerindeki etkisi ürün incelemeleriyle değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Hugging Face açık model ekosisteminde erişim ve güvenlik kontrollerini tartışıyor",
+          "category": "Yapay zekâ",
+          "summary": "Açık modellerin yaygınlaşması, zararlı dosya ve kötü amaçlı model paketlerinin dolaşıma girme riskini büyütebilir. Platformların doğrulama, raporlama ve erişim ilkeleri daha kritik hale geliyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "11 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Siri’nin bir yapay zekâ ajanına dönüşebileceği ve 2027’de genişleyebileceği bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Apple’ın sesli asistanı için daha fazla uygulama eylemi ve çok adımlı görev yeteneği konuşuluyor. Bu bilgiler plan veya sızıntı niteliğindeyse kesin ürün vaadi olarak yayımlanmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Microsoft’un küçük nöron aktivasyonuyla tetiklenen AI arka kapısı araştırıldı",
+          "category": "Siber güvenlik",
+          "summary": "Araştırma, model içindeki belirli davranış örüntülerinin kötüye kullanılabileceği bir güvenlik senaryosunu inceliyor. Deneysel risk ile gerçek sistemlerde doğrulanmış açık ayrımı net tutulmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Gemini Robotics 2.5 robotların fiziksel görevleri anlamasına odaklanıyor",
+          "category": "Robotik",
+          "summary": "Yeni model ailesi, görsel algı ve doğal dil komutlarını robot hareketleriyle birleştirmeyi amaçlıyor. Laboratuvar demosu, gerçek dünyada güvenli ve genel amaçlı otonomi anlamına gelmez.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Grok Build paylaşım bağlantılarında hassas verileri açığa çıkarabilecek hata iddiası",
+          "category": "Siber güvenlik",
+          "summary": "Derlemede, paylaşılan bağlantıların binlerce uygulama ve ticari veriyi görünür kılabildiği bildiriliyor. Etkilenen sürüm, düzeltme ve erişilen veri kapsamı şirket açıklamasıyla doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Claude Fable 5.2 akıl yürütme testlerinde Gemini 4 Carbon ile karşılaştırıldı",
+          "category": "Yapay zekâ",
+          "summary": "Yeni modelin muhakeme ve sosyal mantık testlerinde öne çıktığı iddia ediliyor. Benchmark sonuçları görev seçimi, maliyet ve ayarlara göre değiştiğinden ham test ve fiyat bilgileri birlikte verilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Tether BotPsy telefon üzerinde çalışan küçük ajan modelini duyurdu",
+          "category": "Yapay zekâ",
+          "summary": "0,8 milyar parametreli olduğu belirtilen model, mobil cihazda yerel ajan deneyimini hedefliyor. Pil, bellek, izin yönetimi ve çevrim dışı davranış gibi ölçütler gerçek cihaz testine ihtiyaç duyuyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Yapay zekâ ajanları Maya uygarlığına ait kayıt dışı bir alanı yeniden keşfetti",
+          "category": "Bilim",
+          "summary": "Çok adımlı veri taraması ve araştırma araçlarını birleştiren ajanlar, arkeolojik kayıtları karşılaştırarak yeni bir alanı belirlemeye yardımcı oldu. Bulgunun saha ekibi tarafından doğrulanması önem taşıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Cognichip yapay zekâ ile çip tasarım süresini kısaltmayı hedefliyor",
+          "category": "Donanım",
+          "summary": "Şirket, ön uç tasarım aşamalarında aylar süren bazı işleri günlere indirmeyi amaçlayan araçlarını tanıtıyor. Tasarım doğruluğu ve üretilebilirlik, insan mühendis ve fiziksel testlerle onaylanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Rotonium oda sıcaklığında çalışan fotonik kuantum bilgisayarını tanıttı",
+          "category": "Kuantum",
+          "summary": "Fotonik yaklaşım, kriyojenik soğutma ihtiyacını azaltma potansiyeli taşıyor. Kübit kalitesi, hata oranı ve ölçeklenebilirlik iddiaları bağımsız laboratuvar verisi gerektiriyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "DeepL Aure Voice sesli iletişimde daha doğal konuşma hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni ses teknolojisi, konuşma akışı ve sesli etkileşim kalitesini artırmayı amaçlıyor. Dil desteği, gecikme ve ticari kullanım koşulları ürün duyurusundan doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "12 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "AlphaGenome 2 DNA değişimlerinin hücre düzeyindeki etkisini tahmin etmeyi hedefliyor",
+          "category": "Bilim",
+          "summary": "Yeni model ailesi, genetik varyantların farklı hücre türlerinde nasıl davranabileceğini öngörmeye odaklanıyor. Araştırma aracı klinik teşhis veya tedavi kararı yerine geçmez; doğrulama deneyleri şart.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Apple Harbor Mac bilgisayarları yerel yapay zekâ sunucusuna dönüştürebilir",
+          "category": "Yazılım",
+          "summary": "Thunderbolt bağlantısıyla birden fazla cihazın belleğini bir araya getirme fikri, yerel model çalıştırma kapasitesini genişletmeyi amaçlıyor. Uygulamanın resmî statüsü ve macOS desteği kesinleşmeden ürün gibi sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Nintendo modchip yazılımları ve Switch emülatörleri için GitHub’a başvurdu",
+          "category": "Oyun",
+          "summary": "Telif ve konsol güvenliği tartışması, donanım modifikasyon araçlarının dağıtımı üzerinde yeni baskı oluşturabilir. Kaldırma talebi ile mahkeme kararı arasındaki fark korunmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Sahte INPS sitesi Android kullanıcılarını zararlı uygulamaya yönlendirmeyi hedefliyor",
+          "category": "Siber güvenlik",
+          "summary": "İtalya’daki kamu kurumu taklidi yapan sahte site, kullanıcıları kötü amaçlı yazılım kurmaya ikna etmeye çalışıyor. Kullanıcılar uygulamaları yalnızca resmî mağaza ve kurum bağlantılarından indirmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Samsung Android XR akıllı gözlükleri için ön sipariş sürecini başlattı",
+          "category": "Cihazlar",
+          "summary": "Yeni ürün ailesi, Android XR platformunu giyilebilir cihazlara taşıma hedefi taşıyor. Bölgesel ön sipariş tarihi, teknik özellik ve uyumlu telefon listesi üretici sayfasından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Microsoft Chrome ve Edge için Bing AI özelliklerini kapatma seçeneği sunuyor",
+          "category": "Yazılım",
+          "summary": "Yeni kontrol, kullanıcıların arama sonuçlarında AI yanıtları ve sohbet bölümlerini devre dışı bırakmasını hedefliyor. Eklentinin yayıncısı, izinleri ve tarayıcı sürümü kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "ElevenLabs Scribe v3 Live konuşma ajanlarının söz kesmesini azaltmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni sistem, bağlamı kullanarak konuşmacının gerçekten bitirip bitirmediğini anlamaya çalışıyor. Canlı görüşmelerde gecikme, dil doğruluğu ve kişisel veri işleme politikası önem taşıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Apex Compute sinirsel görüntü oluşturma ile gerçek zamanlı render üzerine çalışıyor",
+          "category": "Yapay zekâ",
+          "summary": "Yöntem, grafik üretiminde klasik hesaplama ile öğrenilmiş modelleri bir araya getirmeyi hedefliyor. Performans kazanımı ve görüntü kalitesi, kullanılan GPU ve sahne türü belirtilerek değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Sahte kamu uygulaması kampanyaları mobil kullanıcıları hedef alıyor",
+          "category": "Siber güvenlik",
+          "summary": "Kamu kurumu görünümündeki siteler, Android uygulaması yükletmek için sosyal mühendislik kullanabiliyor. Kurum adıyla gelen bağlantıların alan adı ve uygulama yayıncısı mutlaka kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Ajan tabanlı yazılım geliştirme araçlarında çoklu görev yönetimi öne çıkıyor",
+          "category": "Yapay zekâ",
+          "summary": "Yeni nesil araçlar, tek bir isteği alt görevlere bölerek paralel ajanlarla yürütmeyi hedefliyor. Hata kontrolü, dosya erişimi ve insan onayı kritik güvenlik katmanları olmaya devam ediyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "13 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Perplexity metin üretmek yerine doğru modeli veya aracı seçen sistemleri tanıttı",
+          "category": "Yapay zekâ",
+          "summary": "Yeni yaklaşım, kullanıcının isteğini analiz ederek uygun arama ve işlem yolunu seçmeye odaklanıyor. Karar kalitesi, kaynak doğruluğu ve hizmet maliyeti gerçek görevlerde değerlendirilmelidir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "OPPO iş ve yaratıcı üretim için yeni tablet modelini Avrupa’ya taşıyor",
+          "category": "Cihazlar",
+          "summary": "Tablet, üretkenlik aksesuarları ve içerik üretimi odaklı kullanım senaryolarıyla konumlandırılıyor. Ekran, kalem, klavye ve bölgesel fiyat ayrıntıları yerel ürün sayfasından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Thinking Machines Inkling 2 Small modelinin açık ağırlıkları paylaşıldı",
+          "category": "Yapay zekâ",
+          "summary": "Modelin geliştiricilere açık biçimde sunulması, yerel denemeleri ve araştırma kullanımını kolaylaştırabilir. Lisans, eğitim verisi ve ticari kullanım sınırları model deposundan kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Claude ile yeniden yazılan 1994 Jeep motor kontrol yazılımı emisyon testini geçti",
+          "category": "Otomotiv",
+          "summary": "Bir mühendis, eski araçtaki elektronik kontrol yazılımını yapay zekâ desteğiyle değiştirdiğini ve emisyon testini geçtiğini bildiriyor. Tekil deneyim, genel araç güvenliği ve yasal uygunluk garantisi değildir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Epic Games Launcher Linux üzerinde Flatpak paketiyle sunuluyor",
+          "category": "Oyun",
+          "summary": "Linux kullanıcılarının oyun mağazasına erişimi genişleyebilir. Oyunların anti-cheat sistemleri, güncellemeler ve hesap güvenliği bakımından uyumluluğu ayrı kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "OpenAI Daybreak Red Team ve Defense Factory güvenlik araçlarını tanıttı",
+          "category": "Siber güvenlik",
+          "summary": "Yeni araçlar, yazılım açıklarını bulma ve yamalama süreçlerini otomatikleştirmeyi hedefliyor. Güvenlik testinin yetkili ortamlarda yürütülmesi ve insan denetimi önemli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    }
+  ]
+}
