@@ -1398,6 +1398,259 @@
           "category": "Siber güvenlik",
           "summary": "Yeni araçlar, yazılım açıklarını bulma ve yamalama süreçlerini otomatikleştirmeyi hedefliyor. Güvenlik testinin yetkili ortamlarda yürütülmesi ve insan denetimi önemli.",
           "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "A19 çipli yeni Apple TV 4K ve Siri AI özellikleri iddiası gündeme geldi",
+          "category": "Cihazlar",
+          "summary": "Yeni donanım ve akıllı TV özellikleri haberleştiriliyor. Lansman, fiyat ve Siri kapsamı resmî Apple duyurusu olmadan kesinleşmiş ürün özellikleri olarak sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Pixel Watch ve Fitbit Air ile AI gözlük kontrolü iddiası gündemde",
+          "category": "Giyilebilir teknoloji",
+          "summary": "Saat üzerinden gözlük işlevlerini yönetme fikri, giyilebilir cihaz ekosistemleri arasındaki entegrasyonu artırabilir. Uyumlu model, yazılım sürümü ve bölgesel erişim doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "OpenAI robotik araştırmacılarını farklı ekipler altında yeniden düzenliyor",
+          "category": "Yapay zekâ",
+          "summary": "Şirketin robotik çalışmalarını ana araştırma ve uygulamalı ekiplerle birleştirdiği bildiriliyor. Organizasyon değişikliği, robotik programının sona erdiği anlamına gelmez; şirket açıklaması esas alınmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Anthropic hizmetlerinde yaşanan kesinti geliştirici iş akışlarını etkiledi",
+          "category": "Yazılım",
+          "summary": "AI kodlama ve sohbet servislerinde yaşanan kesintiler, ekiplerin tek sağlayıcıya bağımlılığını gündeme getiriyor. Olayın süresi ve etkilenen servisler durum sayfasından doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "14 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "AB, çocuklar için loot box kısıtlamaları ve oyun içi fiyat şeffaflığı istiyor",
+          "category": "Oyun",
+          "summary": "Avrupa’daki politika tartışması, çocukların ücretli rastgele ödüllere erişimini ve sanal para fiyatlarının anlaşılmasını ele alıyor. Henüz teklif veya siyasi hedef niteliğindeki adımlar yürürlükteki yasa gibi sunulmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Çin’de yaralı askerler için ağrı kesici taşıyan drone denemesi yapıldığı bildirildi",
+          "category": "Robotik",
+          "summary": "Askerî insansız hava aracı, tıbbi malzemeyi tehlikeli bölgelere ulaştırma fikrine odaklanıyor. Deneme koşulları, güvenilirlik ve gerçek sahada kullanıma ilişkin sınırlamalar açıkça belirtilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Drogue okyanus ısısını kullanan yüzer veri merkezleri planlıyor",
+          "category": "Enerji",
+          "summary": "Proje, deniz üzerindeki soğutma avantajlarını veri merkezi altyapısıyla birleştirmeyi hedefliyor. Enerji verimliliği, çevresel etki, bağlantı ve bakım maliyetleri gerçek fizibilite için belirleyici.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "DocumentDB 1.0 MongoDB uyumlu açık kaynak veri tabanı olarak yayımlandı",
+          "category": "Yazılım",
+          "summary": "Yeni sürüm, MongoDB API uyumluluğu üzerinden geliştiricilere alternatif sunmayı amaçlıyor. Veri modeli, performans, lisans ve üretim geçişi uyumluluğu teknik testlerle doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Claude Code Projects paralel ajanlarla daha az gözetim altında çalışmayı hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Çoklu ajan akışı, yazılım görevlerini bölerek eşzamanlı yürütmeyi amaçlıyor. Yetki sınırları, kod incelemesi ve otomatik değişikliklerin geri alınabilir olması güvenli kullanım için şart.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "ChatGPT Wallet ajan tabanlı ödemeleri gündeme taşıyor",
+          "category": "Yapay zekâ",
+          "summary": "Dijital cüzdan yaklaşımı, kullanıcı adına ödeme veya satın alma adımlarının yürütülmesini hedefliyor. Finansal onay, dolandırıcılık önleme, iade ve kişisel veri koruması netleşmeden kullanıma hazır kabul edilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Cloudflare Kitesurf açık kaynak AI ajan tarayıcısı üzerinde çalışıyor",
+          "category": "Yazılım",
+          "summary": "Ajanların web sitelerinde gezinmesi için özel tarayıcı yaklaşımı geliştiriliyor. Oturum bilgileri, formlar ve kullanıcı adına işlem yapma yetkisi güvenlik tasarımının merkezinde olmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Tuya Meta Muse ajanını binlerce akıllı ev cihazına bağlamayı hedefliyor",
+          "category": "Akıllı ev",
+          "summary": "Entegrasyon, doğal dil komutlarının ev otomasyonuna taşınmasını sağlayabilir. Cihaz izinleri, yerel ağ güvenliği ve kritik cihazlarda insan onayı önemli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Açık kaynak veri tabanları kurumsal bulut bağımlılığına alternatif sunuyor",
+          "category": "Yazılım",
+          "summary": "DocumentDB gibi projeler, geliştiricilerin kendi altyapılarında çalıştırabilecekleri seçenekleri artırıyor. Açık kaynak olmak, bakım, güvenlik ve yedekleme sorumluluğunu ortadan kaldırmıyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Microsoft 365 kesintisi şirketlerin çevrim dışı ofis araçlarına ilgisini artırdı",
+          "category": "Altyapı",
+          "summary": "Bulut servislerine erişim sorunu yaşandığında yerel dosya ve ofis yazılımlarının önemi artıyor. Kurumlar hibrit yedekleme, çevrim dışı erişim ve veri taşınabilirliği planlamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "15 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "llama.cpp v1.0 yerel yapay zekâ çalıştırmada kararlı sürüm dönemini başlatıyor",
+          "category": "Yazılım",
+          "summary": "Yeni sürüm, açık modellerin farklı donanımlarda yerel çalıştırılmasını kolaylaştırmayı hedefliyor. Performans kazanımı; model, kuantizasyon ve donanım yapılandırmasına göre ölçülmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Microsoft 365 kesintisi sırasında kritik alarm sisteminin çalışmadığı iddia edildi",
+          "category": "İş sürekliliği",
+          "summary": "Derlemede bulut hizmeti kesintisinin bir klor alarm sistemini etkilediği ve zehirlenme yaşandığı öne sürülüyor. Bu ağır sağlık iddiası resmî soruşturma ve güvenilir haber kuruluşlarıyla doğrulanmadan yayımlanmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Fransa, İspanya ve İtalya’da sıcak hava kaynaklı elektrik kesintisi riski değerlendiriliyor",
+          "category": "Enerji",
+          "summary": "Aşırı sıcaklıklar soğutma talebini ve enerji altyapısı üzerindeki yükü artırabilir. Risk tahminleri meteoroloji ve şebeke işletmecisi verileriyle ilişkilendirilerek aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Yapay zekâ Pompeii’deki kül katmanlarını dijital olarak yeniden canlandırıyor",
+          "category": "Yapay zekâ",
+          "summary": "Görüntü ve arşiv verilerinin birleştirilmesi, antik kentin tarihsel olaylarını görselleştirmeye yardımcı olabilir. Bilimsel rekonstrüksiyon ile sanatsal yorum arasındaki sınır açıkça gösterilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "ABD’de uçuş iptalleri artarken FAA sistem dayanıklılığı tartışılıyor",
+          "category": "Ulaşım",
+          "summary": "Hava trafik altyapısındaki aksaklıklar, yolcu planlarını ve havayolu operasyonlarını etkileyebilir. İptal sayısı ve nedenleri havayolu, FAA ve havaalanı duyurularından gün bazında doğrulanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "Apple ve Samsung katlanabilir ekran menteşelerinde inceltilmiş camı test ediyor",
+          "category": "Cihazlar",
+          "summary": "Yeni cam yaklaşımı, katlanma çizgisini ve cihaz kalınlığını azaltmayı hedefliyor. Test prototipi ile seri üretim ürünü ayrılmalı; dayanıklılık ve çizilme direnci uzun dönemli veriler gerektiriyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "AB’nin açık model girişimi EUROPA trilyona yakın parametre hedefiyle gündemde",
+          "category": "Yapay zekâ",
+          "summary": "Avrupa’nın egemen yapay zekâ kapasitesi geliştirme girişimi, büyük açık model altyapısına odaklanıyor. Modelin erişilebilirliği, lisansı ve tamamlanma durumu resmî program belgelerinden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "Meituan LongCat-2.5 NVIDIA GPU kullanmadan ajan görevlerini hedefliyor",
+          "category": "Yapay zekâ",
+          "summary": "Modelin büyük parametre ölçeği ve alternatif donanım altyapısı dikkat çekiyor. Çalışma ortamı ve performans iddiaları tedarikçi açıklamasından bağımsız ölçümlerle karşılaştırılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "Baidu ERNIE 5.5 Flash Base lisansında AB için sınırlamalar bulunabileceği bildirildi",
+          "category": "Yapay zekâ",
+          "summary": "Açık ağırlıklı model lisanslarının coğrafi kısıtları geliştiriciler için önemli hale geliyor. Kullanım şartları, dağıtım ve ticari haklar doğrudan lisans metninden okunmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "Fransa’daki bir bankadan 100 milyon avro çalındığı iddiası gündemde",
+          "category": "Siber güvenlik",
+          "summary": "Büyük ölçekli finansal saldırı iddiasının kurbanı, yöntem ve kayıp miktarı güvenilir kaynaklarla teyit edilmelidir. Banka ve kolluk kuvvetlerinin açıklamaları olmadan rakam kesinleştirilmemeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        }
+      ]
+    },
+    {
+      "date": "16 Kasım 2026",
+      "stories": [
+        {
+          "number": "01",
+          "title": "Claude Fable 5.2 kod yazarak dijital fırça darbeleriyle resim oluşturuyor",
+          "category": "Yapay zekâ",
+          "summary": "Anthropic çalışanlarının gösterdiği demoda model, Python koduyla simüle edilmiş fırça darbeleri yerleştirerek görsel üretiyor. Bu örnek, kod tabanlı üretim ile yaratıcı araçların birleşmesini gösteriyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "02",
+          "title": "Fireworks AI anahtarının açığa çıkması kötü amaçlı Claude Code eklentisiyle ilişkilendirildi",
+          "category": "Siber güvenlik",
+          "summary": "Cursor, bir erişim anahtarının açığa çıkmasının verilerine erişim sağladığını ve 5 bine kadar kullanıcıya zararlı eklenti sunulmuş olabileceğini açıkladı. Etkilenen hesaplar ve düzeltme kapsamı şirket güvenlik bildiriminden kontrol edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "03",
+          "title": "Anthropic CEO’su halka arz öncesi hesaplama altyapısı maliyetlerini öne çıkardı",
+          "category": "Yapay zekâ",
+          "summary": "Dario Amodei’nin açıklamaları, büyük modellerin eğitimi ve işletilmesi için gereken işlem gücünün şirket stratejisindeki ağırlığını vurguluyor. Basında aktarılan uzun vadeli taahhütler şirket dosyasıyla teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "04",
+          "title": "Gemini 4 Carbon MathArena matematik kıyaslamasında ilk sıraya çıktı",
+          "category": "Yapay zekâ",
+          "summary": "Günlük derlemeye göre Google modeli, ilgili benchmark’ta Claude Fable 5.2’nin önünde yer aldı. Test ayarları, maliyet ve model sürümleri sonuçla birlikte açıklanmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "05",
+          "title": "Anthropic Claude Opus 5.5 için istem yazma alışkanlıklarının değişmesini öneriyor",
+          "category": "Yapay zekâ",
+          "summary": "Şirket, kısa ve açık hedef tanımlarının uzun “derin düşün” komutlarından daha yararlı olabileceğini söylüyor. Bu öneri model sürümüne özgü pratik tavsiye olarak aktarılmalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "06",
+          "title": "OpenAI robotik araştırmacılarını ana araştırma ve uygulamalı ekiplerine dağıtıyor",
+          "category": "Robotik",
+          "summary": "Şirket, robotik çalışmaların sürdüğünü belirtirken araştırmacıların organizasyon yapısını değiştirdi. Bu değişiklik, robotik programının iptal edildiği anlamına gelmiyor.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "07",
+          "title": "Eski Anthropic araştırmacısı şirketin halka arz sunumundaki büyüme grafiğini eleştirdi",
+          "category": "Yapay zekâ",
+          "summary": "Jacob Coxon, hesaplama kaynaklarına yatırım ve algoritmik gelişim hızına ilişkin kaygılarını kamuoyuyla paylaştı. Bu, eski çalışan görüşü olarak sunulmalı; şirketin doğrulanmış performans verisiyle karıştırılmamalı.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "08",
+          "title": "TSMC çalışan verilerinin dışarıda yayımlandığını doğruladı",
+          "category": "Siber güvenlik",
+          "summary": "Şirket, mevcut ve eski çalışanlara ait bazı bilgilerin harici bir sitede görüldüğünü ve bulut sağlayıcısındaki kayıtlarla eşleştiğini belirtti. Etkilenen kayıt sayısı ve saldırı yöntemi soruşturma ilerledikçe netleşebilir.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "09",
+          "title": "CISA, aktif istismar edilen UnrealIRCd komut enjeksiyonu açığını kataloğa ekledi",
+          "category": "Siber güvenlik",
+          "summary": "CISA’nın KEV kataloğuna aldığı açık, etkilenen sistemlerin yamalanması için kurumlara uyarı niteliği taşıyor. Yöneticiler CVE numarası, sürüm ve düzeltme talimatlarını resmî kayıttan takip etmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
+        },
+        {
+          "number": "10",
+          "title": "SK Hynix çip tedarikçilerini desteklemek için beş yılda 1 milyar dolar ayıracak",
+          "category": "Yarı iletken",
+          "summary": "Reuters’a göre SK Hynix, Güney Kore’deki yarı iletken tedarik zincirini güçlendirmek için yaklaşık 1 milyar dolarlık destek planlıyor. Yatırımın test altyapısı ve tedarikçi finansmanına dağılımı şirket açıklamasıyla teyit edilmeli.",
+          "editorialStatus": "Birincil kaynak ve özgün yayın saati doğrulanmalı."
         }
       ]
     }
